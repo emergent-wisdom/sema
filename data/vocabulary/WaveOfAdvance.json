@@ -1,0 +1,33 @@
+{
+  "handle": "WaveOfAdvance",
+  "gloss": "A growing population whose members move short distances spreads into land that can support it as a front, at a speed set by its growth and the distance its members move",
+  "mechanism": "A population grows where it lives, and its members move mostly short distances, often into land nearby. Where the land beyond the occupied area can support it, the occupied area expands as a front: behind it the population fills toward the land's capacity, and at it small groups move outward. The front's speed is set by the local growth rate and the distance moved per generation, so across land of the same capacity it advances at a constant speed, and it slows or stops where the land cannot support the population or others already hold it. Long-distance jumps, and the spread of a trait or practice among members of a population that stays where it is, are not instances, though both often mix with a front.",
+  "invariants": [
+    "The population grows locally, and its members move mostly short distances per generation.",
+    "The occupied area expands at a front, behind which density rises toward the land's capacity.",
+    "The front's speed depends on the local growth rate and the distance moved per generation."
+  ],
+  "failure_modes": [
+    "Practice taken for people: the spread of a trait or practice, such as a crop or a pottery style, is read as a front of the population itself, or the reverse.",
+    "Empty land assumed: the land ahead is treated as unoccupied, hiding whether the front replaced, absorbed or was absorbed by those already there.",
+    "Speed read as intent: a steady front is taken for a planned conquest or colonization."
+  ],
+  "sema_id": "sema:WaveOfAdvance#mh:SHA-256:4cec3c27911453d51cc5b750f2dd89c7894bf39e96f152ef810221b41f898ba0",
+  "sema_ref": "WaveOfAdvance#4cec",
+  "sema_stub": "4cec",
+  "sema_layer": "Physics",
+  "sema_category": "Primitives",
+  "_meta": {
+    "path": [
+      "Physics",
+      "Primitives"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "InnovationDiffusion",
+      "DensityRatchet",
+      "Sideinherit"
+    ]
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "handle": "CumulativeCulture",
+  "gloss": "Skills and knowledge accumulate across generations when enough people learn from one another, and erode when too few do",
+  "mechanism": "People learn skills, tools and knowledge from others, mostly from the most skilled or successful, and sometimes improve on what they learned. Each generation starts from the stock it inherits, so improvements accumulate beyond what anyone could invent alone. How fast the stock grows, and whether it holds, depends on how many people learn from one another and how well they are connected: a large, connected population keeps and improves complex skills, while a small or isolated one loses those that too few people practise to pass on. Learning that is not passed on, and transmission that copies without ever improving, are not instances.",
+  "invariants": [
+    "Skills and knowledge are learned from others rather than reinvented by each learner.",
+    "Some learners improve on what they learned, and the improvements are passed on.",
+    "How well the stock is kept and improved depends on how many people learn from one another and how connected they are."
+  ],
+  "failure_modes": [
+    "Stock read as ability: differences in tools or knowledge between peoples are attributed to differences in individual ability, when they follow from the size and connection of the populations that hold them.",
+    "Accumulation assumed: the stock is assumed only to grow, missing the losses that follow isolation or a shrinking population.",
+    "Size alone: population size is credited without the connections and teaching that carry knowledge."
+  ],
+  "sema_id": "sema:CumulativeCulture#mh:SHA-256:4f938b644cc8fd33afd520ea0e9c04e43b8156908b2db513a638e053f7e86dbe",
+  "sema_ref": "CumulativeCulture#4f93",
+  "sema_stub": "4f93",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "_meta": {
+    "path": [
+      "Society",
+      "Protocols"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Sideinherit",
+      "Foundationfray",
+      "InnovationDiffusion",
+      "Twinflow"
+    ]
+  }
+}

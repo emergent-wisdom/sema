@@ -1,0 +1,39 @@
+{
+  "handle": "StructuralDemographicCycle",
+  "gloss": "Agrarian states pass through centuries-long cycles of population growth, elite crowding, state crisis and disorder",
+  "mechanism": "In an agrarian state, a long period of order lets population grow into its {{malthusian_trap}}, which lowers wages and raises rents, enriching landowners and enlarging the elite. Elite numbers and ambitions outgrow the positions and income available, a {{capacitylag}} in which elites compete and split into factions, while the state's revenue falls behind the cost of its army and administration. Fiscal crisis, elite conflict and popular unrest bring a period of disorder in which population and elite numbers fall through war, famine, disease and loss of status, until the conditions for a new period of growth and order return; one cycle takes roughly two to three centuries. Crises produced by an outside shock without this build-up, and societies whose population is not near its limit, are not instances.",
+  "invariants": [
+    "Population grows during a long period of order toward the limit its land and techniques allow.",
+    "Elite numbers or ambitions grow faster than the positions and income available to them.",
+    "The state's revenue falls behind its costs before the disorder.",
+    "Population and elite numbers fall during the disorder."
+  ],
+  "failure_modes": [
+    "Rhythm forced: a two-to-three-century rhythm is imposed on histories whose crises do not follow it.",
+    "One cause: the crisis is attributed to population alone, ignoring elite and fiscal dynamics, or the reverse.",
+    "Prediction by analogy: the cycle is projected onto societies far from their population limit, such as industrial ones, without checking its conditions."
+  ],
+  "sema_id": "sema:StructuralDemographicCycle#mh:SHA-256:84332fbf5a6c3b8266a43f1a1cfcd1f71e82cda8116a68b1de6656ed864bb158",
+  "sema_ref": "StructuralDemographicCycle#8433",
+  "sema_stub": "8433",
+  "_meta": {
+    "path": [
+      "Society",
+      "Governance"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Warsift",
+      "DiminishingComplexityReturns"
+    ]
+  },
+  "dependencies": {
+    "references": {
+      "capacitylag": "sema:Capacitylag#mh:SHA-256:977c018cdc8c7a053bad12a6cd98275477f3f106c8ac8bf975fce1dca8b6bb2c",
+      "malthusian_trap": "sema:MalthusianTrap#mh:SHA-256:0f6b99da46aa40c7bc427c5af4545b269837f66722ccfbc34994ab50e2e951da"
+    }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Governance"
+}

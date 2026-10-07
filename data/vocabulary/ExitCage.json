@@ -1,0 +1,34 @@
+{
+  "handle": "ExitCage",
+  "gloss": "When people cannot leave without losing their livelihood, those who control force can take a share of what they produce",
+  "mechanism": "People whose livelihood is tied to a place, because the land around is barren, already held by others, or their own investment in fields, canals, terraces or stores cannot move, lose the option of leaving. A group that controls force or access can then take a share of what they produce and impose obligations on them, and the subordination lasts while leaving costs more than staying. Where people can leave at small cost, would-be rulers lose them to flight and their power stays limited. The cage may be set by terrain, by neighbours, by debt or by investment, and it tightens as investment in place grows. Subordination sustained by benefits the subjects would accept even with exit open, and limits on leaving unrelated to livelihood, are not instances.",
+  "invariants": [
+    "Leaving would cost the people their livelihood.",
+    "A group that controls force or access takes a share of their output or labour.",
+    "The arrangement lasts while leaving costs more than staying."
+  ],
+  "failure_modes": [
+    "Terrain as destiny: physical barriers alone are credited, when neighbours, debts and immovable investment close exit as firmly.",
+    "Exit read as free: people with open land around them are assumed able to leave at no cost, ignoring kin, rights to land and risk.",
+    "Every state caged: all states are explained by closed exit, overlooking those built through trade, religion or defence."
+  ],
+  "sema_id": "sema:ExitCage#mh:SHA-256:eef79b28d91f7a5904c5526d70d0a0b3aa60e68b5fd2641420e425c848bd676b",
+  "sema_ref": "ExitCage#eef7",
+  "sema_stub": "eef7",
+  "sema_layer": "Society",
+  "sema_category": "Governance",
+  "_meta": {
+    "path": [
+      "Society",
+      "Governance"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "SurplusBound",
+      "Warsift",
+      "FreeRiderProblem"
+    ],
+    "caution": "Its description doubles as a recipe for coercive extraction; use it to recognise and loosen such arrangements, not to build them."
+  }
+}

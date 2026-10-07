@@ -6,8 +6,8 @@
      and export through `docs/guides/authoring.md`. Edit commentary in
      `data/design_critique.json`. Never edit canonical exports directly. -->
 
-_Patterns covered: 590 (from `data/vocabulary/`)_
-_Commentary entries in sidecar: 590 (from `data/design_critique.json`)_
+_Patterns covered: 606 (from `data/vocabulary/`)_
+_Commentary entries in sidecar: 606 (from `data/design_critique.json`)_
 
 This manual is the design reference for the Sema Bootstrap Library. For each pattern, it shows the definition (mechanism, invariants, pre/postconditions, failure modes, parameters, data schema, and dependency bindings) alongside the design commentary: why it exists, why it sits where it does, whether it could be removed, how it's used across contexts, its design tensions and tradeoffs, critique, and where it sits in its family. Machine validation checks structure, references, and hashes; the meaning and adequacy of the contracts require review. Source links point to the rendered card, including its staging copy when present.
 
@@ -247,9 +247,9 @@ themselves; rewrite them around the semantic risk and run the placement test.
 ---
 
 ## Patterns
-## Physics (20)
+## Physics (22)
 
-### Physics/Primitives (18)
+### Physics/Primitives (20)
 
 ### Attractor#0036
 
@@ -1337,6 +1337,124 @@ themselves; rewrite them around the semantic risk and run the placement test.
 - A steady form can hide growing strain: the adjustments absorb a growing disturbance until they cannot, so the steadiness shows nothing about how much adjustment is left.
 
 **In the family.** Equilibrium rests, Robustness resists, Morphproof survives transformations, and Swayhold persists by adjusting.
+
+---
+
+### VirginSoilEpidemic#d1fd
+
+`Physics` · `Primitives` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/VirginSoilEpidemic.json)
+
+**Gloss.** A disease reaching a population with no prior exposure kills a larger share of it, adults included, than where the disease is endemic
+
+**Mechanism.**
+
+> Where a disease is endemic, most adults have survived it and carry acquired immunity, so it strikes mainly the young. When it first reaches a population that has never been exposed, members of all ages fall ill at once, so the care, food-getting and defence that the healthy provide fail as well, and deaths from neglect and hunger add to those from the disease. Several new diseases arriving within a generation compound the losses, and violence, hunger or displacement at the same time raise mortality further and slow recovery. A disease new to every population, and excess deaths explained by inherited susceptibility rather than by the absence of prior exposure, are not instances.
+
+**Invariants.**
+- The population has had no prior exposure to the disease, so its adults carry no acquired immunity to it.
+- The share of the population the disease kills exceeds that in populations where it is endemic.
+- Members of all ages fall ill in the same outbreak.
+
+**Failure modes.**
+- Germs absolve: a population's collapse is credited to disease alone, hiding the war, enslavement, hunger and displacement that raised mortality and prevented recovery.
+- Innate weakness assumed: excess deaths are attributed to inherited susceptibility rather than to the absence of prior exposure and to social disruption.
+- One disease blamed: losses from several successive diseases are credited to one.
+
+#### Design
+
+**Why it exists.** The depopulation of the Americas and the Pacific after contact is told either as conquest alone or as disease alone. VirginSoilEpidemic names the excess mortality that the absence of prior exposure produces and, in its failure modes, the other causes it must not hide.
+
+**Why Physics.** Immunity and its absence obtain in any host population whether or not anyone understands them; the mechanism needs no cognition.
+
+**Can it be removed?** Twinflow describes the link that brings a disease, not the excess mortality in a population without prior exposure. Removable if mortality from a disease is assumed equal in every population.
+
+**Intended use.** explaining excess mortality when a disease first reaches a population without prior exposure, alongside the other causes acting at the same time.
+
+**Future uses.** reading mortality after contact between previously separate populations, human or animal.
+
+**Broad-use contexts.** the Americas after 1492, Pacific islands, Arctic communities, rinderpest in African cattle in the 1890s.
+
+**Broad-use intersection (review hypothesis).** a population without prior exposure, a disease endemic elsewhere, and mortality compared with populations where it is endemic.
+
+**Varies (descendant territory).** which diseases arrive, how many and how close together, and what else strikes at the same time.
+
+**Extension shape.** a variant for several diseases arriving in succession.
+
+**Design tensions.**
+- The excess mortality is real and large, and naming it can still be used to shift responsibility from people to germs; the first failure mode guards against that.
+
+**Tradeoffs.**
+- Gains: excess mortality explained without innate weakness.
+- Gives up: a single cause for a population's collapse.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response.
+- Placed in Physics because the mechanism holds for any host population; its failure modes concern human history, where the card is mostly used.
+- The invariant compares the share of the population killed, not mortality at every age: children where the disease is endemic also lack immunity.
+- Novelty, from recall and unverified: known. Nearest known concepts: Crosby's virgin soil epidemics (1976); Jones's critique of immunological determinism (2003).
+
+**In the family.** Twinflow is the link that carries a disease, and VirginSoilEpidemic is what it does to a population without prior exposure.
+
+---
+
+### WaveOfAdvance#4cec
+
+`Physics` · `Primitives` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/WaveOfAdvance.json)
+
+**Gloss.** A growing population whose members move short distances spreads into land that can support it as a front, at a speed set by its growth and the distance its members move
+
+**Mechanism.**
+
+> A population grows where it lives, and its members move mostly short distances, often into land nearby. Where the land beyond the occupied area can support it, the occupied area expands as a front: behind it the population fills toward the land's capacity, and at it small groups move outward. The front's speed is set by the local growth rate and the distance moved per generation, so across land of the same capacity it advances at a constant speed, and it slows or stops where the land cannot support the population or others already hold it. Long-distance jumps, and the spread of a trait or practice among members of a population that stays where it is, are not instances, though both often mix with a front.
+
+**Invariants.**
+- The population grows locally, and its members move mostly short distances per generation.
+- The occupied area expands at a front, behind which density rises toward the land's capacity.
+- The front's speed depends on the local growth rate and the distance moved per generation.
+
+**Failure modes.**
+- Practice taken for people: the spread of a trait or practice, such as a crop or a pottery style, is read as a front of the population itself, or the reverse.
+- Empty land assumed: the land ahead is treated as unoccupied, hiding whether the front replaced, absorbed or was absorbed by those already there.
+- Speed read as intent: a steady front is taken for a planned conquest or colonization.
+
+#### Design
+
+**Why it exists.** The spread of a population across land is often told as a series of deliberate migrations. WaveOfAdvance names the front that local growth and short moves produce, so a spread can be tested against the speed that growth and dispersal predict.
+
+**Why Physics.** Growth and short moves of the members of any population are enough; plants, animals, microbes and people show it without anyone designing it.
+
+**Can it be removed?** Transition and PhaseTransition describe changes of state, not spatial spread, and InnovationDiffusion spreads practices without people moving. Removable if spread is modelled only as discrete migrations.
+
+**Intended use.** testing whether an expansion of people or of a way of life across land fits a front set by local growth and dispersal.
+
+**Future uses.** comparing genetic, archaeological and linguistic evidence about how a population and its practices spread.
+
+**Broad-use contexts.** the dispersal of modern humans, the spread of farming across Europe and Africa, island colonization, invasive species, epidemics across land.
+
+**Broad-use intersection (review hypothesis).** a growing population, short-distance movement, land beyond the occupied area that can support the population, and a front.
+
+**Varies (descendant territory).** the growth rate, the distance moved, and the land's capacity.
+
+**Extension shape.** a variant with long-distance jumps that seed new fronts ahead of the main one.
+
+**Design tensions.**
+- A front of people and a front of a practice can coincide or separate, and the evidence for one often stands in for the other.
+
+**Tradeoffs.**
+- Gains: a predicted speed against which an expansion can be tested.
+- Gives up: explaining a spread by the intentions of those who moved.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response.
+- Placed in Physics because the mechanism needs no cognition; its failure modes concern human evidence, where the card is mostly used.
+- A constant speed is expected across land of the same capacity, not required by the invariants; a departure from it is evidence about the land or the population.
+- Novelty, from recall and unverified: known. Nearest known concepts: Fisher's wave of advance (1937); Ammerman and Cavalli-Sforza's demic diffusion of farming (1971, 1984); reaction-diffusion fronts.
+
+**In the family.** WaveOfAdvance moves people, InnovationDiffusion spreads practices among people who stay, and Sideinherit is one transfer of a practice between separate lines of descent.
 
 ---
 
@@ -36610,9 +36728,9 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 
 ---
 
-## Society (142)
+## Society (156)
 
-### Society/Coordination (12)
+### Society/Coordination (14)
 
 ### Compromise#f25f
 
@@ -37100,6 +37218,63 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 
 ---
 
+### FreeRiderProblem#b2e3
+
+`Society` · `Coordination` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/FreeRiderProblem.json)
+
+**Gloss.** Members of a group contribute too little to a good none of them can be excluded from, and the larger the group, the larger the shortfall
+
+**Mechanism.**
+
+> Members of a group all gain from a good, such as defence, irrigation works, a commons kept from overuse or a rising's success, from which no member can be excluded once it exists. Each bears the full cost of their own contribution but receives only a share of what it adds, so each does better if others contribute, and the total falls short of what the members together would choose; the larger the group, the smaller each share and the larger the shortfall. Contributions rise when members gain rewards or face penalties tied to their own contribution, when they deal repeatedly in groups small enough to watch each other, or when an authority collects the costs. Goods from which non-contributors can be excluded, and contributions that cost the contributor nothing, are not instances.
+
+**Invariants.**
+- No member can be excluded from the good once it exists.
+- Each member's own return from contributing is less than its cost to them.
+- The total contributed falls short of what the members together would choose.
+
+**Failure modes.**
+- Every shortfall blamed on free riders: low contribution is blamed on free riding, when members lack the means or do not value the good.
+- Cooperation read as impossible: the shortfall is taken as inevitable, overlooking the monitoring, reputation and graduated sanctions that groups devise for themselves.
+- Ruler as the only remedy: coercion by an authority is assumed to be the only solution, missing arrangements groups govern themselves.
+
+#### Design
+
+**Why it exists.** Failures of shared defence, irrigation, revolt or care for a commons are often blamed on selfishness or apathy. FreeRiderProblem names the gap between each member's return and the group's, and the arrangements that close it.
+
+**Why Society.** It needs many parties who each gain from a shared good and each bear their own cost.
+
+**Can it be removed?** Reasoncommons keeps reasons readable and Consensus reaches agreement; neither describes under-contribution to a good no member can be excluded from. Removable if contributions are modelled as matching what members together would choose.
+
+**Intended use.** explaining why shared goods were under-provided and how groups and states came to provide them.
+
+**Future uses.** assessing contributions to shared infrastructure, open knowledge and climate stability.
+
+**Broad-use contexts.** defence and taxation, irrigation and commons, revolts and strikes, public health, climate.
+
+**Broad-use intersection (review hypothesis).** a good no member can be excluded from, contributions that cost the contributor more than their own return, and a shortfall.
+
+**Varies (descendant territory).** the size of the group, the good, and the arrangements that change members' returns.
+
+**Extension shape.** a variant for commons governed by their users with graduated sanctions.
+
+**Design tensions.**
+- Coercion by an authority closes the shortfall and also creates the power that ExitCage describes.
+
+**Tradeoffs.**
+- Gains: a structural reason for under-provision that does not depend on blaming members.
+- Gives up: explaining shared goods by goodwill alone.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response.
+- Novelty, from recall and unverified: known. Nearest known concepts: Olson's The Logic of Collective Action (1965); Hardin's tragedy of the commons (1968); Ostrom's Governing the Commons (1990).
+
+**In the family.** FreeRiderProblem is the shortfall in a shared good, SecurityDilemma the spiral between parties, and ExitCage the durable extraction that can supply shared goods by force.
+
+---
+
 ### IdentityHandshake#4397
 
 `Society` · `Coordination` · R1 · T2
@@ -37555,6 +37730,68 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 
 ---
 
+### SecurityDilemma#a61b
+
+`Society` · `Coordination` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/SecurityDilemma.json)
+
+**Gloss.** Each side's defensive build-up reads as a threat to the other, so both arm and both end less secure
+
+**Mechanism.**
+
+> Two or more parties with no common authority above them each raise their capacity to defend themselves. Much of that capacity could also attack, so each reads the others' increases as possible threats and raises its own in reply; the reply in turn raises the first party's next increase, and each round lowers the security of all though none intends aggression. The spiral eases when the parties can tell defensive from offensive capacity, credibly limit or verify each other's capacity, or accept a common authority, and it can end in a war that each side expected the other to start. One party pursuing aggression while the other only defends, and build-ups that cannot threaten the other side, are not instances.
+
+**Invariants.**
+- The parties have no common authority able to guarantee their security.
+- Each party raises its capacity to secure itself, not to attack the others.
+- Each party's increase in defensive capacity can also threaten the others.
+- Each party answers the others' increases by raising its own, and that answer raises the others' next increases.
+
+**Failure modes.**
+- Intent read from capacity: the other side's build-up is taken as proof of aggressive intent.
+- Every war a spiral: wars that one side sought on purpose are explained as spirals no one wanted.
+- Restraint read as weakness: one side's attempt to limit or signal its capacity is dismissed as a trick or exploited.
+
+#### Design
+
+**Why it exists.** Arms races and wars are often explained by aggressive intent on one side. SecurityDilemma names the spiral that defensive measures alone can produce, so a model can ask whether intent is needed to explain a build-up.
+
+**Why Society.** It needs at least two parties with separate security, each reading the other's capacity.
+
+**Can it be removed?** Recifluence, its parent, is any reciprocal influence; SecurityDilemma specifies defensive capacity read as threat. Removable if every build-up is modelled as aggression or deterrence.
+
+**Intended use.** explaining arms races and wars between parties that each armed for their own security.
+
+**Future uses.** assessing escalation between states, alliances, firms and AI developers competing on capability.
+
+**Broad-use contexts.** Greek city-states, European powers before 1914, the Cold War, regional rivalries, competition in dual-use technology.
+
+**Broad-use intersection (review hypothesis).** parties without a common authority, defensive capacity that can also attack, and reciprocal increases.
+
+**Varies (descendant territory).** how distinguishable defence is from offence, and what limits or verifies capacity.
+
+**Extension shape.** a variant in which capacity is verified, easing the spiral.
+
+**Design tensions.**
+- The invariant that each party arms to secure itself is what separates the dilemma from aggression, and it is the hardest to establish from evidence.
+
+**Tradeoffs.**
+- Gains: escalation explained without assuming aggressive intent.
+- Gives up: a single villain in every arms race.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response.
+- It extends Recifluence: one party's build-up changes the other's response, which returns to raise the first party's next build-up.
+- The invariant that each party arms to secure itself is kept although it is hard to establish, because without it every aggression answered by defence would be an instance; plans, doctrine and the parties' own records bear on it.
+- Novelty, from recall and unverified: known. Nearest known concepts: Herz's security dilemma (1950); Butterfield (1951); Jervis's spiral model (1976, 1978).
+
+**In the family.** Recifluence is reciprocal influence in general, SecurityDilemma its defensive spiral, FreeRiderProblem the shortfall in a shared good, and Warsift what long competition does to the polities that survive.
+
+**Extends (exact parent).** `sema:Recifluence#mh:SHA-256:4fba0e2a7234f81a910b220abaedd7890ba08700646aeaa090a11f0c313dcf11`
+
+---
+
 ### Vote#8493
 
 `Society` · `Coordination` · R2 · T2
@@ -37664,7 +37901,7 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 
 ---
 
-### Society/Economics (9)
+### Society/Economics (15)
 
 ### AtomicBid#5ac6
 
@@ -38157,6 +38394,181 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 
 ---
 
+### DemographicTransition#6e31
+
+`Society` · `Economics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/DemographicTransition.json)
+
+**Gloss.** Deaths fall first and births follow after a lag, so a population grows fast until both are low
+
+**Mechanism.**
+
+> In a population where births and deaths are both high, better food supply, sanitation and medicine lower deaths, especially of children. Births fall only later, often a generation or more after deaths, as families respond to more children surviving, to children's work becoming less valuable and their schooling more costly, and to changing ideas about family size. During the lag the population grows quickly and becomes younger; when births have fallen too, growth slows and the population ages. Population change driven by migration, and falls in births that do not follow a fall in deaths, are not instances.
+
+**Invariants.**
+- Deaths fall in a population where births and deaths were both high.
+- Births fall after deaths, and during the lag births exceed deaths by more than before.
+- Growth slows once births have fallen.
+
+**Failure modes.**
+- Stages read as law: the sequence is assumed to run on a fixed timetable, when the lag's length and the level births settle at vary widely.
+- Lag read as ignorance: high births during the lag are blamed on irrationality, when they can follow from what children are worth to families and the risks those families still face.
+- End assumed: births are assumed to settle at replacement, when they can fall well below it.
+
+#### Design
+
+**Why it exists.** Rapid population growth in the last two centuries is often read as people having more children, when it came from fewer dying while births stayed high for a time. DemographicTransition names that sequence and its lag.
+
+**Why Society.** Births and deaths are outcomes of many households' conditions and choices; the lag between them is a population-level process.
+
+**Can it be removed?** Ripplelag describes a delay between connected parts; it does not say which rate falls first or what the lag does to growth and age structure. Removable if births and deaths are modelled as changing together.
+
+**Intended use.** explaining periods of rapid population growth and later ageing by the lag between falling deaths and falling births.
+
+**Future uses.** comparing transitions across countries, including stalled or very fast ones, and projecting age structures.
+
+**Broad-use contexts.** European transitions from the eighteenth century, twentieth-century transitions in Asia, Latin America and Africa, populations now below replacement.
+
+**Broad-use intersection (review hypothesis).** a population with high births and deaths, a fall in deaths, and a later fall in births.
+
+**Varies (descendant territory).** what lowers deaths, the length of the lag, and where births settle.
+
+**Extension shape.** a variant for births falling below replacement after the transition.
+
+**Design tensions.**
+- Calling the sequence a transition implies an end state, while births in many populations have kept falling past it.
+
+**Tradeoffs.**
+- Gains: a reason why growth peaks and then slows.
+- Gives up: a fixed timetable for when a population completes it.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response.
+- France, where births fell early alongside deaths, falls outside the card by its own boundary rather than counting against it.
+- Novelty, from recall and unverified: known. Nearest known concepts: demographic transition theory (Thompson, 1929; Notestein, 1945).
+
+**In the family.** MalthusianTrap is the regime before, and DemographicTransition is how a population leaves it; Ripplelag is the general delay of which its lag is one case.
+
+---
+
+### DensityRatchet#2ace
+
+`Society` · `Economics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/DensityRatchet.json)
+
+**Gloss.** A practice that lets a territory feed more people becomes impossible to abandon once the population has grown to depend on it
+
+**Mechanism.**
+
+> A new practice, such as farming, irrigation or synthetic fertilizer, raises the number of people a territory can feed. While the practice continues, the population grows toward the new capacity, and the larger it grows, the fewer of its people the earlier practice could feed: abandoning the practice would mean losing the people it alone supports. So the practice persists and spreads even where it brings longer work, poorer health or greater risk per person than the one it replaced. A change that can be reversed without a loss of population, and continued use that rests only on preference, are not instances.
+
+**Invariants.**
+- The practice raises the number of people a territory can feed above what the earlier practice could.
+- The population grows beyond the earlier practice's capacity while the practice continues.
+- The capacity to abandon the practice without losing population declines as the population grows to depend on it.
+
+**Failure modes.**
+- Persistence read as merit: the practice's persistence is taken to show that it gives better lives per person.
+- Choice imputed: the population is said to have chosen the exchange, when each step was small and no one could compare the end states.
+- Ratchet assumed universal: populations that shrank and abandoned the practice are overlooked.
+
+#### Design
+
+**Why it exists.** The spread of farming and of synthetic fertilizer is often explained by their advantages, yet farming brought longer work and poorer health to many. DensityRatchet names the dependence that keeps such practices whatever their effect per person.
+
+**Why Society.** It needs a population of separate households depending on a shared practice; the growth of many households, not any one decision, removes the way back.
+
+**Can it be removed?** Brakefade, its parent, covers any decline in the ability to stop or reverse an activity; DensityRatchet specifies that the decline comes from a population growing to depend on the practice. MalthusianTrap explains the growth but not the irreversibility. Removable if practices that raise capacity are assumed to be kept for their merits alone.
+
+**Intended use.** explaining why a practice that raised how many people a territory could feed persisted and spread, even where it worsened lives per person.
+
+**Future uses.** assessing which current practices, such as synthetic nitrogen or irrigated agriculture, a population could no longer abandon without loss.
+
+**Broad-use contexts.** the adoption of farming, irrigation systems, industrial agriculture and fertilizer, urban water and food supply.
+
+**Broad-use intersection (review hypothesis).** a practice that raises capacity, a population that grows past the earlier practice's capacity while it continues, and a declining capacity to abandon it without losing population.
+
+**Varies (descendant territory).** how fast the population grows into the new capacity, and how much of it the earlier practice could still feed.
+
+**Extension shape.** a variant for infrastructure on which a city's water, food or energy depends.
+
+**Design tensions.**
+- A ratchet explains why a practice persists, while whether it was a good exchange for the people living under it is a separate judgment the card leaves open.
+
+**Tradeoffs.**
+- Gains: persistence explained without assuming merit.
+- Gives up: reading the spread of a practice as evidence that it improved lives.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response.
+- It extends Brakefade: the practice is the ongoing activity, and abandoning it without losing population is the control objective whose capacity declines.
+- Novelty, from recall and unverified: known in parts, coined as a handle. Nearest known concepts: the agricultural or luxury trap (Harari, 2014); Diamond's 'worst mistake in the history of the human race' (1987); path dependence.
+
+**In the family.** Brakefade is any declining ability to stop or reverse an activity, MalthusianTrap is the growth that fills new capacity, and DensityRatchet is the irreversibility that growth creates.
+
+**Extends (exact parent).** `sema:Brakefade#mh:SHA-256:764a4addf9c36ad86e2039e19ebe9a0146b560938b7fbc13bad2def47b79b188`
+
+---
+
+### DiminishingComplexityReturns#cb63
+
+`Society` · `Economics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/DiminishingComplexityReturns.json)
+
+**Gloss.** Each added layer of a society's or organization's complexity returns less than the one before, until keeping it costs more than it yields and shocks can bring collapse
+
+**Mechanism.**
+
+> A society or organization meets new problems by adding complexity: more specialists, administrators, rules, infrastructure and control. The first additions solve much for little; later ones cost more and solve less, as the easier solutions are taken first and each new layer must also maintain those before it. When the return on further complexity falls below its cost, more and more of the output goes to keeping the complexity already built, reserves against shocks shrink, and a shock once absorbed can bring a rapid loss of complexity, in which simpler arrangements cost less and may serve many people better. Collapse caused only by a force too large for any arrangement, and simplification chosen without a prior fall in returns, are not instances.
+
+**Invariants.**
+- Complexity is added to meet problems.
+- The return on each further addition of complexity falls as complexity grows.
+- The reserve against shocks shrinks as the cost of maintaining the complexity rises.
+
+**Failure modes.**
+- Returns asserted: falling returns are claimed without evidence that later additions cost more and achieved less.
+- Collapse read only as catastrophe: the loss of complexity is described only as disaster, when simpler arrangements may serve many people better.
+- Every decline as overreach: declines driven by conquest, climate or disease are forced into the pattern.
+
+#### Design
+
+**Why it exists.** Collapse is often explained by a single blow: invasion, drought or mismanagement. DiminishingComplexityReturns names the falling returns on complexity that leave a society unable to absorb a blow it once survived.
+
+**Why Society.** It concerns a society or organization of many parties, whose added specialists, rules and controls are costs borne by others.
+
+**Can it be removed?** Complexitytax asks what a distinction would change before dismissing it, and Foundationfray is the erosion of supporting practices; neither describes falling returns on added complexity. Removable if collapse is modelled only as external shock.
+
+**Intended use.** explaining collapse and simplification by falling returns on complexity and shrinking reserves.
+
+**Future uses.** assessing organizations and states whose costs of coordination and control keep rising.
+
+**Broad-use contexts.** the Western Roman Empire, Classic Maya, Chaco Canyon, large bureaucracies, research systems.
+
+**Broad-use intersection (review hypothesis).** added complexity, falling returns on further additions, and shrinking reserves.
+
+**Varies (descendant territory).** what kind of complexity is added, how its returns are measured, and what shock comes.
+
+**Extension shape.** a variant for organizations rather than whole societies.
+
+**Design tensions.**
+- Returns on complexity are hard to measure, so the card is easily asserted after the fact; the first failure mode guards against that.
+
+**Tradeoffs.**
+- Gains: collapse explained by the trajectory of the society itself rather than by the shock alone.
+- Gives up: describing collapse only as catastrophe.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response.
+- Novelty, from recall and unverified: known. Nearest known concepts: Tainter's The Collapse of Complex Societies (1988).
+
+**In the family.** StructuralDemographicCycle is a recurring crisis of agrarian states, DiminishingComplexityReturns a longer decline in what complexity yields, and Foundationfray the erosion of supporting practices.
+
+---
+
 ### ExchangeRate#ac47
 
 `Society` · `Economics` · R1 · T1
@@ -38337,6 +38749,187 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 
 ---
 
+### MalthusianTrap#0f6b
+
+`Society` · `Economics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/MalthusianTrap.json)
+
+**Gloss.** Population grows until output per person falls back to where births and deaths balance, so better techniques raise numbers, not living standards
+
+**Mechanism.**
+
+> A population lives from land and a set of techniques that together fix how much it can produce. While output per person is above the level at which births and deaths balance, numbers grow, land per person shrinks and output per person falls, until births and deaths balance again at a stable {{equilibrium}}. A better technique, a new crop or new land raises output for a time, and the population grows into it, so the lasting gain is in numbers and density, not in output per person; a disaster that removes people raises output per person until numbers recover. Populations whose births fall as income rises, and economies where output per person grows faster than population for generations, are not instances.
+
+**Invariants.**
+- Output per person falls as the number of people sharing the same land and techniques rises.
+- The population grows while output per person is above the level at which births and deaths balance, and shrinks while it is below.
+- A rise in output from new techniques or land is followed by population growth that brings output per person back toward its earlier level.
+
+**Failure modes.**
+- Fixed ceiling: the level is treated as a constant number of people, when techniques, institutions and trade move it.
+- Famine read as overshoot: every famine is taken for a population outgrowing its food, when war, policy and who can obtain food cause most famines.
+- Applied past the transition: the trap is applied to a population whose births fall as income rises.
+- Living standard read from numbers: output per person is inferred from population size, missing long periods when it stayed high after a population loss.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{equilibrium}}` | `sema:Equilibrium#mh:SHA-256:4f036318bc81500ad159994d9ab7efbec87883eccecb18e64ede15cde3e099d2` |
+
+#### Design
+
+**Why it exists.** Pre-industrial history is often told as progress in techniques, yet for most of it living standards barely moved while numbers grew. MalthusianTrap names the dynamic that turns gains in technique into population, so a world model can say where it held and where it stopped holding.
+
+**Why Society.** The mechanism needs a population of separate households sharing land and techniques, whose births and survival respond to what each can obtain; no single party executes it.
+
+**Can it be removed?** Equilibrium supplies the stationary state the trap returns to, and Capacitylag compares demands with capacity; neither says that gains in output are absorbed by population growth. Removable if output per person is modelled as independent of population.
+
+**Intended use.** explaining why output per person stayed near the level where births and deaths balance in agrarian societies while techniques improved, and dating where the trap stopped holding.
+
+**Future uses.** testing claims of stagnation or progress in pre-industrial economies against wage, height and population evidence.
+
+**Broad-use contexts.** foraging and farming populations, agrarian states, island and frontier settlement, recovery after epidemics and wars.
+
+**Broad-use intersection (review hypothesis).** a population, a production base of land and techniques, output per person that falls as numbers rise, and births and deaths that respond to output per person.
+
+**Varies (descendant territory).** how fast numbers respond, the level at which births and deaths balance, and what moves the production base.
+
+**Extension shape.** a variant in which custom, such as late marriage, holds the balance level above bare subsistence.
+
+**Design tensions.**
+- The level at which births and deaths balance is set partly by custom, so the trap can hold well above bare subsistence, and evidence of comfort does not by itself show that it was escaped.
+
+**Tradeoffs.**
+- Gains: a reason why centuries of new techniques left living standards nearly flat.
+- Gives up: reading technical progress as progress in welfare before the transition.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response.
+- The invariants concern output per person, not a fixed number of people; the level moves with techniques, institutions and trade, which the first failure mode guards.
+- Leaving the trap belongs to DemographicTransition, births falling as income rises, and to Sunbound, energy no longer bound to land.
+- The absorption invariant states a direction, not a time: how many generations the return takes varies, and the card leaves it to the evidence.
+- Novelty, from recall and unverified: known. Nearest known concepts: Malthus's principle of population (1798); the Malthusian regime of unified growth theory (Galor); Clark's A Farewell to Alms (2007).
+
+**In the family.** MalthusianTrap absorbs gains into numbers, DensityRatchet makes a practice that raised capacity irreversible, SurplusBound limits who can live outside food production, Sunbound limits energy to what land grows, and DemographicTransition is how a population leaves the trap.
+
+---
+
+### Sunbound#c94c
+
+`Society` · `Economics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Sunbound.json)
+
+**Gloss.** An economy that draws its energy only from current plant growth can grow only as far as its land allows
+
+**Mechanism.**
+
+> In an economy whose energy comes from current photosynthesis, as food for human and animal muscle, wood for heat and fodder for draught animals, with wind and water as small supplements, every increase in energy use needs land, and the same land must also grow food and fibre. Output per person can then rise only through trade, specialization and better use of land, and growth slows as land runs short. Drawing on a stock of energy not tied to current land, such as coal, oil and gas, lifts this bound: energy use, output per person and population can rise together far beyond what the land yields, while new bounds appear in the depletion of the stock and in the capacity of air, water and land to absorb its wastes. Economies held back by something other than land-bound energy are not instances.
+
+**Invariants.**
+- The economy's energy comes from current plant growth, supplemented only by flows such as wind and water.
+- Each increase in energy use requires more land or more output from each unit of land.
+- Energy use per person stays within what the land can supply alongside food.
+
+**Failure modes.**
+- Energy as sufficient cause: access to fossil energy is taken to explain growth on its own, overlooking the institutions, skills and markets that put it to use.
+- New bounds ignored: escaping the land bound is treated as escaping every bound, missing depletion and the limits of waste sinks.
+- Stagnation assumed: growth within the bound through trade and specialization is overlooked.
+
+#### Design
+
+**Why it exists.** The industrial revolution is often explained by invention or institutions alone. Sunbound names the land bound on energy that every earlier economy faced, so the break that fossil fuels made can be modelled as the lifting of a bound.
+
+**Why Society.** It concerns an economy of many producers and consumers whose uses of energy compete for the same land.
+
+**Can it be removed?** Budget and Resource are limits on an allocation, and MalthusianTrap absorbs gains into population; neither ties an economy's energy to its land. Removable if energy is modelled as unlimited by land.
+
+**Intended use.** explaining why growth in agrarian economies stayed slow, and what changed when fossil energy was drawn on.
+
+**Future uses.** assessing economies that turn to energy flows such as solar and wind, which face different bounds.
+
+**Broad-use contexts.** agrarian economies, the British industrial revolution, the spread of coal and oil, energy transitions.
+
+**Broad-use intersection (review hypothesis).** an economy whose energy comes from current plant growth, competition between energy and food for land, and growth slowing as land runs short.
+
+**Varies (descendant territory).** the yields of land, the importance of wind and water, and trade.
+
+**Extension shape.** a variant for economies drawing on large flows such as hydroelectric, solar and wind power.
+
+**Design tensions.**
+- The card names the bound and how fossil stocks lift it, while the new bounds that follow belong to other mechanisms.
+
+**Tradeoffs.**
+- Gains: a reason why growth in organic economies stayed slow that does not depend on a lack of invention.
+- Gives up: treating fossil energy as the whole explanation of industrialization.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response.
+- Novelty, from recall and unverified: known, coined as a handle. Nearest known concepts: Wrigley's organic economy and its escape (1988, 2010); Sieferle's The Subterranean Forest (2001); Pomeranz's The Great Divergence (2000).
+
+**In the family.** MalthusianTrap absorbs gains into numbers, SurplusBound limits who can live outside food production, and Sunbound limits energy to what land grows.
+
+---
+
+### SurplusBound#7fe3
+
+`Society` · `Economics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/SurplusBound.json)
+
+**Gloss.** The share of people who do not produce food can be no larger than what food producers' surplus can feed
+
+**Mechanism.**
+
+> Specialists, rulers, soldiers, traders and city dwellers who do not produce food live on what food-producing households grow beyond their own needs. If those households grow enough to feed themselves and, on top of that, s times their own number, at most s/(1+s) of all people can live outside food production. The bound holds for the whole system that exchanges food over a period, imports and tribute included, and stores only stretch it while they last. More output per producer, better storage or cheaper transport raise the bound; a fall in any of them forces people back into food production or into hunger. How far below the bound the share sits depends on how the surplus is taken and spent, which the bound does not decide.
+
+**Invariants.**
+- People outside food production are fed from food-producing households' surplus in the system that exchanges food, over any period longer than stores last.
+- If food-producing households grow enough for themselves and s times their own number, people outside food production are at most s/(1+s) of that system.
+
+**Failure modes.**
+- Bound read as level: the share of people outside food production is predicted from the bound, when extraction, consumption and waste keep it lower.
+- System drawn too small: a city or region is tested on its own though imports or tribute feed it.
+- Surplus read as given: the bound is taken to show that producers chose to feed others, when surplus is often taken by force.
+
+#### Design
+
+**Why it exists.** Accounts of cities, states and specialists often say they arose 'with surplus' without saying how large a population outside food production a given surplus allows. SurplusBound states the bound, so a claimed share can be checked against what producers could feed.
+
+**Why Society.** The bound relates two groups with separate interests: those who produce food, and those who live on what producers give up or have taken from them.
+
+**Can it be removed?** Budget and Resource describe limits on an allocation, not the share of a population that food production can support. Removable if the share of people outside food production is not modelled.
+
+**Intended use.** checking claimed shares of urban, specialist or ruling populations against what food producers could feed, and tracing how rising output per producer raised that share.
+
+**Future uses.** relating livelihood shares to agricultural productivity in a model of any society.
+
+**Broad-use contexts.** early cities and states, empires fed by tribute, industrialization, modern agriculture and urbanization.
+
+**Broad-use intersection (review hypothesis).** a population divided into food-producing households and others, the producers' surplus over their own needs, and a system boundary that includes the food exchanged over the period.
+
+**Varies (descendant territory).** where the system boundary lies, how long stores last, and how the surplus is taken.
+
+**Extension shape.** a variant in which the surplus is an energy surplus rather than food.
+
+**Design tensions.**
+- The bound is clear only when the boundary is drawn around everything that feeds the population, and the wider the boundary, the less it says about any one city.
+
+**Tradeoffs.**
+- Gains: a checkable upper limit on the share of people outside food production.
+- Gives up: any claim about who controls the surplus or how it is taken.
+
+**Critique (diagnostic, not contract requirements).**
+- The card states an upper bound, not a level; the first failure mode guards the difference.
+- s is measured against the food-producing population including its own dependents, so children and elders in farming households count inside food production.
+- Novelty, from recall and unverified: known as an idea, not as a named bound. Nearest known concepts: surplus and the division of labour in Childe's urban revolution (1950); Boserup on agricultural intensification (1965).
+
+**In the family.** MalthusianTrap absorbs gains into numbers, SurplusBound limits the share that can live outside food production, and ExitCage describes how the surplus can be taken durably.
+
+---
+
 ### ValuePeg#e440
 
 `Society` · `Economics` · R1 · T1
@@ -38488,7 +39081,7 @@ One check that passed and is worth recording: this card's commentary describes O
 
 ---
 
-### Society/Governance (24)
+### Society/Governance (27)
 
 ### Absentseat#d6ab
 
@@ -39040,6 +39633,63 @@ One check that passed and is worth recording: this card's commentary describes O
 - `DocumentedOverride#17d3`
 - `DocumentedOverride#4054`
 - `DocumentedOverride#2b77`
+
+---
+
+### ExitCage#eef7
+
+`Society` · `Governance` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/ExitCage.json)
+
+**Gloss.** When people cannot leave without losing their livelihood, those who control force can take a share of what they produce
+
+**Mechanism.**
+
+> People whose livelihood is tied to a place, because the land around is barren, already held by others, or their own investment in fields, canals, terraces or stores cannot move, lose the option of leaving. A group that controls force or access can then take a share of what they produce and impose obligations on them, and the subordination lasts while leaving costs more than staying. Where people can leave at small cost, would-be rulers lose them to flight and their power stays limited. The cage may be set by terrain, by neighbours, by debt or by investment, and it tightens as investment in place grows. Subordination sustained by benefits the subjects would accept even with exit open, and limits on leaving unrelated to livelihood, are not instances.
+
+**Invariants.**
+- Leaving would cost the people their livelihood.
+- A group that controls force or access takes a share of their output or labour.
+- The arrangement lasts while leaving costs more than staying.
+
+**Failure modes.**
+- Terrain as destiny: physical barriers alone are credited, when neighbours, debts and immovable investment close exit as firmly.
+- Exit read as free: people with open land around them are assumed able to leave at no cost, ignoring kin, rights to land and risk.
+- Every state caged: all states are explained by closed exit, overlooking those built through trade, religion or defence.
+
+#### Design
+
+**Why it exists.** State formation is often explained by the benefits rulers provided. ExitCage names the condition under which extraction can persist without them: people who cannot leave without losing their livelihood.
+
+**Why Society.** It needs at least two parties with opposed interests: those who would leave and those who take a share of what they produce.
+
+**Can it be removed?** Burdenlight lists who bears costs and who benefits, and Powerreturn asks for concentrated authority to be returned; neither describes how a loss of exit makes extraction durable. Removable if subjects are modelled as always free to leave.
+
+**Intended use.** explaining where and why durable extraction and subordination arose, and where flight kept rulers weak.
+
+**Future uses.** recognising arrangements in which debt, housing or employment tie people to those who take a share of their work.
+
+**Broad-use contexts.** early states in river valleys, serfdom and debt bondage, company towns, state-evasion in hill and forest refuges.
+
+**Broad-use intersection (review hypothesis).** people whose livelihood is tied to a place, a group that controls force or access, and a cost of leaving greater than the cost of staying.
+
+**Varies (descendant territory).** what closes the exit, how much is taken, and what flight remains possible.
+
+**Extension shape.** a variant for exit closed by neighbouring polities rather than terrain.
+
+**Design tensions.**
+- The same investment in place that closes exit also raises output, so the cage and the prosperity it taxes can grow together.
+
+**Tradeoffs.**
+- Gains: a condition for durable extraction that does not depend on consent.
+- Gives up: explaining every state by the benefits it provided.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. Its caution addresses use of the description as a recipe.
+- Novelty, from recall and unverified: known in parts, coined as a handle. Nearest known concepts: Carneiro's circumscription theory (1970); Mann's social caging (1986); Hirschman's exit and voice (1970); Scott's The Art of Not Being Governed (2009).
+
+**In the family.** SurplusBound limits what can be taken, ExitCage is when it can be taken durably, and FreeRiderProblem is why those inside rarely resist together.
 
 ---
 
@@ -39860,6 +40510,73 @@ _Note: The coined handle names the failure and the card defines the guard, as Co
 
 ---
 
+### StructuralDemographicCycle#8433
+
+`Society` · `Governance` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/StructuralDemographicCycle.json)
+
+**Gloss.** Agrarian states pass through centuries-long cycles of population growth, elite crowding, state crisis and disorder
+
+**Mechanism.**
+
+> In an agrarian state, a long period of order lets population grow into its {{malthusian_trap}}, which lowers wages and raises rents, enriching landowners and enlarging the elite. Elite numbers and ambitions outgrow the positions and income available, a {{capacitylag}} in which elites compete and split into factions, while the state's revenue falls behind the cost of its army and administration. Fiscal crisis, elite conflict and popular unrest bring a period of disorder in which population and elite numbers fall through war, famine, disease and loss of status, until the conditions for a new period of growth and order return; one cycle takes roughly two to three centuries. Crises produced by an outside shock without this build-up, and societies whose population is not near its limit, are not instances.
+
+**Invariants.**
+- Population grows during a long period of order toward the limit its land and techniques allow.
+- Elite numbers or ambitions grow faster than the positions and income available to them.
+- The state's revenue falls behind its costs before the disorder.
+- Population and elite numbers fall during the disorder.
+
+**Failure modes.**
+- Rhythm forced: a two-to-three-century rhythm is imposed on histories whose crises do not follow it.
+- One cause: the crisis is attributed to population alone, ignoring elite and fiscal dynamics, or the reverse.
+- Prediction by analogy: the cycle is projected onto societies far from their population limit, such as industrial ones, without checking its conditions.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{capacitylag}}` | `sema:Capacitylag#mh:SHA-256:977c018cdc8c7a053bad12a6cd98275477f3f106c8ac8bf975fce1dca8b6bb2c` |
+| `references` | `{{malthusian_trap}}` | `sema:MalthusianTrap#mh:SHA-256:0f6b99da46aa40c7bc427c5af4545b269837f66722ccfbc34994ab50e2e951da` |
+
+#### Design
+
+**Why it exists.** Crises of agrarian states are often told as the failures of particular rulers. StructuralDemographicCycle names the recurring build-up of population pressure, elite competition and fiscal strain that precedes them.
+
+**Why Society.** It needs commoners, elites and a state with separate interests, whose interaction produces the cycle.
+
+**Can it be removed?** MalthusianTrap gives the population pressure and Capacitylag the elite crowding; neither describes the full cycle through state crisis and recovery. Removable if crises are modelled as independent events.
+
+**Intended use.** explaining the timing of crisis and disorder in agrarian states.
+
+**Future uses.** testing whether the cycle's conditions hold in a given state before using it to explain or predict.
+
+**Broad-use contexts.** medieval and early modern England and France, Rome, Chinese dynasties, the Russian state.
+
+**Broad-use intersection (review hypothesis).** an agrarian state near its population limit, elite growth beyond positions, fiscal strain, and a period of disorder with falling numbers.
+
+**Varies (descendant territory).** the length of the phases, and which of population, elite or fiscal strain leads.
+
+**Extension shape.** a variant for states where elite crowding occurs without population near its limit.
+
+**Design tensions.**
+- The cycle is defined by its conditions, while it is often applied by its rhythm; the first failure mode guards the difference.
+
+**Tradeoffs.**
+- Gains: crises explained by build-up rather than by individual failures.
+- Gives up: treating each crisis as unique.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response.
+- Its application to industrial societies is contested; the card's boundary excludes societies far from their population limit.
+- The length of two to three centuries is described in the mechanism, not required by the invariants, so a cycle of another length is still an instance.
+- Novelty, from recall and unverified: known. Nearest known concepts: Turchin and Nefedov's Secular Cycles (2009); Goldstone's Revolution and Rebellion in the Early Modern World (1991); the dynastic cycle of Chinese historiography.
+
+**In the family.** MalthusianTrap is the population pressure it builds on, Capacitylag the elite crowding, Warsift the external competition, and DiminishingComplexityReturns the longer decline in returns on complexity.
+
+---
+
 ### Successiongift#5f2b
 
 `Society` · `Governance` · R2 · T2
@@ -40090,6 +40807,63 @@ _Note: The coined handle names the failure and the card defines the guard, as Co
 
 ---
 
+### Warsift#b01b
+
+`Society` · `Governance` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Warsift.json)
+
+**Gloss.** Sustained war between polities eliminates those that raise less, so the survivors converge on states that extract more
+
+**Mechanism.**
+
+> Polities that compete in war over generations win, absorb or are absorbed according to the soldiers, weapons and supplies they can field, which depends on how much they can raise from their people and how well they administer it. Those that raise and organize less are conquered or merge into others, so the number of polities falls, and the survivors carry the fiscal and administrative institutions that each war required. No polity needs to aim at this outcome; elimination produces it. The sifting slows where terrain protects small polities, where conquest costs more than it gains, or when one empire absorbs the rest. State-building driven by trade or belief without military competition, and competition in which defeated polities survive unchanged, are not instances.
+
+**Invariants.**
+- Polities compete in war over a long period.
+- Success in war depends on the resources a polity can raise and administer.
+- Defeated polities are eliminated or absorbed, so the number of polities falls and the survivors raise more than those that disappeared.
+
+**Failure modes.**
+- Survival read as merit: surviving states are taken to be better for their people, when the sifting favours extraction, not welfare.
+- One path for all: regions where war did not eliminate polities, or where states formed otherwise, are forced into the pattern.
+- Design imputed: the convergence is credited to rulers' plans, when elimination produces it.
+
+#### Design
+
+**Why it exists.** The convergence of many polities on a few large, heavily taxing states is often credited to rulers' designs. Warsift names the selection by war that produces it without design.
+
+**Why Society.** It needs several polities competing, each with its own resources and fate.
+
+**Can it be removed?** SecurityDilemma explains why polities arm, not which survive, and Select is generic selection by criteria, not elimination through war. Removable if the number and form of polities are modelled without competition.
+
+**Intended use.** explaining why the number of polities fell and states grew more extractive under sustained war.
+
+**Future uses.** comparing state formation across regions with and without sustained war between states.
+
+**Broad-use contexts.** Warring States China, early modern Europe, Sengoku Japan, South Asian and West African state systems.
+
+**Broad-use intersection (review hypothesis).** competing polities, success in war depending on resources raised, and elimination or absorption of the defeated.
+
+**Varies (descendant territory).** the military technology, the terrain, and how long the competition lasts.
+
+**Extension shape.** a variant for competition through trade and finance rather than war.
+
+**Design tensions.**
+- Selection by war explains which states survive, not whether they serve their people, and the two are easily conflated.
+
+**Tradeoffs.**
+- Gains: convergence explained without assuming design.
+- Gives up: reading surviving states as the best ones.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response.
+- Novelty, from recall and unverified: known, coined as a handle. Nearest known concepts: Tilly's 'war made the state, and the state made war' (1975) and Coercion, Capital, and European States (1990); Hui's War and State Formation in Ancient China and Early Modern Europe (2005).
+
+**In the family.** SecurityDilemma is why polities arm, Warsift is what sustained war selects, and StructuralDemographicCycle is the internal cycle of the states that survive.
+
+---
+
 ### WorldTransparent#208a
 
 `Society` · `Governance` · R2 · T1
@@ -40166,7 +40940,7 @@ _Note: The coined handle names the failure and the card defines the guard, as Co
 
 ---
 
-### Society/Protocols (97)
+### Society/Protocols (100)
 
 ### AdversarialProof#36b4
 
@@ -41479,6 +42253,63 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - `CounterfactualAnchor#0d2b`
 - `CounterfactualAnchor#e7ac`
 - `CounterfactualAnchor#47be`
+
+---
+
+### CumulativeCulture#4f93
+
+`Society` · `Protocols` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/CumulativeCulture.json)
+
+**Gloss.** Skills and knowledge accumulate across generations when enough people learn from one another, and erode when too few do
+
+**Mechanism.**
+
+> People learn skills, tools and knowledge from others, mostly from the most skilled or successful, and sometimes improve on what they learned. Each generation starts from the stock it inherits, so improvements accumulate beyond what anyone could invent alone. How fast the stock grows, and whether it holds, depends on how many people learn from one another and how well they are connected: a large, connected population keeps and improves complex skills, while a small or isolated one loses those that too few people practise to pass on. Learning that is not passed on, and transmission that copies without ever improving, are not instances.
+
+**Invariants.**
+- Skills and knowledge are learned from others rather than reinvented by each learner.
+- Some learners improve on what they learned, and the improvements are passed on.
+- How well the stock is kept and improved depends on how many people learn from one another and how connected they are.
+
+**Failure modes.**
+- Stock read as ability: differences in tools or knowledge between peoples are attributed to differences in individual ability, when they follow from the size and connection of the populations that hold them.
+- Accumulation assumed: the stock is assumed only to grow, missing the losses that follow isolation or a shrinking population.
+- Size alone: population size is credited without the connections and teaching that carry knowledge.
+
+#### Design
+
+**Why it exists.** Differences in tools and knowledge between peoples have been read as differences in ability. CumulativeCulture names the dependence of accumulated knowledge on how many people learn from one another and how connected they are.
+
+**Why Society.** Learning from others needs at least two parties, a learner and a model, and accumulation needs many.
+
+**Can it be removed?** Sideinherit is a single transfer between separate lines of descent, and Foundationfray is the erosion of supporting practices; neither describes accumulation across generations that depends on population and connection. Removable if each generation's knowledge is modelled as independent of its population and contacts.
+
+**Intended use.** explaining the growth and loss of skills and knowledge by the size and connection of the populations that hold them.
+
+**Future uses.** assessing how communities of practice, human and machine, keep and improve what they know.
+
+**Broad-use contexts.** Palaeolithic toolkits, Tasmanian isolation, the growth of science and technology, crafts lost and recovered.
+
+**Broad-use intersection (review hypothesis).** learning from others, improvements passed on, and accumulation depending on the number and connection of learners.
+
+**Varies (descendant territory).** the channels of teaching, the size and connection of the population, and the rate of improvement.
+
+**Extension shape.** a variant for written and stored knowledge, whose loss depends less on living practitioners.
+
+**Design tensions.**
+- Larger, connected populations accumulate faster, while how much of a given difference size explains stays open.
+
+**Tradeoffs.**
+- Gains: differences in knowledge explained without differences in ability.
+- Gives up: crediting individual genius alone.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response.
+- Novelty, from recall and unverified: known. Nearest known concepts: cumulative cultural evolution (Boyd and Richerson); Tomasello's ratchet effect (1999); Henrich's Tasmanian case (2004); Kremer's population and technological change (1993).
+
+**In the family.** Sideinherit is one transfer, InnovationDiffusion the spread of a practice, Foundationfray the erosion of supports, and CumulativeCulture the accumulation that depends on many learners.
 
 ---
 
@@ -43283,6 +44114,64 @@ _Note: An assigned contributor role does not exclude this process. A researcher 
 - `HeldRelease#3ed6`
 - `HeldRelease#533b`
 - `HeldRelease#0850`
+
+---
+
+### InnovationDiffusion#d44a
+
+`Society` · `Protocols` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/InnovationDiffusion.json)
+
+**Gloss.** A practice spreads through a population by contact and imitation, slowly at first, then fast, then levelling off
+
+**Mechanism.**
+
+> People adopt a practice, tool or idea after meeting it in others, through trade, teaching, marriage or imitation. Each adopter exposes others, so adoption rises slowly while adopters are few, accelerates as contacts between adopters and non-adopters multiply, and levels off as those who will adopt have done so. Its pace depends on how often people meet across the network and on how visible, advantageous and fitting to their conditions the practice is; routes of contact, barriers, and differences in climate or custom channel where it goes. Spread by the movement of the adopting people themselves, and adoption imposed by an authority without uptake through contact, are not instances.
+
+**Invariants.**
+- People adopt the practice after encountering it in others.
+- The rate of new adoption depends on contact between adopters and non-adopters.
+- Adoption levels off as the people who will adopt have adopted.
+
+**Failure modes.**
+- Spread read as superiority: a practice's spread is taken to show it is better, when contact, prestige or pressure can carry inferior practices.
+- Independent invention missed: a similar practice in two places is assumed to come from contact, when it arose separately.
+- Slowness blamed on non-adopters: slow uptake is read as backwardness, when the practice does not fit their conditions.
+
+#### Design
+
+**Why it exists.** A practice's spread is often explained by its being better, and its absence by people's backwardness. InnovationDiffusion names the contact-driven course of adoption, so the pace and reach of a spread can be explained by networks and fit.
+
+**Why Society.** Adoption needs adopters who meet one another and decide; the mechanism runs through contact between separate parties.
+
+**Can it be removed?** Sideinherit is one transfer of a practice between separate lines of descent, and MemeticSeed spreads standards by subsidy; neither describes adoption across a population over time. Removable if spread is modelled without contact between adopters and non-adopters.
+
+**Intended use.** explaining how fast and how far a practice, tool or idea spread through a population, and why it stopped where it did.
+
+**Future uses.** modelling the spread of technologies, crops, religions and institutions along routes of contact.
+
+**Broad-use contexts.** crops and domesticated animals, writing and coinage, religions and ideas, printing, industrial and digital technologies.
+
+**Broad-use intersection (review hypothesis).** a practice, adopters who meet it in others, contact between adopters and non-adopters, and a levelling off.
+
+**Varies (descendant territory).** the network of contact, the advantage and fit of the practice, and the barriers.
+
+**Extension shape.** a variant for spread channelled along routes where climate and crops are similar.
+
+**Design tensions.**
+- Adoption through contact and adoption under pressure blur where contact carries prestige or coercion.
+
+**Tradeoffs.**
+- Gains: spread explained by contact and fit rather than by merit or backwardness.
+- Gives up: a single verdict on whether a spread practice was better.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response.
+- Each adoption from someone outside the adopter's line of descent is a Sideinherit; this card concerns the course of many such transfers.
+- Novelty, from recall and unverified: known. Nearest known concepts: Rogers's Diffusion of Innovations (1962); Hägerstrand's spatial diffusion; Diamond's continental axes (1997).
+
+**In the family.** Sideinherit is one transfer, InnovationDiffusion is the course of many, WaveOfAdvance moves the people themselves, and Twinflow carries what no one meant to spread along the same links.
 
 ---
 
@@ -47386,6 +48275,63 @@ Three of those were strengthened in the 2026-07 review rather than merely rename
 - `TranslationProxy#f0e0`
 - `TranslationProxy#e064`
 - `TranslationProxy#d0e3`
+
+---
+
+### Twinflow#9474
+
+`Society` · `Protocols` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Twinflow.json)
+
+**Gloss.** The links that carry goods, people and ideas between regions also carry disease, pests and conflict
+
+**Mechanism.**
+
+> When regions are joined by trade, migration, pilgrimage or conquest, the same routes and contacts carry what the parties seek, such as goods, crops, techniques and ideas, and what no one sends on purpose, such as pathogens, pests, invasive species and the spread of conflict. The gains usually accumulate over many exchanges, while the harms often arrive as shocks when something dangerous first crosses the link. Denser and faster links raise both flows, and regions joined for the first time meet both at once. Harms or gains that travel by routes other than the link in question are not instances.
+
+**Invariants.**
+- A link between regions carries flows the parties seek.
+- The same link carries flows no party sends on purpose, which harm at least one party.
+
+**Failure modes.**
+- Gains counted alone: a link is judged only by what its parties meant to exchange.
+- Isolation prescribed: cutting the link is proposed to remove a harm, ignoring the gains lost and the harms already established.
+- Carriers blamed: a harm that crossed the link is blamed on the traders, migrants or minorities who travel it.
+
+#### Design
+
+**Why it exists.** Integration is judged by its gains and contagion by its harms, as if they travelled separately. Twinflow names that one link carries both, so a model of connection counts both flows.
+
+**Why Society.** The links run between separate regions and parties, each seeking something different from the exchange.
+
+**Can it be removed?** Coflourish is an exchange in which every party gains, and Linkfade is the weakening of a link; neither describes unsought flows along the same link. Removable if links are modelled as carrying only what the parties exchange.
+
+**Intended use.** accounting for the harms that arrive along the same routes as trade, migration and conquest.
+
+**Future uses.** assessing new connections between regions, from trade routes to air travel and digital networks.
+
+**Broad-use contexts.** the Silk Roads and the Black Death, the Columbian exchange, colonial shipping, pandemics through air travel, invasive species.
+
+**Broad-use intersection (review hypothesis).** a link between regions, flows the parties seek, and unsought flows that harm at least one of them.
+
+**Varies (descendant territory).** what the link carries, how fast, and who is harmed.
+
+**Extension shape.** a variant for information networks carrying both knowledge and harmful content.
+
+**Design tensions.**
+- Severing a link can stop a harm and also the gains, and the card names both without deciding between them.
+
+**Tradeoffs.**
+- Gains: connection assessed by everything it carries.
+- Gives up: counting only the gains or only the harms.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response.
+- The contrast between gradual gains and sudden harms is typical, not required, and stays out of the invariants.
+- Novelty, from recall and unverified: known as an observation, coined as a handle. Nearest known concepts: the Columbian exchange (Crosby, 1972); McNeill's Plagues and Peoples (1976); Le Roy Ladurie's microbial unification of the world (1973).
+
+**In the family.** InnovationDiffusion spreads what people adopt, VirginSoilEpidemic is one harm a link can bring, and Twinflow is the link carrying both.
 
 ---
 
