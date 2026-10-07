@@ -1,7 +1,7 @@
 {
   "handle": "StructuralDemographicCycle",
-  "gloss": "Agrarian states pass through centuries-long cycles of population growth, elite crowding, state crisis and disorder",
-  "mechanism": "In an agrarian state, a long period of order lets population grow into its {{malthusian_trap}}, which lowers wages and raises rents, enriching landowners and enlarging the elite. Elite numbers and ambitions outgrow the positions and income available, a {{capacitylag}} in which elites compete and split into factions, while the state's revenue falls behind the cost of its army and administration. Fiscal crisis, elite conflict and popular unrest bring a period of disorder in which population and elite numbers fall through war, famine, disease and loss of status, until the conditions for a new period of growth and order return; one cycle takes roughly two to three centuries. Crises produced by an outside shock without this build-up, and societies whose population is not near its limit, are not instances.",
+  "gloss": "Cycles of population growth, elite crowding, state crisis and disorder in agrarian states",
+  "mechanism": "In an agrarian state, a long period of order lets population grow into its {{malthusian_trap}}, which lowers wages and raises rents, enriching landowners and enlarging the elite. Elite numbers and ambitions outgrow the positions and income available, a {{capacitylag}} in which elites compete and split into factions, while the state's revenue falls behind the cost of its army and administration. Fiscal crisis, elite conflict and popular unrest bring a period of disorder in which population and elite numbers fall through war, famine, disease and loss of status, until the conditions for a new period of growth and order return. The duration varies with these interacting dynamics. Crises produced by an outside shock without this build-up, and societies whose population is not near its limit, are not instances.",
   "invariants": [
     "Population grows during a long period of order toward the limit its land and techniques allow.",
     "Elite numbers or ambitions grow faster than the positions and income available to them.",
@@ -13,9 +13,9 @@
     "One cause: the crisis is attributed to population alone, ignoring elite and fiscal dynamics, or the reverse.",
     "Prediction by analogy: the cycle is projected onto societies far from their population limit, such as industrial ones, without checking its conditions."
   ],
-  "sema_id": "sema:StructuralDemographicCycle#mh:SHA-256:84332fbf5a6c3b8266a43f1a1cfcd1f71e82cda8116a68b1de6656ed864bb158",
-  "sema_ref": "StructuralDemographicCycle#8433",
-  "sema_stub": "8433",
+  "sema_id": "sema:StructuralDemographicCycle#mh:SHA-256:c94c70f7c7457a4333542fe9e632fd21b58992c37095f78c82747ee3f29fd0e4",
+  "sema_ref": "StructuralDemographicCycle#c94c",
+  "sema_stub": "c94c",
   "_meta": {
     "path": [
       "Society",

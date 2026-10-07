@@ -1,20 +1,20 @@
 {
   "handle": "CumulativeCulture",
-  "gloss": "Skills and knowledge accumulate across generations when enough people learn from one another, and erode when too few do",
-  "mechanism": "People learn skills, tools and knowledge from others, mostly from the most skilled or successful, and sometimes improve on what they learned. Each generation starts from the stock it inherits, so improvements accumulate beyond what anyone could invent alone. How fast the stock grows, and whether it holds, depends on how many people learn from one another and how well they are connected: a large, connected population keeps and improves complex skills, while a small or isolated one loses those that too few people practise to pass on. Learning that is not passed on, and transmission that copies without ever improving, are not instances.",
+  "gloss": "Skills and knowledge accumulate across generations as people learn from others, improve what they inherit and pass improvements on",
+  "mechanism": "People learn skills, tools and knowledge from others and sometimes improve on what they learned. Each generation starts from the stock it inherits, so retained improvements provide a basis for further improvements beyond what anyone could invent alone. Retention and growth depend on learning, practice and innovation; population size and connections affect these processes without determining their outcome. Skills can be lost when transmission breaks down. Learning that is not passed on, and transmission that copies without ever improving, are not instances.",
   "invariants": [
     "Skills and knowledge are learned from others rather than reinvented by each learner.",
     "Some learners improve on what they learned, and the improvements are passed on.",
-    "How well the stock is kept and improved depends on how many people learn from one another and how connected they are."
+    "Improvements are retained long enough for later learners to build on them."
   ],
   "failure_modes": [
-    "Stock read as ability: differences in tools or knowledge between peoples are attributed to differences in individual ability, when they follow from the size and connection of the populations that hold them.",
-    "Accumulation assumed: the stock is assumed only to grow, missing the losses that follow isolation or a shrinking population.",
-    "Size alone: population size is credited without the connections and teaching that carry knowledge."
+    "Stock read as ability: differences in tools or knowledge between peoples are attributed to differences in individual ability without examining learning and transmission.",
+    "Accumulation assumed: the stock is assumed only to grow, missing losses that can follow disrupted transmission, isolation or a shrinking population.",
+    "Size alone: a large or connected population is treated as guaranteeing accumulation without examining the learning, practice and innovation that sustain it."
   ],
-  "sema_id": "sema:CumulativeCulture#mh:SHA-256:4f938b644cc8fd33afd520ea0e9c04e43b8156908b2db513a638e053f7e86dbe",
-  "sema_ref": "CumulativeCulture#4f93",
-  "sema_stub": "4f93",
+  "sema_id": "sema:CumulativeCulture#mh:SHA-256:1e8ab972439e5cb3ebba09d73a9107408a01ce8af328c05e2e3c4d34c08a7de5",
+  "sema_ref": "CumulativeCulture#1e8a",
+  "sema_stub": "1e8a",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "_meta": {

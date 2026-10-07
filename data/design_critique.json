@@ -19614,7 +19614,7 @@
       "future": "comparing genetic, archaeological and linguistic evidence about how a population and its practices spread.",
       "broad_contexts": "the dispersal of modern humans, the spread of farming across Europe and Africa, island colonization, invasive species, epidemics across land.",
       "every_context_needs": "a growing population, short-distance movement, land beyond the occupied area that can support the population, and a front.",
-      "varies": "the growth rate, the distance moved, and the land's capacity.",
+      "varies": "the growth rate, the distance moved, the land's capacity, and how these conditions vary across space and time.",
       "extensions": "a variant with long-distance jumps that seed new fronts ahead of the main one.",
       "notes": []
     },
@@ -19629,7 +19629,7 @@
       "critique": [
         "The card describes a process and prescribes no response.",
         "Placed in Physics because the mechanism needs no cognition; its failure modes concern human evidence, where the card is mostly used.",
-        "A constant speed is expected across land of the same capacity, not required by the invariants; a departure from it is evidence about the land or the population.",
+        "A front can approach constant speed under sufficiently uniform growth, dispersal and habitat conditions. Equal carrying capacity alone is insufficient. Variation in these conditions can change its speed without ceasing to be a wave of advance.",
         "Novelty, from recall and unverified: known. Nearest known concepts: Fisher's wave of advance (1937); Ammerman and Cavalli-Sforza's demic diffusion of farming (1971, 1984); reaction-diffusion fronts."
       ]
     },
@@ -19808,7 +19808,7 @@
     },
     "design": {
       "tensions": [
-        "Coercion by an authority closes the shortfall and also creates the power that ExitCage describes."
+        "Coercion by an authority can close the shortfall and also create the power that ExitCage describes."
       ],
       "tradeoffs": [
         "Gains: a structural reason for under-provision that does not depend on blaming members.",
@@ -19816,6 +19816,7 @@
       ],
       "critique": [
         "The card describes a process and prescribes no response.",
+        "Group size alone does not determine the contribution shortfall. Its effect depends on how individual costs and benefits scale with membership and on the arrangements for cooperation; larger groups need not cooperate less.",
         "Novelty, from recall and unverified: known. Nearest known concepts: Olson's The Logic of Collective Action (1965); Hardin's tragedy of the commons (1968); Ostrom's Governing the Commons (1990)."
       ]
     },
@@ -19877,7 +19878,7 @@
       "critique": [
         "The card describes a process and prescribes no response.",
         "Its application to industrial societies is contested; the card's boundary excludes societies far from their population limit.",
-        "The length of two to three centuries is described in the mechanism, not required by the invariants, so a cycle of another length is still an instance.",
+        "Two to three centuries is a characteristic timescale in some documented agrarian cycles, not an admission criterion. The pattern is identified by its interacting population, elite and fiscal dynamics; matching a period alone does not establish this mechanism.",
         "Novelty, from recall and unverified: known. Nearest known concepts: Turchin and Nefedov's Secular Cycles (2009); Goldstone's Revolution and Rebellion in the Early Modern World (1991); the dynastic cycle of Chinese historiography."
       ]
     },
@@ -19945,32 +19946,33 @@
   },
   "CumulativeCulture": {
     "motivation": {
-      "why_this_layer": "Learning from others needs at least two parties, a learner and a model, and accumulation needs many.",
-      "why_it_exists": "Differences in tools and knowledge between peoples have been read as differences in ability. CumulativeCulture names the dependence of accumulated knowledge on how many people learn from one another and how connected they are.",
-      "removability": "Sideinherit is a single transfer between separate lines of descent, and Foundationfray is the erosion of supporting practices; neither describes accumulation across generations that depends on population and connection. Removable if each generation's knowledge is modelled as independent of its population and contacts."
+      "why_this_layer": "Learning from others needs at least two parties, a learner and a model, and accumulation links successive learners.",
+      "why_it_exists": "Differences in tools and knowledge between peoples have been read as differences in ability. CumulativeCulture names how socially transmitted improvements become a basis for further improvements, directing attention to the conditions that sustain that accumulation.",
+      "removability": "Sideinherit is a single transfer between separate lines of descent, and Foundationfray is the erosion of supporting practices; neither describes successive improvements retained through social transmission. Removable if each generation is modelled as reinventing its knowledge independently."
     },
     "usage": {
-      "intended": "explaining the growth and loss of skills and knowledge by the size and connection of the populations that hold them.",
+      "intended": "explaining the accumulation and loss of skills and knowledge through learning, improvement and transmission.",
       "future": "assessing how communities of practice, human and machine, keep and improve what they know.",
       "broad_contexts": "Palaeolithic toolkits, Tasmanian isolation, the growth of science and technology, crafts lost and recovered.",
-      "every_context_needs": "learning from others, improvements passed on, and accumulation depending on the number and connection of learners.",
-      "varies": "the channels of teaching, the size and connection of the population, and the rate of improvement.",
+      "every_context_needs": "learning from others, improvements passed on, and retained improvements that later learners build on.",
+      "varies": "the channels of teaching and storage, the size and connection of the population, and the rates of innovation, retention and loss.",
       "extensions": "a variant for written and stored knowledge, whose loss depends less on living practitioners.",
       "notes": []
     },
     "design": {
       "tensions": [
-        "Larger, connected populations accumulate faster, while how much of a given difference size explains stays open."
+        "More learners and contacts can widen access to models and innovations, but their effect on accumulation depends on what is learned, how it is transmitted and whether learners improve it."
       ],
       "tradeoffs": [
-        "Gains: differences in knowledge explained without differences in ability.",
+        "Gains: an account of accumulated knowledge that includes social transmission rather than attributing differences to individual ability alone.",
         "Gives up: crediting individual genius alone."
       ],
       "critique": [
         "The card describes a process and prescribes no response.",
+        "Population size and connectivity are contributing conditions, not defining guarantees of accumulation or loss. A large connected population can fail to retain improvements, and a small isolated community can sustain complex skills; demographic explanations require evidence about transmission and innovation in the case at hand.",
         "Novelty, from recall and unverified: known. Nearest known concepts: cumulative cultural evolution (Boyd and Richerson); Tomasello's ratchet effect (1999); Henrich's Tasmanian case (2004); Kremer's population and technological change (1993)."
       ]
     },
-    "family_discussion": "Sideinherit is one transfer, InnovationDiffusion the spread of a practice, Foundationfray the erosion of supports, and CumulativeCulture the accumulation that depends on many learners."
+    "family_discussion": "Sideinherit is one transfer, InnovationDiffusion the spread of a practice, Foundationfray the erosion of supports, and CumulativeCulture successive improvements retained through social transmission."
   }
 }

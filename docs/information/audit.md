@@ -1116,6 +1116,8 @@ Scanning 606 patterns for unlinked handle mentions...
    • Mentions 'Entropy' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Lock' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Noise' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  CumulativeCulture:
+   • Mentions 'Outcome' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  CurriculumReplay:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
@@ -2792,7 +2794,7 @@ Scanning 606 patterns for unlinked handle mentions...
 ⚠️  Yield:
    • Mentions 'Ledger' (unlinked). Should it be '{{{ghost}}}'?
 
-Scan complete. Found unlinked handle mentions in 513 patterns.
+Scan complete. Found unlinked handle mentions in 514 patterns.
 ```
 
 ## Semantic similarity between patterns

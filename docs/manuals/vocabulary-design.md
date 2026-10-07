@@ -1399,7 +1399,7 @@ themselves; rewrite them around the semantic risk and run the placement test.
 
 ---
 
-### WaveOfAdvance#4cec
+### WaveOfAdvance#39ad
 
 `Physics` · `Primitives` · R2 · T2
 
@@ -1409,7 +1409,7 @@ themselves; rewrite them around the semantic risk and run the placement test.
 
 **Mechanism.**
 
-> A population grows where it lives, and its members move mostly short distances, often into land nearby. Where the land beyond the occupied area can support it, the occupied area expands as a front: behind it the population fills toward the land's capacity, and at it small groups move outward. The front's speed is set by the local growth rate and the distance moved per generation, so across land of the same capacity it advances at a constant speed, and it slows or stops where the land cannot support the population or others already hold it. Long-distance jumps, and the spread of a trait or practice among members of a population that stays where it is, are not instances, though both often mix with a front.
+> A population grows where it lives, and its members move mostly short distances, often into land nearby. Where the land beyond the occupied area can support it, the occupied area expands as a front: behind it the population fills toward the land's capacity, and at it small groups move outward. The front's speed is set by the local growth rate and the distance moved per generation, and under sufficiently uniform growth, dispersal and habitat conditions it can approach a constant speed. It may slow or stop where the land cannot support the population or competing populations impede it. Long-distance jumps, and the spread of a trait or practice among members of a population that stays where it is, are not instances, though both often mix with a front.
 
 **Invariants.**
 - The population grows locally, and its members move mostly short distances per generation.
@@ -1437,7 +1437,7 @@ themselves; rewrite them around the semantic risk and run the placement test.
 
 **Broad-use intersection (review hypothesis).** a growing population, short-distance movement, land beyond the occupied area that can support the population, and a front.
 
-**Varies (descendant territory).** the growth rate, the distance moved, and the land's capacity.
+**Varies (descendant territory).** the growth rate, the distance moved, the land's capacity, and how these conditions vary across space and time.
 
 **Extension shape.** a variant with long-distance jumps that seed new fronts ahead of the main one.
 
@@ -1451,7 +1451,7 @@ themselves; rewrite them around the semantic risk and run the placement test.
 **Critique (diagnostic, not contract requirements).**
 - The card describes a process and prescribes no response.
 - Placed in Physics because the mechanism needs no cognition; its failure modes concern human evidence, where the card is mostly used.
-- A constant speed is expected across land of the same capacity, not required by the invariants; a departure from it is evidence about the land or the population.
+- A front can approach constant speed under sufficiently uniform growth, dispersal and habitat conditions. Equal carrying capacity alone is insufficient. Variation in these conditions can change its speed without ceasing to be a wave of advance.
 - Novelty, from recall and unverified: known. Nearest known concepts: Fisher's wave of advance (1937); Ammerman and Cavalli-Sforza's demic diffusion of farming (1971, 1984); reaction-diffusion fronts.
 
 **In the family.** WaveOfAdvance moves people, InnovationDiffusion spreads practices among people who stay, and Sideinherit is one transfer of a practice between separate lines of descent.
@@ -37218,17 +37218,17 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 
 ---
 
-### FreeRiderProblem#b2e3
+### FreeRiderProblem#6927
 
 `Society` · `Coordination` · R2 · T2
 
 [Source card (JSON)](../../data/vocabulary/FreeRiderProblem.json)
 
-**Gloss.** Members of a group contribute too little to a good none of them can be excluded from, and the larger the group, the larger the shortfall
+**Gloss.** Members of a group contribute too little to a good none of them can be excluded from
 
 **Mechanism.**
 
-> Members of a group all gain from a good, such as defence, irrigation works, a commons kept from overuse or a rising's success, from which no member can be excluded once it exists. Each bears the full cost of their own contribution but receives only a share of what it adds, so each does better if others contribute, and the total falls short of what the members together would choose; the larger the group, the smaller each share and the larger the shortfall. Contributions rise when members gain rewards or face penalties tied to their own contribution, when they deal repeatedly in groups small enough to watch each other, or when an authority collects the costs. Goods from which non-contributors can be excluded, and contributions that cost the contributor nothing, are not instances.
+> Members of a group all gain from a good, such as defence, irrigation works, a commons kept from overuse or a rising's success, from which no member can be excluded once it exists. Each bears the full cost of their own contribution but receives only a share of what it adds, so each does better if others contribute, and the total falls short of what the members together would choose. Contributions can rise when members gain rewards or face penalties tied to their own contribution, when they deal repeatedly in groups small enough to watch each other, or when an authority collects the costs. Goods from which non-contributors can be excluded, and contributions that cost the contributor nothing, are not instances.
 
 **Invariants.**
 - No member can be excluded from the good once it exists.
@@ -37261,7 +37261,7 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 **Extension shape.** a variant for commons governed by their users with graduated sanctions.
 
 **Design tensions.**
-- Coercion by an authority closes the shortfall and also creates the power that ExitCage describes.
+- Coercion by an authority can close the shortfall and also create the power that ExitCage describes.
 
 **Tradeoffs.**
 - Gains: a structural reason for under-provision that does not depend on blaming members.
@@ -37269,6 +37269,7 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 
 **Critique (diagnostic, not contract requirements).**
 - The card describes a process and prescribes no response.
+- Group size alone does not determine the contribution shortfall. Its effect depends on how individual costs and benefits scale with membership and on the arrangements for cooperation; larger groups need not cooperate less.
 - Novelty, from recall and unverified: known. Nearest known concepts: Olson's The Logic of Collective Action (1965); Hardin's tragedy of the commons (1968); Ostrom's Governing the Commons (1990).
 
 **In the family.** FreeRiderProblem is the shortfall in a shared good, SecurityDilemma the spiral between parties, and ExitCage the durable extraction that can supply shared goods by force.
@@ -40510,17 +40511,17 @@ _Note: The coined handle names the failure and the card defines the guard, as Co
 
 ---
 
-### StructuralDemographicCycle#8433
+### StructuralDemographicCycle#c94c
 
 `Society` · `Governance` · R2 · T2
 
 [Source card (JSON)](../../data/vocabulary/StructuralDemographicCycle.json)
 
-**Gloss.** Agrarian states pass through centuries-long cycles of population growth, elite crowding, state crisis and disorder
+**Gloss.** Cycles of population growth, elite crowding, state crisis and disorder in agrarian states
 
 **Mechanism.**
 
-> In an agrarian state, a long period of order lets population grow into its {{malthusian_trap}}, which lowers wages and raises rents, enriching landowners and enlarging the elite. Elite numbers and ambitions outgrow the positions and income available, a {{capacitylag}} in which elites compete and split into factions, while the state's revenue falls behind the cost of its army and administration. Fiscal crisis, elite conflict and popular unrest bring a period of disorder in which population and elite numbers fall through war, famine, disease and loss of status, until the conditions for a new period of growth and order return; one cycle takes roughly two to three centuries. Crises produced by an outside shock without this build-up, and societies whose population is not near its limit, are not instances.
+> In an agrarian state, a long period of order lets population grow into its {{malthusian_trap}}, which lowers wages and raises rents, enriching landowners and enlarging the elite. Elite numbers and ambitions outgrow the positions and income available, a {{capacitylag}} in which elites compete and split into factions, while the state's revenue falls behind the cost of its army and administration. Fiscal crisis, elite conflict and popular unrest bring a period of disorder in which population and elite numbers fall through war, famine, disease and loss of status, until the conditions for a new period of growth and order return. The duration varies with these interacting dynamics. Crises produced by an outside shock without this build-up, and societies whose population is not near its limit, are not instances.
 
 **Invariants.**
 - Population grows during a long period of order toward the limit its land and techniques allow.
@@ -40570,7 +40571,7 @@ _Note: The coined handle names the failure and the card defines the guard, as Co
 **Critique (diagnostic, not contract requirements).**
 - The card describes a process and prescribes no response.
 - Its application to industrial societies is contested; the card's boundary excludes societies far from their population limit.
-- The length of two to three centuries is described in the mechanism, not required by the invariants, so a cycle of another length is still an instance.
+- Two to three centuries is a characteristic timescale in some documented agrarian cycles, not an admission criterion. The pattern is identified by its interacting population, elite and fiscal dynamics; matching a period alone does not establish this mechanism.
 - Novelty, from recall and unverified: known. Nearest known concepts: Turchin and Nefedov's Secular Cycles (2009); Goldstone's Revolution and Rebellion in the Early Modern World (1991); the dynastic cycle of Chinese historiography.
 
 **In the family.** MalthusianTrap is the population pressure it builds on, Capacitylag the elite crowding, Warsift the external competition, and DiminishingComplexityReturns the longer decline in returns on complexity.
@@ -42256,60 +42257,61 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 ---
 
-### CumulativeCulture#4f93
+### CumulativeCulture#1e8a
 
 `Society` · `Protocols` · R2 · T2
 
 [Source card (JSON)](../../data/vocabulary/CumulativeCulture.json)
 
-**Gloss.** Skills and knowledge accumulate across generations when enough people learn from one another, and erode when too few do
+**Gloss.** Skills and knowledge accumulate across generations as people learn from others, improve what they inherit and pass improvements on
 
 **Mechanism.**
 
-> People learn skills, tools and knowledge from others, mostly from the most skilled or successful, and sometimes improve on what they learned. Each generation starts from the stock it inherits, so improvements accumulate beyond what anyone could invent alone. How fast the stock grows, and whether it holds, depends on how many people learn from one another and how well they are connected: a large, connected population keeps and improves complex skills, while a small or isolated one loses those that too few people practise to pass on. Learning that is not passed on, and transmission that copies without ever improving, are not instances.
+> People learn skills, tools and knowledge from others and sometimes improve on what they learned. Each generation starts from the stock it inherits, so retained improvements provide a basis for further improvements beyond what anyone could invent alone. Retention and growth depend on learning, practice and innovation; population size and connections affect these processes without determining their outcome. Skills can be lost when transmission breaks down. Learning that is not passed on, and transmission that copies without ever improving, are not instances.
 
 **Invariants.**
 - Skills and knowledge are learned from others rather than reinvented by each learner.
 - Some learners improve on what they learned, and the improvements are passed on.
-- How well the stock is kept and improved depends on how many people learn from one another and how connected they are.
+- Improvements are retained long enough for later learners to build on them.
 
 **Failure modes.**
-- Stock read as ability: differences in tools or knowledge between peoples are attributed to differences in individual ability, when they follow from the size and connection of the populations that hold them.
-- Accumulation assumed: the stock is assumed only to grow, missing the losses that follow isolation or a shrinking population.
-- Size alone: population size is credited without the connections and teaching that carry knowledge.
+- Stock read as ability: differences in tools or knowledge between peoples are attributed to differences in individual ability without examining learning and transmission.
+- Accumulation assumed: the stock is assumed only to grow, missing losses that can follow disrupted transmission, isolation or a shrinking population.
+- Size alone: a large or connected population is treated as guaranteeing accumulation without examining the learning, practice and innovation that sustain it.
 
 #### Design
 
-**Why it exists.** Differences in tools and knowledge between peoples have been read as differences in ability. CumulativeCulture names the dependence of accumulated knowledge on how many people learn from one another and how connected they are.
+**Why it exists.** Differences in tools and knowledge between peoples have been read as differences in ability. CumulativeCulture names how socially transmitted improvements become a basis for further improvements, directing attention to the conditions that sustain that accumulation.
 
-**Why Society.** Learning from others needs at least two parties, a learner and a model, and accumulation needs many.
+**Why Society.** Learning from others needs at least two parties, a learner and a model, and accumulation links successive learners.
 
-**Can it be removed?** Sideinherit is a single transfer between separate lines of descent, and Foundationfray is the erosion of supporting practices; neither describes accumulation across generations that depends on population and connection. Removable if each generation's knowledge is modelled as independent of its population and contacts.
+**Can it be removed?** Sideinherit is a single transfer between separate lines of descent, and Foundationfray is the erosion of supporting practices; neither describes successive improvements retained through social transmission. Removable if each generation is modelled as reinventing its knowledge independently.
 
-**Intended use.** explaining the growth and loss of skills and knowledge by the size and connection of the populations that hold them.
+**Intended use.** explaining the accumulation and loss of skills and knowledge through learning, improvement and transmission.
 
 **Future uses.** assessing how communities of practice, human and machine, keep and improve what they know.
 
 **Broad-use contexts.** Palaeolithic toolkits, Tasmanian isolation, the growth of science and technology, crafts lost and recovered.
 
-**Broad-use intersection (review hypothesis).** learning from others, improvements passed on, and accumulation depending on the number and connection of learners.
+**Broad-use intersection (review hypothesis).** learning from others, improvements passed on, and retained improvements that later learners build on.
 
-**Varies (descendant territory).** the channels of teaching, the size and connection of the population, and the rate of improvement.
+**Varies (descendant territory).** the channels of teaching and storage, the size and connection of the population, and the rates of innovation, retention and loss.
 
 **Extension shape.** a variant for written and stored knowledge, whose loss depends less on living practitioners.
 
 **Design tensions.**
-- Larger, connected populations accumulate faster, while how much of a given difference size explains stays open.
+- More learners and contacts can widen access to models and innovations, but their effect on accumulation depends on what is learned, how it is transmitted and whether learners improve it.
 
 **Tradeoffs.**
-- Gains: differences in knowledge explained without differences in ability.
+- Gains: an account of accumulated knowledge that includes social transmission rather than attributing differences to individual ability alone.
 - Gives up: crediting individual genius alone.
 
 **Critique (diagnostic, not contract requirements).**
 - The card describes a process and prescribes no response.
+- Population size and connectivity are contributing conditions, not defining guarantees of accumulation or loss. A large connected population can fail to retain improvements, and a small isolated community can sustain complex skills; demographic explanations require evidence about transmission and innovation in the case at hand.
 - Novelty, from recall and unverified: known. Nearest known concepts: cumulative cultural evolution (Boyd and Richerson); Tomasello's ratchet effect (1999); Henrich's Tasmanian case (2004); Kremer's population and technological change (1993).
 
-**In the family.** Sideinherit is one transfer, InnovationDiffusion the spread of a practice, Foundationfray the erosion of supports, and CumulativeCulture the accumulation that depends on many learners.
+**In the family.** Sideinherit is one transfer, InnovationDiffusion the spread of a practice, Foundationfray the erosion of supports, and CumulativeCulture successive improvements retained through social transmission.
 
 ---
 

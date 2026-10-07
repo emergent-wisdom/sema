@@ -1,7 +1,7 @@
 {
   "handle": "FreeRiderProblem",
-  "gloss": "Members of a group contribute too little to a good none of them can be excluded from, and the larger the group, the larger the shortfall",
-  "mechanism": "Members of a group all gain from a good, such as defence, irrigation works, a commons kept from overuse or a rising's success, from which no member can be excluded once it exists. Each bears the full cost of their own contribution but receives only a share of what it adds, so each does better if others contribute, and the total falls short of what the members together would choose; the larger the group, the smaller each share and the larger the shortfall. Contributions rise when members gain rewards or face penalties tied to their own contribution, when they deal repeatedly in groups small enough to watch each other, or when an authority collects the costs. Goods from which non-contributors can be excluded, and contributions that cost the contributor nothing, are not instances.",
+  "gloss": "Members of a group contribute too little to a good none of them can be excluded from",
+  "mechanism": "Members of a group all gain from a good, such as defence, irrigation works, a commons kept from overuse or a rising's success, from which no member can be excluded once it exists. Each bears the full cost of their own contribution but receives only a share of what it adds, so each does better if others contribute, and the total falls short of what the members together would choose. Contributions can rise when members gain rewards or face penalties tied to their own contribution, when they deal repeatedly in groups small enough to watch each other, or when an authority collects the costs. Goods from which non-contributors can be excluded, and contributions that cost the contributor nothing, are not instances.",
   "invariants": [
     "No member can be excluded from the good once it exists.",
     "Each member's own return from contributing is less than its cost to them.",
@@ -12,9 +12,9 @@
     "Cooperation read as impossible: the shortfall is taken as inevitable, overlooking the monitoring, reputation and graduated sanctions that groups devise for themselves.",
     "Ruler as the only remedy: coercion by an authority is assumed to be the only solution, missing arrangements groups govern themselves."
   ],
-  "sema_id": "sema:FreeRiderProblem#mh:SHA-256:b2e3e8e96de53a037475c51e261cb1b141f2a61af7c4300b7adeece5454fed04",
-  "sema_ref": "FreeRiderProblem#b2e3",
-  "sema_stub": "b2e3",
+  "sema_id": "sema:FreeRiderProblem#mh:SHA-256:6927b51e295e254f26f3eb3b3a580502ddce97b3a7afc407dc5892bd745e8e1f",
+  "sema_ref": "FreeRiderProblem#6927",
+  "sema_stub": "6927",
   "sema_layer": "Society",
   "sema_category": "Coordination",
   "_meta": {
