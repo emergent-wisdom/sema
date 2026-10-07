@@ -10,6 +10,8 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
+## [0.8.1] - 2026-10-08
+
 ### Added
 
 Sixteen patterns for population dynamics, cultural transmission, resource
