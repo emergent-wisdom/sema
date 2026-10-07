@@ -14249,7 +14249,7 @@
         "Argument Mismatch — schemas catch some; not all.",
         "Observation Integration requires the result format to match.",
         "§3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb). Broad-use confirms.",
-        "Caution: the card's Observation Integration invariant requires results to enter later reasoning, and nothing says they are untrusted, so a tool or source that controls its output can steer the agent. RetrievalAugment names its analogue as Retrieval Poisoning. A failure mode would state this in the hashed definition but would rehash 15 of 574 patterns; the caution states it without a cascade."
+        "Caution: the card's Observation Integration invariant requires results to enter later reasoning, and nothing says they are untrusted, so a tool or source that controls its output can steer the agent. RetrievalAugment names its analogue as Retrieval Poisoning. A failure mode would state this in the hashed definition but would rehash 15 of 590 patterns; the caution states it without a cascade."
       ]
     },
     "family_discussion": "Tool-use primitive paired with ToolDiscovery (discovery), InputGuard (validation), and Act (the execution)."
