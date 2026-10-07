@@ -27,13 +27,16 @@ OUTPUT = REPO_ROOT / "docs" / "information" / "audit.md"
 
 def checkout_problem(root: Path) -> str | None:
     """Say why ``root`` is not a Sema checkout the audit can read and write, or None."""
-    missing = [part for part in ("data/vocabulary", "data/taxonomy.db") if not (root / part).exists()]
+    missing = [
+        part for part in ("data/vocabulary", "data/taxonomy.db") if not (root / part).exists()
+    ]
     if not missing:
         return None
     return (
         f"{root} is not a Sema checkout (missing {', '.join(missing)}). Run the audit from a "
         "checkout with an editable install or PYTHONPATH=src, or set SEMA_REPO_ROOT."
     )
+
 
 # Order matters: blocking/structural first, heuristic/advisory after.
 AUDITS = [

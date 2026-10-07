@@ -447,9 +447,8 @@ explanation overhead or one critical coordination failure as that local rule.
 Under it, one ordinary borrower is not enough — fix the borrowing site instead,
 lowercasing the concept per Rule H.
 
-**Exception, 2026-10-05.** Henrik waived the friction rule for the coined-word
-tranches begun on branch `vocab/coined-words-2026-10-05`. Those patterns are
-admitted on the seed criterion's breadth argument, without recorded friction. The
+The coined-word seed additions are admitted on the seed criterion's breadth
+argument, without recorded friction. The
 `PatternDiscovery` gate and the collision rule still apply to each of them, and
 their handles follow the coined-handle rule in `docs/specification/naming.md` §F.
 
