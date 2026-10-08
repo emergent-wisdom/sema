@@ -729,3 +729,8 @@ class TestTaxonomy:
     def test_infrastructure_has_primitives(self):
         """Infrastructure should include Primitives category."""
         assert "Primitives" in VALID_TAXONOMY["Infrastructure"]
+
+    def test_every_layer_has_dynamics(self):
+        """Patterns that describe how a system behaves have a home in every layer."""
+        for layer, categories in VALID_TAXONOMY.items():
+            assert "Dynamics" in categories, layer
