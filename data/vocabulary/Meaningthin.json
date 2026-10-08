@@ -15,7 +15,7 @@
   "_meta": {
     "path": [
       "Mind",
-      "Strategy"
+      "Dynamics"
     ],
     "ring": 2,
     "tier": 2,
@@ -30,5 +30,5 @@
   "sema_ref": "Meaningthin#8366",
   "sema_stub": "8366",
   "sema_layer": "Mind",
-  "sema_category": "Strategy"
+  "sema_category": "Dynamics"
 }

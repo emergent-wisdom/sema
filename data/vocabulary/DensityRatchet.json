@@ -17,11 +17,11 @@
   "sema_ref": "DensityRatchet#2ace",
   "sema_stub": "2ace",
   "sema_layer": "Society",
-  "sema_category": "Economics",
+  "sema_category": "Dynamics",
   "_meta": {
     "path": [
       "Society",
-      "Economics"
+      "Dynamics"
     ],
     "ring": 2,
     "tier": 2,

@@ -16,11 +16,11 @@
   "sema_ref": "Warsift#b01b",
   "sema_stub": "b01b",
   "sema_layer": "Society",
-  "sema_category": "Governance",
+  "sema_category": "Dynamics",
   "_meta": {
     "path": [
       "Society",
-      "Governance"
+      "Dynamics"
     ],
     "ring": 2,
     "tier": 2,

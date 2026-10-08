@@ -15,7 +15,7 @@
   "_meta": {
     "path": [
       "Physics",
-      "Primitives"
+      "Dynamics"
     ],
     "ring": 2,
     "tier": 2,
@@ -31,5 +31,5 @@
   "sema_ref": "Brakefade#764a",
   "sema_stub": "764a",
   "sema_layer": "Physics",
-  "sema_category": "Primitives"
+  "sema_category": "Dynamics"
 }

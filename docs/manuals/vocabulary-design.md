@@ -159,6 +159,35 @@ conceptually operates on, and not by how foundational it feels.
 The sharpest lines are *Physics vs Infrastructure* (substrate-given vs
 author-designed) and *Mind vs Society* (single-party-sufficient vs multi-party-required).
 
+### The Dynamics category (a process to recognise, not a procedure to follow)
+
+Within its layer, a pattern that describes how a system behaves (a process with a
+characteristic course, or a regularity or limit its states obey) and prescribes no
+response is filed under that layer's `Dynamics` category, whatever its topic. Most
+patterns about the world an agent models, such as demography, war, economies and
+epidemics, are of this kind. A consuming agent applies such a pattern to interpret a
+case: it checks whether the invariants hold there, expects what the mechanism predicts,
+and treats the failure modes as misreadings of the case. It does not execute it. The
+procedure, protocol, guard or review that answers a Dynamics pattern stays in its own
+category (`StopDrill` answers `Brakefade`, `PurposeLinkReview` answers `Meaningthin`),
+so the description and the response stay separately reusable.
+
+The layer still comes from the mechanism-sufficiency test, read as what the process
+needs in order to occur: `WaveOfAdvance` needs only a growing population whose members
+move (Physics), `Meaningthin` a purpose valued from some perspective (Mind), and
+`Warsift` competing polities (Society).
+
+Two kinds of descriptive pattern stay where they are. Elementary concepts that other
+patterns are built from, such as `Equilibrium`, `Attractor`, `PhaseTransition` and
+`Decay`, remain primitives: they name the abstract form a process can take and have no
+characteristic course of their own. Patterns that name a judgment error or a state of
+the evidence, such as `ConfoundedAttribution`, `QuestionSubstitution` and
+`RegressionToMean`, remain with the inference and reasoning patterns, because the
+consuming agent uses them to check inference, its own or another's.
+
+The category is metadata outside the hash, so filing a pattern under `Dynamics`, or
+moving it out, changes no identity.
+
 ### The two-criteria minting rule (whether to mint at all)
 
 A concept earns a pattern only if it meets at least one of:
@@ -249,64 +278,11 @@ themselves; rewrite them around the semantic risk and run the placement test.
 ## Patterns
 ## Physics (22)
 
-### Physics/Primitives (20)
-
-### Attractor#0036
-
-`Physics` · `Primitives` · R0 · T1
-
-[Source card (JSON)](../../data/vocabulary/Attractor.json)
-
-**Gloss.** A state-space region dynamics pull toward — fixed points, limit cycles, or chaotic attractors
-
-**Mechanism.**
-
-> A region of a dynamical system's state space that trajectories converge toward from a surrounding basin of initial conditions. Once a trajectory enters the basin of attraction, the system's dynamics pull it toward the attractor and confine it thereafter (absent external perturbation). Attractors may be point-like (fixed points — a stable {{equilibrium}}), periodic (limit cycles), or strange (chaotic — bounded but non-repeating). Substrate property: every dissipative dynamical system has attractors; the structure of attractors and their basins is what the system's dynamics is. Downstream patterns use attractor-and-basin reasoning to predict where coordination processes will settle and which initial conditions route to which outcome.
-
-**Invariants.**
-- Convergence: trajectories starting in the basin of attraction approach the attractor in the limit.
-- Confinement: trajectories that enter the attractor remain within it absent external perturbation.
-- Basin: each attractor has an associated basin of attraction; disjoint attractors partition the set of initial conditions whose trajectories converge.
-
-**Dependency bindings.**
-
-| Category | Placeholder | Exact definition |
-| --- | --- | --- |
-| `references` | `{{equilibrium}}` | `sema:Equilibrium#mh:SHA-256:4f036318bc81500ad159994d9ab7efbec87883eccecb18e64ede15cde3e099d2` |
-
-#### Design
-
-**Why it exists.** Names the structural property that trajectories in a dynamical system converge toward specific regions — basins of attraction. Different from Equilibrium (which is pointwise) and from PhaseTransition (which is threshold-crossing): Attractor is about long-run dynamical behavior. Essential for reasoning about stability, path dependence, and initial-condition sensitivity.
-
-**Why Physics.** state-space basin-of-attraction — substrate of dynamical systems
-
-**Can it be removed?** Marginal. The concept is distinct enough from Equilibrium and valuable enough as a standalone substrate anchor that the structured-thinking criterion justifies it. Without it, patterns reasoning about long-run behavior (e.g., `ChaosDrift`, convergence checks) invoke the concept informally.
-
-**Design tensions.**
-- Point vs region: Equilibria are points; Attractors are regions (which might be points, limit cycles, or strange attractors). The mechanism handles all three but the abstraction is loose — 'region' covers cases that behave very differently.
-- Basin partition vs overlapping basins: the invariant says disjoint attractors partition initial conditions whose trajectories converge. But some systems have overlapping basins (stochastic mixing) or no attractor at all (chaotic but non-attracting).
-- Physics placement vs domain-specific invocations: Attractor is formally a dynamical-systems concept. Library uses it metaphorically (attention attractors, preference attractors) — the fit to those cases is analogical.
-
-**Tradeoffs.**
-- Basin-of-attraction framing buys strong predictive structure (entering the basin predicts the outcome) at the cost of requiring well-defined dynamics — systems with noise or chaos don't fit cleanly.
-- Convergence-in-the-limit invariant buys asymptotic clarity at the cost of ignoring finite-time dynamics — a trajectory may spend a long time away from the attractor before converging.
-- Confinement invariant buys stability at the cost of excluding strange attractors' bounded-but-non-repeating behavior without subtlety.
-
-**Critique (diagnostic, not contract requirements).**
-- No failure modes. Missing: Noise-Induced Escape (trajectory crosses basin boundary under perturbation), Chaotic Non-Attractor (system remains bounded but doesn't converge to any attractor), Basin Ambiguity (initial condition lies on the boundary between two basins — outcome is undetermined).
-- The invariants are descriptive but not testable — 'approaches in the limit' requires infinite time. A pattern that is empirically invokable would need a finite-time proxy.
-- Strange attractors are mentioned but not treated — a fractal-dimensioned attractor behaves very differently from a fixed point, and the pattern elides the distinction.
-
-**In the family.** Substrate for long-run dynamical behavior. Paired with `Equilibrium` (the point-wise case), `PhaseTransition` (boundary-crossing between basins), `Gradient` (the local field that pulls toward attractors). Invoked where behavior stabilizes rather than merely approaches stationarity.
-
-**Supersedes (prior versions).**
-- `Attractor#8c2d`
-
----
+### Physics/Dynamics (6)
 
 ### Brakefade#764a
 
-`Physics` · `Primitives` · R2 · T2
+`Physics` · `Dynamics` · R2 · T2
 
 [Source card (JSON)](../../data/vocabulary/Brakefade.json)
 
@@ -359,6 +335,353 @@ themselves; rewrite them around the semantic risk and run the placement test.
 - Novelty, from recall and unverified: known. Nearest known concepts: brake fade in mechanical braking; lock-in and path dependence.
 
 **In the family.** Regulapse loses detection and correction, Reversibility asks whether one action can be undone, StopDrill exercises a stop, and Brakefade is the loss of practical control over an ongoing activity.
+
+---
+
+### Ripplelag#8edf
+
+`Physics` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Ripplelag.json)
+
+**Gloss.** A change reaches connected people or systems only after a delay
+
+**Mechanism.**
+
+> A change in one part produces an effect in a connected part after transmission, accumulation or response takes time, along {{causation}} paths that may run through several links. The initiating change and its downstream effect are separated by that interval, and different paths can carry different delays. The lag concerns when the effect occurs, not when an observer learns of it, and an expected effect that has not appeared supports a hypothesis of lag, not a confirmation.
+
+**Invariants.**
+- There is an initiating change and a downstream effect causally connected to it.
+- A nonzero interval separates the change from the occurrence of the effect.
+
+**Failure modes.**
+- Late report read as lag: an immediate effect reported late is taken as delayed propagation.
+- Sequence read as propagation: a later change with an independent cause is taken as the delayed effect.
+- Waiting read as proof: an effect that has not arrived is taken as certain to arrive, or its absence after the expected delay as proof that none will.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{causation}}` | `sema:Causation#mh:SHA-256:ed6cdeb5f2972a180d13c58e1b51957e7309cd78052a029a56e34dad9a8a6850` |
+
+#### Design
+
+**Why it exists.** Effects are expected to show at once, so a change whose effects are still travelling looks harmless. Ripplelag names the delay itself, apart from how anyone judges it.
+
+**Why Physics.** Delayed propagation happens between physical systems with no agent or judgment involved, as Causation does.
+
+**Can it be removed?** Causation describes a causal relation without its timing, and EffectDelayCheck forbids judging a system unaffected early; neither describes the delay along causal paths. Removable if effects are treated as immediate.
+
+**Intended use.** recognising that a change's effects on connected people or systems may still be on their way.
+
+**Future uses.** agents acting in pipelines, organisations and ecosystems with long feedback times.
+
+**Broad-use contexts.** data pipelines, deployments, policy changes, medical treatments, supply chains, ecosystems, team workloads.
+
+**Broad-use intersection (review hypothesis).** a change, a causally connected effect, and an interval between them.
+
+**Varies (descendant territory).** the paths, their delays, and whether the delays are known.
+
+**Extension shape.** a variant for delays that vary by path; a variant for accumulation before an effect appears.
+
+**Design tensions.**
+- Delays are often unknown, so a lag can only be hypothesised until the effect appears.
+
+**Tradeoffs.**
+- Gains: effects in transit can be named.
+- Gives up: early all-clears.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. EffectDelayCheck is one separately defined judgment rule.
+- Novelty, from recall and unverified: known. Nearest known concepts: propagation delay; lagged effects; dead time in control systems.
+
+**In the family.** Causation relates cause and effect, EffectDelayCheck waits out stated delays, and Ripplelag is the delay itself.
+
+---
+
+### Swayhold#171a
+
+`Physics` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Swayhold.json)
+
+**Gloss.** A recognisable form or function persists through continual adjustment
+
+**Mechanism.**
+
+> As conditions or internal dynamics vary, ongoing adjustments contribute to keeping a form or function, and the same underlying method can make those adjustments without being replaced. Both a continuing form or function and adjustments that sustain it must be present; mere change, mere persistence, or accidental similarity across states is not an instance, and a rigid structure that withstands a disturbance without changing is not one either.
+
+**Invariants.**
+- A form or function continues over the interval considered.
+- Ongoing adjustments contribute to its continuation.
+
+**Failure modes.**
+- Adjustment read as instability: visible adjustment that sustains continuity is called instability.
+- Survival read as adaptation: anything that survives is called adaptive, even when no adjustment sustains it.
+- Steadiness read as headroom: a form held steady by adjustment is taken to show spare capacity, when the adjustments may be close to their limit.
+
+#### Design
+
+**Why it exists.** Continuity is pictured as stillness, so a form kept by constant adjustment is read as unstable. Swayhold names persistence through movement.
+
+**Why Physics.** A balancing system keeps its form through adjustment with no agent involved, as a spinning top or a thermostat-held room does.
+
+**Can it be removed?** Equilibrium is a stationary state under the dynamics, Robustness resists stress without requiring adjustment, and Morphproof defines membership by surviving transformations; none describes active maintenance of a form through continual adjustment. Removable if continuity is assumed to mean stillness.
+
+**Intended use.** recognising when a form or function is being kept by continual adjustment.
+
+**Future uses.** agents and systems that stay on task through constant small corrections.
+
+**Broad-use contexts.** dance and live performance, interpretation, homeostasis, control systems, organisations under change, agent behaviour.
+
+**Broad-use intersection (review hypothesis).** a continuing form or function and adjustments that sustain it.
+
+**Varies (descendant territory).** what counts as the same form, and what the adjustments respond to.
+
+**Extension shape.** a variant for ensembles; a variant for technical control.
+
+**Design tensions.**
+- Continuity has to be judged by each domain's own criterion.
+
+**Tradeoffs.**
+- Gains: a name for stability through motion.
+- Gives up: equating stability with stillness.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. Continuity is judged by a domain's own criterion, not by the Identity card's addressability sense.
+- Novelty, from recall and unverified: known. Nearest known concepts: dynamic stability; homeostasis.
+- A steady form can hide growing strain: the adjustments absorb a growing disturbance until they cannot, so the steadiness shows nothing about how much adjustment is left.
+
+**In the family.** Equilibrium rests, Robustness resists, Morphproof survives transformations, and Swayhold persists by adjusting.
+
+---
+
+### Syncdrift#8e74
+
+`Physics` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Syncdrift.json)
+
+**Gloss.** Activities that coordinated in time gradually move out of alignment
+
+**Mechanism.**
+
+> Related activities keep their individual operation while their timing changes relative to one another, so interactions that met their timing requirements increasingly arrive too early, too late or in an incompatible sequence. There must have been a working temporal relation that coordination depends on; different rhythms that keep fitting together, for example through a buffer, are not an instance.
+
+**Invariants.**
+- There was a working temporal relation between the activities, and coordination depends on it.
+- That relation drifts over the interval considered.
+
+**Failure modes.**
+- Parts read as whole: each part operating correctly is taken to show that coordination is healthy.
+- One miss read as drift: a single missed interaction is taken as a sustained drift.
+
+#### Design
+
+**Why it exists.** Coordinated activities drift apart in time while each one still works, so the failure shows only where they meet. Syncdrift names the drift.
+
+**Why Physics.** Timing relations hold between physical processes with no agent involved; clocks and schedules can drift on their own.
+
+**Can it be removed?** EbbFlowSync enforces a particular two-mode rhythm, and Linkfade weakens connections; neither describes timing that drifts while connection and operation hold. Removable if coordinated timing is assumed stable.
+
+**Intended use.** recognising when coordinated activities are moving out of alignment.
+
+**Future uses.** agent pipelines and services with periodic windows and schedules.
+
+**Broad-use contexts.** rehearsal and ensemble playing, supply chains, maintenance schedules, batch pipelines, agent communication.
+
+**Broad-use intersection (review hypothesis).** a working temporal relation that coordination depends on, and a drift in it.
+
+**Varies (descendant territory).** the rhythms involved and how alignment is measured.
+
+**Extension shape.** a variant for periodic schedules; a variant for human ensembles.
+
+**Design tensions.**
+- Drift is gradual, so each moment looks almost aligned.
+
+**Tradeoffs.**
+- Gains: a name for coordination failing in time while every part works.
+- Gives up: reading healthy parts as a healthy whole.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. It is not Linkfade: connection can stay strong while timing stops fitting.
+- Novelty, from recall and unverified: known. Nearest known concepts: clock drift; desynchronisation; schedule slip.
+
+**In the family.** Linkfade weakens connection, EbbFlowSync enforces a rhythm, and Syncdrift is timing drifting out of alignment.
+
+---
+
+### VirginSoilEpidemic#d1fd
+
+`Physics` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/VirginSoilEpidemic.json)
+
+**Gloss.** A disease reaching a population with no prior exposure kills a larger share of it, adults included, than where the disease is endemic
+
+**Mechanism.**
+
+> Where a disease is endemic, most adults have survived it and carry acquired immunity, so it strikes mainly the young. When it first reaches a population that has never been exposed, members of all ages fall ill at once, so the care, food-getting and defence that the healthy provide fail as well, and deaths from neglect and hunger add to those from the disease. Several new diseases arriving within a generation compound the losses, and violence, hunger or displacement at the same time raise mortality further and slow recovery. A disease new to every population, and excess deaths explained by inherited susceptibility rather than by the absence of prior exposure, are not instances.
+
+**Invariants.**
+- The population has had no prior exposure to the disease, so its adults carry no acquired immunity to it.
+- The share of the population the disease kills exceeds that in populations where it is endemic.
+- Members of all ages fall ill in the same outbreak.
+
+**Failure modes.**
+- Germs absolve: a population's collapse is credited to disease alone, hiding the war, enslavement, hunger and displacement that raised mortality and prevented recovery.
+- Innate weakness assumed: excess deaths are attributed to inherited susceptibility rather than to the absence of prior exposure and to social disruption.
+- One disease blamed: losses from several successive diseases are credited to one.
+
+#### Design
+
+**Why it exists.** The depopulation of the Americas and the Pacific after contact is told either as conquest alone or as disease alone. VirginSoilEpidemic names the excess mortality that the absence of prior exposure produces and, in its failure modes, the other causes it must not hide.
+
+**Why Physics.** Immunity and its absence obtain in any host population whether or not anyone understands them; the mechanism needs no cognition.
+
+**Can it be removed?** Twinflow describes the link that brings a disease, not the excess mortality in a population without prior exposure. Removable if mortality from a disease is assumed equal in every population.
+
+**Intended use.** explaining excess mortality when a disease first reaches a population without prior exposure, alongside the other causes acting at the same time.
+
+**Future uses.** reading mortality after contact between previously separate populations, human or animal.
+
+**Broad-use contexts.** the Americas after 1492, Pacific islands, Arctic communities, rinderpest in African cattle in the 1890s.
+
+**Broad-use intersection (review hypothesis).** a population without prior exposure, a disease endemic elsewhere, and mortality compared with populations where it is endemic.
+
+**Varies (descendant territory).** which diseases arrive, how many and how close together, and what else strikes at the same time.
+
+**Extension shape.** a variant for several diseases arriving in succession.
+
+**Design tensions.**
+- The excess mortality is real and large, and naming it can still be used to shift responsibility from people to germs; the first failure mode guards against that.
+
+**Tradeoffs.**
+- Gains: excess mortality explained without innate weakness.
+- Gives up: a single cause for a population's collapse.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response.
+- Placed in Physics because the mechanism holds for any host population; its failure modes concern human history, where the card is mostly used.
+- The invariant compares the share of the population killed, not mortality at every age: children where the disease is endemic also lack immunity.
+- Novelty, from recall and unverified: known. Nearest known concepts: Crosby's virgin soil epidemics (1976); Jones's critique of immunological determinism (2003).
+
+**In the family.** Twinflow is the link that carries a disease, and VirginSoilEpidemic is what it does to a population without prior exposure.
+
+---
+
+### WaveOfAdvance#39ad
+
+`Physics` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/WaveOfAdvance.json)
+
+**Gloss.** A growing population whose members move short distances spreads into land that can support it as a front, at a speed set by its growth and the distance its members move
+
+**Mechanism.**
+
+> A population grows where it lives, and its members move mostly short distances, often into land nearby. Where the land beyond the occupied area can support it, the occupied area expands as a front: behind it the population fills toward the land's capacity, and at it small groups move outward. The front's speed is set by the local growth rate and the distance moved per generation, and under sufficiently uniform growth, dispersal and habitat conditions it can approach a constant speed. It may slow or stop where the land cannot support the population or competing populations impede it. Long-distance jumps, and the spread of a trait or practice among members of a population that stays where it is, are not instances, though both often mix with a front.
+
+**Invariants.**
+- The population grows locally, and its members move mostly short distances per generation.
+- The occupied area expands at a front, behind which density rises toward the land's capacity.
+- The front's speed depends on the local growth rate and the distance moved per generation.
+
+**Failure modes.**
+- Practice taken for people: the spread of a trait or practice, such as a crop or a pottery style, is read as a front of the population itself, or the reverse.
+- Empty land assumed: the land ahead is treated as unoccupied, hiding whether the front replaced, absorbed or was absorbed by those already there.
+- Speed read as intent: a steady front is taken for a planned conquest or colonization.
+
+#### Design
+
+**Why it exists.** The spread of a population across land is often told as a series of deliberate migrations. WaveOfAdvance names the front that local growth and short moves produce, so a spread can be tested against the speed that growth and dispersal predict.
+
+**Why Physics.** Growth and short moves of the members of any population are enough; plants, animals, microbes and people show it without anyone designing it.
+
+**Can it be removed?** Transition and PhaseTransition describe changes of state, not spatial spread, and InnovationDiffusion spreads practices without people moving. Removable if spread is modelled only as discrete migrations.
+
+**Intended use.** testing whether an expansion of people or of a way of life across land fits a front set by local growth and dispersal.
+
+**Future uses.** comparing genetic, archaeological and linguistic evidence about how a population and its practices spread.
+
+**Broad-use contexts.** the dispersal of modern humans, the spread of farming across Europe and Africa, island colonization, invasive species, epidemics across land.
+
+**Broad-use intersection (review hypothesis).** a growing population, short-distance movement, land beyond the occupied area that can support the population, and a front.
+
+**Varies (descendant territory).** the growth rate, the distance moved, the land's capacity, and how these conditions vary across space and time.
+
+**Extension shape.** a variant with long-distance jumps that seed new fronts ahead of the main one.
+
+**Design tensions.**
+- A front of people and a front of a practice can coincide or separate, and the evidence for one often stands in for the other.
+
+**Tradeoffs.**
+- Gains: a predicted speed against which an expansion can be tested.
+- Gives up: explaining a spread by the intentions of those who moved.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response.
+- Placed in Physics because the mechanism needs no cognition; its failure modes concern human evidence, where the card is mostly used.
+- A front can approach constant speed under sufficiently uniform growth, dispersal and habitat conditions. Equal carrying capacity alone is insufficient. Variation in these conditions can change its speed without ceasing to be a wave of advance.
+- Novelty, from recall and unverified: known. Nearest known concepts: Fisher's wave of advance (1937); Ammerman and Cavalli-Sforza's demic diffusion of farming (1971, 1984); reaction-diffusion fronts.
+
+**In the family.** WaveOfAdvance moves people, InnovationDiffusion spreads practices among people who stay, and Sideinherit is one transfer of a practice between separate lines of descent.
+
+---
+
+### Physics/Primitives (15)
+
+### Attractor#0036
+
+`Physics` · `Primitives` · R0 · T1
+
+[Source card (JSON)](../../data/vocabulary/Attractor.json)
+
+**Gloss.** A state-space region dynamics pull toward — fixed points, limit cycles, or chaotic attractors
+
+**Mechanism.**
+
+> A region of a dynamical system's state space that trajectories converge toward from a surrounding basin of initial conditions. Once a trajectory enters the basin of attraction, the system's dynamics pull it toward the attractor and confine it thereafter (absent external perturbation). Attractors may be point-like (fixed points — a stable {{equilibrium}}), periodic (limit cycles), or strange (chaotic — bounded but non-repeating). Substrate property: every dissipative dynamical system has attractors; the structure of attractors and their basins is what the system's dynamics is. Downstream patterns use attractor-and-basin reasoning to predict where coordination processes will settle and which initial conditions route to which outcome.
+
+**Invariants.**
+- Convergence: trajectories starting in the basin of attraction approach the attractor in the limit.
+- Confinement: trajectories that enter the attractor remain within it absent external perturbation.
+- Basin: each attractor has an associated basin of attraction; disjoint attractors partition the set of initial conditions whose trajectories converge.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{equilibrium}}` | `sema:Equilibrium#mh:SHA-256:4f036318bc81500ad159994d9ab7efbec87883eccecb18e64ede15cde3e099d2` |
+
+#### Design
+
+**Why it exists.** Names the structural property that trajectories in a dynamical system converge toward specific regions — basins of attraction. Different from Equilibrium (which is pointwise) and from PhaseTransition (which is threshold-crossing): Attractor is about long-run dynamical behavior. Essential for reasoning about stability, path dependence, and initial-condition sensitivity.
+
+**Why Physics.** state-space basin-of-attraction — substrate of dynamical systems
+
+**Can it be removed?** Marginal. The concept is distinct enough from Equilibrium and valuable enough as a standalone substrate anchor that the structured-thinking criterion justifies it. Without it, patterns reasoning about long-run behavior (e.g., `ChaosDrift`, convergence checks) invoke the concept informally.
+
+**Design tensions.**
+- Point vs region: Equilibria are points; Attractors are regions (which might be points, limit cycles, or strange attractors). The mechanism handles all three but the abstraction is loose — 'region' covers cases that behave very differently.
+- Basin partition vs overlapping basins: the invariant says disjoint attractors partition initial conditions whose trajectories converge. But some systems have overlapping basins (stochastic mixing) or no attractor at all (chaotic but non-attracting).
+- Physics placement vs domain-specific invocations: Attractor is formally a dynamical-systems concept. Library uses it metaphorically (attention attractors, preference attractors) — the fit to those cases is analogical.
+
+**Tradeoffs.**
+- Basin-of-attraction framing buys strong predictive structure (entering the basin predicts the outcome) at the cost of requiring well-defined dynamics — systems with noise or chaos don't fit cleanly.
+- Convergence-in-the-limit invariant buys asymptotic clarity at the cost of ignoring finite-time dynamics — a trajectory may spend a long time away from the attractor before converging.
+- Confinement invariant buys stability at the cost of excluding strange attractors' bounded-but-non-repeating behavior without subtlety.
+
+**Critique (diagnostic, not contract requirements).**
+- No failure modes. Missing: Noise-Induced Escape (trajectory crosses basin boundary under perturbation), Chaotic Non-Attractor (system remains bounded but doesn't converge to any attractor), Basin Ambiguity (initial condition lies on the boundary between two basins — outcome is undetermined).
+- The invariants are descriptive but not testable — 'approaches in the limit' requires infinite time. A pattern that is empirically invokable would need a finite-time proxy.
+- Strange attractors are mentioned but not treated — a fractal-dimensioned attractor behaves very differently from a fixed point, and the pattern elides the distinction.
+
+**In the family.** Substrate for long-run dynamical behavior. Paired with `Equilibrium` (the point-wise case), `PhaseTransition` (boundary-crossing between basins), `Gradient` (the local field that pulls toward attractors). Invoked where behavior stabilizes rather than merely approaches stationarity.
+
+**Supersedes (prior versions).**
+- `Attractor#8c2d`
 
 ---
 
@@ -1221,244 +1544,7 @@ themselves; rewrite them around the semantic risk and run the placement test.
 
 ---
 
-### Ripplelag#8edf
-
-`Physics` · `Primitives` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/Ripplelag.json)
-
-**Gloss.** A change reaches connected people or systems only after a delay
-
-**Mechanism.**
-
-> A change in one part produces an effect in a connected part after transmission, accumulation or response takes time, along {{causation}} paths that may run through several links. The initiating change and its downstream effect are separated by that interval, and different paths can carry different delays. The lag concerns when the effect occurs, not when an observer learns of it, and an expected effect that has not appeared supports a hypothesis of lag, not a confirmation.
-
-**Invariants.**
-- There is an initiating change and a downstream effect causally connected to it.
-- A nonzero interval separates the change from the occurrence of the effect.
-
-**Failure modes.**
-- Late report read as lag: an immediate effect reported late is taken as delayed propagation.
-- Sequence read as propagation: a later change with an independent cause is taken as the delayed effect.
-- Waiting read as proof: an effect that has not arrived is taken as certain to arrive, or its absence after the expected delay as proof that none will.
-
-**Dependency bindings.**
-
-| Category | Placeholder | Exact definition |
-| --- | --- | --- |
-| `references` | `{{causation}}` | `sema:Causation#mh:SHA-256:ed6cdeb5f2972a180d13c58e1b51957e7309cd78052a029a56e34dad9a8a6850` |
-
-#### Design
-
-**Why it exists.** Effects are expected to show at once, so a change whose effects are still travelling looks harmless. Ripplelag names the delay itself, apart from how anyone judges it.
-
-**Why Physics.** Delayed propagation happens between physical systems with no agent or judgment involved, as Causation does.
-
-**Can it be removed?** Causation describes a causal relation without its timing, and EffectDelayCheck forbids judging a system unaffected early; neither describes the delay along causal paths. Removable if effects are treated as immediate.
-
-**Intended use.** recognising that a change's effects on connected people or systems may still be on their way.
-
-**Future uses.** agents acting in pipelines, organisations and ecosystems with long feedback times.
-
-**Broad-use contexts.** data pipelines, deployments, policy changes, medical treatments, supply chains, ecosystems, team workloads.
-
-**Broad-use intersection (review hypothesis).** a change, a causally connected effect, and an interval between them.
-
-**Varies (descendant territory).** the paths, their delays, and whether the delays are known.
-
-**Extension shape.** a variant for delays that vary by path; a variant for accumulation before an effect appears.
-
-**Design tensions.**
-- Delays are often unknown, so a lag can only be hypothesised until the effect appears.
-
-**Tradeoffs.**
-- Gains: effects in transit can be named.
-- Gives up: early all-clears.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response. EffectDelayCheck is one separately defined judgment rule.
-- Novelty, from recall and unverified: known. Nearest known concepts: propagation delay; lagged effects; dead time in control systems.
-
-**In the family.** Causation relates cause and effect, EffectDelayCheck waits out stated delays, and Ripplelag is the delay itself.
-
----
-
-### Swayhold#171a
-
-`Physics` · `Primitives` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/Swayhold.json)
-
-**Gloss.** A recognisable form or function persists through continual adjustment
-
-**Mechanism.**
-
-> As conditions or internal dynamics vary, ongoing adjustments contribute to keeping a form or function, and the same underlying method can make those adjustments without being replaced. Both a continuing form or function and adjustments that sustain it must be present; mere change, mere persistence, or accidental similarity across states is not an instance, and a rigid structure that withstands a disturbance without changing is not one either.
-
-**Invariants.**
-- A form or function continues over the interval considered.
-- Ongoing adjustments contribute to its continuation.
-
-**Failure modes.**
-- Adjustment read as instability: visible adjustment that sustains continuity is called instability.
-- Survival read as adaptation: anything that survives is called adaptive, even when no adjustment sustains it.
-- Steadiness read as headroom: a form held steady by adjustment is taken to show spare capacity, when the adjustments may be close to their limit.
-
-#### Design
-
-**Why it exists.** Continuity is pictured as stillness, so a form kept by constant adjustment is read as unstable. Swayhold names persistence through movement.
-
-**Why Physics.** A balancing system keeps its form through adjustment with no agent involved, as a spinning top or a thermostat-held room does.
-
-**Can it be removed?** Equilibrium is a stationary state under the dynamics, Robustness resists stress without requiring adjustment, and Morphproof defines membership by surviving transformations; none describes active maintenance of a form through continual adjustment. Removable if continuity is assumed to mean stillness.
-
-**Intended use.** recognising when a form or function is being kept by continual adjustment.
-
-**Future uses.** agents and systems that stay on task through constant small corrections.
-
-**Broad-use contexts.** dance and live performance, interpretation, homeostasis, control systems, organisations under change, agent behaviour.
-
-**Broad-use intersection (review hypothesis).** a continuing form or function and adjustments that sustain it.
-
-**Varies (descendant territory).** what counts as the same form, and what the adjustments respond to.
-
-**Extension shape.** a variant for ensembles; a variant for technical control.
-
-**Design tensions.**
-- Continuity has to be judged by each domain's own criterion.
-
-**Tradeoffs.**
-- Gains: a name for stability through motion.
-- Gives up: equating stability with stillness.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response. Continuity is judged by a domain's own criterion, not by the Identity card's addressability sense.
-- Novelty, from recall and unverified: known. Nearest known concepts: dynamic stability; homeostasis.
-- A steady form can hide growing strain: the adjustments absorb a growing disturbance until they cannot, so the steadiness shows nothing about how much adjustment is left.
-
-**In the family.** Equilibrium rests, Robustness resists, Morphproof survives transformations, and Swayhold persists by adjusting.
-
----
-
-### VirginSoilEpidemic#d1fd
-
-`Physics` · `Primitives` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/VirginSoilEpidemic.json)
-
-**Gloss.** A disease reaching a population with no prior exposure kills a larger share of it, adults included, than where the disease is endemic
-
-**Mechanism.**
-
-> Where a disease is endemic, most adults have survived it and carry acquired immunity, so it strikes mainly the young. When it first reaches a population that has never been exposed, members of all ages fall ill at once, so the care, food-getting and defence that the healthy provide fail as well, and deaths from neglect and hunger add to those from the disease. Several new diseases arriving within a generation compound the losses, and violence, hunger or displacement at the same time raise mortality further and slow recovery. A disease new to every population, and excess deaths explained by inherited susceptibility rather than by the absence of prior exposure, are not instances.
-
-**Invariants.**
-- The population has had no prior exposure to the disease, so its adults carry no acquired immunity to it.
-- The share of the population the disease kills exceeds that in populations where it is endemic.
-- Members of all ages fall ill in the same outbreak.
-
-**Failure modes.**
-- Germs absolve: a population's collapse is credited to disease alone, hiding the war, enslavement, hunger and displacement that raised mortality and prevented recovery.
-- Innate weakness assumed: excess deaths are attributed to inherited susceptibility rather than to the absence of prior exposure and to social disruption.
-- One disease blamed: losses from several successive diseases are credited to one.
-
-#### Design
-
-**Why it exists.** The depopulation of the Americas and the Pacific after contact is told either as conquest alone or as disease alone. VirginSoilEpidemic names the excess mortality that the absence of prior exposure produces and, in its failure modes, the other causes it must not hide.
-
-**Why Physics.** Immunity and its absence obtain in any host population whether or not anyone understands them; the mechanism needs no cognition.
-
-**Can it be removed?** Twinflow describes the link that brings a disease, not the excess mortality in a population without prior exposure. Removable if mortality from a disease is assumed equal in every population.
-
-**Intended use.** explaining excess mortality when a disease first reaches a population without prior exposure, alongside the other causes acting at the same time.
-
-**Future uses.** reading mortality after contact between previously separate populations, human or animal.
-
-**Broad-use contexts.** the Americas after 1492, Pacific islands, Arctic communities, rinderpest in African cattle in the 1890s.
-
-**Broad-use intersection (review hypothesis).** a population without prior exposure, a disease endemic elsewhere, and mortality compared with populations where it is endemic.
-
-**Varies (descendant territory).** which diseases arrive, how many and how close together, and what else strikes at the same time.
-
-**Extension shape.** a variant for several diseases arriving in succession.
-
-**Design tensions.**
-- The excess mortality is real and large, and naming it can still be used to shift responsibility from people to germs; the first failure mode guards against that.
-
-**Tradeoffs.**
-- Gains: excess mortality explained without innate weakness.
-- Gives up: a single cause for a population's collapse.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response.
-- Placed in Physics because the mechanism holds for any host population; its failure modes concern human history, where the card is mostly used.
-- The invariant compares the share of the population killed, not mortality at every age: children where the disease is endemic also lack immunity.
-- Novelty, from recall and unverified: known. Nearest known concepts: Crosby's virgin soil epidemics (1976); Jones's critique of immunological determinism (2003).
-
-**In the family.** Twinflow is the link that carries a disease, and VirginSoilEpidemic is what it does to a population without prior exposure.
-
----
-
-### WaveOfAdvance#39ad
-
-`Physics` · `Primitives` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/WaveOfAdvance.json)
-
-**Gloss.** A growing population whose members move short distances spreads into land that can support it as a front, at a speed set by its growth and the distance its members move
-
-**Mechanism.**
-
-> A population grows where it lives, and its members move mostly short distances, often into land nearby. Where the land beyond the occupied area can support it, the occupied area expands as a front: behind it the population fills toward the land's capacity, and at it small groups move outward. The front's speed is set by the local growth rate and the distance moved per generation, and under sufficiently uniform growth, dispersal and habitat conditions it can approach a constant speed. It may slow or stop where the land cannot support the population or competing populations impede it. Long-distance jumps, and the spread of a trait or practice among members of a population that stays where it is, are not instances, though both often mix with a front.
-
-**Invariants.**
-- The population grows locally, and its members move mostly short distances per generation.
-- The occupied area expands at a front, behind which density rises toward the land's capacity.
-- The front's speed depends on the local growth rate and the distance moved per generation.
-
-**Failure modes.**
-- Practice taken for people: the spread of a trait or practice, such as a crop or a pottery style, is read as a front of the population itself, or the reverse.
-- Empty land assumed: the land ahead is treated as unoccupied, hiding whether the front replaced, absorbed or was absorbed by those already there.
-- Speed read as intent: a steady front is taken for a planned conquest or colonization.
-
-#### Design
-
-**Why it exists.** The spread of a population across land is often told as a series of deliberate migrations. WaveOfAdvance names the front that local growth and short moves produce, so a spread can be tested against the speed that growth and dispersal predict.
-
-**Why Physics.** Growth and short moves of the members of any population are enough; plants, animals, microbes and people show it without anyone designing it.
-
-**Can it be removed?** Transition and PhaseTransition describe changes of state, not spatial spread, and InnovationDiffusion spreads practices without people moving. Removable if spread is modelled only as discrete migrations.
-
-**Intended use.** testing whether an expansion of people or of a way of life across land fits a front set by local growth and dispersal.
-
-**Future uses.** comparing genetic, archaeological and linguistic evidence about how a population and its practices spread.
-
-**Broad-use contexts.** the dispersal of modern humans, the spread of farming across Europe and Africa, island colonization, invasive species, epidemics across land.
-
-**Broad-use intersection (review hypothesis).** a growing population, short-distance movement, land beyond the occupied area that can support the population, and a front.
-
-**Varies (descendant territory).** the growth rate, the distance moved, the land's capacity, and how these conditions vary across space and time.
-
-**Extension shape.** a variant with long-distance jumps that seed new fronts ahead of the main one.
-
-**Design tensions.**
-- A front of people and a front of a practice can coincide or separate, and the evidence for one often stands in for the other.
-
-**Tradeoffs.**
-- Gains: a predicted speed against which an expansion can be tested.
-- Gives up: explaining a spread by the intentions of those who moved.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response.
-- Placed in Physics because the mechanism needs no cognition; its failure modes concern human evidence, where the card is mostly used.
-- A front can approach constant speed under sufficiently uniform growth, dispersal and habitat conditions. Equal carrying capacity alone is insufficient. Variation in these conditions can change its speed without ceasing to be a wave of advance.
-- Novelty, from recall and unverified: known. Nearest known concepts: Fisher's wave of advance (1937); Ammerman and Cavalli-Sforza's demic diffusion of farming (1971, 1984); reaction-diffusion fronts.
-
-**In the family.** WaveOfAdvance moves people, InnovationDiffusion spreads practices among people who stay, and Sideinherit is one transfer of a practice between separate lines of descent.
-
----
-
-### Physics/Time (2)
+### Physics/Time (1)
 
 ### CausalBarrier#cf54
 
@@ -1553,61 +1639,6 @@ themselves; rewrite them around the semantic risk and run the placement test.
 - `CausalBarrier#9e17`
 - `CausalBarrier#39b3`
 - `CausalBarrier#a6d8`
-
----
-
-### Syncdrift#8e74
-
-`Physics` · `Time` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/Syncdrift.json)
-
-**Gloss.** Activities that coordinated in time gradually move out of alignment
-
-**Mechanism.**
-
-> Related activities keep their individual operation while their timing changes relative to one another, so interactions that met their timing requirements increasingly arrive too early, too late or in an incompatible sequence. There must have been a working temporal relation that coordination depends on; different rhythms that keep fitting together, for example through a buffer, are not an instance.
-
-**Invariants.**
-- There was a working temporal relation between the activities, and coordination depends on it.
-- That relation drifts over the interval considered.
-
-**Failure modes.**
-- Parts read as whole: each part operating correctly is taken to show that coordination is healthy.
-- One miss read as drift: a single missed interaction is taken as a sustained drift.
-
-#### Design
-
-**Why it exists.** Coordinated activities drift apart in time while each one still works, so the failure shows only where they meet. Syncdrift names the drift.
-
-**Why Physics.** Timing relations hold between physical processes with no agent involved; clocks and schedules can drift on their own.
-
-**Can it be removed?** EbbFlowSync enforces a particular two-mode rhythm, and Linkfade weakens connections; neither describes timing that drifts while connection and operation hold. Removable if coordinated timing is assumed stable.
-
-**Intended use.** recognising when coordinated activities are moving out of alignment.
-
-**Future uses.** agent pipelines and services with periodic windows and schedules.
-
-**Broad-use contexts.** rehearsal and ensemble playing, supply chains, maintenance schedules, batch pipelines, agent communication.
-
-**Broad-use intersection (review hypothesis).** a working temporal relation that coordination depends on, and a drift in it.
-
-**Varies (descendant territory).** the rhythms involved and how alignment is measured.
-
-**Extension shape.** a variant for periodic schedules; a variant for human ensembles.
-
-**Design tensions.**
-- Drift is gradual, so each moment looks almost aligned.
-
-**Tradeoffs.**
-- Gains: a name for coordination failing in time while every part works.
-- Gives up: reading healthy parts as a healthy whole.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response. It is not Linkfade: connection can stay strong while timing stops fitting.
-- Novelty, from recall and unverified: known. Nearest known concepts: clock drift; desynchronisation; schedule slip.
-
-**In the family.** Linkfade weakens connection, EbbFlowSync enforces a rhythm, and Syncdrift is timing drifting out of alignment.
 
 ---
 
@@ -11722,7 +11753,177 @@ _Note: The same move applies to commitments, tools, authority and consent. Those
 
 ---
 
-### Infrastructure/Primitives (56)
+### Infrastructure/Dynamics (3)
+
+### Formelt#0e39
+
+`Infrastructure` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Formelt.json)
+
+**Gloss.** A structure loses its organising boundaries while its components remain
+
+**Mechanism.**
+
+> Divisions, roles or relationships that gave components a stable arrangement become less definite or less effective while the components persist, so the prior form loosens, which can lead to dissolution, confusion or a new arrangement. The loosening is in an organising relation or boundary, not only in the components; a direct change from one well-defined arrangement to another need not include it.
+
+**Invariants.**
+- The components of a structure persist.
+- The boundaries or relations that organised them become less definite or less effective.
+
+**Failure modes.**
+- Loosening read as destruction: loss of the previous form is equated with loss of all capacity.
+- Change read as decay: every rearrangement is called a decline.
+- Old form preferred: the previous boundaries are treated as better by default.
+
+#### Design
+
+**Why it exists.** Structures can loosen while everything in them remains, and the loosening is read as either collapse or progress. Formelt names the loosening itself, which can lead to either.
+
+**Why Infrastructure.** A structure's boundaries can loosen in an architecture or a composition with no agent judging it, so the process needs no mind.
+
+**Can it be removed?** Topology represents a structure's shape and Linkfade weakens connections between participants; neither describes organising boundaries loosening while components remain. Removable if structures are assumed either intact or gone.
+
+**Intended use.** recognising when a structure is losing its organising boundaries while its components remain.
+
+**Future uses.** agent teams and software systems whose roles and module boundaries blur during transitions.
+
+**Broad-use contexts.** artistic composition, organisations in transition, informal groups, system architecture, curricula.
+
+**Broad-use intersection (review hypothesis).** persisting components and organising boundaries that become less definite.
+
+**Varies (descendant territory).** whether the loosening leads to dissolution, confusion or a new arrangement.
+
+**Extension shape.** a variant for organisations; a variant for compositions.
+
+**Design tensions.**
+- Loosening can begin a better arrangement or a collapse, and the two look alike early on.
+
+**Tradeoffs.**
+- Gains: a name for structure loosening without assuming decline.
+- Gives up: reading every loosening as decay.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. It is not filed under coordination decay: Formelt can create stronger new links while old boundaries loosen, and Linkfade can occur within a stable form.
+- Novelty, from recall and unverified: known. Nearest known concepts: liminality; boundary blurring.
+
+**In the family.** Topology represents shape, Linkfade weakens links, and Formelt is a structure's boundaries loosening while its parts remain.
+
+---
+
+### Limitblur#d772
+
+`Infrastructure` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Limitblur.json)
+
+**Gloss.** Boundaries stay stated while their application becomes inconsistent or uncertain in practice
+
+**Mechanism.**
+
+> A stated boundary stays in force on paper while its practical application varies, erodes or becomes unclear, so the statement no longer reliably settles where the operative boundary lies. An isolated, recognised breach is not an instance, nor are stated exceptions applied consistently, nor an open revision applied consistently, which changes the boundary rather than blurring it. The boundary can be personal, organisational or technical.
+
+**Invariants.**
+- A boundary is still stated.
+- Its practical application becomes less consistent or less determinate over the interval considered.
+
+**Failure modes.**
+- Breach read as blur: a single recognised breach is taken to show that the boundary has blurred.
+- Revision read as blur: an openly revised boundary applied consistently is taken as erosion.
+- Strictness assumed: blur is taken to call for stricter enforcement rather than a decision about the boundary.
+
+#### Design
+
+**Why it exists.** A boundary that still reads clearly can stop deciding anything in practice. Limitblur names that loss of determinacy between statement and application.
+
+**Why Infrastructure.** A technical boundary can drift through inconsistent implementation with no agent judging it, so the process needs no mind.
+
+**Can it be removed?** Constraint defines a non-negotiable condition, ScopeFreeze locks requirements, and BoundaryReview samples cases near the boundary; none describes a stated boundary losing determinacy in practice. Removable if stated boundaries are assumed to be applied as stated.
+
+**Intended use.** recognising when a stated limit, scope or rule no longer reliably decides cases.
+
+**Future uses.** agent permissions, policy boundaries and access controls that drift across components.
+
+**Broad-use contexts.** project scope, access control, budgets, personal boundaries, organisational rules, technical limits.
+
+**Broad-use intersection (review hypothesis).** a stated boundary and an application that becomes less consistent or determinate.
+
+**Varies (descendant territory).** whether the boundary is personal, organisational or technical, and how its application is sampled.
+
+**Extension shape.** a variant for access controls; a variant for personal boundaries.
+
+**Design tensions.**
+- Blur can come from good-faith exceptions that each made sense.
+
+**Tradeoffs.**
+- Gains: a name for boundaries that read clearly but decide nothing.
+- Gives up: taking a stated boundary as its own evidence.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. BoundaryReview is one separately defined review that ends each disagreement in enforcement or restatement.
+- Novelty, from recall and unverified: known. Nearest known concepts: scope creep; rule erosion; normalisation of deviance.
+
+**In the family.** Constraint states limits, ScopeFreeze locks them, BoundaryReview tests them against practice, and Limitblur is the blurring itself.
+
+---
+
+### Regulapse#6627
+
+`Infrastructure` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Regulapse.json)
+
+**Gloss.** A process keeps operating while its capacity to detect or correct deviations weakens
+
+**Mechanism.**
+
+> The paths through which deviations become visible and get corrected lose reach, sensitivity, timeliness or influence relative to the process they regulate. Operation continues while its regulation becomes less able to bring relevant deviations under control. The weakness can lie in sensing, interpretation, transmission, authority or corrective action, so it need not be a broken detector, and ordinary output can improve, decline or hold steady meanwhile. Fewer alerts alone do not show it, and an obsolete control withdrawn in favour of an equally effective one is not a loss.
+
+**Invariants.**
+- There is a continuing process and a specified kind of deviation it is regulated against.
+- Its actual capacity to detect or correct that kind of deviation weakens over the interval considered.
+
+**Failure modes.**
+- Quiet read as health: a falling number of alerts is taken to show that deviations are fewer.
+- Detector equated with regulation: a working detector is taken to show that corrections still happen.
+- Count read as capacity: fewer controls are taken to mean weaker regulation, or more controls stronger.
+
+#### Design
+
+**Why it exists.** A process whose regulation weakens looks the same as a process with fewer problems, until a deviation goes uncorrected. Regulapse names the weakening coupling, wherever in the loop it lies.
+
+**Why Infrastructure.** Regulation can be wholly technical, a sensor and an actuator in a loop, so no agent's judgment is needed for it to weaken.
+
+**Can it be removed?** Monitor observes against a baseline, Feedback carries an attributed correction signal, and DetectorSelfTest tests detectors with known faults; none describes regulation weakening while the process continues. Removable if a process's regulation is assumed to stay as capable as when it was set up.
+
+**Intended use.** recognising when the detection or correction around a running process is losing its grip.
+
+**Future uses.** long-running agents and pipelines whose oversight erodes as they change.
+
+**Broad-use contexts.** production monitoring, financial controls, safety oversight, peer review, organisational governance, agent guardrails.
+
+**Broad-use intersection (review hypothesis).** a continuing process, a kind of deviation, and a comparison over time of the capacity to detect or correct it.
+
+**Varies (descendant territory).** which part of the loop weakens: sensing, interpretation, transmission, authority or action.
+
+**Extension shape.** a variant for detection alone; a variant for correction authority.
+
+**Design tensions.**
+- Regulation of one variable can weaken while another's strengthens, so a single verdict misleads.
+
+**Tradeoffs.**
+- Gains: a name for losing oversight that does not wait for an incident.
+- Gives up: reading quiet as health.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. DetectorSelfTest addresses detection only; passing detector tests does not show that correction authority or actuators are intact.
+- Novelty, from recall and unverified: known. Nearest known concepts: normalisation of deviance; control erosion; monitoring the monitors.
+
+**In the family.** Monitor observes, Feedback corrects, Brakefade loses the stop, DetectorSelfTest tests the detectors, and Regulapse is the weakening regulation itself.
+
+---
+
+### Infrastructure/Primitives (53)
 
 ### Act#2dfe
 
@@ -13377,62 +13578,6 @@ _Note: Retry eligibility, finite budgets, and reset conditions are caller policy
 
 ---
 
-### Formelt#0e39
-
-`Infrastructure` · `Primitives` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/Formelt.json)
-
-**Gloss.** A structure loses its organising boundaries while its components remain
-
-**Mechanism.**
-
-> Divisions, roles or relationships that gave components a stable arrangement become less definite or less effective while the components persist, so the prior form loosens, which can lead to dissolution, confusion or a new arrangement. The loosening is in an organising relation or boundary, not only in the components; a direct change from one well-defined arrangement to another need not include it.
-
-**Invariants.**
-- The components of a structure persist.
-- The boundaries or relations that organised them become less definite or less effective.
-
-**Failure modes.**
-- Loosening read as destruction: loss of the previous form is equated with loss of all capacity.
-- Change read as decay: every rearrangement is called a decline.
-- Old form preferred: the previous boundaries are treated as better by default.
-
-#### Design
-
-**Why it exists.** Structures can loosen while everything in them remains, and the loosening is read as either collapse or progress. Formelt names the loosening itself, which can lead to either.
-
-**Why Infrastructure.** A structure's boundaries can loosen in an architecture or a composition with no agent judging it, so the process needs no mind.
-
-**Can it be removed?** Topology represents a structure's shape and Linkfade weakens connections between participants; neither describes organising boundaries loosening while components remain. Removable if structures are assumed either intact or gone.
-
-**Intended use.** recognising when a structure is losing its organising boundaries while its components remain.
-
-**Future uses.** agent teams and software systems whose roles and module boundaries blur during transitions.
-
-**Broad-use contexts.** artistic composition, organisations in transition, informal groups, system architecture, curricula.
-
-**Broad-use intersection (review hypothesis).** persisting components and organising boundaries that become less definite.
-
-**Varies (descendant territory).** whether the loosening leads to dissolution, confusion or a new arrangement.
-
-**Extension shape.** a variant for organisations; a variant for compositions.
-
-**Design tensions.**
-- Loosening can begin a better arrangement or a collapse, and the two look alike early on.
-
-**Tradeoffs.**
-- Gains: a name for structure loosening without assuming decline.
-- Gives up: reading every loosening as decay.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response. It is not filed under coordination decay: Formelt can create stronger new links while old boundaries loosen, and Linkfade can occur within a stable form.
-- Novelty, from recall and unverified: known. Nearest known concepts: liminality; boundary blurring.
-
-**In the family.** Topology represents shape, Linkfade weakens links, and Formelt is a structure's boundaries loosening while its parts remain.
-
----
-
 ### Gate#664d
 
 `Infrastructure` · `Primitives` · R0 · T1
@@ -14017,62 +14162,6 @@ _Note: A human introduction, unauthenticated version negotiation, or one-way aut
 - `Judge#d84f`
 - `Judge#2401`
 - `Judge#74de`
-
----
-
-### Limitblur#d772
-
-`Infrastructure` · `Primitives` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/Limitblur.json)
-
-**Gloss.** Boundaries stay stated while their application becomes inconsistent or uncertain in practice
-
-**Mechanism.**
-
-> A stated boundary stays in force on paper while its practical application varies, erodes or becomes unclear, so the statement no longer reliably settles where the operative boundary lies. An isolated, recognised breach is not an instance, nor are stated exceptions applied consistently, nor an open revision applied consistently, which changes the boundary rather than blurring it. The boundary can be personal, organisational or technical.
-
-**Invariants.**
-- A boundary is still stated.
-- Its practical application becomes less consistent or less determinate over the interval considered.
-
-**Failure modes.**
-- Breach read as blur: a single recognised breach is taken to show that the boundary has blurred.
-- Revision read as blur: an openly revised boundary applied consistently is taken as erosion.
-- Strictness assumed: blur is taken to call for stricter enforcement rather than a decision about the boundary.
-
-#### Design
-
-**Why it exists.** A boundary that still reads clearly can stop deciding anything in practice. Limitblur names that loss of determinacy between statement and application.
-
-**Why Infrastructure.** A technical boundary can drift through inconsistent implementation with no agent judging it, so the process needs no mind.
-
-**Can it be removed?** Constraint defines a non-negotiable condition, ScopeFreeze locks requirements, and BoundaryReview samples cases near the boundary; none describes a stated boundary losing determinacy in practice. Removable if stated boundaries are assumed to be applied as stated.
-
-**Intended use.** recognising when a stated limit, scope or rule no longer reliably decides cases.
-
-**Future uses.** agent permissions, policy boundaries and access controls that drift across components.
-
-**Broad-use contexts.** project scope, access control, budgets, personal boundaries, organisational rules, technical limits.
-
-**Broad-use intersection (review hypothesis).** a stated boundary and an application that becomes less consistent or determinate.
-
-**Varies (descendant territory).** whether the boundary is personal, organisational or technical, and how its application is sampled.
-
-**Extension shape.** a variant for access controls; a variant for personal boundaries.
-
-**Design tensions.**
-- Blur can come from good-faith exceptions that each made sense.
-
-**Tradeoffs.**
-- Gains: a name for boundaries that read clearly but decide nothing.
-- Gives up: taking a stated boundary as its own evidence.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response. BoundaryReview is one separately defined review that ends each disagreement in enforcement or restatement.
-- Novelty, from recall and unverified: known. Nearest known concepts: scope creep; rule erosion; normalisation of deviance.
-
-**In the family.** Constraint states limits, ScopeFreeze locks them, BoundaryReview tests them against practice, and Limitblur is the blurring itself.
 
 ---
 
@@ -14983,62 +15072,6 @@ Both were revised in the 2026-07 review and the revisions point in opposite dire
 - `ReAttempt#be44`
 - `ReAttempt#39a6`
 - `ReAttempt#51f0`
-
----
-
-### Regulapse#6627
-
-`Infrastructure` · `Primitives` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/Regulapse.json)
-
-**Gloss.** A process keeps operating while its capacity to detect or correct deviations weakens
-
-**Mechanism.**
-
-> The paths through which deviations become visible and get corrected lose reach, sensitivity, timeliness or influence relative to the process they regulate. Operation continues while its regulation becomes less able to bring relevant deviations under control. The weakness can lie in sensing, interpretation, transmission, authority or corrective action, so it need not be a broken detector, and ordinary output can improve, decline or hold steady meanwhile. Fewer alerts alone do not show it, and an obsolete control withdrawn in favour of an equally effective one is not a loss.
-
-**Invariants.**
-- There is a continuing process and a specified kind of deviation it is regulated against.
-- Its actual capacity to detect or correct that kind of deviation weakens over the interval considered.
-
-**Failure modes.**
-- Quiet read as health: a falling number of alerts is taken to show that deviations are fewer.
-- Detector equated with regulation: a working detector is taken to show that corrections still happen.
-- Count read as capacity: fewer controls are taken to mean weaker regulation, or more controls stronger.
-
-#### Design
-
-**Why it exists.** A process whose regulation weakens looks the same as a process with fewer problems, until a deviation goes uncorrected. Regulapse names the weakening coupling, wherever in the loop it lies.
-
-**Why Infrastructure.** Regulation can be wholly technical, a sensor and an actuator in a loop, so no agent's judgment is needed for it to weaken.
-
-**Can it be removed?** Monitor observes against a baseline, Feedback carries an attributed correction signal, and DetectorSelfTest tests detectors with known faults; none describes regulation weakening while the process continues. Removable if a process's regulation is assumed to stay as capable as when it was set up.
-
-**Intended use.** recognising when the detection or correction around a running process is losing its grip.
-
-**Future uses.** long-running agents and pipelines whose oversight erodes as they change.
-
-**Broad-use contexts.** production monitoring, financial controls, safety oversight, peer review, organisational governance, agent guardrails.
-
-**Broad-use intersection (review hypothesis).** a continuing process, a kind of deviation, and a comparison over time of the capacity to detect or correct it.
-
-**Varies (descendant territory).** which part of the loop weakens: sensing, interpretation, transmission, authority or action.
-
-**Extension shape.** a variant for detection alone; a variant for correction authority.
-
-**Design tensions.**
-- Regulation of one variable can weaken while another's strengthens, so a single verdict misleads.
-
-**Tradeoffs.**
-- Gains: a name for losing oversight that does not wait for an incident.
-- Gives up: reading quiet as health.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response. DetectorSelfTest addresses detection only; passing detector tests does not show that correction authority or actuators are intact.
-- Novelty, from recall and unverified: known. Nearest known concepts: normalisation of deviance; control erosion; monitoring the monitors.
-
-**In the family.** Monitor observes, Feedback corrects, Brakefade loses the stop, DetectorSelfTest tests the detectors, and Regulapse is the weakening regulation itself.
 
 ---
 
@@ -17078,6 +17111,745 @@ _Note: A handwritten signature alone does not provide this card's artifact-chang
 ---
 
 ## Mind (261)
+
+### Mind/Dynamics (13)
+
+### Aimscatter#ded3
+
+`Mind` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Aimscatter.json)
+
+**Gloss.** Effort disperses among competing directions until none receives enough to advance
+
+**Mechanism.**
+
+> Several directions keep drawing on a shared supply of effort or attention, and the allocation becomes too fragmented to sustain the progress each requires. Activity can continue in every direction while advancement stalls across the set. Switching and restarting can deepen the shortage but are not essential: even perfectly efficient allocation can be spread too thin. A single stalled direction, a short gap in visible output, or broad exploration that yields comparative learning is not an instance.
+
+**Invariants.**
+- Several directions compete for a shared capacity.
+- Over the interval considered, none of them receives enough of it to advance.
+
+**Failure modes.**
+- Latency read as dispersal: directions waiting on an external dependency, or developing out of sight, are taken to be starved.
+- Exploration read as dispersal: a broad portfolio that is producing comparative learning is taken to be scattered.
+- Person read as cause: dispersal is taken to show low ability or motivation.
+
+#### Design
+
+**Why it exists.** Spreading effort over many directions feels like progress on all of them. Aimscatter names the point where the spread itself stops every direction from advancing.
+
+**Why Mind.** Effort and attention are an agent's or a group's to allocate; one agent suffices.
+
+**Can it be removed?** Prioritize ranks options and ComputeBudget caps total cost; neither describes effort spread too thin to advance any direction, which can happen within a respected budget. Removable if every direction is assumed to advance as long as it receives some effort.
+
+**Intended use.** recognising when work, learning or attention is divided so finely that nothing reaches its next useful result.
+
+**Future uses.** agents juggling many tasks or threads under one budget.
+
+**Broad-use contexts.** project portfolios, learning several skills, research programmes, personal commitments, multi-task agents, organisational initiatives.
+
+**Broad-use intersection (review hypothesis).** competing directions, a shared capacity, and a notion of advancement over a stated interval.
+
+**Varies (descendant territory).** what counts as advancement and over what interval.
+
+**Extension shape.** a variant for attention within one task; a variant for organisational portfolios.
+
+**Design tensions.**
+- Keeping several options open can be valuable, and looks like dispersal from outside.
+
+**Tradeoffs.**
+- Gains: a name for activity without advancement across a set.
+- Gives up: counting activity in each direction as progress.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. StalledDirectionReview acts on a period without results; that trigger also fires during legitimate latency, so it is not a diagnosis of the process.
+- Novelty, from recall and unverified: known. Nearest known concepts: spreading oneself too thin; context-switching cost.
+
+**In the family.** Prioritize ranks, ComputeBudget caps cost, StalledDirectionReview pauses what does not advance, and Aimscatter is the dispersal itself.
+
+---
+
+### Capacitylag#977c
+
+`Mind` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Capacitylag.json)
+
+**Gloss.** Expectations or demands increase ahead of the capacity available to meet them
+
+**Mechanism.**
+
+> New demands arrive or grow before the relevant abilities, resources or coordination have developed enough to meet them, and the gap is produced or widened by that difference in timing, even where capacity is improving. A fixed mismatch without that timing is simply insufficient capacity, and a loss of capacity under unchanged demands is not an instance. The comparison is relative to particular demands and conditions, not a judgment of general ability.
+
+**Invariants.**
+- Demands arrive or increase over the interval considered.
+- The capacity to meet them develops more slowly than they grow.
+
+**Failure modes.**
+- Gap read as unwillingness: the gap is taken to show that effort is being withheld.
+- Output read as catching up: rising output is taken to show that capacity has caught up.
+- Catching up assumed: closing the gap is assumed to be the only right outcome, when demands can also be reduced or refused.
+
+#### Design
+
+**Why it exists.** When demands outgrow capacity, the gap is read as a failing of whoever cannot meet them. Capacitylag names the timing difference that produces the gap.
+
+**Why Mind.** One agent's demands can outgrow its capacity; no second party is needed, though demands often come from others.
+
+**Can it be removed?** CapacityPressure deliberately restricts resources, and Limitlisten measures present limits before a demanding step; neither names demands getting ahead of developing capacity. Removable if demands are assumed to grow no faster than capacity.
+
+**Intended use.** recognising when demands are outrunning the capacity to meet them.
+
+**Future uses.** agents whose workloads expand faster than their tools or training.
+
+**Broad-use contexts.** growing organisations, education, new roles, rapid product growth, expanding agent workloads.
+
+**Broad-use intersection (review hypothesis).** growing demands, a capacity that develops more slowly, and a gap that the timing produces.
+
+**Varies (descendant territory).** which demands grow and which capacity lags.
+
+**Extension shape.** a variant for organisations; a variant for learners.
+
+**Design tensions.**
+- The gap invites blame, though it is a matter of timing.
+
+**Tradeoffs.**
+- Gains: a name for gaps produced by timing rather than inadequacy.
+- Gives up: reading every gap as a shortfall of the person or system.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. Demands can be reduced or refused as well as met.
+- Novelty, from recall and unverified: known. Nearest known concepts: growing pains; scaling debt; demand outpacing supply.
+- Support that recedes faster than independent capacity develops is a case: the receding support is a demand arriving on the capacity that remains.
+- When a slow-changing body faces fast-changing demands, it is a Capacitylag case if the question is whether its capacity keeps up, and a Scaleasynchrony case if the question is how it fits with a level it depends on or that depends on it.
+
+**In the family.** Identitylag lags in self-understanding, Scaleasynchrony compares levels, Limitlisten measures present limits, and Capacitylag is demand outrunning capacity.
+
+---
+
+### Crossripening#9f96
+
+`Mind` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Crossripening.json)
+
+**Gloss.** Development in one area makes development in another newly possible
+
+**Mechanism.**
+
+> A change in one capacity or setting supplies something another developmental path lacked, such as a prerequisite, access, support, a distinction or a way of practising, so that the second path gains an opportunity for development it did not have before. The second development need not then occur, and parallel improvement without such a contribution is not an instance.
+
+**Invariants.**
+- The contribution crosses two distinguishable areas of development.
+- It changes what development is possible in the receiving area.
+
+**Failure modes.**
+- Coincidence read as enabling: two areas improving at once are taken as one enabling the other.
+- Possibility read as certainty: a newly possible development is assumed to happen.
+
+#### Design
+
+**Why it exists.** Development is tracked area by area, so the openings one area creates in another go unnoticed. Crossripening names that cross-area enabling.
+
+**Why Mind.** One learner can develop in one area and thereby open another; no second party is needed.
+
+**Can it be removed?** ConceptBlend merges concepts into a third, and Cocapacity records joint capacity among parties; neither describes development in one area opening development in another within the same learner or system. Removable if areas of development are assumed independent.
+
+**Intended use.** recognising when progress in one area has opened a path in another.
+
+**Future uses.** agents whose new tools or skills open further lines of learning.
+
+**Broad-use contexts.** learning, research, creative practice, organisations, curricula, agent tool use.
+
+**Broad-use intersection (review hypothesis).** two distinguishable areas, and a contribution from one that changes what development is possible in the other.
+
+**Varies (descendant territory).** what the first area supplies: a prerequisite, access, support, a distinction or a way of practising.
+
+**Extension shape.** a reciprocal variant in which several paths strengthen one another.
+
+**Design tensions.**
+- An opening is easy to claim and hard to show before the second development happens.
+
+**Tradeoffs.**
+- Gains: a name for development that opens other development.
+- Gives up: tracking each area on its own.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. Reciprocity is not required; a reciprocal variant could be a separate card.
+- Novelty, from recall and unverified: known. Nearest known concepts: transfer of learning; enabling technologies; the adjacent possible.
+
+**In the family.** ConceptBlend merges concepts, Cocapacity creates joint capacity, and Crossripening is one area's development opening another's.
+
+---
+
+### Echohollow#ad70
+
+`Mind` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Echohollow.json)
+
+**Gloss.** A recurring practice keeps its outward form while its responsiveness to what it meets fades
+
+**Mechanism.**
+
+> Repetition keeps reproducing a recognisable practice while observations, circumstances or participants' responses have less influence on how it proceeds. The practice can still produce activity, records or small changes while losing the input-sensitive relation that made its repetitions responsive. Mere repetition is not an instance: a practice fixed from the outset never had the responsiveness to lose, and a considered decision that nothing needs to change is still a response.
+
+**Invariants.**
+- The same recurring practice is identifiable across occasions.
+- Its response to relevant differences in what it meets weakens over the interval considered.
+
+**Failure modes.**
+- Stability read as hollowness: a practice that keeps returning the same result because nothing relevant changed is taken to have stopped responding.
+- Variation read as responsiveness: small changes, such as a changing counter, are taken to show that the practice still responds.
+- Form judged alone: the practice is judged by its appearance without specifying which input-response relation is meant.
+
+#### Design
+
+**Why it exists.** Practices that keep their form look healthy, even after they stop responding to anything. Echohollow names the fading responsiveness behind an unchanged form.
+
+**Why Mind.** A practice responds to what it meets through an agent's or a group's handling of it; one agent suffices.
+
+**Can it be removed?** Loop requires state to change between iterations and Feedback carries an attributed correction signal; neither describes a practice whose form persists while its sensitivity to inputs fades. Removable if repetition is assumed to stay responsive.
+
+**Intended use.** recognising when a recurring practice, review or routine continues in form after it stopped responding to what it encounters.
+
+**Future uses.** agent routines and scheduled reviews that run unattended.
+
+**Broad-use contexts.** retrospectives, inspections, rehearsal and practice, recurring reports, rituals, scheduled agent jobs.
+
+**Broad-use intersection (review hypothesis).** an identifiable recurring practice and a specified input-response relation compared across occasions.
+
+**Varies (descendant territory).** which responsiveness is meant, such as to faults, to participants or to sound, and over what interval.
+
+**Extension shape.** a variant for scheduled reviews; a variant for embodied practice.
+
+**Design tensions.**
+- Responsiveness can include deciding not to change, which looks the same as hollowness from outside.
+
+**Tradeoffs.**
+- Gains: a name for form without response.
+- Gives up: reading a practice's continuation as a sign of health.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. PracticeResponseReview reviews after a stated number of unchanged cycles; that is a screening rule, not a diagnosis of the process.
+- A ceremonial repetition that serves remembrance through a stable form is not an instance, because responsiveness was never its purpose.
+- Novelty, from recall and unverified: known. Nearest known concepts: ritualism; going through the motions.
+
+**In the family.** Meaningthin weakens a purpose, Loop requires state change, PracticeResponseReview reviews unchanged cycles, and Echohollow is the fading responsiveness itself.
+
+---
+
+### Echoverturn#ad14
+
+`Mind` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Echoverturn.json)
+
+**Gloss.** Repetition progressively reverses a recurring element's effect
+
+**Mechanism.**
+
+> A recognisable element returns, and the accumulated encounters, or their changing relations, alter its effect until it works against the effect of its earlier appearances, while the repeated form stays traceable. Recurrence must contribute to the reversal, and the earlier and later effects must be opposed in the relevant respect; fading intensity, ordinary novelty, or a reversal caused by unrelated new information is not an instance.
+
+**Invariants.**
+- A recognisable element recurs.
+- Its recurrence contributes to an effect opposed to that of its earlier appearances.
+
+**Failure modes.**
+- Form read as effect: an unchanged form is assumed to keep its effect.
+- Reinterpretation read as reversal: any change of interpretation is called a reversal.
+- One audience assumed: the same repetition is assumed to work the same way on every audience.
+
+#### Design
+
+**Why it exists.** Repetition is expected to strengthen an element's effect or let it fade, not to reverse it. Echoverturn names the reversal that recurrence itself can produce.
+
+**Why Mind.** The effect of a recurring element is on a perceiver, and one perceiver suffices.
+
+**Can it be removed?** Echohollow concerns lost responsiveness while a practice persists, Spiralback revisits with new tools, and Ruleflip reverses a rule's purpose through incentives; none describes repetition reversing an element's effect. Removable if repeated elements are assumed to keep their direction of effect.
+
+**Intended use.** recognising when something repeated is starting to work against its original effect.
+
+**Future uses.** agents whose repeated phrasings, reassurances or prompts change their effect on users.
+
+**Broad-use contexts.** art and music, persuasion, rituals, reassurance in care, human-agent interaction, advertising.
+
+**Broad-use intersection (review hypothesis).** a recurring element, a recurrence that contributes, and an effect opposed to the earlier one.
+
+**Varies (descendant territory).** the element, the audience, and how many recurrences the reversal takes.
+
+**Extension shape.** a variant for persuasion; a variant for artistic motifs.
+
+**Design tensions.**
+- The reversal can depend on the audience, so it may happen for some and not for others.
+
+**Tradeoffs.**
+- Gains: a name for repetition turning against itself.
+- Gives up: assuming that repetition only reinforces or fades.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. Echohollow concerns loss of responsiveness; Echoverturn concerns reversal of effect and can be intensely responsive.
+- Novelty, from recall and unverified: known. Nearest known concepts: overexposure; the boy who cried wolf.
+
+**In the family.** Echohollow empties a practice, Spiralback returns with new tools, Ruleflip turns a rule against its purpose, and Echoverturn is repetition reversing an effect.
+
+---
+
+### Foundationfray#4f69
+
+`Mind` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Foundationfray.json)
+
+**Gloss.** Small losses in supporting practices progressively weaken the capabilities that depend on them
+
+**Mechanism.**
+
+> Repeated omissions, forgotten skills or deteriorating support reduce the reliability of basic practices, and more advanced activity continues for a time while its dependable conditions erode as the losses accumulate. The practice must still support the capability: a practice retired because a reliable replacement removed the dependency is not an instance.
+
+**Invariants.**
+- A supporting practice deteriorates over the interval considered.
+- A capability depends on that practice and weakens as it deteriorates.
+
+**Failure modes.**
+- Success read as soundness: a few successful advanced performances are taken to show intact foundations.
+- Obsolescence read as fraying: an obsolete practice is defended merely because it was once foundational.
+
+#### Design
+
+**Why it exists.** Advanced work continues on top of basics that are slowly being lost, and the loss shows only when the advanced work fails. Foundationfray names that erosion beneath.
+
+**Why Mind.** Supporting practices belong to a learner, a team or an agent; one practitioner suffices.
+
+**Can it be removed?** Leapdebt begins with a skipped foundation, and Decay attenuates a value at a set rate; neither describes present foundations eroding under the capabilities built on them. Removable if foundations are assumed to persist once established.
+
+**Intended use.** recognising when supporting practices are eroding beneath capabilities that still seem to work.
+
+**Future uses.** agents whose workflows depend on tools, memories or checks that degrade.
+
+**Broad-use contexts.** training and skills, maintenance, scientific institutions, calibration routines, agent memory and workflow dependencies.
+
+**Broad-use intersection (review hypothesis).** a supporting practice, a capability that depends on it, and accumulating losses in the practice.
+
+**Varies (descendant territory).** which support erodes and how the dependence shows.
+
+**Extension shape.** a variant for skills; a variant for technical maintenance.
+
+**Design tensions.**
+- Defending every old practice as foundational blocks legitimate change.
+
+**Tradeoffs.**
+- Gains: a name for erosion beneath working capabilities.
+- Gives up: trusting advanced results as proof of sound basics.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. Decline need not be irreversible, uninterrupted or expressible through Decay's attenuation law.
+- Novelty, from recall and unverified: known. Nearest known concepts: skill fade; deferred maintenance.
+
+**In the family.** Leapdebt skips a foundation, Decay attenuates a value, and Foundationfray is a present foundation eroding.
+
+---
+
+### Futurefold#221d
+
+`Mind` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Futurefold.json)
+
+**Gloss.** Planning contracts toward immediate demands, leaving fewer distant possibilities in view
+
+**Mechanism.**
+
+> Immediate demands increasingly occupy planning, while possibilities and consequences farther ahead receive less consideration or drop from the effective horizon. The future held in view narrows even though more distant possibilities remain available. The contraction is relative to an earlier or otherwise relevant horizon, concerns what is actively considered rather than what is possible, and can be deliberate, temporarily appropriate or harmful.
+
+**Invariants.**
+- Planning considers a narrower horizon than an earlier or otherwise relevant one.
+- Immediate demands take part in the narrowing.
+
+**Failure modes.**
+- Short steps read as contraction: short execution steps are taken to show that the whole horizon narrowed.
+- External loss read as contraction: options removed by outside constraints are taken as a narrowed horizon.
+- Contraction read as error: every narrowing is treated as a mistake, including a deliberate one in an emergency.
+
+#### Design
+
+**Why it exists.** Urgent demands crowd out what lies further ahead, gradually and without a decision. Futurefold names that contraction of the future held in view.
+
+**Why Mind.** A planning horizon belongs to an agent's or a group's attention; one agent suffices.
+
+**Can it be removed?** Roadmap is a planning artifact, Futureclaim weighs future parties' needs, and HorizonReview keeps a distant item in each cycle; none describes the horizon contracting. Removable if planning horizons are assumed to stay where they were set.
+
+**Intended use.** recognising when planning has narrowed toward immediate demands.
+
+**Future uses.** agents and teams under continual urgent load.
+
+**Broad-use contexts.** teams under incident load, organisations in crisis, personal planning under pressure, research groups near deadlines, agents with full queues.
+
+**Broad-use intersection (review hypothesis).** a planning horizon, an earlier or relevant reference horizon, and immediate demands taking part in the narrowing.
+
+**Varies (descendant territory).** how far the horizon was and how far it contracts.
+
+**Extension shape.** a variant for organisations; a variant for personal planning.
+
+**Design tensions.**
+- Narrowing the horizon in an emergency can be right, and is still an instance.
+
+**Tradeoffs.**
+- Gains: a name for a shrinking future that does not wait for a missed opportunity.
+- Gives up: reading a full calendar as a full plan.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. HorizonReview is one separately defined always-review policy.
+- Novelty, from recall and unverified: known. Nearest known concepts: short-termism; tunnelling under scarcity; the urgent crowding out the important.
+
+**In the family.** Roadmap plans, Futureclaim weighs future needs, HorizonReview keeps a distant item in view, and Futurefold is the contraction itself.
+
+---
+
+### Identitylag#2fbd
+
+`Mind` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Identitylag.json)
+
+**Gloss.** Abilities or circumstances change while self-understanding stays organised around an earlier condition
+
+**Mechanism.**
+
+> A person's or agent's situation changes, but the self-description guiding its expectations and choices still reflects the earlier situation, so for a period what it takes itself to be able or expected to do differs from its changed circumstances. The change can be a gain, a loss or a reorganisation, and eventual adjustment is not guaranteed. A new inaccurate belief about the self is not automatically a lag; the self-description must have been anchored to an earlier condition.
+
+**Invariants.**
+- A self-understanding was anchored to an earlier condition.
+- A relevant change in abilities or circumstances has not yet been incorporated into it.
+
+**Failure modes.**
+- Persistence read as stability: a persisting self-description is taken to show that circumstances have not changed.
+- Disagreement read as lag: every disagreement with an outside assessment is taken as a lag in self-understanding.
+- Claimed change accepted: a claimed new capability is taken as real when the evidence says it is unreliable.
+
+#### Design
+
+**Why it exists.** People and agents change faster than their account of themselves, and act on the old account. Identitylag names that delay.
+
+**Why Mind.** A self-understanding belongs to one person or agent and is kept in its memory.
+
+**Can it be removed?** SelfReminder reinforces a description, Proprioception locates a task, and Identity defines addressability; none describes a self-understanding lagging behind a changed situation. Removable if self-descriptions are assumed to update at once.
+
+**Intended use.** recognising when a person, team or agent is acting on an outdated account of itself.
+
+**Future uses.** agents with persistent self-models across changes in tools, permissions or skill.
+
+**Broad-use contexts.** learning, new responsibilities, recovery, organisational self-conceptions, persistent agents.
+
+**Broad-use intersection (review hypothesis).** a self-understanding anchored to an earlier condition and a change it has not incorporated.
+
+**Varies (descendant territory).** whether the change is a gain, a loss or a reorganisation.
+
+**Extension shape.** a variant for organisations; a variant for agent self-models.
+
+**Design tensions.**
+- A self-understanding that resists a claimed change can be right.
+
+**Tradeoffs.**
+- Gains: a name for acting on an outdated self.
+- Gives up: taking a self-description as current by default.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. Mirrorbloom concerns a self-description causing change; Identitylag concerns its delayed adjustment to change, and the two can coexist without either showing the other.
+- Novelty, from recall and unverified: known. Nearest known concepts: self-concept lag; identity transition.
+
+**In the family.** Capacitylag lags in capacity, Mirrorbloom changes the self through its description, SelfReminder reinforces a description, and Identitylag is self-understanding behind the self.
+
+---
+
+### Labelloop#1bb2
+
+`Mind` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Labelloop.json)
+
+**Gloss.** A classification changes those it classifies, altering the fit of later classifications
+
+**Mechanism.**
+
+> A {{category}} applied to people, teams, models or other responsive members becomes part of the conditions shaping their conduct, through their response to the label or through the treatment it brings. Their changed conduct then affects how the classification fits when it is applied again. Members can move toward the label, away from it, or into a different relation with its criteria, so the label can become truer, falser or differently true, and members need not know the label for its treatment to change them.
+
+**Invariants.**
+- A classification takes part in changing its members.
+- That change bears on how the classification fits or is applied later.
+
+**Failure modes.**
+- Fulfilment read as prediction: increased fit is taken to show that the classification independently predicted what it helped produce.
+- Change read as loop: members changing for other reasons is taken as the classification's effect.
+- Correlation read as cause: exposure to the label and changed behaviour occurring together are taken as proof that the label caused the change.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{category}}` | `sema:Category#mh:SHA-256:d2db51ecab5ef8f0e434bd592f729c2ba955f0609e68a48aac9a95232447a696` |
+
+#### Design
+
+**Why it exists.** Classifications are treated as reports on what they classify, but they also act on it. Labelloop names that loop, in which a label helps shape the fit it seems only to measure.
+
+**Why Mind.** A single party can classify itself and respond to the classification, so one agent suffices; social cases can specialise it.
+
+**Can it be removed?** Category groups objects, Situfit checks present fit, Sunsetkind carries an expiry condition, and ClassificationReview re-checks fit on a schedule; none describes a classification changing what it classifies. Removable if classified things are assumed not to respond to being classified.
+
+**Intended use.** recognising when a label or classification is changing the people, teams or systems it describes.
+
+**Future uses.** agents classifying users or other agents who respond to the classification.
+
+**Broad-use contexts.** education, diagnosis, credit scoring, team labels, recommender systems, model evaluations.
+
+**Broad-use intersection (review hypothesis).** a classification of responsive members, a change in them that the classification takes part in, and a later classification that the change bears on.
+
+**Varies (descendant territory).** whether members know the label, and whether the change moves toward or away from it.
+
+**Extension shape.** a variant for self-classification; a variant for institutional labels.
+
+**Design tensions.**
+- A label's effect is hard to separate from what it would have predicted anyway.
+
+**Tradeoffs.**
+- Gains: a name for labels that help make themselves true or false.
+- Gives up: reading fit as independent confirmation.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. ClassificationReview is one separately defined re-check; its scope, agents who can learn of the classification, is narrower than the process.
+- The scope includes movement toward the label as well as away from it, and change through treatment when members do not know the label.
+- Novelty, from recall and unverified: known. Nearest known concepts: looping effects of human kinds; self-fulfilling prophecy; the Pygmalion effect.
+
+**In the family.** Category groups, Situfit checks fit, Sunsetkind retires categories, ClassificationReview re-checks, and Labelloop is the loop by which a classification changes what it classifies.
+
+---
+
+### Meaningthin#8366
+
+`Mind` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Meaningthin.json)
+
+**Gloss.** An activity continues while its connection to a valued purpose weakens
+
+**Mechanism.**
+
+> The practices that sustain an activity persist while what they accomplish, or what participants find valuable in them, becomes less connected to the purpose through which the activity mattered. Continuation and contribution separate: the activity can keep its routines, output or recognition without keeping the same relation to that purpose. Changed circumstances, changed aspirations and attachment to proxy outcomes are possible routes, not required causes. The activity need not have lost every purpose, the weakening need not be permanent or bad overall, and a practice deliberately redirected to a new purpose is not an instance.
+
+**Invariants.**
+- There is a continuing activity and a specified purpose valued from some perspective.
+- The activity's connection to that purpose weakens over the interval considered, in practical contribution or in experienced significance.
+
+**Failure modes.**
+- Output read as purpose: continued routines, output or recognition are taken to show that the purpose is still served.
+- Uncertainty read as loss: lack of evidence about the connection is taken as proof that it weakened.
+- Swapped bases: practical contribution and experienced significance are substituted for each other when judging the weakening.
+- Productivity verdict: the activity is required to justify itself through measurable output.
+
+#### Design
+
+**Why it exists.** Activities outlive the reasons they mattered, and their continuing output hides it. Meaningthin names the weakening connection itself, apart from any review that might catch it.
+
+**Why Mind.** A purpose has to be valued from some perspective, so the process needs an agent or a group; one agent suffices.
+
+**Can it be removed?** Goal pins a testable end state, Metricmirror reviews what a measure does, and PurposeLinkReview checks the link on a schedule; none describes the link weakening while the activity continues. Removable if activities are assumed to keep their purpose while they run.
+
+**Intended use.** recognising when an activity, meeting, practice or programme continues with less connection to what made it matter.
+
+**Future uses.** long-running agents and organisations whose routines outlast their reasons.
+
+**Broad-use contexts.** recurring meetings, creative routines, institutional programmes, reporting cycles, research lines, agent tasks.
+
+**Broad-use intersection (review hypothesis).** a continuing activity, a purpose valued from some perspective, and a basis for judging a weakening connection over an interval.
+
+**Varies (descendant territory).** whether the connection is judged by contribution or by experienced significance, and whose purpose is meant.
+
+**Extension shape.** a variant for collective purposes; a variant for personal meaning.
+
+**Design tensions.**
+- The connection to a purpose is often hard to observe, so uncertainty can be mistaken for loss.
+
+**Tradeoffs.**
+- Gains: a name for continuing without purpose that does not wait for failure.
+- Gives up: the assumption that a running activity is a meaningful one.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. PurposeLinkReview is one separately defined review; it treats an unshown link as broken, which does not by itself show that the process is happening.
+- Novelty, from recall and unverified: known. Nearest known concepts: goal displacement; ritualism; means becoming ends.
+
+**In the family.** Echohollow loses responsiveness, Metricmirror reviews a measure's effects, PurposeLinkReview checks the link on a schedule, and Meaningthin is the weakening connection itself.
+
+---
+
+### Mirrorbloom#f79d
+
+`Mind` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Mirrorbloom.json)
+
+**Gloss.** A self-representation changes its maker, so the next self-representation concerns a subject partly shaped by the earlier one
+
+**Mechanism.**
+
+> A person or agent makes a representation of itself and responds to it in ways that change its conduct or self-understanding, and those changes become part of the subject of a later self-representation, linking successive representations through their effects on the represented self. The representation must take part in changing the self, and that change must enter a later representation; successive snapshots with no such influence are not an instance. The representation can be a portrait, a narrative or a classification.
+
+**Invariants.**
+- A self-representation takes part in changing the represented self.
+- That change enters a later self-representation.
+
+**Failure modes.**
+- Self-confirmation as evidence: confirmation that a description helped produce is taken as independent evidence.
+- Recursion as improvement: recursive self-description is assumed to make the self more accurate or better off.
+
+#### Design
+
+**Why it exists.** Self-portraits, narratives and self-descriptions are treated as records, but they also shape the self they record. Mirrorbloom names that recursion between self and representation.
+
+**Why Mind.** One person or agent can represent itself and respond to the representation.
+
+**Can it be removed?** Labelloop concerns classifications changing those they classify, and Reflexion critiques and retries after failure; neither describes successive self-representations shaping the self they represent. Removable if self-representations are assumed to leave their subject unchanged.
+
+**Intended use.** recognising when a self-portrait, narrative or self-description is changing its maker.
+
+**Future uses.** agents that write and reread descriptions of themselves in memory.
+
+**Broad-use contexts.** self-portraiture, autobiography, organisational narratives, journals, agent memory.
+
+**Broad-use intersection (review hypothesis).** a self-representation, a change in the self that it takes part in, and a later representation that the change enters.
+
+**Varies (descendant territory).** the form of representation and the direction of change.
+
+**Extension shape.** a variant for organisations; a variant for agent self-models.
+
+**Design tensions.**
+- A self-description that helps produce its own confirmation looks like an accurate one.
+
+**Tradeoffs.**
+- Gains: a name for self-representation as a cause as well as a record.
+- Gives up: treating self-descriptions as neutral records.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. It overlaps Labelloop when the self-representation classifies; portraits and narratives need not classify, so it relates to Labelloop rather than extending it.
+- Novelty, from recall and unverified: known. Nearest known concepts: looping effects; narrative identity.
+- Caution: the card's future use is agents that write and reread descriptions of themselves in memory. A self-description altered by someone else is outside the card's own definition, yet it would run the same loop, producing the conduct that confirms it, so comparing record with behaviour would not expose it. Same shape as PathwayMemory's contamination caution.
+
+**In the family.** Labelloop loops through classifications, Identitylag lags behind change, Reflexion critiques after failure, and Mirrorbloom is a self-representation reshaping its maker.
+
+---
+
+### Quietroot#9215
+
+`Mind` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Quietroot.json)
+
+**Gloss.** Development continues during an interval with little outwardly visible progress
+
+**Mechanism.**
+
+> Preparatory abilities, relationships or supporting structures change while the visible result being watched stays nearly unchanged. The development may later support an outward advance, but it does not depend on that advance appearing. Mere passage of time, continued effort or hoped-for improvement is not an instance, and what counts as visible depends on the observer and the measure.
+
+**Invariants.**
+- A visible result being watched stays nearly unchanged over an interval.
+- Development occurs during that interval in a dimension that supports the result.
+
+**Failure modes.**
+- Stillness read as stagnation: an unchanged output is taken as proof that nothing is developing.
+- Plateau read as growth: every plateau is taken to hide progress.
+- Effort read as development: continued effort or elapsed time is taken to show development.
+
+#### Design
+
+**Why it exists.** Progress is judged by what shows, so development beneath an unchanged result goes unseen or is abandoned. Quietroot names development during an apparently still interval.
+
+**Why Mind.** Development of abilities or relationships belongs to a learner, a group or an agent; one learner suffices.
+
+**Can it be removed?** LatentWander is a particular offline exploration technique and Plateauturn changes method when improvement stalls; neither describes development continuing while the visible result stays still. Removable if development is assumed always to show.
+
+**Intended use.** recognising that a learner, team or system may be developing in supporting dimensions while its watched result stays flat.
+
+**Future uses.** agents building capabilities whose payoff appears later.
+
+**Broad-use contexts.** skill learning, research, institution-building, relationship-building, training runs, agent capability development.
+
+**Broad-use intersection (review hypothesis).** a watched result, an interval in which it stays nearly flat, and development in a supporting dimension.
+
+**Varies (descendant territory).** which supporting dimension develops and what shows it.
+
+**Extension shape.** a variant for organisations; a variant for embodied skill.
+
+**Design tensions.**
+- Naming hidden development can justify persisting with something that is not developing.
+
+**Tradeoffs.**
+- Gains: a name for growth that does not yet show.
+- Gives up: judging development only by its visible result.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. It is not a reason to persist indefinitely.
+- Novelty, from recall and unverified: known. Nearest known concepts: latent learning; incubation; the learning plateau.
+
+**In the family.** Readyrise expresses earlier preparation, Plateauturn changes method on a stall, and Quietroot is development under a still surface.
+
+---
+
+### Readyrise#a9d2
+
+`Mind` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Readyrise.json)
+
+**Gloss.** Earlier preparation is expressed as an apparently sudden advance
+
+**Mechanism.**
+
+> Capacities prepared across earlier activity become usable together, or meet conditions in which they can be expressed, and the resulting advance looks sudden against recent performance. The preparation came earlier and may itself have been gradual or abrupt, visible or not. A sudden appearance alone does not show earlier preparation.
+
+**Invariants.**
+- An advance appears sudden relative to recent performance.
+- Earlier preparation contributes materially to the advance.
+
+**Failure modes.**
+- Trigger credited with all: the final event is credited with the whole change.
+- History invented: a preparatory history is invented to explain an unexplained success.
+- Suddenness as proof: an abrupt advance is taken to show earlier preparation without evidence of it.
+
+#### Design
+
+**Why it exists.** Sudden advances are credited to the moment they appear. Readyrise names the earlier preparation they express.
+
+**Why Mind.** Prepared capacities belong to a learner, a group or an agent; one learner suffices.
+
+**Can it be removed?** PhaseTransition requires a threshold and a discontinuous change of regime, and Leapsettle makes an advance reliable afterwards; neither describes earlier preparation surfacing as a sudden advance. Removable if advances are credited only to their trigger.
+
+**Intended use.** recognising that an apparently sudden advance rests on earlier preparation.
+
+**Future uses.** agents whose separately trained components start working together.
+
+**Broad-use contexts.** skill acquisition, scientific breakthroughs, organisational readiness, product launches, agent capability jumps.
+
+**Broad-use intersection (review hypothesis).** an advance that looks sudden and earlier preparation that contributes to it.
+
+**Varies (descendant territory).** whether the preparation was gradual or abrupt, and visible to whom.
+
+**Extension shape.** a variant for teams; a variant for combined skills.
+
+**Design tensions.**
+- Preparation is easy to reconstruct after a success, and hard to verify.
+
+**Tradeoffs.**
+- Gains: credit placed on preparation as well as on the moment of advance.
+- Gives up: the overnight-success story.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. Quietroot and Readyrise are related but neither entails the other: quiet development need not yield an abrupt advance, and known preparation can produce one.
+- Novelty, from recall and unverified: known. Nearest known concepts: overnight success years in the making; insight after incubation.
+
+**In the family.** Quietroot develops under a still surface, PhaseTransition reorganises at a threshold, Leapsettle consolidates an advance, and Readyrise is preparation surfacing as a sudden advance.
+
+---
 
 ### Mind/Inference (28)
 
@@ -19345,7 +20117,7 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 
 ---
 
-### Mind/Memory (19)
+### Mind/Memory (18)
 
 ### ArchiveServingFrontier#2765
 
@@ -19958,62 +20730,6 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 - `HolographicShard#1352`
 - `HolographicShard#7eb7`
 - `HolographicShard#23fe`
-
----
-
-### Identitylag#2fbd
-
-`Mind` · `Memory` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/Identitylag.json)
-
-**Gloss.** Abilities or circumstances change while self-understanding stays organised around an earlier condition
-
-**Mechanism.**
-
-> A person's or agent's situation changes, but the self-description guiding its expectations and choices still reflects the earlier situation, so for a period what it takes itself to be able or expected to do differs from its changed circumstances. The change can be a gain, a loss or a reorganisation, and eventual adjustment is not guaranteed. A new inaccurate belief about the self is not automatically a lag; the self-description must have been anchored to an earlier condition.
-
-**Invariants.**
-- A self-understanding was anchored to an earlier condition.
-- A relevant change in abilities or circumstances has not yet been incorporated into it.
-
-**Failure modes.**
-- Persistence read as stability: a persisting self-description is taken to show that circumstances have not changed.
-- Disagreement read as lag: every disagreement with an outside assessment is taken as a lag in self-understanding.
-- Claimed change accepted: a claimed new capability is taken as real when the evidence says it is unreliable.
-
-#### Design
-
-**Why it exists.** People and agents change faster than their account of themselves, and act on the old account. Identitylag names that delay.
-
-**Why Mind.** A self-understanding belongs to one person or agent and is kept in its memory.
-
-**Can it be removed?** SelfReminder reinforces a description, Proprioception locates a task, and Identity defines addressability; none describes a self-understanding lagging behind a changed situation. Removable if self-descriptions are assumed to update at once.
-
-**Intended use.** recognising when a person, team or agent is acting on an outdated account of itself.
-
-**Future uses.** agents with persistent self-models across changes in tools, permissions or skill.
-
-**Broad-use contexts.** learning, new responsibilities, recovery, organisational self-conceptions, persistent agents.
-
-**Broad-use intersection (review hypothesis).** a self-understanding anchored to an earlier condition and a change it has not incorporated.
-
-**Varies (descendant territory).** whether the change is a gain, a loss or a reorganisation.
-
-**Extension shape.** a variant for organisations; a variant for agent self-models.
-
-**Design tensions.**
-- A self-understanding that resists a claimed change can be right.
-
-**Tradeoffs.**
-- Gains: a name for acting on an outdated self.
-- Gives up: taking a self-description as current by default.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response. Mirrorbloom concerns a self-description causing change; Identitylag concerns its delayed adjustment to change, and the two can coexist without either showing the other.
-- Novelty, from recall and unverified: known. Nearest known concepts: self-concept lag; identity transition.
-
-**In the family.** Capacitylag lags in capacity, Mirrorbloom changes the self through its description, SelfReminder reinforces a description, and Identitylag is self-understanding behind the self.
 
 ---
 
@@ -20882,7 +21598,7 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 
 ---
 
-### Mind/Reasoning (101)
+### Mind/Reasoning (98)
 
 ### Abduction#e738
 
@@ -22890,62 +23606,6 @@ _Note: Schema correction 2026-08-03: removed Critique.data_schema because it des
 
 ---
 
-### Echoverturn#ad14
-
-`Mind` · `Reasoning` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/Echoverturn.json)
-
-**Gloss.** Repetition progressively reverses a recurring element's effect
-
-**Mechanism.**
-
-> A recognisable element returns, and the accumulated encounters, or their changing relations, alter its effect until it works against the effect of its earlier appearances, while the repeated form stays traceable. Recurrence must contribute to the reversal, and the earlier and later effects must be opposed in the relevant respect; fading intensity, ordinary novelty, or a reversal caused by unrelated new information is not an instance.
-
-**Invariants.**
-- A recognisable element recurs.
-- Its recurrence contributes to an effect opposed to that of its earlier appearances.
-
-**Failure modes.**
-- Form read as effect: an unchanged form is assumed to keep its effect.
-- Reinterpretation read as reversal: any change of interpretation is called a reversal.
-- One audience assumed: the same repetition is assumed to work the same way on every audience.
-
-#### Design
-
-**Why it exists.** Repetition is expected to strengthen an element's effect or let it fade, not to reverse it. Echoverturn names the reversal that recurrence itself can produce.
-
-**Why Mind.** The effect of a recurring element is on a perceiver, and one perceiver suffices.
-
-**Can it be removed?** Echohollow concerns lost responsiveness while a practice persists, Spiralback revisits with new tools, and Ruleflip reverses a rule's purpose through incentives; none describes repetition reversing an element's effect. Removable if repeated elements are assumed to keep their direction of effect.
-
-**Intended use.** recognising when something repeated is starting to work against its original effect.
-
-**Future uses.** agents whose repeated phrasings, reassurances or prompts change their effect on users.
-
-**Broad-use contexts.** art and music, persuasion, rituals, reassurance in care, human-agent interaction, advertising.
-
-**Broad-use intersection (review hypothesis).** a recurring element, a recurrence that contributes, and an effect opposed to the earlier one.
-
-**Varies (descendant territory).** the element, the audience, and how many recurrences the reversal takes.
-
-**Extension shape.** a variant for persuasion; a variant for artistic motifs.
-
-**Design tensions.**
-- The reversal can depend on the audience, so it may happen for some and not for others.
-
-**Tradeoffs.**
-- Gains: a name for repetition turning against itself.
-- Gives up: assuming that repetition only reinforces or fades.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response. Echohollow concerns loss of responsiveness; Echoverturn concerns reversal of effect and can be intensely responsive.
-- Novelty, from recall and unverified: known. Nearest known concepts: overexposure; the boy who cried wolf.
-
-**In the family.** Echohollow empties a practice, Spiralback returns with new tools, Ruleflip turns a rule against its purpose, and Echoverturn is repetition reversing an effect.
-
----
-
 ### Edgehold#4035
 
 `Mind` · `Reasoning` · R2 · T2
@@ -24469,69 +25129,6 @@ _Note: A cue can have evidential value through independently validated predictiv
 
 ---
 
-### Labelloop#1bb2
-
-`Mind` · `Reasoning` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/Labelloop.json)
-
-**Gloss.** A classification changes those it classifies, altering the fit of later classifications
-
-**Mechanism.**
-
-> A {{category}} applied to people, teams, models or other responsive members becomes part of the conditions shaping their conduct, through their response to the label or through the treatment it brings. Their changed conduct then affects how the classification fits when it is applied again. Members can move toward the label, away from it, or into a different relation with its criteria, so the label can become truer, falser or differently true, and members need not know the label for its treatment to change them.
-
-**Invariants.**
-- A classification takes part in changing its members.
-- That change bears on how the classification fits or is applied later.
-
-**Failure modes.**
-- Fulfilment read as prediction: increased fit is taken to show that the classification independently predicted what it helped produce.
-- Change read as loop: members changing for other reasons is taken as the classification's effect.
-- Correlation read as cause: exposure to the label and changed behaviour occurring together are taken as proof that the label caused the change.
-
-**Dependency bindings.**
-
-| Category | Placeholder | Exact definition |
-| --- | --- | --- |
-| `references` | `{{category}}` | `sema:Category#mh:SHA-256:d2db51ecab5ef8f0e434bd592f729c2ba955f0609e68a48aac9a95232447a696` |
-
-#### Design
-
-**Why it exists.** Classifications are treated as reports on what they classify, but they also act on it. Labelloop names that loop, in which a label helps shape the fit it seems only to measure.
-
-**Why Mind.** A single party can classify itself and respond to the classification, so one agent suffices; social cases can specialise it.
-
-**Can it be removed?** Category groups objects, Situfit checks present fit, Sunsetkind carries an expiry condition, and ClassificationReview re-checks fit on a schedule; none describes a classification changing what it classifies. Removable if classified things are assumed not to respond to being classified.
-
-**Intended use.** recognising when a label or classification is changing the people, teams or systems it describes.
-
-**Future uses.** agents classifying users or other agents who respond to the classification.
-
-**Broad-use contexts.** education, diagnosis, credit scoring, team labels, recommender systems, model evaluations.
-
-**Broad-use intersection (review hypothesis).** a classification of responsive members, a change in them that the classification takes part in, and a later classification that the change bears on.
-
-**Varies (descendant territory).** whether members know the label, and whether the change moves toward or away from it.
-
-**Extension shape.** a variant for self-classification; a variant for institutional labels.
-
-**Design tensions.**
-- A label's effect is hard to separate from what it would have predicted anyway.
-
-**Tradeoffs.**
-- Gains: a name for labels that help make themselves true or false.
-- Gives up: reading fit as independent confirmation.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response. ClassificationReview is one separately defined re-check; its scope, agents who can learn of the classification, is narrower than the process.
-- The scope includes movement toward the label as well as away from it, and change through treatment when members do not know the label.
-- Novelty, from recall and unverified: known. Nearest known concepts: looping effects of human kinds; self-fulfilling prophecy; the Pygmalion effect.
-
-**In the family.** Category groups, Situfit checks fit, Sunsetkind retires categories, ClassificationReview re-checks, and Labelloop is the loop by which a classification changes what it classifies.
-
----
-
 ### Labelsqueeze#5363
 
 `Mind` · `Reasoning` · R2 · T2
@@ -25093,62 +25690,6 @@ _Note: A cue can have evidential value through independently validated predictiv
 - `MetaPrompt#db51`
 - `MetaPrompt#f994`
 - `MetaPrompt#308c`
-
----
-
-### Mirrorbloom#f79d
-
-`Mind` · `Reasoning` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/Mirrorbloom.json)
-
-**Gloss.** A self-representation changes its maker, so the next self-representation concerns a subject partly shaped by the earlier one
-
-**Mechanism.**
-
-> A person or agent makes a representation of itself and responds to it in ways that change its conduct or self-understanding, and those changes become part of the subject of a later self-representation, linking successive representations through their effects on the represented self. The representation must take part in changing the self, and that change must enter a later representation; successive snapshots with no such influence are not an instance. The representation can be a portrait, a narrative or a classification.
-
-**Invariants.**
-- A self-representation takes part in changing the represented self.
-- That change enters a later self-representation.
-
-**Failure modes.**
-- Self-confirmation as evidence: confirmation that a description helped produce is taken as independent evidence.
-- Recursion as improvement: recursive self-description is assumed to make the self more accurate or better off.
-
-#### Design
-
-**Why it exists.** Self-portraits, narratives and self-descriptions are treated as records, but they also shape the self they record. Mirrorbloom names that recursion between self and representation.
-
-**Why Mind.** One person or agent can represent itself and respond to the representation.
-
-**Can it be removed?** Labelloop concerns classifications changing those they classify, and Reflexion critiques and retries after failure; neither describes successive self-representations shaping the self they represent. Removable if self-representations are assumed to leave their subject unchanged.
-
-**Intended use.** recognising when a self-portrait, narrative or self-description is changing its maker.
-
-**Future uses.** agents that write and reread descriptions of themselves in memory.
-
-**Broad-use contexts.** self-portraiture, autobiography, organisational narratives, journals, agent memory.
-
-**Broad-use intersection (review hypothesis).** a self-representation, a change in the self that it takes part in, and a later representation that the change enters.
-
-**Varies (descendant territory).** the form of representation and the direction of change.
-
-**Extension shape.** a variant for organisations; a variant for agent self-models.
-
-**Design tensions.**
-- A self-description that helps produce its own confirmation looks like an accurate one.
-
-**Tradeoffs.**
-- Gains: a name for self-representation as a cause as well as a record.
-- Gives up: treating self-descriptions as neutral records.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response. It overlaps Labelloop when the self-representation classifies; portraits and narratives need not classify, so it relates to Labelloop rather than extending it.
-- Novelty, from recall and unverified: known. Nearest known concepts: looping effects; narrative identity.
-- Caution: the card's future use is agents that write and reread descriptions of themselves in memory. A self-description altered by someone else is outside the card's own definition, yet it would run the same loop, producing the conduct that confirms it, so comparing record with behaviour would not expose it. Same shape as PathwayMemory's contamination caution.
-
-**In the family.** Labelloop loops through classifications, Identitylag lags behind change, Reflexion critiques after failure, and Mirrorbloom is a self-representation reshaping its maker.
 
 ---
 
@@ -28210,7 +28751,7 @@ _Note: The coined handle names the failure and the card defines the guard, as Co
 
 ---
 
-### Mind/Strategy (113)
+### Mind/Strategy (104)
 
 ### ActionConvergence#89d1
 
@@ -28444,62 +28985,6 @@ _Note: The coined handle names the failure and the card defines the guard, as Co
 - `Agent#aaec`
 - `Agent#6765`
 - `Agent#2176`
-
----
-
-### Aimscatter#ded3
-
-`Mind` · `Strategy` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/Aimscatter.json)
-
-**Gloss.** Effort disperses among competing directions until none receives enough to advance
-
-**Mechanism.**
-
-> Several directions keep drawing on a shared supply of effort or attention, and the allocation becomes too fragmented to sustain the progress each requires. Activity can continue in every direction while advancement stalls across the set. Switching and restarting can deepen the shortage but are not essential: even perfectly efficient allocation can be spread too thin. A single stalled direction, a short gap in visible output, or broad exploration that yields comparative learning is not an instance.
-
-**Invariants.**
-- Several directions compete for a shared capacity.
-- Over the interval considered, none of them receives enough of it to advance.
-
-**Failure modes.**
-- Latency read as dispersal: directions waiting on an external dependency, or developing out of sight, are taken to be starved.
-- Exploration read as dispersal: a broad portfolio that is producing comparative learning is taken to be scattered.
-- Person read as cause: dispersal is taken to show low ability or motivation.
-
-#### Design
-
-**Why it exists.** Spreading effort over many directions feels like progress on all of them. Aimscatter names the point where the spread itself stops every direction from advancing.
-
-**Why Mind.** Effort and attention are an agent's or a group's to allocate; one agent suffices.
-
-**Can it be removed?** Prioritize ranks options and ComputeBudget caps total cost; neither describes effort spread too thin to advance any direction, which can happen within a respected budget. Removable if every direction is assumed to advance as long as it receives some effort.
-
-**Intended use.** recognising when work, learning or attention is divided so finely that nothing reaches its next useful result.
-
-**Future uses.** agents juggling many tasks or threads under one budget.
-
-**Broad-use contexts.** project portfolios, learning several skills, research programmes, personal commitments, multi-task agents, organisational initiatives.
-
-**Broad-use intersection (review hypothesis).** competing directions, a shared capacity, and a notion of advancement over a stated interval.
-
-**Varies (descendant territory).** what counts as advancement and over what interval.
-
-**Extension shape.** a variant for attention within one task; a variant for organisational portfolios.
-
-**Design tensions.**
-- Keeping several options open can be valuable, and looks like dispersal from outside.
-
-**Tradeoffs.**
-- Gains: a name for activity without advancement across a set.
-- Gives up: counting activity in each direction as progress.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response. StalledDirectionReview acts on a period without results; that trigger also fires during legitimate latency, so it is not a diagnosis of the process.
-- Novelty, from recall and unverified: known. Nearest known concepts: spreading oneself too thin; context-switching cost.
-
-**In the family.** Prioritize ranks, ComputeBudget caps cost, StalledDirectionReview pauses what does not advance, and Aimscatter is the dispersal itself.
 
 ---
 
@@ -29144,64 +29629,6 @@ _Note: The coined handle names the failure and the card defines the guard, as Co
 - `CapacityPressure#739d`
 - `CapacityPressure#f289`
 - `CapacityPressure#ddfe`
-
----
-
-### Capacitylag#977c
-
-`Mind` · `Strategy` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/Capacitylag.json)
-
-**Gloss.** Expectations or demands increase ahead of the capacity available to meet them
-
-**Mechanism.**
-
-> New demands arrive or grow before the relevant abilities, resources or coordination have developed enough to meet them, and the gap is produced or widened by that difference in timing, even where capacity is improving. A fixed mismatch without that timing is simply insufficient capacity, and a loss of capacity under unchanged demands is not an instance. The comparison is relative to particular demands and conditions, not a judgment of general ability.
-
-**Invariants.**
-- Demands arrive or increase over the interval considered.
-- The capacity to meet them develops more slowly than they grow.
-
-**Failure modes.**
-- Gap read as unwillingness: the gap is taken to show that effort is being withheld.
-- Output read as catching up: rising output is taken to show that capacity has caught up.
-- Catching up assumed: closing the gap is assumed to be the only right outcome, when demands can also be reduced or refused.
-
-#### Design
-
-**Why it exists.** When demands outgrow capacity, the gap is read as a failing of whoever cannot meet them. Capacitylag names the timing difference that produces the gap.
-
-**Why Mind.** One agent's demands can outgrow its capacity; no second party is needed, though demands often come from others.
-
-**Can it be removed?** CapacityPressure deliberately restricts resources, and Limitlisten measures present limits before a demanding step; neither names demands getting ahead of developing capacity. Removable if demands are assumed to grow no faster than capacity.
-
-**Intended use.** recognising when demands are outrunning the capacity to meet them.
-
-**Future uses.** agents whose workloads expand faster than their tools or training.
-
-**Broad-use contexts.** growing organisations, education, new roles, rapid product growth, expanding agent workloads.
-
-**Broad-use intersection (review hypothesis).** growing demands, a capacity that develops more slowly, and a gap that the timing produces.
-
-**Varies (descendant territory).** which demands grow and which capacity lags.
-
-**Extension shape.** a variant for organisations; a variant for learners.
-
-**Design tensions.**
-- The gap invites blame, though it is a matter of timing.
-
-**Tradeoffs.**
-- Gains: a name for gaps produced by timing rather than inadequacy.
-- Gives up: reading every gap as a shortfall of the person or system.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response. Demands can be reduced or refused as well as met.
-- Novelty, from recall and unverified: known. Nearest known concepts: growing pains; scaling debt; demand outpacing supply.
-- Support that recedes faster than independent capacity develops is a case: the receding support is a demand arriving on the capacity that remains.
-- When a slow-changing body faces fast-changing demands, it is a Capacitylag case if the question is whether its capacity keeps up, and a Scaleasynchrony case if the question is how it fits with a level it depends on or that depends on it.
-
-**In the family.** Identitylag lags in self-understanding, Scaleasynchrony compares levels, Limitlisten measures present limits, and Capacitylag is demand outrunning capacity.
 
 ---
 
@@ -29876,61 +30303,6 @@ _Note: The coined handle names the failure and the card defines the guard, as Co
 - `CreativeBlend#cc91`
 - `CreativeBlend#0f9f`
 - `CreativeBlend#038c`
-
----
-
-### Crossripening#9f96
-
-`Mind` · `Strategy` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/Crossripening.json)
-
-**Gloss.** Development in one area makes development in another newly possible
-
-**Mechanism.**
-
-> A change in one capacity or setting supplies something another developmental path lacked, such as a prerequisite, access, support, a distinction or a way of practising, so that the second path gains an opportunity for development it did not have before. The second development need not then occur, and parallel improvement without such a contribution is not an instance.
-
-**Invariants.**
-- The contribution crosses two distinguishable areas of development.
-- It changes what development is possible in the receiving area.
-
-**Failure modes.**
-- Coincidence read as enabling: two areas improving at once are taken as one enabling the other.
-- Possibility read as certainty: a newly possible development is assumed to happen.
-
-#### Design
-
-**Why it exists.** Development is tracked area by area, so the openings one area creates in another go unnoticed. Crossripening names that cross-area enabling.
-
-**Why Mind.** One learner can develop in one area and thereby open another; no second party is needed.
-
-**Can it be removed?** ConceptBlend merges concepts into a third, and Cocapacity records joint capacity among parties; neither describes development in one area opening development in another within the same learner or system. Removable if areas of development are assumed independent.
-
-**Intended use.** recognising when progress in one area has opened a path in another.
-
-**Future uses.** agents whose new tools or skills open further lines of learning.
-
-**Broad-use contexts.** learning, research, creative practice, organisations, curricula, agent tool use.
-
-**Broad-use intersection (review hypothesis).** two distinguishable areas, and a contribution from one that changes what development is possible in the other.
-
-**Varies (descendant territory).** what the first area supplies: a prerequisite, access, support, a distinction or a way of practising.
-
-**Extension shape.** a reciprocal variant in which several paths strengthen one another.
-
-**Design tensions.**
-- An opening is easy to claim and hard to show before the second development happens.
-
-**Tradeoffs.**
-- Gains: a name for development that opens other development.
-- Gives up: tracking each area on its own.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response. Reciprocity is not required; a reciprocal variant could be a separate card.
-- Novelty, from recall and unverified: known. Nearest known concepts: transfer of learning; enabling technologies; the adjacent possible.
-
-**In the family.** ConceptBlend merges concepts, Cocapacity creates joint capacity, and Crossripening is one area's development opening another's.
 
 ---
 
@@ -30652,63 +31024,6 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 ---
 
-### Echohollow#ad70
-
-`Mind` · `Strategy` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/Echohollow.json)
-
-**Gloss.** A recurring practice keeps its outward form while its responsiveness to what it meets fades
-
-**Mechanism.**
-
-> Repetition keeps reproducing a recognisable practice while observations, circumstances or participants' responses have less influence on how it proceeds. The practice can still produce activity, records or small changes while losing the input-sensitive relation that made its repetitions responsive. Mere repetition is not an instance: a practice fixed from the outset never had the responsiveness to lose, and a considered decision that nothing needs to change is still a response.
-
-**Invariants.**
-- The same recurring practice is identifiable across occasions.
-- Its response to relevant differences in what it meets weakens over the interval considered.
-
-**Failure modes.**
-- Stability read as hollowness: a practice that keeps returning the same result because nothing relevant changed is taken to have stopped responding.
-- Variation read as responsiveness: small changes, such as a changing counter, are taken to show that the practice still responds.
-- Form judged alone: the practice is judged by its appearance without specifying which input-response relation is meant.
-
-#### Design
-
-**Why it exists.** Practices that keep their form look healthy, even after they stop responding to anything. Echohollow names the fading responsiveness behind an unchanged form.
-
-**Why Mind.** A practice responds to what it meets through an agent's or a group's handling of it; one agent suffices.
-
-**Can it be removed?** Loop requires state to change between iterations and Feedback carries an attributed correction signal; neither describes a practice whose form persists while its sensitivity to inputs fades. Removable if repetition is assumed to stay responsive.
-
-**Intended use.** recognising when a recurring practice, review or routine continues in form after it stopped responding to what it encounters.
-
-**Future uses.** agent routines and scheduled reviews that run unattended.
-
-**Broad-use contexts.** retrospectives, inspections, rehearsal and practice, recurring reports, rituals, scheduled agent jobs.
-
-**Broad-use intersection (review hypothesis).** an identifiable recurring practice and a specified input-response relation compared across occasions.
-
-**Varies (descendant territory).** which responsiveness is meant, such as to faults, to participants or to sound, and over what interval.
-
-**Extension shape.** a variant for scheduled reviews; a variant for embodied practice.
-
-**Design tensions.**
-- Responsiveness can include deciding not to change, which looks the same as hollowness from outside.
-
-**Tradeoffs.**
-- Gains: a name for form without response.
-- Gives up: reading a practice's continuation as a sign of health.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response. PracticeResponseReview reviews after a stated number of unchanged cycles; that is a screening rule, not a diagnosis of the process.
-- A ceremonial repetition that serves remembrance through a stable form is not an instance, because responsiveness was never its purpose.
-- Novelty, from recall and unverified: known. Nearest known concepts: ritualism; going through the motions.
-
-**In the family.** Meaningthin weakens a purpose, Loop requires state change, PracticeResponseReview reviews unchanged cycles, and Echohollow is the fading responsiveness itself.
-
----
-
 ### EmpathySim#33c4
 
 `Mind` · `Strategy` · R2 · T2
@@ -31391,61 +31706,6 @@ _Note: The coined handle names the failure and the card defines the guard, as Co
 
 ---
 
-### Foundationfray#4f69
-
-`Mind` · `Strategy` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/Foundationfray.json)
-
-**Gloss.** Small losses in supporting practices progressively weaken the capabilities that depend on them
-
-**Mechanism.**
-
-> Repeated omissions, forgotten skills or deteriorating support reduce the reliability of basic practices, and more advanced activity continues for a time while its dependable conditions erode as the losses accumulate. The practice must still support the capability: a practice retired because a reliable replacement removed the dependency is not an instance.
-
-**Invariants.**
-- A supporting practice deteriorates over the interval considered.
-- A capability depends on that practice and weakens as it deteriorates.
-
-**Failure modes.**
-- Success read as soundness: a few successful advanced performances are taken to show intact foundations.
-- Obsolescence read as fraying: an obsolete practice is defended merely because it was once foundational.
-
-#### Design
-
-**Why it exists.** Advanced work continues on top of basics that are slowly being lost, and the loss shows only when the advanced work fails. Foundationfray names that erosion beneath.
-
-**Why Mind.** Supporting practices belong to a learner, a team or an agent; one practitioner suffices.
-
-**Can it be removed?** Leapdebt begins with a skipped foundation, and Decay attenuates a value at a set rate; neither describes present foundations eroding under the capabilities built on them. Removable if foundations are assumed to persist once established.
-
-**Intended use.** recognising when supporting practices are eroding beneath capabilities that still seem to work.
-
-**Future uses.** agents whose workflows depend on tools, memories or checks that degrade.
-
-**Broad-use contexts.** training and skills, maintenance, scientific institutions, calibration routines, agent memory and workflow dependencies.
-
-**Broad-use intersection (review hypothesis).** a supporting practice, a capability that depends on it, and accumulating losses in the practice.
-
-**Varies (descendant territory).** which support erodes and how the dependence shows.
-
-**Extension shape.** a variant for skills; a variant for technical maintenance.
-
-**Design tensions.**
-- Defending every old practice as foundational blocks legitimate change.
-
-**Tradeoffs.**
-- Gains: a name for erosion beneath working capabilities.
-- Gives up: trusting advanced results as proof of sound basics.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response. Decline need not be irreversible, uninterrupted or expressible through Decay's attenuation law.
-- Novelty, from recall and unverified: known. Nearest known concepts: skill fade; deferred maintenance.
-
-**In the family.** Leapdebt skips a foundation, Decay attenuates a value, and Foundationfray is a present foundation eroding.
-
----
-
 ### FractalIntelligence#1dca
 
 `Mind` · `Strategy` · R1 · T1
@@ -31532,62 +31792,6 @@ _Note: The coined handle names the failure and the card defines the guard, as Co
 - `FractalIntelligence#7fad`
 - `FractalIntelligence#22a0`
 - `FractalIntelligence#5e3d`
-
----
-
-### Futurefold#221d
-
-`Mind` · `Strategy` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/Futurefold.json)
-
-**Gloss.** Planning contracts toward immediate demands, leaving fewer distant possibilities in view
-
-**Mechanism.**
-
-> Immediate demands increasingly occupy planning, while possibilities and consequences farther ahead receive less consideration or drop from the effective horizon. The future held in view narrows even though more distant possibilities remain available. The contraction is relative to an earlier or otherwise relevant horizon, concerns what is actively considered rather than what is possible, and can be deliberate, temporarily appropriate or harmful.
-
-**Invariants.**
-- Planning considers a narrower horizon than an earlier or otherwise relevant one.
-- Immediate demands take part in the narrowing.
-
-**Failure modes.**
-- Short steps read as contraction: short execution steps are taken to show that the whole horizon narrowed.
-- External loss read as contraction: options removed by outside constraints are taken as a narrowed horizon.
-- Contraction read as error: every narrowing is treated as a mistake, including a deliberate one in an emergency.
-
-#### Design
-
-**Why it exists.** Urgent demands crowd out what lies further ahead, gradually and without a decision. Futurefold names that contraction of the future held in view.
-
-**Why Mind.** A planning horizon belongs to an agent's or a group's attention; one agent suffices.
-
-**Can it be removed?** Roadmap is a planning artifact, Futureclaim weighs future parties' needs, and HorizonReview keeps a distant item in each cycle; none describes the horizon contracting. Removable if planning horizons are assumed to stay where they were set.
-
-**Intended use.** recognising when planning has narrowed toward immediate demands.
-
-**Future uses.** agents and teams under continual urgent load.
-
-**Broad-use contexts.** teams under incident load, organisations in crisis, personal planning under pressure, research groups near deadlines, agents with full queues.
-
-**Broad-use intersection (review hypothesis).** a planning horizon, an earlier or relevant reference horizon, and immediate demands taking part in the narrowing.
-
-**Varies (descendant territory).** how far the horizon was and how far it contracts.
-
-**Extension shape.** a variant for organisations; a variant for personal planning.
-
-**Design tensions.**
-- Narrowing the horizon in an emergency can be right, and is still an instance.
-
-**Tradeoffs.**
-- Gains: a name for a shrinking future that does not wait for a missed opportunity.
-- Gives up: reading a full calendar as a full plan.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response. HorizonReview is one separately defined always-review policy.
-- Novelty, from recall and unverified: known. Nearest known concepts: short-termism; tunnelling under scarcity; the urgent crowding out the important.
-
-**In the family.** Roadmap plans, Futureclaim weighs future needs, HorizonReview keeps a distant item in view, and Futurefold is the contraction itself.
 
 ---
 
@@ -32640,63 +32844,6 @@ _Note: The coined handle names the failure and the card defines the guard, as Co
 - `MarginalValueRule#48c4`
 - `MarginalValueRule#ffe1`
 - `MarginalValueRule#3499`
-
----
-
-### Meaningthin#8366
-
-`Mind` · `Strategy` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/Meaningthin.json)
-
-**Gloss.** An activity continues while its connection to a valued purpose weakens
-
-**Mechanism.**
-
-> The practices that sustain an activity persist while what they accomplish, or what participants find valuable in them, becomes less connected to the purpose through which the activity mattered. Continuation and contribution separate: the activity can keep its routines, output or recognition without keeping the same relation to that purpose. Changed circumstances, changed aspirations and attachment to proxy outcomes are possible routes, not required causes. The activity need not have lost every purpose, the weakening need not be permanent or bad overall, and a practice deliberately redirected to a new purpose is not an instance.
-
-**Invariants.**
-- There is a continuing activity and a specified purpose valued from some perspective.
-- The activity's connection to that purpose weakens over the interval considered, in practical contribution or in experienced significance.
-
-**Failure modes.**
-- Output read as purpose: continued routines, output or recognition are taken to show that the purpose is still served.
-- Uncertainty read as loss: lack of evidence about the connection is taken as proof that it weakened.
-- Swapped bases: practical contribution and experienced significance are substituted for each other when judging the weakening.
-- Productivity verdict: the activity is required to justify itself through measurable output.
-
-#### Design
-
-**Why it exists.** Activities outlive the reasons they mattered, and their continuing output hides it. Meaningthin names the weakening connection itself, apart from any review that might catch it.
-
-**Why Mind.** A purpose has to be valued from some perspective, so the process needs an agent or a group; one agent suffices.
-
-**Can it be removed?** Goal pins a testable end state, Metricmirror reviews what a measure does, and PurposeLinkReview checks the link on a schedule; none describes the link weakening while the activity continues. Removable if activities are assumed to keep their purpose while they run.
-
-**Intended use.** recognising when an activity, meeting, practice or programme continues with less connection to what made it matter.
-
-**Future uses.** long-running agents and organisations whose routines outlast their reasons.
-
-**Broad-use contexts.** recurring meetings, creative routines, institutional programmes, reporting cycles, research lines, agent tasks.
-
-**Broad-use intersection (review hypothesis).** a continuing activity, a purpose valued from some perspective, and a basis for judging a weakening connection over an interval.
-
-**Varies (descendant territory).** whether the connection is judged by contribution or by experienced significance, and whose purpose is meant.
-
-**Extension shape.** a variant for collective purposes; a variant for personal meaning.
-
-**Design tensions.**
-- The connection to a purpose is often hard to observe, so uncertainty can be mistaken for loss.
-
-**Tradeoffs.**
-- Gains: a name for continuing without purpose that does not wait for failure.
-- Gives up: the assumption that a running activity is a meaningful one.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response. PurposeLinkReview is one separately defined review; it treats an unshown link as broken, which does not by itself show that the process is happening.
-- Novelty, from recall and unverified: known. Nearest known concepts: goal displacement; ritualism; means becoming ends.
-
-**In the family.** Echohollow loses responsiveness, Metricmirror reviews a measure's effects, PurposeLinkReview checks the link on a schedule, and Meaningthin is the weakening connection itself.
 
 ---
 
@@ -34608,62 +34755,6 @@ _Note: The U stands for Unique, and the axis is judged as novelty: structural di
 
 ---
 
-### Quietroot#9215
-
-`Mind` · `Strategy` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/Quietroot.json)
-
-**Gloss.** Development continues during an interval with little outwardly visible progress
-
-**Mechanism.**
-
-> Preparatory abilities, relationships or supporting structures change while the visible result being watched stays nearly unchanged. The development may later support an outward advance, but it does not depend on that advance appearing. Mere passage of time, continued effort or hoped-for improvement is not an instance, and what counts as visible depends on the observer and the measure.
-
-**Invariants.**
-- A visible result being watched stays nearly unchanged over an interval.
-- Development occurs during that interval in a dimension that supports the result.
-
-**Failure modes.**
-- Stillness read as stagnation: an unchanged output is taken as proof that nothing is developing.
-- Plateau read as growth: every plateau is taken to hide progress.
-- Effort read as development: continued effort or elapsed time is taken to show development.
-
-#### Design
-
-**Why it exists.** Progress is judged by what shows, so development beneath an unchanged result goes unseen or is abandoned. Quietroot names development during an apparently still interval.
-
-**Why Mind.** Development of abilities or relationships belongs to a learner, a group or an agent; one learner suffices.
-
-**Can it be removed?** LatentWander is a particular offline exploration technique and Plateauturn changes method when improvement stalls; neither describes development continuing while the visible result stays still. Removable if development is assumed always to show.
-
-**Intended use.** recognising that a learner, team or system may be developing in supporting dimensions while its watched result stays flat.
-
-**Future uses.** agents building capabilities whose payoff appears later.
-
-**Broad-use contexts.** skill learning, research, institution-building, relationship-building, training runs, agent capability development.
-
-**Broad-use intersection (review hypothesis).** a watched result, an interval in which it stays nearly flat, and development in a supporting dimension.
-
-**Varies (descendant territory).** which supporting dimension develops and what shows it.
-
-**Extension shape.** a variant for organisations; a variant for embodied skill.
-
-**Design tensions.**
-- Naming hidden development can justify persisting with something that is not developing.
-
-**Tradeoffs.**
-- Gains: a name for growth that does not yet show.
-- Gives up: judging development only by its visible result.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response. It is not a reason to persist indefinitely.
-- Novelty, from recall and unverified: known. Nearest known concepts: latent learning; incubation; the learning plateau.
-
-**In the family.** Readyrise expresses earlier preparation, Plateauturn changes method on a stall, and Quietroot is development under a still surface.
-
----
-
 ### Reachsense#f71c
 
 `Mind` · `Strategy` · R2 · T2
@@ -34721,62 +34812,6 @@ _Note: The U stands for Unique, and the axis is judged as novelty: structural di
 - Novelty, from recall and unverified: known. Nearest known concepts: affordances; peripersonal space.
 
 **In the family.** ToolDiscovery finds tools, Limitlisten measures limits, and Reachsense lists what can be done now.
-
----
-
-### Readyrise#a9d2
-
-`Mind` · `Strategy` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/Readyrise.json)
-
-**Gloss.** Earlier preparation is expressed as an apparently sudden advance
-
-**Mechanism.**
-
-> Capacities prepared across earlier activity become usable together, or meet conditions in which they can be expressed, and the resulting advance looks sudden against recent performance. The preparation came earlier and may itself have been gradual or abrupt, visible or not. A sudden appearance alone does not show earlier preparation.
-
-**Invariants.**
-- An advance appears sudden relative to recent performance.
-- Earlier preparation contributes materially to the advance.
-
-**Failure modes.**
-- Trigger credited with all: the final event is credited with the whole change.
-- History invented: a preparatory history is invented to explain an unexplained success.
-- Suddenness as proof: an abrupt advance is taken to show earlier preparation without evidence of it.
-
-#### Design
-
-**Why it exists.** Sudden advances are credited to the moment they appear. Readyrise names the earlier preparation they express.
-
-**Why Mind.** Prepared capacities belong to a learner, a group or an agent; one learner suffices.
-
-**Can it be removed?** PhaseTransition requires a threshold and a discontinuous change of regime, and Leapsettle makes an advance reliable afterwards; neither describes earlier preparation surfacing as a sudden advance. Removable if advances are credited only to their trigger.
-
-**Intended use.** recognising that an apparently sudden advance rests on earlier preparation.
-
-**Future uses.** agents whose separately trained components start working together.
-
-**Broad-use contexts.** skill acquisition, scientific breakthroughs, organisational readiness, product launches, agent capability jumps.
-
-**Broad-use intersection (review hypothesis).** an advance that looks sudden and earlier preparation that contributes to it.
-
-**Varies (descendant territory).** whether the preparation was gradual or abrupt, and visible to whom.
-
-**Extension shape.** a variant for teams; a variant for combined skills.
-
-**Design tensions.**
-- Preparation is easy to reconstruct after a success, and hard to verify.
-
-**Tradeoffs.**
-- Gains: credit placed on preparation as well as on the moment of advance.
-- Gives up: the overnight-success story.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response. Quietroot and Readyrise are related but neither entails the other: quiet development need not yield an abrupt advance, and known preparation can produce one.
-- Novelty, from recall and unverified: known. Nearest known concepts: overnight success years in the making; insight after incubation.
-
-**In the family.** Quietroot develops under a still surface, PhaseTransition reorganises at a threshold, Leapsettle consolidates an advance, and Readyrise is preparation surfacing as a sudden advance.
 
 ---
 
@@ -36730,7 +36765,7 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 
 ## Society (156)
 
-### Society/Coordination (14)
+### Society/Coordination (12)
 
 ### Compromise#f25f
 
@@ -37218,64 +37253,6 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 
 ---
 
-### FreeRiderProblem#6927
-
-`Society` · `Coordination` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/FreeRiderProblem.json)
-
-**Gloss.** Members of a group contribute too little to a good none of them can be excluded from
-
-**Mechanism.**
-
-> Members of a group all gain from a good, such as defence, irrigation works, a commons kept from overuse or a rising's success, from which no member can be excluded once it exists. Each bears the full cost of their own contribution but receives only a share of what it adds, so each does better if others contribute, and the total falls short of what the members together would choose. Contributions can rise when members gain rewards or face penalties tied to their own contribution, when they deal repeatedly in groups small enough to watch each other, or when an authority collects the costs. Goods from which non-contributors can be excluded, and contributions that cost the contributor nothing, are not instances.
-
-**Invariants.**
-- No member can be excluded from the good once it exists.
-- Each member's own return from contributing is less than its cost to them.
-- The total contributed falls short of what the members together would choose.
-
-**Failure modes.**
-- Every shortfall blamed on free riders: low contribution is blamed on free riding, when members lack the means or do not value the good.
-- Cooperation read as impossible: the shortfall is taken as inevitable, overlooking the monitoring, reputation and graduated sanctions that groups devise for themselves.
-- Ruler as the only remedy: coercion by an authority is assumed to be the only solution, missing arrangements groups govern themselves.
-
-#### Design
-
-**Why it exists.** Failures of shared defence, irrigation, revolt or care for a commons are often blamed on selfishness or apathy. FreeRiderProblem names the gap between each member's return and the group's, and the arrangements that close it.
-
-**Why Society.** It needs many parties who each gain from a shared good and each bear their own cost.
-
-**Can it be removed?** Reasoncommons keeps reasons readable and Consensus reaches agreement; neither describes under-contribution to a good no member can be excluded from. Removable if contributions are modelled as matching what members together would choose.
-
-**Intended use.** explaining why shared goods were under-provided and how groups and states came to provide them.
-
-**Future uses.** assessing contributions to shared infrastructure, open knowledge and climate stability.
-
-**Broad-use contexts.** defence and taxation, irrigation and commons, revolts and strikes, public health, climate.
-
-**Broad-use intersection (review hypothesis).** a good no member can be excluded from, contributions that cost the contributor more than their own return, and a shortfall.
-
-**Varies (descendant territory).** the size of the group, the good, and the arrangements that change members' returns.
-
-**Extension shape.** a variant for commons governed by their users with graduated sanctions.
-
-**Design tensions.**
-- Coercion by an authority can close the shortfall and also create the power that ExitCage describes.
-
-**Tradeoffs.**
-- Gains: a structural reason for under-provision that does not depend on blaming members.
-- Gives up: explaining shared goods by goodwill alone.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response.
-- Group size alone does not determine the contribution shortfall. Its effect depends on how individual costs and benefits scale with membership and on the arrangements for cooperation; larger groups need not cooperate less.
-- Novelty, from recall and unverified: known. Nearest known concepts: Olson's The Logic of Collective Action (1965); Hardin's tragedy of the commons (1968); Ostrom's Governing the Commons (1990).
-
-**In the family.** FreeRiderProblem is the shortfall in a shared good, SecurityDilemma the spiral between parties, and ExitCage the durable extraction that can supply shared goods by force.
-
----
-
 ### IdentityHandshake#4397
 
 `Society` · `Coordination` · R1 · T2
@@ -37731,68 +37708,6 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 
 ---
 
-### SecurityDilemma#a61b
-
-`Society` · `Coordination` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/SecurityDilemma.json)
-
-**Gloss.** Each side's defensive build-up reads as a threat to the other, so both arm and both end less secure
-
-**Mechanism.**
-
-> Two or more parties with no common authority above them each raise their capacity to defend themselves. Much of that capacity could also attack, so each reads the others' increases as possible threats and raises its own in reply; the reply in turn raises the first party's next increase, and each round lowers the security of all though none intends aggression. The spiral eases when the parties can tell defensive from offensive capacity, credibly limit or verify each other's capacity, or accept a common authority, and it can end in a war that each side expected the other to start. One party pursuing aggression while the other only defends, and build-ups that cannot threaten the other side, are not instances.
-
-**Invariants.**
-- The parties have no common authority able to guarantee their security.
-- Each party raises its capacity to secure itself, not to attack the others.
-- Each party's increase in defensive capacity can also threaten the others.
-- Each party answers the others' increases by raising its own, and that answer raises the others' next increases.
-
-**Failure modes.**
-- Intent read from capacity: the other side's build-up is taken as proof of aggressive intent.
-- Every war a spiral: wars that one side sought on purpose are explained as spirals no one wanted.
-- Restraint read as weakness: one side's attempt to limit or signal its capacity is dismissed as a trick or exploited.
-
-#### Design
-
-**Why it exists.** Arms races and wars are often explained by aggressive intent on one side. SecurityDilemma names the spiral that defensive measures alone can produce, so a model can ask whether intent is needed to explain a build-up.
-
-**Why Society.** It needs at least two parties with separate security, each reading the other's capacity.
-
-**Can it be removed?** Recifluence, its parent, is any reciprocal influence; SecurityDilemma specifies defensive capacity read as threat. Removable if every build-up is modelled as aggression or deterrence.
-
-**Intended use.** explaining arms races and wars between parties that each armed for their own security.
-
-**Future uses.** assessing escalation between states, alliances, firms and AI developers competing on capability.
-
-**Broad-use contexts.** Greek city-states, European powers before 1914, the Cold War, regional rivalries, competition in dual-use technology.
-
-**Broad-use intersection (review hypothesis).** parties without a common authority, defensive capacity that can also attack, and reciprocal increases.
-
-**Varies (descendant territory).** how distinguishable defence is from offence, and what limits or verifies capacity.
-
-**Extension shape.** a variant in which capacity is verified, easing the spiral.
-
-**Design tensions.**
-- The invariant that each party arms to secure itself is what separates the dilemma from aggression, and it is the hardest to establish from evidence.
-
-**Tradeoffs.**
-- Gains: escalation explained without assuming aggressive intent.
-- Gives up: a single villain in every arms race.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response.
-- It extends Recifluence: one party's build-up changes the other's response, which returns to raise the first party's next build-up.
-- The invariant that each party arms to secure itself is kept although it is hard to establish, because without it every aggression answered by defence would be an instance; plans, doctrine and the parties' own records bear on it.
-- Novelty, from recall and unverified: known. Nearest known concepts: Herz's security dilemma (1950); Butterfield (1951); Jervis's spiral model (1976, 1978).
-
-**In the family.** Recifluence is reciprocal influence in general, SecurityDilemma its defensive spiral, FreeRiderProblem the shortfall in a shared good, and Warsift what long competition does to the polities that survive.
-
-**Extends (exact parent).** `sema:Recifluence#mh:SHA-256:4fba0e2a7234f81a910b220abaedd7890ba08700646aeaa090a11f0c313dcf11`
-
----
-
 ### Vote#8493
 
 `Society` · `Coordination` · R2 · T2
@@ -37902,7 +37817,1181 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 
 ---
 
-### Society/Economics (15)
+### Society/Dynamics (20)
+
+### CumulativeCulture#1e8a
+
+`Society` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/CumulativeCulture.json)
+
+**Gloss.** Skills and knowledge accumulate across generations as people learn from others, improve what they inherit and pass improvements on
+
+**Mechanism.**
+
+> People learn skills, tools and knowledge from others and sometimes improve on what they learned. Each generation starts from the stock it inherits, so retained improvements provide a basis for further improvements beyond what anyone could invent alone. Retention and growth depend on learning, practice and innovation; population size and connections affect these processes without determining their outcome. Skills can be lost when transmission breaks down. Learning that is not passed on, and transmission that copies without ever improving, are not instances.
+
+**Invariants.**
+- Skills and knowledge are learned from others rather than reinvented by each learner.
+- Some learners improve on what they learned, and the improvements are passed on.
+- Improvements are retained long enough for later learners to build on them.
+
+**Failure modes.**
+- Stock read as ability: differences in tools or knowledge between peoples are attributed to differences in individual ability without examining learning and transmission.
+- Accumulation assumed: the stock is assumed only to grow, missing losses that can follow disrupted transmission, isolation or a shrinking population.
+- Size alone: a large or connected population is treated as guaranteeing accumulation without examining the learning, practice and innovation that sustain it.
+
+#### Design
+
+**Why it exists.** Differences in tools and knowledge between peoples have been read as differences in ability. CumulativeCulture names how socially transmitted improvements become a basis for further improvements, directing attention to the conditions that sustain that accumulation.
+
+**Why Society.** Learning from others needs at least two parties, a learner and a model, and accumulation links successive learners.
+
+**Can it be removed?** Sideinherit is a single transfer between separate lines of descent, and Foundationfray is the erosion of supporting practices; neither describes successive improvements retained through social transmission. Removable if each generation is modelled as reinventing its knowledge independently.
+
+**Intended use.** explaining the accumulation and loss of skills and knowledge through learning, improvement and transmission.
+
+**Future uses.** assessing how communities of practice, human and machine, keep and improve what they know.
+
+**Broad-use contexts.** Palaeolithic toolkits, Tasmanian isolation, the growth of science and technology, crafts lost and recovered.
+
+**Broad-use intersection (review hypothesis).** learning from others, improvements passed on, and retained improvements that later learners build on.
+
+**Varies (descendant territory).** the channels of teaching and storage, the size and connection of the population, and the rates of innovation, retention and loss.
+
+**Extension shape.** a variant for written and stored knowledge, whose loss depends less on living practitioners.
+
+**Design tensions.**
+- More learners and contacts can widen access to models and innovations, but their effect on accumulation depends on what is learned, how it is transmitted and whether learners improve it.
+
+**Tradeoffs.**
+- Gains: an account of accumulated knowledge that includes social transmission rather than attributing differences to individual ability alone.
+- Gives up: crediting individual genius alone.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response.
+- Population size and connectivity are contributing conditions, not defining guarantees of accumulation or loss. A large connected population can fail to retain improvements, and a small isolated community can sustain complex skills; demographic explanations require evidence about transmission and innovation in the case at hand.
+- Novelty, from recall and unverified: known. Nearest known concepts: cumulative cultural evolution (Boyd and Richerson); Tomasello's ratchet effect (1999); Henrich's Tasmanian case (2004); Kremer's population and technological change (1993).
+
+**In the family.** Sideinherit is one transfer, InnovationDiffusion the spread of a practice, Foundationfray the erosion of supports, and CumulativeCulture successive improvements retained through social transmission.
+
+---
+
+### DemographicTransition#6e31
+
+`Society` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/DemographicTransition.json)
+
+**Gloss.** Deaths fall first and births follow after a lag, so a population grows fast until both are low
+
+**Mechanism.**
+
+> In a population where births and deaths are both high, better food supply, sanitation and medicine lower deaths, especially of children. Births fall only later, often a generation or more after deaths, as families respond to more children surviving, to children's work becoming less valuable and their schooling more costly, and to changing ideas about family size. During the lag the population grows quickly and becomes younger; when births have fallen too, growth slows and the population ages. Population change driven by migration, and falls in births that do not follow a fall in deaths, are not instances.
+
+**Invariants.**
+- Deaths fall in a population where births and deaths were both high.
+- Births fall after deaths, and during the lag births exceed deaths by more than before.
+- Growth slows once births have fallen.
+
+**Failure modes.**
+- Stages read as law: the sequence is assumed to run on a fixed timetable, when the lag's length and the level births settle at vary widely.
+- Lag read as ignorance: high births during the lag are blamed on irrationality, when they can follow from what children are worth to families and the risks those families still face.
+- End assumed: births are assumed to settle at replacement, when they can fall well below it.
+
+#### Design
+
+**Why it exists.** Rapid population growth in the last two centuries is often read as people having more children, when it came from fewer dying while births stayed high for a time. DemographicTransition names that sequence and its lag.
+
+**Why Society.** Births and deaths are outcomes of many households' conditions and choices; the lag between them is a population-level process.
+
+**Can it be removed?** Ripplelag describes a delay between connected parts; it does not say which rate falls first or what the lag does to growth and age structure. Removable if births and deaths are modelled as changing together.
+
+**Intended use.** explaining periods of rapid population growth and later ageing by the lag between falling deaths and falling births.
+
+**Future uses.** comparing transitions across countries, including stalled or very fast ones, and projecting age structures.
+
+**Broad-use contexts.** European transitions from the eighteenth century, twentieth-century transitions in Asia, Latin America and Africa, populations now below replacement.
+
+**Broad-use intersection (review hypothesis).** a population with high births and deaths, a fall in deaths, and a later fall in births.
+
+**Varies (descendant territory).** what lowers deaths, the length of the lag, and where births settle.
+
+**Extension shape.** a variant for births falling below replacement after the transition.
+
+**Design tensions.**
+- Calling the sequence a transition implies an end state, while births in many populations have kept falling past it.
+
+**Tradeoffs.**
+- Gains: a reason why growth peaks and then slows.
+- Gives up: a fixed timetable for when a population completes it.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response.
+- France, where births fell early alongside deaths, falls outside the card by its own boundary rather than counting against it.
+- Novelty, from recall and unverified: known. Nearest known concepts: demographic transition theory (Thompson, 1929; Notestein, 1945).
+
+**In the family.** MalthusianTrap is the regime before, and DemographicTransition is how a population leaves it; Ripplelag is the general delay of which its lag is one case.
+
+---
+
+### DensityRatchet#2ace
+
+`Society` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/DensityRatchet.json)
+
+**Gloss.** A practice that lets a territory feed more people becomes impossible to abandon once the population has grown to depend on it
+
+**Mechanism.**
+
+> A new practice, such as farming, irrigation or synthetic fertilizer, raises the number of people a territory can feed. While the practice continues, the population grows toward the new capacity, and the larger it grows, the fewer of its people the earlier practice could feed: abandoning the practice would mean losing the people it alone supports. So the practice persists and spreads even where it brings longer work, poorer health or greater risk per person than the one it replaced. A change that can be reversed without a loss of population, and continued use that rests only on preference, are not instances.
+
+**Invariants.**
+- The practice raises the number of people a territory can feed above what the earlier practice could.
+- The population grows beyond the earlier practice's capacity while the practice continues.
+- The capacity to abandon the practice without losing population declines as the population grows to depend on it.
+
+**Failure modes.**
+- Persistence read as merit: the practice's persistence is taken to show that it gives better lives per person.
+- Choice imputed: the population is said to have chosen the exchange, when each step was small and no one could compare the end states.
+- Ratchet assumed universal: populations that shrank and abandoned the practice are overlooked.
+
+#### Design
+
+**Why it exists.** The spread of farming and of synthetic fertilizer is often explained by their advantages, yet farming brought longer work and poorer health to many. DensityRatchet names the dependence that keeps such practices whatever their effect per person.
+
+**Why Society.** It needs a population of separate households depending on a shared practice; the growth of many households, not any one decision, removes the way back.
+
+**Can it be removed?** Brakefade, its parent, covers any decline in the ability to stop or reverse an activity; DensityRatchet specifies that the decline comes from a population growing to depend on the practice. MalthusianTrap explains the growth but not the irreversibility. Removable if practices that raise capacity are assumed to be kept for their merits alone.
+
+**Intended use.** explaining why a practice that raised how many people a territory could feed persisted and spread, even where it worsened lives per person.
+
+**Future uses.** assessing which current practices, such as synthetic nitrogen or irrigated agriculture, a population could no longer abandon without loss.
+
+**Broad-use contexts.** the adoption of farming, irrigation systems, industrial agriculture and fertilizer, urban water and food supply.
+
+**Broad-use intersection (review hypothesis).** a practice that raises capacity, a population that grows past the earlier practice's capacity while it continues, and a declining capacity to abandon it without losing population.
+
+**Varies (descendant territory).** how fast the population grows into the new capacity, and how much of it the earlier practice could still feed.
+
+**Extension shape.** a variant for infrastructure on which a city's water, food or energy depends.
+
+**Design tensions.**
+- A ratchet explains why a practice persists, while whether it was a good exchange for the people living under it is a separate judgment the card leaves open.
+
+**Tradeoffs.**
+- Gains: persistence explained without assuming merit.
+- Gives up: reading the spread of a practice as evidence that it improved lives.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response.
+- It extends Brakefade: the practice is the ongoing activity, and abandoning it without losing population is the control objective whose capacity declines.
+- Novelty, from recall and unverified: known in parts, coined as a handle. Nearest known concepts: the agricultural or luxury trap (Harari, 2014); Diamond's 'worst mistake in the history of the human race' (1987); path dependence.
+
+**In the family.** Brakefade is any declining ability to stop or reverse an activity, MalthusianTrap is the growth that fills new capacity, and DensityRatchet is the irreversibility that growth creates.
+
+**Extends (exact parent).** `sema:Brakefade#mh:SHA-256:764a4addf9c36ad86e2039e19ebe9a0146b560938b7fbc13bad2def47b79b188`
+
+---
+
+### DiminishingComplexityReturns#cb63
+
+`Society` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/DiminishingComplexityReturns.json)
+
+**Gloss.** Each added layer of a society's or organization's complexity returns less than the one before, until keeping it costs more than it yields and shocks can bring collapse
+
+**Mechanism.**
+
+> A society or organization meets new problems by adding complexity: more specialists, administrators, rules, infrastructure and control. The first additions solve much for little; later ones cost more and solve less, as the easier solutions are taken first and each new layer must also maintain those before it. When the return on further complexity falls below its cost, more and more of the output goes to keeping the complexity already built, reserves against shocks shrink, and a shock once absorbed can bring a rapid loss of complexity, in which simpler arrangements cost less and may serve many people better. Collapse caused only by a force too large for any arrangement, and simplification chosen without a prior fall in returns, are not instances.
+
+**Invariants.**
+- Complexity is added to meet problems.
+- The return on each further addition of complexity falls as complexity grows.
+- The reserve against shocks shrinks as the cost of maintaining the complexity rises.
+
+**Failure modes.**
+- Returns asserted: falling returns are claimed without evidence that later additions cost more and achieved less.
+- Collapse read only as catastrophe: the loss of complexity is described only as disaster, when simpler arrangements may serve many people better.
+- Every decline as overreach: declines driven by conquest, climate or disease are forced into the pattern.
+
+#### Design
+
+**Why it exists.** Collapse is often explained by a single blow: invasion, drought or mismanagement. DiminishingComplexityReturns names the falling returns on complexity that leave a society unable to absorb a blow it once survived.
+
+**Why Society.** It concerns a society or organization of many parties, whose added specialists, rules and controls are costs borne by others.
+
+**Can it be removed?** Complexitytax asks what a distinction would change before dismissing it, and Foundationfray is the erosion of supporting practices; neither describes falling returns on added complexity. Removable if collapse is modelled only as external shock.
+
+**Intended use.** explaining collapse and simplification by falling returns on complexity and shrinking reserves.
+
+**Future uses.** assessing organizations and states whose costs of coordination and control keep rising.
+
+**Broad-use contexts.** the Western Roman Empire, Classic Maya, Chaco Canyon, large bureaucracies, research systems.
+
+**Broad-use intersection (review hypothesis).** added complexity, falling returns on further additions, and shrinking reserves.
+
+**Varies (descendant territory).** what kind of complexity is added, how its returns are measured, and what shock comes.
+
+**Extension shape.** a variant for organizations rather than whole societies.
+
+**Design tensions.**
+- Returns on complexity are hard to measure, so the card is easily asserted after the fact; the first failure mode guards against that.
+
+**Tradeoffs.**
+- Gains: collapse explained by the trajectory of the society itself rather than by the shock alone.
+- Gives up: describing collapse only as catastrophe.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response.
+- Novelty, from recall and unverified: known. Nearest known concepts: Tainter's The Collapse of Complex Societies (1988).
+
+**In the family.** StructuralDemographicCycle is a recurring crisis of agrarian states, DiminishingComplexityReturns a longer decline in what complexity yields, and Foundationfray the erosion of supporting practices.
+
+---
+
+### ExitCage#eef7
+
+`Society` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/ExitCage.json)
+
+**Gloss.** When people cannot leave without losing their livelihood, those who control force can take a share of what they produce
+
+**Mechanism.**
+
+> People whose livelihood is tied to a place, because the land around is barren, already held by others, or their own investment in fields, canals, terraces or stores cannot move, lose the option of leaving. A group that controls force or access can then take a share of what they produce and impose obligations on them, and the subordination lasts while leaving costs more than staying. Where people can leave at small cost, would-be rulers lose them to flight and their power stays limited. The cage may be set by terrain, by neighbours, by debt or by investment, and it tightens as investment in place grows. Subordination sustained by benefits the subjects would accept even with exit open, and limits on leaving unrelated to livelihood, are not instances.
+
+**Invariants.**
+- Leaving would cost the people their livelihood.
+- A group that controls force or access takes a share of their output or labour.
+- The arrangement lasts while leaving costs more than staying.
+
+**Failure modes.**
+- Terrain as destiny: physical barriers alone are credited, when neighbours, debts and immovable investment close exit as firmly.
+- Exit read as free: people with open land around them are assumed able to leave at no cost, ignoring kin, rights to land and risk.
+- Every state caged: all states are explained by closed exit, overlooking those built through trade, religion or defence.
+
+#### Design
+
+**Why it exists.** State formation is often explained by the benefits rulers provided. ExitCage names the condition under which extraction can persist without them: people who cannot leave without losing their livelihood.
+
+**Why Society.** It needs at least two parties with opposed interests: those who would leave and those who take a share of what they produce.
+
+**Can it be removed?** Burdenlight lists who bears costs and who benefits, and Powerreturn asks for concentrated authority to be returned; neither describes how a loss of exit makes extraction durable. Removable if subjects are modelled as always free to leave.
+
+**Intended use.** explaining where and why durable extraction and subordination arose, and where flight kept rulers weak.
+
+**Future uses.** recognising arrangements in which debt, housing or employment tie people to those who take a share of their work.
+
+**Broad-use contexts.** early states in river valleys, serfdom and debt bondage, company towns, state-evasion in hill and forest refuges.
+
+**Broad-use intersection (review hypothesis).** people whose livelihood is tied to a place, a group that controls force or access, and a cost of leaving greater than the cost of staying.
+
+**Varies (descendant territory).** what closes the exit, how much is taken, and what flight remains possible.
+
+**Extension shape.** a variant for exit closed by neighbouring polities rather than terrain.
+
+**Design tensions.**
+- The same investment in place that closes exit also raises output, so the cage and the prosperity it taxes can grow together.
+
+**Tradeoffs.**
+- Gains: a condition for durable extraction that does not depend on consent.
+- Gives up: explaining every state by the benefits it provided.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. Its caution addresses use of the description as a recipe.
+- Novelty, from recall and unverified: known in parts, coined as a handle. Nearest known concepts: Carneiro's circumscription theory (1970); Mann's social caging (1986); Hirschman's exit and voice (1970); Scott's The Art of Not Being Governed (2009).
+
+**In the family.** SurplusBound limits what can be taken, ExitCage is when it can be taken durably, and FreeRiderProblem is why those inside rarely resist together.
+
+---
+
+### Focalpeer#3724
+
+`Society` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Focalpeer.json)
+
+**Gloss.** A group's joint action comes to depend on a member who holds no assigned coordinating authority
+
+**Mechanism.**
+
+> Members of a group act together, and one of them, holding no assigned coordinating authority over the action, becomes the point the others organise around: they time their contributions by that member's moves, take up that member's framing, or keep their commitment because that member does. While this lasts, the joint action depends on that member in those respects, so it would falter or change if the member withdrew. The member need not intend to lead, and the others need not acknowledge it. A member whose focal position comes from assigned coordinating authority, a member who declared the action and is followed because of that declaration, and a merely visible member of a group whose action its members sustain among themselves, are not instances.
+
+**Invariants.**
+- A group acts jointly, and the member in question holds no assigned coordinating authority over that action.
+- The joint action depends on that member in a specified respect, such as timing, framing or commitment.
+
+**Failure modes.**
+- Visibility read as leadership: the most visible or vocal member is taken to organise an action the members sustain among themselves.
+- Organiser read as sole author: the joint action is credited or blamed entirely to the focal member, discounting the members' own reasons.
+- Position read as intent: the focal member is assumed to have sought the position, when the others' organising around it produced it.
+- Dependence unseen: the group is described as leaderless or role-led, so the member its action depends on goes unseen.
+
+#### Design
+
+**Why it exists.** Groups are described either as led through assigned roles or as leaderless, so a joint action that runs through one member not appointed to coordinate the action is misread both ways: its focal member goes unseen, or a merely visible member is blamed for what the group did. Focalpeer names the dependence and its test, what would change if that member withdrew.
+
+**Why Society.** The process needs a group of independent members whose joint action can depend on one of them; one party cannot instantiate it.
+
+**Can it be removed?** Role assigns a function, Elect selects a leader, Rally has a declared initiator, Stigmergy coordinates through traces with no focal member, and Recifluence loops influence between parties; none describes a group's joint action depending on a member who holds no assigned coordinating authority. Removable if leadership is assumed to come only from assignment.
+
+**Intended use.** recognising when a group's joint action depends on one member who holds no assigned coordinating authority.
+
+**Future uses.** multi-agent systems in which one agent's early plan or messages become the coordination point without anyone assigning it; projects whose contributions route through a maintainer not appointed as coordinator.
+
+**Broad-use contexts.** campaigns and protests, classrooms, teams, online communities, open-source projects, multi-agent systems, incident reviews.
+
+**Broad-use intersection (review hypothesis).** a group acting jointly, a member without assigned coordinating authority, and a respect in which the joint action depends on that member.
+
+**Varies (descendant territory).** the respect of dependence (timing, framing or commitment), and whether the member and the others know it.
+
+**Extension shape.** a variant for multi-agent systems; a variant for communities with informal coordinators.
+
+_Note: An assigned contributor role does not exclude this process. A researcher or developer can become the coordination point without being assigned coordinating authority._
+
+**Design tensions.**
+- Naming a focal member concentrates credit or blame that the group shares.
+
+**Tradeoffs.**
+- Gains: a way to see leadership that no role records.
+- Gives up: the picture of a group led only through assigned roles.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. Recifluence's Single author failure mode and Responsibility's Scapegoating warn against crediting one member; Focalpeer is the case where the dependence on one member is real, and its failure modes keep the two apart.
+- Novelty, from recall and unverified: known. Nearest known concepts: emergent leadership; informal leader; opinion leader; the bus factor.
+- Caution: the card's contexts include campaigns and protests, and its counterfactual test, what would change if the member withdrew, names one person as the point the group depends on. A correct Focalpeer reading is therefore a target for steering or pressure; the failure modes guard only against misattribution.
+
+**In the family.** Role assigns a function, Elect selects a leader, Stigmergy coordinates without one, Recifluence loops influence between parties, and Focalpeer is a group's action depending on a member who holds no assigned coordinating authority over that action.
+
+---
+
+### FreeRiderProblem#6927
+
+`Society` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/FreeRiderProblem.json)
+
+**Gloss.** Members of a group contribute too little to a good none of them can be excluded from
+
+**Mechanism.**
+
+> Members of a group all gain from a good, such as defence, irrigation works, a commons kept from overuse or a rising's success, from which no member can be excluded once it exists. Each bears the full cost of their own contribution but receives only a share of what it adds, so each does better if others contribute, and the total falls short of what the members together would choose. Contributions can rise when members gain rewards or face penalties tied to their own contribution, when they deal repeatedly in groups small enough to watch each other, or when an authority collects the costs. Goods from which non-contributors can be excluded, and contributions that cost the contributor nothing, are not instances.
+
+**Invariants.**
+- No member can be excluded from the good once it exists.
+- Each member's own return from contributing is less than its cost to them.
+- The total contributed falls short of what the members together would choose.
+
+**Failure modes.**
+- Every shortfall blamed on free riders: low contribution is blamed on free riding, when members lack the means or do not value the good.
+- Cooperation read as impossible: the shortfall is taken as inevitable, overlooking the monitoring, reputation and graduated sanctions that groups devise for themselves.
+- Ruler as the only remedy: coercion by an authority is assumed to be the only solution, missing arrangements groups govern themselves.
+
+#### Design
+
+**Why it exists.** Failures of shared defence, irrigation, revolt or care for a commons are often blamed on selfishness or apathy. FreeRiderProblem names the gap between each member's return and the group's, and the arrangements that close it.
+
+**Why Society.** It needs many parties who each gain from a shared good and each bear their own cost.
+
+**Can it be removed?** Reasoncommons keeps reasons readable and Consensus reaches agreement; neither describes under-contribution to a good no member can be excluded from. Removable if contributions are modelled as matching what members together would choose.
+
+**Intended use.** explaining why shared goods were under-provided and how groups and states came to provide them.
+
+**Future uses.** assessing contributions to shared infrastructure, open knowledge and climate stability.
+
+**Broad-use contexts.** defence and taxation, irrigation and commons, revolts and strikes, public health, climate.
+
+**Broad-use intersection (review hypothesis).** a good no member can be excluded from, contributions that cost the contributor more than their own return, and a shortfall.
+
+**Varies (descendant territory).** the size of the group, the good, and the arrangements that change members' returns.
+
+**Extension shape.** a variant for commons governed by their users with graduated sanctions.
+
+**Design tensions.**
+- Coercion by an authority can close the shortfall and also create the power that ExitCage describes.
+
+**Tradeoffs.**
+- Gains: a structural reason for under-provision that does not depend on blaming members.
+- Gives up: explaining shared goods by goodwill alone.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response.
+- Group size alone does not determine the contribution shortfall. Its effect depends on how individual costs and benefits scale with membership and on the arrangements for cooperation; larger groups need not cooperate less.
+- Novelty, from recall and unverified: known. Nearest known concepts: Olson's The Logic of Collective Action (1965); Hardin's tragedy of the commons (1968); Ostrom's Governing the Commons (1990).
+
+**In the family.** FreeRiderProblem is the shortfall in a shared good, SecurityDilemma the spiral between parties, and ExitCage the durable extraction that can supply shared goods by force.
+
+---
+
+### InnovationDiffusion#d44a
+
+`Society` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/InnovationDiffusion.json)
+
+**Gloss.** A practice spreads through a population by contact and imitation, slowly at first, then fast, then levelling off
+
+**Mechanism.**
+
+> People adopt a practice, tool or idea after meeting it in others, through trade, teaching, marriage or imitation. Each adopter exposes others, so adoption rises slowly while adopters are few, accelerates as contacts between adopters and non-adopters multiply, and levels off as those who will adopt have done so. Its pace depends on how often people meet across the network and on how visible, advantageous and fitting to their conditions the practice is; routes of contact, barriers, and differences in climate or custom channel where it goes. Spread by the movement of the adopting people themselves, and adoption imposed by an authority without uptake through contact, are not instances.
+
+**Invariants.**
+- People adopt the practice after encountering it in others.
+- The rate of new adoption depends on contact between adopters and non-adopters.
+- Adoption levels off as the people who will adopt have adopted.
+
+**Failure modes.**
+- Spread read as superiority: a practice's spread is taken to show it is better, when contact, prestige or pressure can carry inferior practices.
+- Independent invention missed: a similar practice in two places is assumed to come from contact, when it arose separately.
+- Slowness blamed on non-adopters: slow uptake is read as backwardness, when the practice does not fit their conditions.
+
+#### Design
+
+**Why it exists.** A practice's spread is often explained by its being better, and its absence by people's backwardness. InnovationDiffusion names the contact-driven course of adoption, so the pace and reach of a spread can be explained by networks and fit.
+
+**Why Society.** Adoption needs adopters who meet one another and decide; the mechanism runs through contact between separate parties.
+
+**Can it be removed?** Sideinherit is one transfer of a practice between separate lines of descent, and MemeticSeed spreads standards by subsidy; neither describes adoption across a population over time. Removable if spread is modelled without contact between adopters and non-adopters.
+
+**Intended use.** explaining how fast and how far a practice, tool or idea spread through a population, and why it stopped where it did.
+
+**Future uses.** modelling the spread of technologies, crops, religions and institutions along routes of contact.
+
+**Broad-use contexts.** crops and domesticated animals, writing and coinage, religions and ideas, printing, industrial and digital technologies.
+
+**Broad-use intersection (review hypothesis).** a practice, adopters who meet it in others, contact between adopters and non-adopters, and a levelling off.
+
+**Varies (descendant territory).** the network of contact, the advantage and fit of the practice, and the barriers.
+
+**Extension shape.** a variant for spread channelled along routes where climate and crops are similar.
+
+**Design tensions.**
+- Adoption through contact and adoption under pressure blur where contact carries prestige or coercion.
+
+**Tradeoffs.**
+- Gains: spread explained by contact and fit rather than by merit or backwardness.
+- Gives up: a single verdict on whether a spread practice was better.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response.
+- Each adoption from someone outside the adopter's line of descent is a Sideinherit; this card concerns the course of many such transfers.
+- Novelty, from recall and unverified: known. Nearest known concepts: Rogers's Diffusion of Innovations (1962); Hägerstrand's spatial diffusion; Diamond's continental axes (1997).
+
+**In the family.** Sideinherit is one transfer, InnovationDiffusion is the course of many, WaveOfAdvance moves the people themselves, and Twinflow carries what no one meant to spread along the same links.
+
+---
+
+### Linkfade#fb82
+
+`Society` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Linkfade.json)
+
+**Gloss.** Connections weaken while the participants keep their individual capacities
+
+**Mechanism.**
+
+> Relations that carried interaction, access or support become less effective, although the connected participants can still perform the relevant activities on their own. The weakening is between participants, not in their individual capacities. Reduced traffic by agreement, or fewer messages needed after a shared convention, is not an instance.
+
+**Invariants.**
+- A relation between participants weakens for the activity considered.
+- The participants' relevant individual capacities are retained.
+
+**Failure modes.**
+- Sum of parts: collective capacity is judged by adding individual capacities.
+- Quiet read as weakening: deliberate quiet or low demand is taken as a weakened connection.
+
+#### Design
+
+**Why it exists.** Capable participants can lose the connections that let them work together, and each still looks fine. Linkfade names the weakening between them.
+
+**Why Society.** A connection lies between participants, so the process needs at least two.
+
+**Can it be removed?** Decay attenuates a value with a half-life unless reinforced, and Quietsever concerns communication diminishing through connection loss; neither describes relations weakening while participants keep their capacities. Removable if collective capacity is assumed to equal the sum of its members.
+
+**Intended use.** recognising when the connections between capable participants are weakening.
+
+**Future uses.** distributed agents and services whose links degrade while each component stays healthy.
+
+**Broad-use contexts.** collaborators drifting apart, fragmented institutions, team handoffs, service integrations, distributed agents.
+
+**Broad-use intersection (review hypothesis).** participants, a relation between them that weakens, and individual capacities that remain.
+
+**Varies (descendant territory).** whether the relation carries interaction, access or support.
+
+**Extension shape.** a variant for organisations; a variant for technical integrations.
+
+**Design tensions.**
+- Weakened links can be compensated elsewhere, which hides them.
+
+**Tradeoffs.**
+- Gains: a name for losses between parts rather than in them.
+- Gives up: assessing a whole by its parts.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. Quietsever overlaps when communication diminishes through connection loss, but Quietsever does not require retained capacities, and Linkfade covers access and support without quieter communication.
+- Novelty, from recall and unverified: known. Nearest known concepts: weakening ties; organisational silos; integration rot.
+
+**In the family.** Quietsever quiets a channel, Syncdrift loses timing, Decay attenuates a value, and Linkfade is the weakening between capable participants.
+
+---
+
+### MalthusianTrap#0f6b
+
+`Society` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/MalthusianTrap.json)
+
+**Gloss.** Population grows until output per person falls back to where births and deaths balance, so better techniques raise numbers, not living standards
+
+**Mechanism.**
+
+> A population lives from land and a set of techniques that together fix how much it can produce. While output per person is above the level at which births and deaths balance, numbers grow, land per person shrinks and output per person falls, until births and deaths balance again at a stable {{equilibrium}}. A better technique, a new crop or new land raises output for a time, and the population grows into it, so the lasting gain is in numbers and density, not in output per person; a disaster that removes people raises output per person until numbers recover. Populations whose births fall as income rises, and economies where output per person grows faster than population for generations, are not instances.
+
+**Invariants.**
+- Output per person falls as the number of people sharing the same land and techniques rises.
+- The population grows while output per person is above the level at which births and deaths balance, and shrinks while it is below.
+- A rise in output from new techniques or land is followed by population growth that brings output per person back toward its earlier level.
+
+**Failure modes.**
+- Fixed ceiling: the level is treated as a constant number of people, when techniques, institutions and trade move it.
+- Famine read as overshoot: every famine is taken for a population outgrowing its food, when war, policy and who can obtain food cause most famines.
+- Applied past the transition: the trap is applied to a population whose births fall as income rises.
+- Living standard read from numbers: output per person is inferred from population size, missing long periods when it stayed high after a population loss.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{equilibrium}}` | `sema:Equilibrium#mh:SHA-256:4f036318bc81500ad159994d9ab7efbec87883eccecb18e64ede15cde3e099d2` |
+
+#### Design
+
+**Why it exists.** Pre-industrial history is often told as progress in techniques, yet for most of it living standards barely moved while numbers grew. MalthusianTrap names the dynamic that turns gains in technique into population, so a world model can say where it held and where it stopped holding.
+
+**Why Society.** The mechanism needs a population of separate households sharing land and techniques, whose births and survival respond to what each can obtain; no single party executes it.
+
+**Can it be removed?** Equilibrium supplies the stationary state the trap returns to, and Capacitylag compares demands with capacity; neither says that gains in output are absorbed by population growth. Removable if output per person is modelled as independent of population.
+
+**Intended use.** explaining why output per person stayed near the level where births and deaths balance in agrarian societies while techniques improved, and dating where the trap stopped holding.
+
+**Future uses.** testing claims of stagnation or progress in pre-industrial economies against wage, height and population evidence.
+
+**Broad-use contexts.** foraging and farming populations, agrarian states, island and frontier settlement, recovery after epidemics and wars.
+
+**Broad-use intersection (review hypothesis).** a population, a production base of land and techniques, output per person that falls as numbers rise, and births and deaths that respond to output per person.
+
+**Varies (descendant territory).** how fast numbers respond, the level at which births and deaths balance, and what moves the production base.
+
+**Extension shape.** a variant in which custom, such as late marriage, holds the balance level above bare subsistence.
+
+**Design tensions.**
+- The level at which births and deaths balance is set partly by custom, so the trap can hold well above bare subsistence, and evidence of comfort does not by itself show that it was escaped.
+
+**Tradeoffs.**
+- Gains: a reason why centuries of new techniques left living standards nearly flat.
+- Gives up: reading technical progress as progress in welfare before the transition.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response.
+- The invariants concern output per person, not a fixed number of people; the level moves with techniques, institutions and trade, which the first failure mode guards.
+- Leaving the trap belongs to DemographicTransition, births falling as income rises, and to Sunbound, energy no longer bound to land.
+- The absorption invariant states a direction, not a time: how many generations the return takes varies, and the card leaves it to the evidence.
+- Novelty, from recall and unverified: known. Nearest known concepts: Malthus's principle of population (1798); the Malthusian regime of unified growth theory (Galor); Clark's A Farewell to Alms (2007).
+
+**In the family.** MalthusianTrap absorbs gains into numbers, DensityRatchet makes a practice that raised capacity irreversible, SurplusBound limits who can live outside food production, Sunbound limits energy to what land grows, and DemographicTransition is how a population leaves the trap.
+
+---
+
+### Quietsever#8948
+
+`Society` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Quietsever.json)
+
+**Gloss.** Communication diminishes as the connection between parties weakens
+
+**Mechanism.**
+
+> As parties become less able or willing to keep a responsive connection, communication between them diminishes. The quieter channel reflects the weakened connection; it does not show convergence in their views. Low message volume alone is not an instance: a team that resolved an issue and stays readily responsive is quieter without the loss, and parties can agree on some matters while their connection weakens.
+
+**Invariants.**
+- There are at least two independently situated parties.
+- Their responsive connection weakens, and the weakening contributes to reduced communication.
+
+**Failure modes.**
+- Quiet read as harmony: reduced communication is taken as agreement or health.
+- Quiet read as abandonment: reduced communication is taken as a lost connection without asking.
+- Volume as measure: message counts alone are used to judge the connection.
+
+#### Design
+
+**Why it exists.** A fading connection makes a channel quiet, and a quiet channel looks like a calm one. Quietsever names the weakening connection behind the quiet.
+
+**Why Society.** The connection lies between independently situated parties, so the process needs at least two.
+
+**Can it be removed?** Silence is an agent's deliberate withholding, Silencevote reads silence on proposals, and ChannelCheck asks after a quiet interval; none describes communication diminishing because the connection weakens. Removable if quiet channels are assumed to mean nothing.
+
+**Intended use.** recognising when diminishing communication between people, teams or systems reflects a weakening connection.
+
+**Future uses.** distributed agents and long-running collaborations between people and agents.
+
+**Broad-use contexts.** client relationships, remote teams, open-source collaborations, service integrations, partnerships, families.
+
+**Broad-use intersection (review hypothesis).** two or more parties, a weakening responsive connection, and communication that diminishes because of it.
+
+**Varies (descendant territory).** whether the weakening is in ability or willingness, and which channel is meant.
+
+**Extension shape.** a variant for service-to-service connections; a variant for personal relationships.
+
+**Design tensions.**
+- Asking whether a connection has weakened can itself change the connection.
+
+**Tradeoffs.**
+- Gains: quiet can be read as a possible sign rather than a verdict.
+- Gives up: reading quiet as agreement.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. ChannelCheck is one separately defined check-in after a quiet interval.
+- Novelty, from recall and unverified: known. Nearest known concepts: silent disengagement; drifting apart.
+
+**In the family.** Silence withholds deliberately, Silencevote reads silence on proposals, ChannelCheck checks in, and Quietsever is the fading connection behind the quiet.
+
+---
+
+### Recifluence#4fba
+
+`Society` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Recifluence.json)
+
+**Gloss.** One party's influence changes another's response, which returns to change the first party's later influence
+
+**Mechanism.**
+
+> An influence from one participant changes how another responds, and that changed response reaches back and alters how the first acts toward the other, so the influences exchanged develop reciprocally, possibly through more participants or indirect routes. Influence must travel out and return through a changed response that affects later influence; alternating messages, parallel responses to a third cause, or one-way persuasion are not instances.
+
+**Invariants.**
+- An influence from one party changes another party's response.
+- The changed response returns and affects the first party's later influence.
+
+**Failure modes.**
+- Single author: the whole development is credited to one initiator.
+- Reciprocity read as equality: reciprocal influence is assumed to mean equal power, consent, agreement or mutual benefit.
+
+#### Design
+
+**Why it exists.** Interactions are described as one party influencing another, and the loop by which each reshapes the other's influence is missed. Recifluence names that loop.
+
+**Why Society.** Influence travels between at least two parties, so the process needs a group of two or more.
+
+**Can it be removed?** Feedback requires an attributed error and an indicated adjustment, Costeer is a deliberate joint choice, and Coflourish requires mutual gain; none describes influence returning through a changed response to change later influence. Removable if influence is assumed to flow one way.
+
+**Intended use.** recognising reciprocal influence between parties as a developing loop.
+
+**Future uses.** multi-agent interaction, and agents in long conversations with people.
+
+**Broad-use contexts.** conversation, improvisation, collaborative learning, negotiation, markets, multi-agent interaction.
+
+**Broad-use intersection (review hypothesis).** two or more parties, an influence that changes a response, and a return that changes later influence.
+
+**Varies (descendant territory).** the routes, the number of parties, and what is exchanged.
+
+**Extension shape.** a variant for many parties; a variant for indirect routes.
+
+**Design tensions.**
+- Reciprocal loops can generate conflict or harm as readily as improvement.
+
+**Tradeoffs.**
+- Gains: a name for influence as a loop rather than a line.
+- Gives up: crediting outcomes to one initiator.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. Reciprocal influence requires neither error nor an intended target, and implies neither improvement nor decline.
+- Novelty, from recall and unverified: known. Nearest known concepts: reciprocal determinism; circular causality; mutual adaptation.
+
+**In the family.** Feedback corrects error, Costeer chooses jointly, Coflourish leaves each party with something new, and Recifluence is influence returning through a changed response.
+
+---
+
+### Scaleasynchrony#2db6
+
+`Society` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Scaleasynchrony.json)
+
+**Gloss.** Two levels of a system, one depending on the other, develop at different rates, changing how well they fit
+
+**Mechanism.**
+
+> A level of a system depends on another in a specified respect, as individuals depend on the institution they work within, a practice on the standards that govern it, or members on the coordination among them, and the two develop at different paces in that respect. Each then meets the other in a state from a different point in its development: the faster can outgrow arrangements maintained by the slower, or the slower keeps stable what the faster has not yet settled. The difference changes their fit, straining it or giving the faster level a stable base. Levels that do not depend on each other, two parties moving at different speeds, and the travel time of one effect between parts are not instances.
+
+**Invariants.**
+- One level of a system depends on another in a specified respect.
+- The two develop at different rates in that respect over the interval considered, and the difference changes how well they fit.
+
+**Failure modes.**
+- Fault located by speed: the misfit is blamed on the slower level, or the faster is taken as superior, instead of on the difference in rates.
+- Convergence demanded: all levels are required to develop at one pace.
+- Stillness read as nondevelopment: unchanged features are taken to show that a level is not developing in any respect.
+
+#### Design
+
+**Why it exists.** Individuals, teams and institutions change at different speeds, and their mismatches are blamed on whichever level seems slow. Scaleasynchrony names the difference in rates itself.
+
+**Why Society.** The levels are individuals and the collectives they form, so the process needs a group; systems with nested technical levels can specialise it.
+
+**Can it be removed?** Localhinge sets correction routes across levels, Ripplelag delays an effect between parts, and Capacitylag compares growing demands with developing capacity; none describes a level and the level it depends on developing at different rates. Removable if all levels are assumed to change together.
+
+**Intended use.** recognising mismatches that come from a level and the level it depends on developing at different speeds.
+
+**Future uses.** agents embedded in organisations, and agent teams whose members and coordination change at different rates.
+
+**Broad-use contexts.** individual and institutional learning, team and organisation change, local and system-wide adaptation, standards and practice, regulation and the technology it governs.
+
+**Broad-use intersection (review hypothesis).** two levels, one depending on the other in a specified respect, different rates of development in that respect, and a change in their fit.
+
+**Varies (descendant territory).** which levels, which respect, and whether the difference strains the fit or steadies it.
+
+**Extension shape.** a variant for technical systems with nested levels.
+
+**Design tensions.**
+- Whether a difference in rates strains the fit or steadies it can become clear only later.
+
+**Tradeoffs.**
+- Gains: a name for mismatch between levels that blames neither.
+- Gives up: expecting a system to change as one.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. Different rates can protect continuity rather than signal failure.
+- The dependence and the change in fit are required because levels in general develop at different rates; without them almost any system with more than one level would be an instance.
+- Capacitylag and Identitylag are related comparisons, not cases of this card: demands and self-descriptions are not necessarily levels. A standard revised more slowly than the systems it governs is an instance when the question is how the two fit; it is a Capacitylag case when the question is whether the standard's authors can keep up with the demands on them.
+- Novelty, from recall and unverified: known. Nearest known concepts: cultural lag; pace layering; the pacing problem.
+
+**In the family.** Capacitylag compares demand and capacity, Identitylag compares self and circumstance, Localhinge links levels, and Scaleasynchrony is a level and the level it depends on developing at different rates.
+
+---
+
+### SecurityDilemma#a61b
+
+`Society` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/SecurityDilemma.json)
+
+**Gloss.** Each side's defensive build-up reads as a threat to the other, so both arm and both end less secure
+
+**Mechanism.**
+
+> Two or more parties with no common authority above them each raise their capacity to defend themselves. Much of that capacity could also attack, so each reads the others' increases as possible threats and raises its own in reply; the reply in turn raises the first party's next increase, and each round lowers the security of all though none intends aggression. The spiral eases when the parties can tell defensive from offensive capacity, credibly limit or verify each other's capacity, or accept a common authority, and it can end in a war that each side expected the other to start. One party pursuing aggression while the other only defends, and build-ups that cannot threaten the other side, are not instances.
+
+**Invariants.**
+- The parties have no common authority able to guarantee their security.
+- Each party raises its capacity to secure itself, not to attack the others.
+- Each party's increase in defensive capacity can also threaten the others.
+- Each party answers the others' increases by raising its own, and that answer raises the others' next increases.
+
+**Failure modes.**
+- Intent read from capacity: the other side's build-up is taken as proof of aggressive intent.
+- Every war a spiral: wars that one side sought on purpose are explained as spirals no one wanted.
+- Restraint read as weakness: one side's attempt to limit or signal its capacity is dismissed as a trick or exploited.
+
+#### Design
+
+**Why it exists.** Arms races and wars are often explained by aggressive intent on one side. SecurityDilemma names the spiral that defensive measures alone can produce, so a model can ask whether intent is needed to explain a build-up.
+
+**Why Society.** It needs at least two parties with separate security, each reading the other's capacity.
+
+**Can it be removed?** Recifluence, its parent, is any reciprocal influence; SecurityDilemma specifies defensive capacity read as threat. Removable if every build-up is modelled as aggression or deterrence.
+
+**Intended use.** explaining arms races and wars between parties that each armed for their own security.
+
+**Future uses.** assessing escalation between states, alliances, firms and AI developers competing on capability.
+
+**Broad-use contexts.** Greek city-states, European powers before 1914, the Cold War, regional rivalries, competition in dual-use technology.
+
+**Broad-use intersection (review hypothesis).** parties without a common authority, defensive capacity that can also attack, and reciprocal increases.
+
+**Varies (descendant territory).** how distinguishable defence is from offence, and what limits or verifies capacity.
+
+**Extension shape.** a variant in which capacity is verified, easing the spiral.
+
+**Design tensions.**
+- The invariant that each party arms to secure itself is what separates the dilemma from aggression, and it is the hardest to establish from evidence.
+
+**Tradeoffs.**
+- Gains: escalation explained without assuming aggressive intent.
+- Gives up: a single villain in every arms race.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response.
+- It extends Recifluence: one party's build-up changes the other's response, which returns to raise the first party's next build-up.
+- The invariant that each party arms to secure itself is kept although it is hard to establish, because without it every aggression answered by defence would be an instance; plans, doctrine and the parties' own records bear on it.
+- Novelty, from recall and unverified: known. Nearest known concepts: Herz's security dilemma (1950); Butterfield (1951); Jervis's spiral model (1976, 1978).
+
+**In the family.** Recifluence is reciprocal influence in general, SecurityDilemma its defensive spiral, FreeRiderProblem the shortfall in a shared good, and Warsift what long competition does to the polities that survive.
+
+**Extends (exact parent).** `sema:Recifluence#mh:SHA-256:4fba0e2a7234f81a910b220abaedd7890ba08700646aeaa090a11f0c313dcf11`
+
+---
+
+### Sideinherit#45d5
+
+`Society` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Sideinherit.json)
+
+**Gloss.** A practice, belief, capability or flaw passes between separate lines of descent rather than along one
+
+**Mechanism.**
+
+> A party or system takes up a practice, belief, capability or flaw from another outside its line of descent for that item, through copying, exchange, material taken from the other line, or contact. This transfer can make separate lines alike regardless of their relative age, generation or standing, so a shared item does not by itself establish shared ancestry. An item that each received only from a common predecessor, or that each developed independently, is not an instance.
+
+**Invariants.**
+- The parties stand outside each other's line of descent for the item considered.
+- One party holds the item at least partly because it passed from another; an item each holds only by inheritance or independent development is not an instance.
+
+**Failure modes.**
+- Likeness read as common descent: parties or systems that share an item are assumed to have inherited it from a common predecessor, when it passed between them.
+- Passage read as merit: an item that passed between lines is assumed sound because it was taken up.
+- Lineage read as closed: a line of descent is assumed to hold only what it inherited, so an item that arrived from the side is credited to the line.
+
+#### Design
+
+**Why it exists.** Shared traits can be misread as shared descent when an item actually passed between separate lines. Sideinherit distinguishes that route so provenance and the spread of a useful practice or a flaw can be traced to the transfer rather than attributed solely to ancestry.
+
+**Why Society.** Transfer needs a party that passes the item and another that takes it up, each with its own state.
+
+**Can it be removed?** GenealogicalTrace audits an idea's lineage, MemeticSeed is one subsidised way of pushing a standard to neighbours, and Normance records reliance on social default; none describes items passing between separate lines of descent. Removable if traits are assumed to travel only by descent.
+
+**Intended use.** recognising when parties or systems share a practice, belief, capability or flaw because it passed between them rather than solely through common ancestry.
+
+**Future uses.** tracing whether models share a behaviour through common training or because one learned it from the other's outputs; tracing a vulnerability copied between codebases.
+
+**Broad-use contexts.** microbiology, cultural practice, software and copied code, model training on generated data, organisations adopting one another's practices, research fields.
+
+**Broad-use intersection (review hypothesis).** a source and recipient outside each other's line of descent for an item, and the item's passage between them.
+
+**Varies (descendant territory).** the item, the route of passage, and whether the line of descent can also carry it.
+
+**Extension shape.** a variant for model and data provenance; a variant for practices passing between organisations.
+
+_Note: Equal age, generation, capability or status is not required. For example, unrelated models from different generations can acquire a shared behaviour through one model's outputs._
+
+**Design tensions.**
+- Sideways transfer is hard to tell from independent invention, since both make unrelated lines alike.
+
+**Tradeoffs.**
+- Gains: a route of origin besides descent.
+- Gives up: treating shared traits alone as proof of shared ancestry.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. Sideways spread can carry a sound practice as readily as a flaw.
+- Novelty, from recall and unverified: known. Nearest known concepts: horizontal gene transfer; horizontal cultural transmission; diffusion of innovations.
+
+**In the family.** GenealogicalTrace follows a line of descent, MemeticSeed pushes a standard to neighbours, Normance records social default, and Sideinherit is an item passing between separate lines of descent.
+
+---
+
+### StructuralDemographicCycle#c94c
+
+`Society` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/StructuralDemographicCycle.json)
+
+**Gloss.** Cycles of population growth, elite crowding, state crisis and disorder in agrarian states
+
+**Mechanism.**
+
+> In an agrarian state, a long period of order lets population grow into its {{malthusian_trap}}, which lowers wages and raises rents, enriching landowners and enlarging the elite. Elite numbers and ambitions outgrow the positions and income available, a {{capacitylag}} in which elites compete and split into factions, while the state's revenue falls behind the cost of its army and administration. Fiscal crisis, elite conflict and popular unrest bring a period of disorder in which population and elite numbers fall through war, famine, disease and loss of status, until the conditions for a new period of growth and order return. The duration varies with these interacting dynamics. Crises produced by an outside shock without this build-up, and societies whose population is not near its limit, are not instances.
+
+**Invariants.**
+- Population grows during a long period of order toward the limit its land and techniques allow.
+- Elite numbers or ambitions grow faster than the positions and income available to them.
+- The state's revenue falls behind its costs before the disorder.
+- Population and elite numbers fall during the disorder.
+
+**Failure modes.**
+- Rhythm forced: a two-to-three-century rhythm is imposed on histories whose crises do not follow it.
+- One cause: the crisis is attributed to population alone, ignoring elite and fiscal dynamics, or the reverse.
+- Prediction by analogy: the cycle is projected onto societies far from their population limit, such as industrial ones, without checking its conditions.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{capacitylag}}` | `sema:Capacitylag#mh:SHA-256:977c018cdc8c7a053bad12a6cd98275477f3f106c8ac8bf975fce1dca8b6bb2c` |
+| `references` | `{{malthusian_trap}}` | `sema:MalthusianTrap#mh:SHA-256:0f6b99da46aa40c7bc427c5af4545b269837f66722ccfbc34994ab50e2e951da` |
+
+#### Design
+
+**Why it exists.** Crises of agrarian states are often told as the failures of particular rulers. StructuralDemographicCycle names the recurring build-up of population pressure, elite competition and fiscal strain that precedes them.
+
+**Why Society.** It needs commoners, elites and a state with separate interests, whose interaction produces the cycle.
+
+**Can it be removed?** MalthusianTrap gives the population pressure and Capacitylag the elite crowding; neither describes the full cycle through state crisis and recovery. Removable if crises are modelled as independent events.
+
+**Intended use.** explaining the timing of crisis and disorder in agrarian states.
+
+**Future uses.** testing whether the cycle's conditions hold in a given state before using it to explain or predict.
+
+**Broad-use contexts.** medieval and early modern England and France, Rome, Chinese dynasties, the Russian state.
+
+**Broad-use intersection (review hypothesis).** an agrarian state near its population limit, elite growth beyond positions, fiscal strain, and a period of disorder with falling numbers.
+
+**Varies (descendant territory).** the length of the phases, and which of population, elite or fiscal strain leads.
+
+**Extension shape.** a variant for states where elite crowding occurs without population near its limit.
+
+**Design tensions.**
+- The cycle is defined by its conditions, while it is often applied by its rhythm; the first failure mode guards the difference.
+
+**Tradeoffs.**
+- Gains: crises explained by build-up rather than by individual failures.
+- Gives up: treating each crisis as unique.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response.
+- Its application to industrial societies is contested; the card's boundary excludes societies far from their population limit.
+- Two to three centuries is a characteristic timescale in some documented agrarian cycles, not an admission criterion. The pattern is identified by its interacting population, elite and fiscal dynamics; matching a period alone does not establish this mechanism.
+- Novelty, from recall and unverified: known. Nearest known concepts: Turchin and Nefedov's Secular Cycles (2009); Goldstone's Revolution and Rebellion in the Early Modern World (1991); the dynastic cycle of Chinese historiography.
+
+**In the family.** MalthusianTrap is the population pressure it builds on, Capacitylag the elite crowding, Warsift the external competition, and DiminishingComplexityReturns the longer decline in returns on complexity.
+
+---
+
+### Sunbound#c94c
+
+`Society` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Sunbound.json)
+
+**Gloss.** An economy that draws its energy only from current plant growth can grow only as far as its land allows
+
+**Mechanism.**
+
+> In an economy whose energy comes from current photosynthesis, as food for human and animal muscle, wood for heat and fodder for draught animals, with wind and water as small supplements, every increase in energy use needs land, and the same land must also grow food and fibre. Output per person can then rise only through trade, specialization and better use of land, and growth slows as land runs short. Drawing on a stock of energy not tied to current land, such as coal, oil and gas, lifts this bound: energy use, output per person and population can rise together far beyond what the land yields, while new bounds appear in the depletion of the stock and in the capacity of air, water and land to absorb its wastes. Economies held back by something other than land-bound energy are not instances.
+
+**Invariants.**
+- The economy's energy comes from current plant growth, supplemented only by flows such as wind and water.
+- Each increase in energy use requires more land or more output from each unit of land.
+- Energy use per person stays within what the land can supply alongside food.
+
+**Failure modes.**
+- Energy as sufficient cause: access to fossil energy is taken to explain growth on its own, overlooking the institutions, skills and markets that put it to use.
+- New bounds ignored: escaping the land bound is treated as escaping every bound, missing depletion and the limits of waste sinks.
+- Stagnation assumed: growth within the bound through trade and specialization is overlooked.
+
+#### Design
+
+**Why it exists.** The industrial revolution is often explained by invention or institutions alone. Sunbound names the land bound on energy that every earlier economy faced, so the break that fossil fuels made can be modelled as the lifting of a bound.
+
+**Why Society.** It concerns an economy of many producers and consumers whose uses of energy compete for the same land.
+
+**Can it be removed?** Budget and Resource are limits on an allocation, and MalthusianTrap absorbs gains into population; neither ties an economy's energy to its land. Removable if energy is modelled as unlimited by land.
+
+**Intended use.** explaining why growth in agrarian economies stayed slow, and what changed when fossil energy was drawn on.
+
+**Future uses.** assessing economies that turn to energy flows such as solar and wind, which face different bounds.
+
+**Broad-use contexts.** agrarian economies, the British industrial revolution, the spread of coal and oil, energy transitions.
+
+**Broad-use intersection (review hypothesis).** an economy whose energy comes from current plant growth, competition between energy and food for land, and growth slowing as land runs short.
+
+**Varies (descendant territory).** the yields of land, the importance of wind and water, and trade.
+
+**Extension shape.** a variant for economies drawing on large flows such as hydroelectric, solar and wind power.
+
+**Design tensions.**
+- The card names the bound and how fossil stocks lift it, while the new bounds that follow belong to other mechanisms.
+
+**Tradeoffs.**
+- Gains: a reason why growth in organic economies stayed slow that does not depend on a lack of invention.
+- Gives up: treating fossil energy as the whole explanation of industrialization.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response.
+- Novelty, from recall and unverified: known, coined as a handle. Nearest known concepts: Wrigley's organic economy and its escape (1988, 2010); Sieferle's The Subterranean Forest (2001); Pomeranz's The Great Divergence (2000).
+
+**In the family.** MalthusianTrap absorbs gains into numbers, SurplusBound limits who can live outside food production, and Sunbound limits energy to what land grows.
+
+---
+
+### SurplusBound#7fe3
+
+`Society` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/SurplusBound.json)
+
+**Gloss.** The share of people who do not produce food can be no larger than what food producers' surplus can feed
+
+**Mechanism.**
+
+> Specialists, rulers, soldiers, traders and city dwellers who do not produce food live on what food-producing households grow beyond their own needs. If those households grow enough to feed themselves and, on top of that, s times their own number, at most s/(1+s) of all people can live outside food production. The bound holds for the whole system that exchanges food over a period, imports and tribute included, and stores only stretch it while they last. More output per producer, better storage or cheaper transport raise the bound; a fall in any of them forces people back into food production or into hunger. How far below the bound the share sits depends on how the surplus is taken and spent, which the bound does not decide.
+
+**Invariants.**
+- People outside food production are fed from food-producing households' surplus in the system that exchanges food, over any period longer than stores last.
+- If food-producing households grow enough for themselves and s times their own number, people outside food production are at most s/(1+s) of that system.
+
+**Failure modes.**
+- Bound read as level: the share of people outside food production is predicted from the bound, when extraction, consumption and waste keep it lower.
+- System drawn too small: a city or region is tested on its own though imports or tribute feed it.
+- Surplus read as given: the bound is taken to show that producers chose to feed others, when surplus is often taken by force.
+
+#### Design
+
+**Why it exists.** Accounts of cities, states and specialists often say they arose 'with surplus' without saying how large a population outside food production a given surplus allows. SurplusBound states the bound, so a claimed share can be checked against what producers could feed.
+
+**Why Society.** The bound relates two groups with separate interests: those who produce food, and those who live on what producers give up or have taken from them.
+
+**Can it be removed?** Budget and Resource describe limits on an allocation, not the share of a population that food production can support. Removable if the share of people outside food production is not modelled.
+
+**Intended use.** checking claimed shares of urban, specialist or ruling populations against what food producers could feed, and tracing how rising output per producer raised that share.
+
+**Future uses.** relating livelihood shares to agricultural productivity in a model of any society.
+
+**Broad-use contexts.** early cities and states, empires fed by tribute, industrialization, modern agriculture and urbanization.
+
+**Broad-use intersection (review hypothesis).** a population divided into food-producing households and others, the producers' surplus over their own needs, and a system boundary that includes the food exchanged over the period.
+
+**Varies (descendant territory).** where the system boundary lies, how long stores last, and how the surplus is taken.
+
+**Extension shape.** a variant in which the surplus is an energy surplus rather than food.
+
+**Design tensions.**
+- The bound is clear only when the boundary is drawn around everything that feeds the population, and the wider the boundary, the less it says about any one city.
+
+**Tradeoffs.**
+- Gains: a checkable upper limit on the share of people outside food production.
+- Gives up: any claim about who controls the surplus or how it is taken.
+
+**Critique (diagnostic, not contract requirements).**
+- The card states an upper bound, not a level; the first failure mode guards the difference.
+- s is measured against the food-producing population including its own dependents, so children and elders in farming households count inside food production.
+- Novelty, from recall and unverified: known as an idea, not as a named bound. Nearest known concepts: surplus and the division of labour in Childe's urban revolution (1950); Boserup on agricultural intensification (1965).
+
+**In the family.** MalthusianTrap absorbs gains into numbers, SurplusBound limits the share that can live outside food production, and ExitCage describes how the surplus can be taken durably.
+
+---
+
+### Twinflow#9474
+
+`Society` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Twinflow.json)
+
+**Gloss.** The links that carry goods, people and ideas between regions also carry disease, pests and conflict
+
+**Mechanism.**
+
+> When regions are joined by trade, migration, pilgrimage or conquest, the same routes and contacts carry what the parties seek, such as goods, crops, techniques and ideas, and what no one sends on purpose, such as pathogens, pests, invasive species and the spread of conflict. The gains usually accumulate over many exchanges, while the harms often arrive as shocks when something dangerous first crosses the link. Denser and faster links raise both flows, and regions joined for the first time meet both at once. Harms or gains that travel by routes other than the link in question are not instances.
+
+**Invariants.**
+- A link between regions carries flows the parties seek.
+- The same link carries flows no party sends on purpose, which harm at least one party.
+
+**Failure modes.**
+- Gains counted alone: a link is judged only by what its parties meant to exchange.
+- Isolation prescribed: cutting the link is proposed to remove a harm, ignoring the gains lost and the harms already established.
+- Carriers blamed: a harm that crossed the link is blamed on the traders, migrants or minorities who travel it.
+
+#### Design
+
+**Why it exists.** Integration is judged by its gains and contagion by its harms, as if they travelled separately. Twinflow names that one link carries both, so a model of connection counts both flows.
+
+**Why Society.** The links run between separate regions and parties, each seeking something different from the exchange.
+
+**Can it be removed?** Coflourish is an exchange in which every party gains, and Linkfade is the weakening of a link; neither describes unsought flows along the same link. Removable if links are modelled as carrying only what the parties exchange.
+
+**Intended use.** accounting for the harms that arrive along the same routes as trade, migration and conquest.
+
+**Future uses.** assessing new connections between regions, from trade routes to air travel and digital networks.
+
+**Broad-use contexts.** the Silk Roads and the Black Death, the Columbian exchange, colonial shipping, pandemics through air travel, invasive species.
+
+**Broad-use intersection (review hypothesis).** a link between regions, flows the parties seek, and unsought flows that harm at least one of them.
+
+**Varies (descendant territory).** what the link carries, how fast, and who is harmed.
+
+**Extension shape.** a variant for information networks carrying both knowledge and harmful content.
+
+**Design tensions.**
+- Severing a link can stop a harm and also the gains, and the card names both without deciding between them.
+
+**Tradeoffs.**
+- Gains: connection assessed by everything it carries.
+- Gives up: counting only the gains or only the harms.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response.
+- The contrast between gradual gains and sudden harms is typical, not required, and stays out of the invariants.
+- Novelty, from recall and unverified: known as an observation, coined as a handle. Nearest known concepts: the Columbian exchange (Crosby, 1972); McNeill's Plagues and Peoples (1976); Le Roy Ladurie's microbial unification of the world (1973).
+
+**In the family.** InnovationDiffusion spreads what people adopt, VirginSoilEpidemic is one harm a link can bring, and Twinflow is the link carrying both.
+
+---
+
+### Warsift#b01b
+
+`Society` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Warsift.json)
+
+**Gloss.** Sustained war between polities eliminates those that raise less, so the survivors converge on states that extract more
+
+**Mechanism.**
+
+> Polities that compete in war over generations win, absorb or are absorbed according to the soldiers, weapons and supplies they can field, which depends on how much they can raise from their people and how well they administer it. Those that raise and organize less are conquered or merge into others, so the number of polities falls, and the survivors carry the fiscal and administrative institutions that each war required. No polity needs to aim at this outcome; elimination produces it. The sifting slows where terrain protects small polities, where conquest costs more than it gains, or when one empire absorbs the rest. State-building driven by trade or belief without military competition, and competition in which defeated polities survive unchanged, are not instances.
+
+**Invariants.**
+- Polities compete in war over a long period.
+- Success in war depends on the resources a polity can raise and administer.
+- Defeated polities are eliminated or absorbed, so the number of polities falls and the survivors raise more than those that disappeared.
+
+**Failure modes.**
+- Survival read as merit: surviving states are taken to be better for their people, when the sifting favours extraction, not welfare.
+- One path for all: regions where war did not eliminate polities, or where states formed otherwise, are forced into the pattern.
+- Design imputed: the convergence is credited to rulers' plans, when elimination produces it.
+
+#### Design
+
+**Why it exists.** The convergence of many polities on a few large, heavily taxing states is often credited to rulers' designs. Warsift names the selection by war that produces it without design.
+
+**Why Society.** It needs several polities competing, each with its own resources and fate.
+
+**Can it be removed?** SecurityDilemma explains why polities arm, not which survive, and Select is generic selection by criteria, not elimination through war. Removable if the number and form of polities are modelled without competition.
+
+**Intended use.** explaining why the number of polities fell and states grew more extractive under sustained war.
+
+**Future uses.** comparing state formation across regions with and without sustained war between states.
+
+**Broad-use contexts.** Warring States China, early modern Europe, Sengoku Japan, South Asian and West African state systems.
+
+**Broad-use intersection (review hypothesis).** competing polities, success in war depending on resources raised, and elimination or absorption of the defeated.
+
+**Varies (descendant territory).** the military technology, the terrain, and how long the competition lasts.
+
+**Extension shape.** a variant for competition through trade and finance rather than war.
+
+**Design tensions.**
+- Selection by war explains which states survive, not whether they serve their people, and the two are easily conflated.
+
+**Tradeoffs.**
+- Gains: convergence explained without assuming design.
+- Gives up: reading surviving states as the best ones.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response.
+- Novelty, from recall and unverified: known, coined as a handle. Nearest known concepts: Tilly's 'war made the state, and the state made war' (1975) and Coercion, Capital, and European States (1990); Hui's War and State Formation in Ancient China and Early Modern Europe (2005).
+
+**In the family.** SecurityDilemma is why polities arm, Warsift is what sustained war selects, and StructuralDemographicCycle is the internal cycle of the states that survive.
+
+---
+
+### Society/Economics (9)
 
 ### AtomicBid#5ac6
 
@@ -38395,181 +39484,6 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 
 ---
 
-### DemographicTransition#6e31
-
-`Society` · `Economics` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/DemographicTransition.json)
-
-**Gloss.** Deaths fall first and births follow after a lag, so a population grows fast until both are low
-
-**Mechanism.**
-
-> In a population where births and deaths are both high, better food supply, sanitation and medicine lower deaths, especially of children. Births fall only later, often a generation or more after deaths, as families respond to more children surviving, to children's work becoming less valuable and their schooling more costly, and to changing ideas about family size. During the lag the population grows quickly and becomes younger; when births have fallen too, growth slows and the population ages. Population change driven by migration, and falls in births that do not follow a fall in deaths, are not instances.
-
-**Invariants.**
-- Deaths fall in a population where births and deaths were both high.
-- Births fall after deaths, and during the lag births exceed deaths by more than before.
-- Growth slows once births have fallen.
-
-**Failure modes.**
-- Stages read as law: the sequence is assumed to run on a fixed timetable, when the lag's length and the level births settle at vary widely.
-- Lag read as ignorance: high births during the lag are blamed on irrationality, when they can follow from what children are worth to families and the risks those families still face.
-- End assumed: births are assumed to settle at replacement, when they can fall well below it.
-
-#### Design
-
-**Why it exists.** Rapid population growth in the last two centuries is often read as people having more children, when it came from fewer dying while births stayed high for a time. DemographicTransition names that sequence and its lag.
-
-**Why Society.** Births and deaths are outcomes of many households' conditions and choices; the lag between them is a population-level process.
-
-**Can it be removed?** Ripplelag describes a delay between connected parts; it does not say which rate falls first or what the lag does to growth and age structure. Removable if births and deaths are modelled as changing together.
-
-**Intended use.** explaining periods of rapid population growth and later ageing by the lag between falling deaths and falling births.
-
-**Future uses.** comparing transitions across countries, including stalled or very fast ones, and projecting age structures.
-
-**Broad-use contexts.** European transitions from the eighteenth century, twentieth-century transitions in Asia, Latin America and Africa, populations now below replacement.
-
-**Broad-use intersection (review hypothesis).** a population with high births and deaths, a fall in deaths, and a later fall in births.
-
-**Varies (descendant territory).** what lowers deaths, the length of the lag, and where births settle.
-
-**Extension shape.** a variant for births falling below replacement after the transition.
-
-**Design tensions.**
-- Calling the sequence a transition implies an end state, while births in many populations have kept falling past it.
-
-**Tradeoffs.**
-- Gains: a reason why growth peaks and then slows.
-- Gives up: a fixed timetable for when a population completes it.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response.
-- France, where births fell early alongside deaths, falls outside the card by its own boundary rather than counting against it.
-- Novelty, from recall and unverified: known. Nearest known concepts: demographic transition theory (Thompson, 1929; Notestein, 1945).
-
-**In the family.** MalthusianTrap is the regime before, and DemographicTransition is how a population leaves it; Ripplelag is the general delay of which its lag is one case.
-
----
-
-### DensityRatchet#2ace
-
-`Society` · `Economics` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/DensityRatchet.json)
-
-**Gloss.** A practice that lets a territory feed more people becomes impossible to abandon once the population has grown to depend on it
-
-**Mechanism.**
-
-> A new practice, such as farming, irrigation or synthetic fertilizer, raises the number of people a territory can feed. While the practice continues, the population grows toward the new capacity, and the larger it grows, the fewer of its people the earlier practice could feed: abandoning the practice would mean losing the people it alone supports. So the practice persists and spreads even where it brings longer work, poorer health or greater risk per person than the one it replaced. A change that can be reversed without a loss of population, and continued use that rests only on preference, are not instances.
-
-**Invariants.**
-- The practice raises the number of people a territory can feed above what the earlier practice could.
-- The population grows beyond the earlier practice's capacity while the practice continues.
-- The capacity to abandon the practice without losing population declines as the population grows to depend on it.
-
-**Failure modes.**
-- Persistence read as merit: the practice's persistence is taken to show that it gives better lives per person.
-- Choice imputed: the population is said to have chosen the exchange, when each step was small and no one could compare the end states.
-- Ratchet assumed universal: populations that shrank and abandoned the practice are overlooked.
-
-#### Design
-
-**Why it exists.** The spread of farming and of synthetic fertilizer is often explained by their advantages, yet farming brought longer work and poorer health to many. DensityRatchet names the dependence that keeps such practices whatever their effect per person.
-
-**Why Society.** It needs a population of separate households depending on a shared practice; the growth of many households, not any one decision, removes the way back.
-
-**Can it be removed?** Brakefade, its parent, covers any decline in the ability to stop or reverse an activity; DensityRatchet specifies that the decline comes from a population growing to depend on the practice. MalthusianTrap explains the growth but not the irreversibility. Removable if practices that raise capacity are assumed to be kept for their merits alone.
-
-**Intended use.** explaining why a practice that raised how many people a territory could feed persisted and spread, even where it worsened lives per person.
-
-**Future uses.** assessing which current practices, such as synthetic nitrogen or irrigated agriculture, a population could no longer abandon without loss.
-
-**Broad-use contexts.** the adoption of farming, irrigation systems, industrial agriculture and fertilizer, urban water and food supply.
-
-**Broad-use intersection (review hypothesis).** a practice that raises capacity, a population that grows past the earlier practice's capacity while it continues, and a declining capacity to abandon it without losing population.
-
-**Varies (descendant territory).** how fast the population grows into the new capacity, and how much of it the earlier practice could still feed.
-
-**Extension shape.** a variant for infrastructure on which a city's water, food or energy depends.
-
-**Design tensions.**
-- A ratchet explains why a practice persists, while whether it was a good exchange for the people living under it is a separate judgment the card leaves open.
-
-**Tradeoffs.**
-- Gains: persistence explained without assuming merit.
-- Gives up: reading the spread of a practice as evidence that it improved lives.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response.
-- It extends Brakefade: the practice is the ongoing activity, and abandoning it without losing population is the control objective whose capacity declines.
-- Novelty, from recall and unverified: known in parts, coined as a handle. Nearest known concepts: the agricultural or luxury trap (Harari, 2014); Diamond's 'worst mistake in the history of the human race' (1987); path dependence.
-
-**In the family.** Brakefade is any declining ability to stop or reverse an activity, MalthusianTrap is the growth that fills new capacity, and DensityRatchet is the irreversibility that growth creates.
-
-**Extends (exact parent).** `sema:Brakefade#mh:SHA-256:764a4addf9c36ad86e2039e19ebe9a0146b560938b7fbc13bad2def47b79b188`
-
----
-
-### DiminishingComplexityReturns#cb63
-
-`Society` · `Economics` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/DiminishingComplexityReturns.json)
-
-**Gloss.** Each added layer of a society's or organization's complexity returns less than the one before, until keeping it costs more than it yields and shocks can bring collapse
-
-**Mechanism.**
-
-> A society or organization meets new problems by adding complexity: more specialists, administrators, rules, infrastructure and control. The first additions solve much for little; later ones cost more and solve less, as the easier solutions are taken first and each new layer must also maintain those before it. When the return on further complexity falls below its cost, more and more of the output goes to keeping the complexity already built, reserves against shocks shrink, and a shock once absorbed can bring a rapid loss of complexity, in which simpler arrangements cost less and may serve many people better. Collapse caused only by a force too large for any arrangement, and simplification chosen without a prior fall in returns, are not instances.
-
-**Invariants.**
-- Complexity is added to meet problems.
-- The return on each further addition of complexity falls as complexity grows.
-- The reserve against shocks shrinks as the cost of maintaining the complexity rises.
-
-**Failure modes.**
-- Returns asserted: falling returns are claimed without evidence that later additions cost more and achieved less.
-- Collapse read only as catastrophe: the loss of complexity is described only as disaster, when simpler arrangements may serve many people better.
-- Every decline as overreach: declines driven by conquest, climate or disease are forced into the pattern.
-
-#### Design
-
-**Why it exists.** Collapse is often explained by a single blow: invasion, drought or mismanagement. DiminishingComplexityReturns names the falling returns on complexity that leave a society unable to absorb a blow it once survived.
-
-**Why Society.** It concerns a society or organization of many parties, whose added specialists, rules and controls are costs borne by others.
-
-**Can it be removed?** Complexitytax asks what a distinction would change before dismissing it, and Foundationfray is the erosion of supporting practices; neither describes falling returns on added complexity. Removable if collapse is modelled only as external shock.
-
-**Intended use.** explaining collapse and simplification by falling returns on complexity and shrinking reserves.
-
-**Future uses.** assessing organizations and states whose costs of coordination and control keep rising.
-
-**Broad-use contexts.** the Western Roman Empire, Classic Maya, Chaco Canyon, large bureaucracies, research systems.
-
-**Broad-use intersection (review hypothesis).** added complexity, falling returns on further additions, and shrinking reserves.
-
-**Varies (descendant territory).** what kind of complexity is added, how its returns are measured, and what shock comes.
-
-**Extension shape.** a variant for organizations rather than whole societies.
-
-**Design tensions.**
-- Returns on complexity are hard to measure, so the card is easily asserted after the fact; the first failure mode guards against that.
-
-**Tradeoffs.**
-- Gains: collapse explained by the trajectory of the society itself rather than by the shock alone.
-- Gives up: describing collapse only as catastrophe.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response.
-- Novelty, from recall and unverified: known. Nearest known concepts: Tainter's The Collapse of Complex Societies (1988).
-
-**In the family.** StructuralDemographicCycle is a recurring crisis of agrarian states, DiminishingComplexityReturns a longer decline in what complexity yields, and Foundationfray the erosion of supporting practices.
-
----
-
 ### ExchangeRate#ac47
 
 `Society` · `Economics` · R1 · T1
@@ -38750,187 +39664,6 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 
 ---
 
-### MalthusianTrap#0f6b
-
-`Society` · `Economics` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/MalthusianTrap.json)
-
-**Gloss.** Population grows until output per person falls back to where births and deaths balance, so better techniques raise numbers, not living standards
-
-**Mechanism.**
-
-> A population lives from land and a set of techniques that together fix how much it can produce. While output per person is above the level at which births and deaths balance, numbers grow, land per person shrinks and output per person falls, until births and deaths balance again at a stable {{equilibrium}}. A better technique, a new crop or new land raises output for a time, and the population grows into it, so the lasting gain is in numbers and density, not in output per person; a disaster that removes people raises output per person until numbers recover. Populations whose births fall as income rises, and economies where output per person grows faster than population for generations, are not instances.
-
-**Invariants.**
-- Output per person falls as the number of people sharing the same land and techniques rises.
-- The population grows while output per person is above the level at which births and deaths balance, and shrinks while it is below.
-- A rise in output from new techniques or land is followed by population growth that brings output per person back toward its earlier level.
-
-**Failure modes.**
-- Fixed ceiling: the level is treated as a constant number of people, when techniques, institutions and trade move it.
-- Famine read as overshoot: every famine is taken for a population outgrowing its food, when war, policy and who can obtain food cause most famines.
-- Applied past the transition: the trap is applied to a population whose births fall as income rises.
-- Living standard read from numbers: output per person is inferred from population size, missing long periods when it stayed high after a population loss.
-
-**Dependency bindings.**
-
-| Category | Placeholder | Exact definition |
-| --- | --- | --- |
-| `references` | `{{equilibrium}}` | `sema:Equilibrium#mh:SHA-256:4f036318bc81500ad159994d9ab7efbec87883eccecb18e64ede15cde3e099d2` |
-
-#### Design
-
-**Why it exists.** Pre-industrial history is often told as progress in techniques, yet for most of it living standards barely moved while numbers grew. MalthusianTrap names the dynamic that turns gains in technique into population, so a world model can say where it held and where it stopped holding.
-
-**Why Society.** The mechanism needs a population of separate households sharing land and techniques, whose births and survival respond to what each can obtain; no single party executes it.
-
-**Can it be removed?** Equilibrium supplies the stationary state the trap returns to, and Capacitylag compares demands with capacity; neither says that gains in output are absorbed by population growth. Removable if output per person is modelled as independent of population.
-
-**Intended use.** explaining why output per person stayed near the level where births and deaths balance in agrarian societies while techniques improved, and dating where the trap stopped holding.
-
-**Future uses.** testing claims of stagnation or progress in pre-industrial economies against wage, height and population evidence.
-
-**Broad-use contexts.** foraging and farming populations, agrarian states, island and frontier settlement, recovery after epidemics and wars.
-
-**Broad-use intersection (review hypothesis).** a population, a production base of land and techniques, output per person that falls as numbers rise, and births and deaths that respond to output per person.
-
-**Varies (descendant territory).** how fast numbers respond, the level at which births and deaths balance, and what moves the production base.
-
-**Extension shape.** a variant in which custom, such as late marriage, holds the balance level above bare subsistence.
-
-**Design tensions.**
-- The level at which births and deaths balance is set partly by custom, so the trap can hold well above bare subsistence, and evidence of comfort does not by itself show that it was escaped.
-
-**Tradeoffs.**
-- Gains: a reason why centuries of new techniques left living standards nearly flat.
-- Gives up: reading technical progress as progress in welfare before the transition.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response.
-- The invariants concern output per person, not a fixed number of people; the level moves with techniques, institutions and trade, which the first failure mode guards.
-- Leaving the trap belongs to DemographicTransition, births falling as income rises, and to Sunbound, energy no longer bound to land.
-- The absorption invariant states a direction, not a time: how many generations the return takes varies, and the card leaves it to the evidence.
-- Novelty, from recall and unverified: known. Nearest known concepts: Malthus's principle of population (1798); the Malthusian regime of unified growth theory (Galor); Clark's A Farewell to Alms (2007).
-
-**In the family.** MalthusianTrap absorbs gains into numbers, DensityRatchet makes a practice that raised capacity irreversible, SurplusBound limits who can live outside food production, Sunbound limits energy to what land grows, and DemographicTransition is how a population leaves the trap.
-
----
-
-### Sunbound#c94c
-
-`Society` · `Economics` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/Sunbound.json)
-
-**Gloss.** An economy that draws its energy only from current plant growth can grow only as far as its land allows
-
-**Mechanism.**
-
-> In an economy whose energy comes from current photosynthesis, as food for human and animal muscle, wood for heat and fodder for draught animals, with wind and water as small supplements, every increase in energy use needs land, and the same land must also grow food and fibre. Output per person can then rise only through trade, specialization and better use of land, and growth slows as land runs short. Drawing on a stock of energy not tied to current land, such as coal, oil and gas, lifts this bound: energy use, output per person and population can rise together far beyond what the land yields, while new bounds appear in the depletion of the stock and in the capacity of air, water and land to absorb its wastes. Economies held back by something other than land-bound energy are not instances.
-
-**Invariants.**
-- The economy's energy comes from current plant growth, supplemented only by flows such as wind and water.
-- Each increase in energy use requires more land or more output from each unit of land.
-- Energy use per person stays within what the land can supply alongside food.
-
-**Failure modes.**
-- Energy as sufficient cause: access to fossil energy is taken to explain growth on its own, overlooking the institutions, skills and markets that put it to use.
-- New bounds ignored: escaping the land bound is treated as escaping every bound, missing depletion and the limits of waste sinks.
-- Stagnation assumed: growth within the bound through trade and specialization is overlooked.
-
-#### Design
-
-**Why it exists.** The industrial revolution is often explained by invention or institutions alone. Sunbound names the land bound on energy that every earlier economy faced, so the break that fossil fuels made can be modelled as the lifting of a bound.
-
-**Why Society.** It concerns an economy of many producers and consumers whose uses of energy compete for the same land.
-
-**Can it be removed?** Budget and Resource are limits on an allocation, and MalthusianTrap absorbs gains into population; neither ties an economy's energy to its land. Removable if energy is modelled as unlimited by land.
-
-**Intended use.** explaining why growth in agrarian economies stayed slow, and what changed when fossil energy was drawn on.
-
-**Future uses.** assessing economies that turn to energy flows such as solar and wind, which face different bounds.
-
-**Broad-use contexts.** agrarian economies, the British industrial revolution, the spread of coal and oil, energy transitions.
-
-**Broad-use intersection (review hypothesis).** an economy whose energy comes from current plant growth, competition between energy and food for land, and growth slowing as land runs short.
-
-**Varies (descendant territory).** the yields of land, the importance of wind and water, and trade.
-
-**Extension shape.** a variant for economies drawing on large flows such as hydroelectric, solar and wind power.
-
-**Design tensions.**
-- The card names the bound and how fossil stocks lift it, while the new bounds that follow belong to other mechanisms.
-
-**Tradeoffs.**
-- Gains: a reason why growth in organic economies stayed slow that does not depend on a lack of invention.
-- Gives up: treating fossil energy as the whole explanation of industrialization.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response.
-- Novelty, from recall and unverified: known, coined as a handle. Nearest known concepts: Wrigley's organic economy and its escape (1988, 2010); Sieferle's The Subterranean Forest (2001); Pomeranz's The Great Divergence (2000).
-
-**In the family.** MalthusianTrap absorbs gains into numbers, SurplusBound limits who can live outside food production, and Sunbound limits energy to what land grows.
-
----
-
-### SurplusBound#7fe3
-
-`Society` · `Economics` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/SurplusBound.json)
-
-**Gloss.** The share of people who do not produce food can be no larger than what food producers' surplus can feed
-
-**Mechanism.**
-
-> Specialists, rulers, soldiers, traders and city dwellers who do not produce food live on what food-producing households grow beyond their own needs. If those households grow enough to feed themselves and, on top of that, s times their own number, at most s/(1+s) of all people can live outside food production. The bound holds for the whole system that exchanges food over a period, imports and tribute included, and stores only stretch it while they last. More output per producer, better storage or cheaper transport raise the bound; a fall in any of them forces people back into food production or into hunger. How far below the bound the share sits depends on how the surplus is taken and spent, which the bound does not decide.
-
-**Invariants.**
-- People outside food production are fed from food-producing households' surplus in the system that exchanges food, over any period longer than stores last.
-- If food-producing households grow enough for themselves and s times their own number, people outside food production are at most s/(1+s) of that system.
-
-**Failure modes.**
-- Bound read as level: the share of people outside food production is predicted from the bound, when extraction, consumption and waste keep it lower.
-- System drawn too small: a city or region is tested on its own though imports or tribute feed it.
-- Surplus read as given: the bound is taken to show that producers chose to feed others, when surplus is often taken by force.
-
-#### Design
-
-**Why it exists.** Accounts of cities, states and specialists often say they arose 'with surplus' without saying how large a population outside food production a given surplus allows. SurplusBound states the bound, so a claimed share can be checked against what producers could feed.
-
-**Why Society.** The bound relates two groups with separate interests: those who produce food, and those who live on what producers give up or have taken from them.
-
-**Can it be removed?** Budget and Resource describe limits on an allocation, not the share of a population that food production can support. Removable if the share of people outside food production is not modelled.
-
-**Intended use.** checking claimed shares of urban, specialist or ruling populations against what food producers could feed, and tracing how rising output per producer raised that share.
-
-**Future uses.** relating livelihood shares to agricultural productivity in a model of any society.
-
-**Broad-use contexts.** early cities and states, empires fed by tribute, industrialization, modern agriculture and urbanization.
-
-**Broad-use intersection (review hypothesis).** a population divided into food-producing households and others, the producers' surplus over their own needs, and a system boundary that includes the food exchanged over the period.
-
-**Varies (descendant territory).** where the system boundary lies, how long stores last, and how the surplus is taken.
-
-**Extension shape.** a variant in which the surplus is an energy surplus rather than food.
-
-**Design tensions.**
-- The bound is clear only when the boundary is drawn around everything that feeds the population, and the wider the boundary, the less it says about any one city.
-
-**Tradeoffs.**
-- Gains: a checkable upper limit on the share of people outside food production.
-- Gives up: any claim about who controls the surplus or how it is taken.
-
-**Critique (diagnostic, not contract requirements).**
-- The card states an upper bound, not a level; the first failure mode guards the difference.
-- s is measured against the food-producing population including its own dependents, so children and elders in farming households count inside food production.
-- Novelty, from recall and unverified: known as an idea, not as a named bound. Nearest known concepts: surplus and the division of labour in Childe's urban revolution (1950); Boserup on agricultural intensification (1965).
-
-**In the family.** MalthusianTrap absorbs gains into numbers, SurplusBound limits the share that can live outside food production, and ExitCage describes how the surplus can be taken durably.
-
----
-
 ### ValuePeg#e440
 
 `Society` · `Economics` · R1 · T1
@@ -39082,7 +39815,7 @@ One check that passed and is worth recording: this card's commentary describes O
 
 ---
 
-### Society/Governance (27)
+### Society/Governance (24)
 
 ### Absentseat#d6ab
 
@@ -39634,63 +40367,6 @@ One check that passed and is worth recording: this card's commentary describes O
 - `DocumentedOverride#17d3`
 - `DocumentedOverride#4054`
 - `DocumentedOverride#2b77`
-
----
-
-### ExitCage#eef7
-
-`Society` · `Governance` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/ExitCage.json)
-
-**Gloss.** When people cannot leave without losing their livelihood, those who control force can take a share of what they produce
-
-**Mechanism.**
-
-> People whose livelihood is tied to a place, because the land around is barren, already held by others, or their own investment in fields, canals, terraces or stores cannot move, lose the option of leaving. A group that controls force or access can then take a share of what they produce and impose obligations on them, and the subordination lasts while leaving costs more than staying. Where people can leave at small cost, would-be rulers lose them to flight and their power stays limited. The cage may be set by terrain, by neighbours, by debt or by investment, and it tightens as investment in place grows. Subordination sustained by benefits the subjects would accept even with exit open, and limits on leaving unrelated to livelihood, are not instances.
-
-**Invariants.**
-- Leaving would cost the people their livelihood.
-- A group that controls force or access takes a share of their output or labour.
-- The arrangement lasts while leaving costs more than staying.
-
-**Failure modes.**
-- Terrain as destiny: physical barriers alone are credited, when neighbours, debts and immovable investment close exit as firmly.
-- Exit read as free: people with open land around them are assumed able to leave at no cost, ignoring kin, rights to land and risk.
-- Every state caged: all states are explained by closed exit, overlooking those built through trade, religion or defence.
-
-#### Design
-
-**Why it exists.** State formation is often explained by the benefits rulers provided. ExitCage names the condition under which extraction can persist without them: people who cannot leave without losing their livelihood.
-
-**Why Society.** It needs at least two parties with opposed interests: those who would leave and those who take a share of what they produce.
-
-**Can it be removed?** Burdenlight lists who bears costs and who benefits, and Powerreturn asks for concentrated authority to be returned; neither describes how a loss of exit makes extraction durable. Removable if subjects are modelled as always free to leave.
-
-**Intended use.** explaining where and why durable extraction and subordination arose, and where flight kept rulers weak.
-
-**Future uses.** recognising arrangements in which debt, housing or employment tie people to those who take a share of their work.
-
-**Broad-use contexts.** early states in river valleys, serfdom and debt bondage, company towns, state-evasion in hill and forest refuges.
-
-**Broad-use intersection (review hypothesis).** people whose livelihood is tied to a place, a group that controls force or access, and a cost of leaving greater than the cost of staying.
-
-**Varies (descendant territory).** what closes the exit, how much is taken, and what flight remains possible.
-
-**Extension shape.** a variant for exit closed by neighbouring polities rather than terrain.
-
-**Design tensions.**
-- The same investment in place that closes exit also raises output, so the cage and the prosperity it taxes can grow together.
-
-**Tradeoffs.**
-- Gains: a condition for durable extraction that does not depend on consent.
-- Gives up: explaining every state by the benefits it provided.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response. Its caution addresses use of the description as a recipe.
-- Novelty, from recall and unverified: known in parts, coined as a handle. Nearest known concepts: Carneiro's circumscription theory (1970); Mann's social caging (1986); Hirschman's exit and voice (1970); Scott's The Art of Not Being Governed (2009).
-
-**In the family.** SurplusBound limits what can be taken, ExitCage is when it can be taken durably, and FreeRiderProblem is why those inside rarely resist together.
 
 ---
 
@@ -40511,73 +41187,6 @@ _Note: The coined handle names the failure and the card defines the guard, as Co
 
 ---
 
-### StructuralDemographicCycle#c94c
-
-`Society` · `Governance` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/StructuralDemographicCycle.json)
-
-**Gloss.** Cycles of population growth, elite crowding, state crisis and disorder in agrarian states
-
-**Mechanism.**
-
-> In an agrarian state, a long period of order lets population grow into its {{malthusian_trap}}, which lowers wages and raises rents, enriching landowners and enlarging the elite. Elite numbers and ambitions outgrow the positions and income available, a {{capacitylag}} in which elites compete and split into factions, while the state's revenue falls behind the cost of its army and administration. Fiscal crisis, elite conflict and popular unrest bring a period of disorder in which population and elite numbers fall through war, famine, disease and loss of status, until the conditions for a new period of growth and order return. The duration varies with these interacting dynamics. Crises produced by an outside shock without this build-up, and societies whose population is not near its limit, are not instances.
-
-**Invariants.**
-- Population grows during a long period of order toward the limit its land and techniques allow.
-- Elite numbers or ambitions grow faster than the positions and income available to them.
-- The state's revenue falls behind its costs before the disorder.
-- Population and elite numbers fall during the disorder.
-
-**Failure modes.**
-- Rhythm forced: a two-to-three-century rhythm is imposed on histories whose crises do not follow it.
-- One cause: the crisis is attributed to population alone, ignoring elite and fiscal dynamics, or the reverse.
-- Prediction by analogy: the cycle is projected onto societies far from their population limit, such as industrial ones, without checking its conditions.
-
-**Dependency bindings.**
-
-| Category | Placeholder | Exact definition |
-| --- | --- | --- |
-| `references` | `{{capacitylag}}` | `sema:Capacitylag#mh:SHA-256:977c018cdc8c7a053bad12a6cd98275477f3f106c8ac8bf975fce1dca8b6bb2c` |
-| `references` | `{{malthusian_trap}}` | `sema:MalthusianTrap#mh:SHA-256:0f6b99da46aa40c7bc427c5af4545b269837f66722ccfbc34994ab50e2e951da` |
-
-#### Design
-
-**Why it exists.** Crises of agrarian states are often told as the failures of particular rulers. StructuralDemographicCycle names the recurring build-up of population pressure, elite competition and fiscal strain that precedes them.
-
-**Why Society.** It needs commoners, elites and a state with separate interests, whose interaction produces the cycle.
-
-**Can it be removed?** MalthusianTrap gives the population pressure and Capacitylag the elite crowding; neither describes the full cycle through state crisis and recovery. Removable if crises are modelled as independent events.
-
-**Intended use.** explaining the timing of crisis and disorder in agrarian states.
-
-**Future uses.** testing whether the cycle's conditions hold in a given state before using it to explain or predict.
-
-**Broad-use contexts.** medieval and early modern England and France, Rome, Chinese dynasties, the Russian state.
-
-**Broad-use intersection (review hypothesis).** an agrarian state near its population limit, elite growth beyond positions, fiscal strain, and a period of disorder with falling numbers.
-
-**Varies (descendant territory).** the length of the phases, and which of population, elite or fiscal strain leads.
-
-**Extension shape.** a variant for states where elite crowding occurs without population near its limit.
-
-**Design tensions.**
-- The cycle is defined by its conditions, while it is often applied by its rhythm; the first failure mode guards the difference.
-
-**Tradeoffs.**
-- Gains: crises explained by build-up rather than by individual failures.
-- Gives up: treating each crisis as unique.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response.
-- Its application to industrial societies is contested; the card's boundary excludes societies far from their population limit.
-- Two to three centuries is a characteristic timescale in some documented agrarian cycles, not an admission criterion. The pattern is identified by its interacting population, elite and fiscal dynamics; matching a period alone does not establish this mechanism.
-- Novelty, from recall and unverified: known. Nearest known concepts: Turchin and Nefedov's Secular Cycles (2009); Goldstone's Revolution and Rebellion in the Early Modern World (1991); the dynastic cycle of Chinese historiography.
-
-**In the family.** MalthusianTrap is the population pressure it builds on, Capacitylag the elite crowding, Warsift the external competition, and DiminishingComplexityReturns the longer decline in returns on complexity.
-
----
-
 ### Successiongift#5f2b
 
 `Society` · `Governance` · R2 · T2
@@ -40808,63 +41417,6 @@ _Note: The coined handle names the failure and the card defines the guard, as Co
 
 ---
 
-### Warsift#b01b
-
-`Society` · `Governance` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/Warsift.json)
-
-**Gloss.** Sustained war between polities eliminates those that raise less, so the survivors converge on states that extract more
-
-**Mechanism.**
-
-> Polities that compete in war over generations win, absorb or are absorbed according to the soldiers, weapons and supplies they can field, which depends on how much they can raise from their people and how well they administer it. Those that raise and organize less are conquered or merge into others, so the number of polities falls, and the survivors carry the fiscal and administrative institutions that each war required. No polity needs to aim at this outcome; elimination produces it. The sifting slows where terrain protects small polities, where conquest costs more than it gains, or when one empire absorbs the rest. State-building driven by trade or belief without military competition, and competition in which defeated polities survive unchanged, are not instances.
-
-**Invariants.**
-- Polities compete in war over a long period.
-- Success in war depends on the resources a polity can raise and administer.
-- Defeated polities are eliminated or absorbed, so the number of polities falls and the survivors raise more than those that disappeared.
-
-**Failure modes.**
-- Survival read as merit: surviving states are taken to be better for their people, when the sifting favours extraction, not welfare.
-- One path for all: regions where war did not eliminate polities, or where states formed otherwise, are forced into the pattern.
-- Design imputed: the convergence is credited to rulers' plans, when elimination produces it.
-
-#### Design
-
-**Why it exists.** The convergence of many polities on a few large, heavily taxing states is often credited to rulers' designs. Warsift names the selection by war that produces it without design.
-
-**Why Society.** It needs several polities competing, each with its own resources and fate.
-
-**Can it be removed?** SecurityDilemma explains why polities arm, not which survive, and Select is generic selection by criteria, not elimination through war. Removable if the number and form of polities are modelled without competition.
-
-**Intended use.** explaining why the number of polities fell and states grew more extractive under sustained war.
-
-**Future uses.** comparing state formation across regions with and without sustained war between states.
-
-**Broad-use contexts.** Warring States China, early modern Europe, Sengoku Japan, South Asian and West African state systems.
-
-**Broad-use intersection (review hypothesis).** competing polities, success in war depending on resources raised, and elimination or absorption of the defeated.
-
-**Varies (descendant territory).** the military technology, the terrain, and how long the competition lasts.
-
-**Extension shape.** a variant for competition through trade and finance rather than war.
-
-**Design tensions.**
-- Selection by war explains which states survive, not whether they serve their people, and the two are easily conflated.
-
-**Tradeoffs.**
-- Gains: convergence explained without assuming design.
-- Gives up: reading surviving states as the best ones.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response.
-- Novelty, from recall and unverified: known, coined as a handle. Nearest known concepts: Tilly's 'war made the state, and the state made war' (1975) and Coercion, Capital, and European States (1990); Hui's War and State Formation in Ancient China and Early Modern Europe (2005).
-
-**In the family.** SecurityDilemma is why polities arm, Warsift is what sustained war selects, and StructuralDemographicCycle is the internal cycle of the states that survive.
-
----
-
 ### WorldTransparent#208a
 
 `Society` · `Governance` · R2 · T1
@@ -40941,7 +41493,7 @@ _Note: The coined handle names the failure and the card defines the guard, as Co
 
 ---
 
-### Society/Protocols (100)
+### Society/Protocols (91)
 
 ### AdversarialProof#36b4
 
@@ -42257,64 +42809,6 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 ---
 
-### CumulativeCulture#1e8a
-
-`Society` · `Protocols` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/CumulativeCulture.json)
-
-**Gloss.** Skills and knowledge accumulate across generations as people learn from others, improve what they inherit and pass improvements on
-
-**Mechanism.**
-
-> People learn skills, tools and knowledge from others and sometimes improve on what they learned. Each generation starts from the stock it inherits, so retained improvements provide a basis for further improvements beyond what anyone could invent alone. Retention and growth depend on learning, practice and innovation; population size and connections affect these processes without determining their outcome. Skills can be lost when transmission breaks down. Learning that is not passed on, and transmission that copies without ever improving, are not instances.
-
-**Invariants.**
-- Skills and knowledge are learned from others rather than reinvented by each learner.
-- Some learners improve on what they learned, and the improvements are passed on.
-- Improvements are retained long enough for later learners to build on them.
-
-**Failure modes.**
-- Stock read as ability: differences in tools or knowledge between peoples are attributed to differences in individual ability without examining learning and transmission.
-- Accumulation assumed: the stock is assumed only to grow, missing losses that can follow disrupted transmission, isolation or a shrinking population.
-- Size alone: a large or connected population is treated as guaranteeing accumulation without examining the learning, practice and innovation that sustain it.
-
-#### Design
-
-**Why it exists.** Differences in tools and knowledge between peoples have been read as differences in ability. CumulativeCulture names how socially transmitted improvements become a basis for further improvements, directing attention to the conditions that sustain that accumulation.
-
-**Why Society.** Learning from others needs at least two parties, a learner and a model, and accumulation links successive learners.
-
-**Can it be removed?** Sideinherit is a single transfer between separate lines of descent, and Foundationfray is the erosion of supporting practices; neither describes successive improvements retained through social transmission. Removable if each generation is modelled as reinventing its knowledge independently.
-
-**Intended use.** explaining the accumulation and loss of skills and knowledge through learning, improvement and transmission.
-
-**Future uses.** assessing how communities of practice, human and machine, keep and improve what they know.
-
-**Broad-use contexts.** Palaeolithic toolkits, Tasmanian isolation, the growth of science and technology, crafts lost and recovered.
-
-**Broad-use intersection (review hypothesis).** learning from others, improvements passed on, and retained improvements that later learners build on.
-
-**Varies (descendant territory).** the channels of teaching and storage, the size and connection of the population, and the rates of innovation, retention and loss.
-
-**Extension shape.** a variant for written and stored knowledge, whose loss depends less on living practitioners.
-
-**Design tensions.**
-- More learners and contacts can widen access to models and innovations, but their effect on accumulation depends on what is learned, how it is transmitted and whether learners improve it.
-
-**Tradeoffs.**
-- Gains: an account of accumulated knowledge that includes social transmission rather than attributing differences to individual ability alone.
-- Gives up: crediting individual genius alone.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response.
-- Population size and connectivity are contributing conditions, not defining guarantees of accumulation or loss. A large connected population can fail to retain improvements, and a small isolated community can sustain complex skills; demographic explanations require evidence about transmission and innovation in the case at hand.
-- Novelty, from recall and unverified: known. Nearest known concepts: cumulative cultural evolution (Boyd and Richerson); Tomasello's ratchet effect (1999); Henrich's Tasmanian case (2004); Kremer's population and technological change (1993).
-
-**In the family.** Sideinherit is one transfer, InnovationDiffusion the spread of a practice, Foundationfray the erosion of supports, and CumulativeCulture successive improvements retained through social transmission.
-
----
-
 ### DataMinimization#e8c8
 
 `Society` · `Protocols` · R2 · T2
@@ -43522,66 +44016,6 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 ---
 
-### Focalpeer#3724
-
-`Society` · `Protocols` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/Focalpeer.json)
-
-**Gloss.** A group's joint action comes to depend on a member who holds no assigned coordinating authority
-
-**Mechanism.**
-
-> Members of a group act together, and one of them, holding no assigned coordinating authority over the action, becomes the point the others organise around: they time their contributions by that member's moves, take up that member's framing, or keep their commitment because that member does. While this lasts, the joint action depends on that member in those respects, so it would falter or change if the member withdrew. The member need not intend to lead, and the others need not acknowledge it. A member whose focal position comes from assigned coordinating authority, a member who declared the action and is followed because of that declaration, and a merely visible member of a group whose action its members sustain among themselves, are not instances.
-
-**Invariants.**
-- A group acts jointly, and the member in question holds no assigned coordinating authority over that action.
-- The joint action depends on that member in a specified respect, such as timing, framing or commitment.
-
-**Failure modes.**
-- Visibility read as leadership: the most visible or vocal member is taken to organise an action the members sustain among themselves.
-- Organiser read as sole author: the joint action is credited or blamed entirely to the focal member, discounting the members' own reasons.
-- Position read as intent: the focal member is assumed to have sought the position, when the others' organising around it produced it.
-- Dependence unseen: the group is described as leaderless or role-led, so the member its action depends on goes unseen.
-
-#### Design
-
-**Why it exists.** Groups are described either as led through assigned roles or as leaderless, so a joint action that runs through one member not appointed to coordinate the action is misread both ways: its focal member goes unseen, or a merely visible member is blamed for what the group did. Focalpeer names the dependence and its test, what would change if that member withdrew.
-
-**Why Society.** The process needs a group of independent members whose joint action can depend on one of them; one party cannot instantiate it.
-
-**Can it be removed?** Role assigns a function, Elect selects a leader, Rally has a declared initiator, Stigmergy coordinates through traces with no focal member, and Recifluence loops influence between parties; none describes a group's joint action depending on a member who holds no assigned coordinating authority. Removable if leadership is assumed to come only from assignment.
-
-**Intended use.** recognising when a group's joint action depends on one member who holds no assigned coordinating authority.
-
-**Future uses.** multi-agent systems in which one agent's early plan or messages become the coordination point without anyone assigning it; projects whose contributions route through a maintainer not appointed as coordinator.
-
-**Broad-use contexts.** campaigns and protests, classrooms, teams, online communities, open-source projects, multi-agent systems, incident reviews.
-
-**Broad-use intersection (review hypothesis).** a group acting jointly, a member without assigned coordinating authority, and a respect in which the joint action depends on that member.
-
-**Varies (descendant territory).** the respect of dependence (timing, framing or commitment), and whether the member and the others know it.
-
-**Extension shape.** a variant for multi-agent systems; a variant for communities with informal coordinators.
-
-_Note: An assigned contributor role does not exclude this process. A researcher or developer can become the coordination point without being assigned coordinating authority._
-
-**Design tensions.**
-- Naming a focal member concentrates credit or blame that the group shares.
-
-**Tradeoffs.**
-- Gains: a way to see leadership that no role records.
-- Gives up: the picture of a group led only through assigned roles.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response. Recifluence's Single author failure mode and Responsibility's Scapegoating warn against crediting one member; Focalpeer is the case where the dependence on one member is real, and its failure modes keep the two apart.
-- Novelty, from recall and unverified: known. Nearest known concepts: emergent leadership; informal leader; opinion leader; the bus factor.
-- Caution: the card's contexts include campaigns and protests, and its counterfactual test, what would change if the member withdrew, names one person as the point the group depends on. A correct Focalpeer reading is therefore a target for steering or pressure; the failure modes guard only against misattribution.
-
-**In the family.** Role assigns a function, Elect selects a leader, Stigmergy coordinates without one, Recifluence loops influence between parties, and Focalpeer is a group's action depending on a member who holds no assigned coordinating authority over that action.
-
----
-
 ### Framecapture#46b6
 
 `Society` · `Protocols` · R2 · T2
@@ -44119,64 +44553,6 @@ _Note: An assigned contributor role does not exclude this process. A researcher 
 
 ---
 
-### InnovationDiffusion#d44a
-
-`Society` · `Protocols` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/InnovationDiffusion.json)
-
-**Gloss.** A practice spreads through a population by contact and imitation, slowly at first, then fast, then levelling off
-
-**Mechanism.**
-
-> People adopt a practice, tool or idea after meeting it in others, through trade, teaching, marriage or imitation. Each adopter exposes others, so adoption rises slowly while adopters are few, accelerates as contacts between adopters and non-adopters multiply, and levels off as those who will adopt have done so. Its pace depends on how often people meet across the network and on how visible, advantageous and fitting to their conditions the practice is; routes of contact, barriers, and differences in climate or custom channel where it goes. Spread by the movement of the adopting people themselves, and adoption imposed by an authority without uptake through contact, are not instances.
-
-**Invariants.**
-- People adopt the practice after encountering it in others.
-- The rate of new adoption depends on contact between adopters and non-adopters.
-- Adoption levels off as the people who will adopt have adopted.
-
-**Failure modes.**
-- Spread read as superiority: a practice's spread is taken to show it is better, when contact, prestige or pressure can carry inferior practices.
-- Independent invention missed: a similar practice in two places is assumed to come from contact, when it arose separately.
-- Slowness blamed on non-adopters: slow uptake is read as backwardness, when the practice does not fit their conditions.
-
-#### Design
-
-**Why it exists.** A practice's spread is often explained by its being better, and its absence by people's backwardness. InnovationDiffusion names the contact-driven course of adoption, so the pace and reach of a spread can be explained by networks and fit.
-
-**Why Society.** Adoption needs adopters who meet one another and decide; the mechanism runs through contact between separate parties.
-
-**Can it be removed?** Sideinherit is one transfer of a practice between separate lines of descent, and MemeticSeed spreads standards by subsidy; neither describes adoption across a population over time. Removable if spread is modelled without contact between adopters and non-adopters.
-
-**Intended use.** explaining how fast and how far a practice, tool or idea spread through a population, and why it stopped where it did.
-
-**Future uses.** modelling the spread of technologies, crops, religions and institutions along routes of contact.
-
-**Broad-use contexts.** crops and domesticated animals, writing and coinage, religions and ideas, printing, industrial and digital technologies.
-
-**Broad-use intersection (review hypothesis).** a practice, adopters who meet it in others, contact between adopters and non-adopters, and a levelling off.
-
-**Varies (descendant territory).** the network of contact, the advantage and fit of the practice, and the barriers.
-
-**Extension shape.** a variant for spread channelled along routes where climate and crops are similar.
-
-**Design tensions.**
-- Adoption through contact and adoption under pressure blur where contact carries prestige or coercion.
-
-**Tradeoffs.**
-- Gains: spread explained by contact and fit rather than by merit or backwardness.
-- Gives up: a single verdict on whether a spread practice was better.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response.
-- Each adoption from someone outside the adopter's line of descent is a Sideinherit; this card concerns the course of many such transfers.
-- Novelty, from recall and unverified: known. Nearest known concepts: Rogers's Diffusion of Innovations (1962); Hägerstrand's spatial diffusion; Diamond's continental axes (1997).
-
-**In the family.** Sideinherit is one transfer, InnovationDiffusion is the course of many, WaveOfAdvance moves the people themselves, and Twinflow carries what no one meant to spread along the same links.
-
----
-
 ### IntentGap#0c14
 
 `Society` · `Protocols` · R2 · T2
@@ -44494,61 +44870,6 @@ _Note: An assigned contributor role does not exclude this process. A researcher 
 - `LatticeCommit#3c5d`
 - `LatticeCommit#6675`
 - `LatticeCommit#74db`
-
----
-
-### Linkfade#fb82
-
-`Society` · `Protocols` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/Linkfade.json)
-
-**Gloss.** Connections weaken while the participants keep their individual capacities
-
-**Mechanism.**
-
-> Relations that carried interaction, access or support become less effective, although the connected participants can still perform the relevant activities on their own. The weakening is between participants, not in their individual capacities. Reduced traffic by agreement, or fewer messages needed after a shared convention, is not an instance.
-
-**Invariants.**
-- A relation between participants weakens for the activity considered.
-- The participants' relevant individual capacities are retained.
-
-**Failure modes.**
-- Sum of parts: collective capacity is judged by adding individual capacities.
-- Quiet read as weakening: deliberate quiet or low demand is taken as a weakened connection.
-
-#### Design
-
-**Why it exists.** Capable participants can lose the connections that let them work together, and each still looks fine. Linkfade names the weakening between them.
-
-**Why Society.** A connection lies between participants, so the process needs at least two.
-
-**Can it be removed?** Decay attenuates a value with a half-life unless reinforced, and Quietsever concerns communication diminishing through connection loss; neither describes relations weakening while participants keep their capacities. Removable if collective capacity is assumed to equal the sum of its members.
-
-**Intended use.** recognising when the connections between capable participants are weakening.
-
-**Future uses.** distributed agents and services whose links degrade while each component stays healthy.
-
-**Broad-use contexts.** collaborators drifting apart, fragmented institutions, team handoffs, service integrations, distributed agents.
-
-**Broad-use intersection (review hypothesis).** participants, a relation between them that weakens, and individual capacities that remain.
-
-**Varies (descendant territory).** whether the relation carries interaction, access or support.
-
-**Extension shape.** a variant for organisations; a variant for technical integrations.
-
-**Design tensions.**
-- Weakened links can be compensated elsewhere, which hides them.
-
-**Tradeoffs.**
-- Gains: a name for losses between parts rather than in them.
-- Gives up: assessing a whole by its parts.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response. Quietsever overlaps when communication diminishes through connection loss, but Quietsever does not require retained capacities, and Linkfade covers access and support without quieter communication.
-- Novelty, from recall and unverified: known. Nearest known concepts: weakening ties; organisational silos; integration rot.
-
-**In the family.** Quietsever quiets a channel, Syncdrift loses timing, Decay attenuates a value, and Linkfade is the weakening between capable participants.
 
 ---
 
@@ -46021,62 +46342,6 @@ _Note: Each pass operates on a current immutable Artifact version and produces i
 
 ---
 
-### Quietsever#8948
-
-`Society` · `Protocols` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/Quietsever.json)
-
-**Gloss.** Communication diminishes as the connection between parties weakens
-
-**Mechanism.**
-
-> As parties become less able or willing to keep a responsive connection, communication between them diminishes. The quieter channel reflects the weakened connection; it does not show convergence in their views. Low message volume alone is not an instance: a team that resolved an issue and stays readily responsive is quieter without the loss, and parties can agree on some matters while their connection weakens.
-
-**Invariants.**
-- There are at least two independently situated parties.
-- Their responsive connection weakens, and the weakening contributes to reduced communication.
-
-**Failure modes.**
-- Quiet read as harmony: reduced communication is taken as agreement or health.
-- Quiet read as abandonment: reduced communication is taken as a lost connection without asking.
-- Volume as measure: message counts alone are used to judge the connection.
-
-#### Design
-
-**Why it exists.** A fading connection makes a channel quiet, and a quiet channel looks like a calm one. Quietsever names the weakening connection behind the quiet.
-
-**Why Society.** The connection lies between independently situated parties, so the process needs at least two.
-
-**Can it be removed?** Silence is an agent's deliberate withholding, Silencevote reads silence on proposals, and ChannelCheck asks after a quiet interval; none describes communication diminishing because the connection weakens. Removable if quiet channels are assumed to mean nothing.
-
-**Intended use.** recognising when diminishing communication between people, teams or systems reflects a weakening connection.
-
-**Future uses.** distributed agents and long-running collaborations between people and agents.
-
-**Broad-use contexts.** client relationships, remote teams, open-source collaborations, service integrations, partnerships, families.
-
-**Broad-use intersection (review hypothesis).** two or more parties, a weakening responsive connection, and communication that diminishes because of it.
-
-**Varies (descendant territory).** whether the weakening is in ability or willingness, and which channel is meant.
-
-**Extension shape.** a variant for service-to-service connections; a variant for personal relationships.
-
-**Design tensions.**
-- Asking whether a connection has weakened can itself change the connection.
-
-**Tradeoffs.**
-- Gains: quiet can be read as a possible sign rather than a verdict.
-- Gives up: reading quiet as agreement.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response. ChannelCheck is one separately defined check-in after a quiet interval.
-- Novelty, from recall and unverified: known. Nearest known concepts: silent disengagement; drifting apart.
-
-**In the family.** Silence withholds deliberately, Silencevote reads silence on proposals, ChannelCheck checks in, and Quietsever is the fading connection behind the quiet.
-
----
-
 ### QuorumPulse#15db
 
 `Society` · `Protocols` · R2 · T1
@@ -46393,61 +46658,6 @@ _Note: Each pass operates on a current immutable Artifact version and produces i
 - `ReceptivityGate#2709`
 - `ReceptivityGate#8e74`
 - `ReceptivityGate#5667`
-
----
-
-### Recifluence#4fba
-
-`Society` · `Protocols` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/Recifluence.json)
-
-**Gloss.** One party's influence changes another's response, which returns to change the first party's later influence
-
-**Mechanism.**
-
-> An influence from one participant changes how another responds, and that changed response reaches back and alters how the first acts toward the other, so the influences exchanged develop reciprocally, possibly through more participants or indirect routes. Influence must travel out and return through a changed response that affects later influence; alternating messages, parallel responses to a third cause, or one-way persuasion are not instances.
-
-**Invariants.**
-- An influence from one party changes another party's response.
-- The changed response returns and affects the first party's later influence.
-
-**Failure modes.**
-- Single author: the whole development is credited to one initiator.
-- Reciprocity read as equality: reciprocal influence is assumed to mean equal power, consent, agreement or mutual benefit.
-
-#### Design
-
-**Why it exists.** Interactions are described as one party influencing another, and the loop by which each reshapes the other's influence is missed. Recifluence names that loop.
-
-**Why Society.** Influence travels between at least two parties, so the process needs a group of two or more.
-
-**Can it be removed?** Feedback requires an attributed error and an indicated adjustment, Costeer is a deliberate joint choice, and Coflourish requires mutual gain; none describes influence returning through a changed response to change later influence. Removable if influence is assumed to flow one way.
-
-**Intended use.** recognising reciprocal influence between parties as a developing loop.
-
-**Future uses.** multi-agent interaction, and agents in long conversations with people.
-
-**Broad-use contexts.** conversation, improvisation, collaborative learning, negotiation, markets, multi-agent interaction.
-
-**Broad-use intersection (review hypothesis).** two or more parties, an influence that changes a response, and a return that changes later influence.
-
-**Varies (descendant territory).** the routes, the number of parties, and what is exchanged.
-
-**Extension shape.** a variant for many parties; a variant for indirect routes.
-
-**Design tensions.**
-- Reciprocal loops can generate conflict or harm as readily as improvement.
-
-**Tradeoffs.**
-- Gains: a name for influence as a loop rather than a line.
-- Gives up: crediting outcomes to one initiator.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response. Reciprocal influence requires neither error nor an intended target, and implies neither improvement nor decline.
-- Novelty, from recall and unverified: known. Nearest known concepts: reciprocal determinism; circular causality; mutual adaptation.
-
-**In the family.** Feedback corrects error, Costeer chooses jointly, Coflourish leaves each party with something new, and Recifluence is influence returning through a changed response.
 
 ---
 
@@ -46864,64 +47074,6 @@ This answer previously located the value in a Survival invariant reading `Functi
 
 ---
 
-### Scaleasynchrony#2db6
-
-`Society` · `Protocols` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/Scaleasynchrony.json)
-
-**Gloss.** Two levels of a system, one depending on the other, develop at different rates, changing how well they fit
-
-**Mechanism.**
-
-> A level of a system depends on another in a specified respect, as individuals depend on the institution they work within, a practice on the standards that govern it, or members on the coordination among them, and the two develop at different paces in that respect. Each then meets the other in a state from a different point in its development: the faster can outgrow arrangements maintained by the slower, or the slower keeps stable what the faster has not yet settled. The difference changes their fit, straining it or giving the faster level a stable base. Levels that do not depend on each other, two parties moving at different speeds, and the travel time of one effect between parts are not instances.
-
-**Invariants.**
-- One level of a system depends on another in a specified respect.
-- The two develop at different rates in that respect over the interval considered, and the difference changes how well they fit.
-
-**Failure modes.**
-- Fault located by speed: the misfit is blamed on the slower level, or the faster is taken as superior, instead of on the difference in rates.
-- Convergence demanded: all levels are required to develop at one pace.
-- Stillness read as nondevelopment: unchanged features are taken to show that a level is not developing in any respect.
-
-#### Design
-
-**Why it exists.** Individuals, teams and institutions change at different speeds, and their mismatches are blamed on whichever level seems slow. Scaleasynchrony names the difference in rates itself.
-
-**Why Society.** The levels are individuals and the collectives they form, so the process needs a group; systems with nested technical levels can specialise it.
-
-**Can it be removed?** Localhinge sets correction routes across levels, Ripplelag delays an effect between parts, and Capacitylag compares growing demands with developing capacity; none describes a level and the level it depends on developing at different rates. Removable if all levels are assumed to change together.
-
-**Intended use.** recognising mismatches that come from a level and the level it depends on developing at different speeds.
-
-**Future uses.** agents embedded in organisations, and agent teams whose members and coordination change at different rates.
-
-**Broad-use contexts.** individual and institutional learning, team and organisation change, local and system-wide adaptation, standards and practice, regulation and the technology it governs.
-
-**Broad-use intersection (review hypothesis).** two levels, one depending on the other in a specified respect, different rates of development in that respect, and a change in their fit.
-
-**Varies (descendant territory).** which levels, which respect, and whether the difference strains the fit or steadies it.
-
-**Extension shape.** a variant for technical systems with nested levels.
-
-**Design tensions.**
-- Whether a difference in rates strains the fit or steadies it can become clear only later.
-
-**Tradeoffs.**
-- Gains: a name for mismatch between levels that blames neither.
-- Gives up: expecting a system to change as one.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response. Different rates can protect continuity rather than signal failure.
-- The dependence and the change in fit are required because levels in general develop at different rates; without them almost any system with more than one level would be an instance.
-- Capacitylag and Identitylag are related comparisons, not cases of this card: demands and self-descriptions are not necessarily levels. A standard revised more slowly than the systems it governs is an instance when the question is how the two fit; it is a Capacitylag case when the question is whether the standard's authors can keep up with the demands on them.
-- Novelty, from recall and unverified: known. Nearest known concepts: cultural lag; pace layering; the pacing problem.
-
-**In the family.** Capacitylag compares demand and capacity, Identitylag compares self and circumstance, Localhinge links levels, and Scaleasynchrony is a level and the level it depends on developing at different rates.
-
----
-
 ### ShoutWhisper#b12b
 
 `Society` · `Protocols` · R1 · T1
@@ -46994,64 +47146,6 @@ This answer previously located the value in a Survival invariant reading `Functi
 **Supersedes (prior versions).**
 - `ShoutWhisper#35dd`
 - `ShoutWhisper#f9a8`
-
----
-
-### Sideinherit#45d5
-
-`Society` · `Protocols` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/Sideinherit.json)
-
-**Gloss.** A practice, belief, capability or flaw passes between separate lines of descent rather than along one
-
-**Mechanism.**
-
-> A party or system takes up a practice, belief, capability or flaw from another outside its line of descent for that item, through copying, exchange, material taken from the other line, or contact. This transfer can make separate lines alike regardless of their relative age, generation or standing, so a shared item does not by itself establish shared ancestry. An item that each received only from a common predecessor, or that each developed independently, is not an instance.
-
-**Invariants.**
-- The parties stand outside each other's line of descent for the item considered.
-- One party holds the item at least partly because it passed from another; an item each holds only by inheritance or independent development is not an instance.
-
-**Failure modes.**
-- Likeness read as common descent: parties or systems that share an item are assumed to have inherited it from a common predecessor, when it passed between them.
-- Passage read as merit: an item that passed between lines is assumed sound because it was taken up.
-- Lineage read as closed: a line of descent is assumed to hold only what it inherited, so an item that arrived from the side is credited to the line.
-
-#### Design
-
-**Why it exists.** Shared traits can be misread as shared descent when an item actually passed between separate lines. Sideinherit distinguishes that route so provenance and the spread of a useful practice or a flaw can be traced to the transfer rather than attributed solely to ancestry.
-
-**Why Society.** Transfer needs a party that passes the item and another that takes it up, each with its own state.
-
-**Can it be removed?** GenealogicalTrace audits an idea's lineage, MemeticSeed is one subsidised way of pushing a standard to neighbours, and Normance records reliance on social default; none describes items passing between separate lines of descent. Removable if traits are assumed to travel only by descent.
-
-**Intended use.** recognising when parties or systems share a practice, belief, capability or flaw because it passed between them rather than solely through common ancestry.
-
-**Future uses.** tracing whether models share a behaviour through common training or because one learned it from the other's outputs; tracing a vulnerability copied between codebases.
-
-**Broad-use contexts.** microbiology, cultural practice, software and copied code, model training on generated data, organisations adopting one another's practices, research fields.
-
-**Broad-use intersection (review hypothesis).** a source and recipient outside each other's line of descent for an item, and the item's passage between them.
-
-**Varies (descendant territory).** the item, the route of passage, and whether the line of descent can also carry it.
-
-**Extension shape.** a variant for model and data provenance; a variant for practices passing between organisations.
-
-_Note: Equal age, generation, capability or status is not required. For example, unrelated models from different generations can acquire a shared behaviour through one model's outputs._
-
-**Design tensions.**
-- Sideways transfer is hard to tell from independent invention, since both make unrelated lines alike.
-
-**Tradeoffs.**
-- Gains: a route of origin besides descent.
-- Gives up: treating shared traits alone as proof of shared ancestry.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response. Sideways spread can carry a sound practice as readily as a flaw.
-- Novelty, from recall and unverified: known. Nearest known concepts: horizontal gene transfer; horizontal cultural transmission; diffusion of innovations.
-
-**In the family.** GenealogicalTrace follows a line of descent, MemeticSeed pushes a standard to neighbours, Normance records social default, and Sideinherit is an item passing between separate lines of descent.
 
 ---
 
@@ -48277,63 +48371,6 @@ Three of those were strengthened in the 2026-07 review rather than merely rename
 - `TranslationProxy#f0e0`
 - `TranslationProxy#e064`
 - `TranslationProxy#d0e3`
-
----
-
-### Twinflow#9474
-
-`Society` · `Protocols` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/Twinflow.json)
-
-**Gloss.** The links that carry goods, people and ideas between regions also carry disease, pests and conflict
-
-**Mechanism.**
-
-> When regions are joined by trade, migration, pilgrimage or conquest, the same routes and contacts carry what the parties seek, such as goods, crops, techniques and ideas, and what no one sends on purpose, such as pathogens, pests, invasive species and the spread of conflict. The gains usually accumulate over many exchanges, while the harms often arrive as shocks when something dangerous first crosses the link. Denser and faster links raise both flows, and regions joined for the first time meet both at once. Harms or gains that travel by routes other than the link in question are not instances.
-
-**Invariants.**
-- A link between regions carries flows the parties seek.
-- The same link carries flows no party sends on purpose, which harm at least one party.
-
-**Failure modes.**
-- Gains counted alone: a link is judged only by what its parties meant to exchange.
-- Isolation prescribed: cutting the link is proposed to remove a harm, ignoring the gains lost and the harms already established.
-- Carriers blamed: a harm that crossed the link is blamed on the traders, migrants or minorities who travel it.
-
-#### Design
-
-**Why it exists.** Integration is judged by its gains and contagion by its harms, as if they travelled separately. Twinflow names that one link carries both, so a model of connection counts both flows.
-
-**Why Society.** The links run between separate regions and parties, each seeking something different from the exchange.
-
-**Can it be removed?** Coflourish is an exchange in which every party gains, and Linkfade is the weakening of a link; neither describes unsought flows along the same link. Removable if links are modelled as carrying only what the parties exchange.
-
-**Intended use.** accounting for the harms that arrive along the same routes as trade, migration and conquest.
-
-**Future uses.** assessing new connections between regions, from trade routes to air travel and digital networks.
-
-**Broad-use contexts.** the Silk Roads and the Black Death, the Columbian exchange, colonial shipping, pandemics through air travel, invasive species.
-
-**Broad-use intersection (review hypothesis).** a link between regions, flows the parties seek, and unsought flows that harm at least one of them.
-
-**Varies (descendant territory).** what the link carries, how fast, and who is harmed.
-
-**Extension shape.** a variant for information networks carrying both knowledge and harmful content.
-
-**Design tensions.**
-- Severing a link can stop a harm and also the gains, and the card names both without deciding between them.
-
-**Tradeoffs.**
-- Gains: connection assessed by everything it carries.
-- Gives up: counting only the gains or only the harms.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response.
-- The contrast between gradual gains and sudden harms is typical, not required, and stays out of the invariants.
-- Novelty, from recall and unverified: known as an observation, coined as a handle. Nearest known concepts: the Columbian exchange (Crosby, 1972); McNeill's Plagues and Peoples (1976); Le Roy Ladurie's microbial unification of the world (1973).
-
-**In the family.** InnovationDiffusion spreads what people adopt, VirginSoilEpidemic is one harm a link can bring, and Twinflow is the link carrying both.
 
 ---
 

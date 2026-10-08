@@ -16,11 +16,11 @@
   "sema_ref": "WaveOfAdvance#39ad",
   "sema_stub": "39ad",
   "sema_layer": "Physics",
-  "sema_category": "Primitives",
+  "sema_category": "Dynamics",
   "_meta": {
     "path": [
       "Physics",
-      "Primitives"
+      "Dynamics"
     ],
     "ring": 2,
     "tier": 2,

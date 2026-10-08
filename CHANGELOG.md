@@ -10,6 +10,40 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
+### Changed
+
+Every layer now has a `Dynamics` category for patterns that describe how a system
+behaves (a process, a regularity or a limit) and prescribe no response. A pattern's
+path now tells an agent whether to recognise it in a case or to follow it. 42
+patterns move there from categories that held procedures or topics:
+
+- Physics/Dynamics: `Brakefade`, `Ripplelag`, `Swayhold`, `Syncdrift`,
+  `VirginSoilEpidemic` and `WaveOfAdvance`.
+- Infrastructure/Dynamics: `Formelt`, `Limitblur` and `Regulapse`.
+- Mind/Dynamics: `Aimscatter`, `Capacitylag`, `Crossripening`, `Echohollow`,
+  `Echoverturn`, `Foundationfray`, `Futurefold`, `Identitylag`, `Labelloop`,
+  `Meaningthin`, `Mirrorbloom`, `Quietroot` and `Readyrise`.
+- Society/Dynamics: `CumulativeCulture`, `DemographicTransition`,
+  `DensityRatchet`, `DiminishingComplexityReturns`, `ExitCage`, `Focalpeer`,
+  `FreeRiderProblem`, `InnovationDiffusion`, `Linkfade`, `MalthusianTrap`,
+  `Quietsever`, `Recifluence`, `Scaleasynchrony`, `SecurityDilemma`,
+  `Sideinherit`, `StructuralDemographicCycle`, `Sunbound`, `SurplusBound`,
+  `Twinflow` and `Warsift`.
+
+No layer changes. The category is unhashed metadata, so every pattern keeps its
+identity and both vocabulary roots are unchanged. Patterns naming a judgment error or
+a state of the evidence stay with the inference and reasoning patterns, and
+elementary concepts stay primitives. The design manual states the rule, and the MCP
+server's instructions and the usage skill tell agents to apply a Dynamics pattern as
+a model to test against the case, not as steps to run.
+
+Clients from 0.8.1 and earlier do not accept the new Infrastructure, Mind and Society
+Dynamics paths when they validate a pattern. A 0.8.1 client running
+`sema pull --source` against this vocabulary stops with 36 validation errors and
+restores its database unchanged. Upgrade the client to take the new vocabulary; a
+plain `sema pull` reads the vocabulary bundled with the installed client, so the two
+arrive together.
+
 ## [0.8.1] - 2026-10-08
 
 ### Added

@@ -19,7 +19,7 @@
   "_meta": {
     "path": [
       "Society",
-      "Economics"
+      "Dynamics"
     ],
     "ring": 2,
     "tier": 2,
@@ -38,5 +38,5 @@
     }
   },
   "sema_layer": "Society",
-  "sema_category": "Economics"
+  "sema_category": "Dynamics"
 }

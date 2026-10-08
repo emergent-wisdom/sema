@@ -13,7 +13,7 @@
   "_meta": {
     "path": [
       "Mind",
-      "Reasoning"
+      "Dynamics"
     ],
     "ring": 2,
     "tier": 2,
@@ -29,5 +29,5 @@
   "sema_ref": "Mirrorbloom#f79d",
   "sema_stub": "f79d",
   "sema_layer": "Mind",
-  "sema_category": "Reasoning"
+  "sema_category": "Dynamics"
 }

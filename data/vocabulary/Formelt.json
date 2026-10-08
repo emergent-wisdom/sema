@@ -14,7 +14,7 @@
   "_meta": {
     "path": [
       "Infrastructure",
-      "Primitives"
+      "Dynamics"
     ],
     "ring": 2,
     "tier": 2,
@@ -28,5 +28,5 @@
   "sema_ref": "Formelt#0e39",
   "sema_stub": "0e39",
   "sema_layer": "Infrastructure",
-  "sema_category": "Primitives"
+  "sema_category": "Dynamics"
 }

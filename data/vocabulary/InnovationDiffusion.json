@@ -16,11 +16,11 @@
   "sema_ref": "InnovationDiffusion#d44a",
   "sema_stub": "d44a",
   "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_category": "Dynamics",
   "_meta": {
     "path": [
       "Society",
-      "Protocols"
+      "Dynamics"
     ],
     "ring": 2,
     "tier": 2,

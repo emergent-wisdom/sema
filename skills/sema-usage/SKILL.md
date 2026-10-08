@@ -235,6 +235,8 @@ For example, if someone asks "how should I start a business?":
 
 The patterns aren't labels you slap on afterward. They're lenses that change what you see. `ExploreExploit#218c` doesn't just name a concept — it tells you *when to stop researching and start acting*. `PreMortem#e4c2` doesn't just mean "think about failure" — it has a specific mechanism for surfacing hidden risks.
 
+A pattern whose path ends in `Dynamics` describes how a system behaves rather than what to do. Apply it as a model to test against the case: do its conditions hold here, and what should you observe if they do? `MalthusianTrap#0f6b` tells you what to expect of population and living standards; it gives no steps to run.
+
 **When to reach for sema unprompted:**
 - User asks an open-ended reasoning question (how, why, what should I)
 - You're about to give generic advice that sema could sharpen

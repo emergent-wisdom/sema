@@ -16,11 +16,11 @@
   "sema_ref": "FreeRiderProblem#6927",
   "sema_stub": "6927",
   "sema_layer": "Society",
-  "sema_category": "Coordination",
+  "sema_category": "Dynamics",
   "_meta": {
     "path": [
       "Society",
-      "Coordination"
+      "Dynamics"
     ],
     "ring": 2,
     "tier": 2,

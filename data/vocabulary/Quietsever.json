@@ -14,7 +14,7 @@
   "_meta": {
     "path": [
       "Society",
-      "Protocols"
+      "Dynamics"
     ],
     "ring": 2,
     "tier": 2,
@@ -30,5 +30,5 @@
   "sema_ref": "Quietsever#8948",
   "sema_stub": "8948",
   "sema_layer": "Society",
-  "sema_category": "Protocols"
+  "sema_category": "Dynamics"
 }

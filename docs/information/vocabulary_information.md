@@ -45,31 +45,35 @@ Breakdown of patterns by Civilization Layer and Functional Category.
 
 | Category | Count |
 | :--- | :---: |
-| Primitives | 20 |
-| Time | 2 |
+| Primitives | 15 |
+| Dynamics | 6 |
+| Time | 1 |
 
 ### Mind (261)
 
 | Category | Count |
 | :--- | :---: |
-| Strategy | 113 |
-| Reasoning | 101 |
+| Strategy | 104 |
+| Reasoning | 98 |
 | Inference | 28 |
-| Memory | 19 |
+| Memory | 18 |
+| Dynamics | 13 |
 
 ### Society (156)
 
 | Category | Count |
 | :--- | :---: |
-| Protocols | 100 |
-| Governance | 27 |
-| Economics | 15 |
-| Coordination | 14 |
+| Protocols | 91 |
+| Governance | 24 |
+| Dynamics | 20 |
+| Coordination | 12 |
+| Economics | 9 |
 
 ### Infrastructure (167)
 
 | Category | Count |
 | :--- | :---: |
 | Data Structures | 101 |
-| Primitives | 56 |
+| Primitives | 53 |
 | Verification | 10 |
+| Dynamics | 3 |

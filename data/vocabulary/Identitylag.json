@@ -14,7 +14,7 @@
   "_meta": {
     "path": [
       "Mind",
-      "Memory"
+      "Dynamics"
     ],
     "ring": 2,
     "tier": 2,
@@ -30,5 +30,5 @@
   "sema_ref": "Identitylag#2fbd",
   "sema_stub": "2fbd",
   "sema_layer": "Mind",
-  "sema_category": "Memory"
+  "sema_category": "Dynamics"
 }

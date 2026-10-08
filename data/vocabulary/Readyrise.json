@@ -14,7 +14,7 @@
   "_meta": {
     "path": [
       "Mind",
-      "Strategy"
+      "Dynamics"
     ],
     "ring": 2,
     "tier": 2,
@@ -29,5 +29,5 @@
   "sema_ref": "Readyrise#a9d2",
   "sema_stub": "a9d2",
   "sema_layer": "Mind",
-  "sema_category": "Strategy"
+  "sema_category": "Dynamics"
 }

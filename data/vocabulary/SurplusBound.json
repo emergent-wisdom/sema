@@ -15,11 +15,11 @@
   "sema_ref": "SurplusBound#7fe3",
   "sema_stub": "7fe3",
   "sema_layer": "Society",
-  "sema_category": "Economics",
+  "sema_category": "Dynamics",
   "_meta": {
     "path": [
       "Society",
-      "Economics"
+      "Dynamics"
     ],
     "ring": 2,
     "tier": 2,

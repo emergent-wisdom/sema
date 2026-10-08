@@ -14,7 +14,7 @@
   "_meta": {
     "path": [
       "Infrastructure",
-      "Primitives"
+      "Dynamics"
     ],
     "ring": 2,
     "tier": 2,
@@ -29,5 +29,5 @@
   "sema_ref": "Limitblur#d772",
   "sema_stub": "d772",
   "sema_layer": "Infrastructure",
-  "sema_category": "Primitives"
+  "sema_category": "Dynamics"
 }

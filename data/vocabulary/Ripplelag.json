@@ -14,7 +14,7 @@
   "_meta": {
     "path": [
       "Physics",
-      "Primitives"
+      "Dynamics"
     ],
     "ring": 2,
     "tier": 2,
@@ -33,5 +33,5 @@
     }
   },
   "sema_layer": "Physics",
-  "sema_category": "Primitives"
+  "sema_category": "Dynamics"
 }
