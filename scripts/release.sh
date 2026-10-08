@@ -146,6 +146,7 @@ cat <<EOF
   Docs landing:  https://semahash.org
   Library index: library.json
   Pattern ZIP:   $(basename "$BOOTSTRAP_ARCHIVE")
+  Licence:       LICENSE-CONTENT
 
   Release notes preview (first 20 lines):
 $(echo "$RELEASE_NOTES" | head -20 | sed 's/^/    /')
@@ -164,7 +165,7 @@ bold "▸ Create GitHub release (triggers PyPI + MCP Registry publish)"
 confirm "Create GitHub release for $TAG?"
 # Use a temp file for notes so multi-line content survives shell quoting.
 echo "$RELEASE_NOTES" > "$NOTES_FILE"
-run "gh release create '$TAG' '$RELEASE_DIR/library.json' '$BOOTSTRAP_ARCHIVE' --draft --title '$TAG' --notes-file '$NOTES_FILE'"
+run "gh release create '$TAG' '$RELEASE_DIR/library.json' '$BOOTSTRAP_ARCHIVE' LICENSE-CONTENT --draft --title '$TAG' --notes-file '$NOTES_FILE'"
 run "gh release edit '$TAG' --draft=false --latest"
 ok "GitHub release published with bootstrap assets — publish workflow should now be running"
 echo "  Watch:  gh run list --workflow publish.yml --limit 3"

@@ -53,6 +53,12 @@ service that hosts the vocabulary, such as sema-web, must deploy this runtime fi
 then update its bootstrap vocabulary and refresh its caches; updating the bootstrap
 first fails validation.
 
+The suggested credit for reusing the vocabulary now names the shared project rather
+than an individual: *Vocabulary from Sema (https://github.com/emergent-wisdom/sema),
+licensed under CC BY 4.0*. The licence itself is unchanged, and contributors keep the
+copyright in their contributions. The GitHub release attaches the licence file next to
+the bootstrap package, which cannot carry it itself.
+
 ## [0.8.1] - 2026-10-08
 
 ### Added

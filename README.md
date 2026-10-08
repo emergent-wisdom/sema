@@ -423,7 +423,10 @@ Sema is dual-licensed:
   the academic paper in `paper/`, and the prose displayed on
   [semahash.org](https://semahash.org)) —
   [CC BY 4.0](LICENSE-CONTENT). Reuse the patterns and prose anywhere, for any
-  purpose including commercial, as long as you attribute Henrik Westerberg.
+  purpose including commercial. Suggested attribution when sharing the
+  vocabulary:
+
+  > Vocabulary from [Sema](https://github.com/emergent-wisdom/sema), licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 
 For academic citation, see [`CITATION.cff`](CITATION.cff). GitHub renders this
 as a "Cite this repository" button on the project page that generates APA and

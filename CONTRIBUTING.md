@@ -206,6 +206,14 @@ PyPI publishing is automated (trusted publishing via
 `.github/workflows/publish.yml` on GitHub release). The MCP Registry
 push requires a one-time `mcp-publisher login` (GitHub OAuth, cached).
 
+## Licensing
+
+Contributions are licensed under the same terms as the repository: code under
+[MIT](LICENSE), and patterns, documentation and paper text under
+[CC BY 4.0](LICENSE-CONTENT). You keep the copyright in your contribution. The
+suggested credit for the vocabulary names the shared project, not individual
+contributors.
+
 ## Documentation
 
 - [docs/guides/lifecycle.md](docs/guides/lifecycle.md) — hash identity,
