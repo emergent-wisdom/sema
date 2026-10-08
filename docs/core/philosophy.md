@@ -93,6 +93,12 @@ Future Physics candidates (to mint when a concrete cross-agent protocol needs th
 Fundamental layers (Infrastructure/Physics) may *wrap* High-Level patterns (Mind/Society) **only if** the High-Level pattern is treated as an opaque parameter (e.g., a `Condition` or `Metric`) that resolves to a strict value (Boolean/Scalar).
 * *Rationale:* This allows the infrastructure to enforce *decisions* made by higher-order cognition (e.g., "Is this parsimonious?") without needing to understand the cognition itself.
 
+### 3.2 The Dynamics category
+
+Every layer has a `Dynamics` category for patterns that describe how a system behaves (a process, a regularity or a limit) and prescribe no response, such as `WaveOfAdvance` (Physics), `Meaningthin` (Mind) and `Warsift` (Society). An agent applies such a pattern to interpret a case: do its conditions hold here, and what should be observed if they do. The layer still comes from the mechanism-sufficiency test above, read as what the process needs in order to occur.
+
+The rule runs one way. A pattern outside `Dynamics` is not thereby a procedure: structures, primitives, judgment errors and states of the evidence stay outside too. Primitives such as `Decay` and `PhaseTransition` describe change over time but stay where they are as general building blocks, and patterns that name a judgment error, such as `ConfoundedAttribution`, stay with the reasoning patterns they serve. The category is unhashed metadata, so filing a pattern there changes no identity.
+
 ## 4. Rings of Stability
 
 To prevent "Cognitive Bloat," we distinguish between timeless laws and evolving tactics.
