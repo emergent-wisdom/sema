@@ -10,6 +10,8 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
+## [0.9.0] - 2026-10-08
+
 ### Changed
 
 Every layer now has a `Dynamics` category for patterns that describe how a system
