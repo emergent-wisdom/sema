@@ -200,13 +200,20 @@ needs in order to occur: `WaveOfAdvance` needs only a growing population whose m
 move (Physics), `Meaningthin` a purpose valued from some perspective (Mind), and
 `Warsift` competing polities (Society).
 
-Two kinds of descriptive pattern stay where they are. Elementary concepts that other
-patterns are built from, such as `Equilibrium`, `Attractor`, `PhaseTransition` and
-`Decay`, remain primitives: they name the abstract form a process can take and have no
-characteristic course of their own. Patterns that name a judgment error or a state of
-the evidence, such as `ConfoundedAttribution`, `QuestionSubstitution` and
-`RegressionToMean`, remain with the inference and reasoning patterns, because the
-consuming agent uses them to check inference, its own or another's.
+Two kinds of descriptive pattern stay where they are. Elementary concepts such as
+`Equilibrium`, `Attractor`, `PhaseTransition` and `Decay` remain primitives. Some of
+them describe change over time; they stay because they are general building blocks
+that other patterns, Dynamics patterns among them, are composed from. Patterns that
+name a judgment error or a state of the evidence, such as `ConfoundedAttribution`,
+`QuestionSubstitution` and `EvidenceDependence`, remain with the inference and
+reasoning patterns, because the consuming agent uses them to check inference, its own
+or another's. A phenomenon that occurs whether or not anyone misjudges it is a
+Dynamics pattern even when its usual risk is a misattribution, as with
+`RegressionToMean`.
+
+The rule runs one way. A pattern in `Dynamics` is a model to recognise; a pattern
+outside it is not thereby a procedure to follow, since structures, primitives, judgment
+errors and states of the evidence stay outside too.
 
 The category is metadata outside the hash, so filing a pattern under `Dynamics`, or
 moving it out, changes no identity.

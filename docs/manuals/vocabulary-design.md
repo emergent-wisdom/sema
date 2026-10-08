@@ -177,13 +177,20 @@ needs in order to occur: `WaveOfAdvance` needs only a growing population whose m
 move (Physics), `Meaningthin` a purpose valued from some perspective (Mind), and
 `Warsift` competing polities (Society).
 
-Two kinds of descriptive pattern stay where they are. Elementary concepts that other
-patterns are built from, such as `Equilibrium`, `Attractor`, `PhaseTransition` and
-`Decay`, remain primitives: they name the abstract form a process can take and have no
-characteristic course of their own. Patterns that name a judgment error or a state of
-the evidence, such as `ConfoundedAttribution`, `QuestionSubstitution` and
-`RegressionToMean`, remain with the inference and reasoning patterns, because the
-consuming agent uses them to check inference, its own or another's.
+Two kinds of descriptive pattern stay where they are. Elementary concepts such as
+`Equilibrium`, `Attractor`, `PhaseTransition` and `Decay` remain primitives. Some of
+them describe change over time; they stay because they are general building blocks
+that other patterns, Dynamics patterns among them, are composed from. Patterns that
+name a judgment error or a state of the evidence, such as `ConfoundedAttribution`,
+`QuestionSubstitution` and `EvidenceDependence`, remain with the inference and
+reasoning patterns, because the consuming agent uses them to check inference, its own
+or another's. A phenomenon that occurs whether or not anyone misjudges it is a
+Dynamics pattern even when its usual risk is a misattribution, as with
+`RegressionToMean`.
+
+The rule runs one way. A pattern in `Dynamics` is a model to recognise; a pattern
+outside it is not thereby a procedure to follow, since structures, primitives, judgment
+errors and states of the evidence stay outside too.
 
 The category is metadata outside the hash, so filing a pattern under `Dynamics`, or
 moving it out, changes no identity.
@@ -17112,7 +17119,7 @@ _Note: A handwritten signature alone does not provide this card's artifact-chang
 
 ## Mind (261)
 
-### Mind/Dynamics (13)
+### Mind/Dynamics (14)
 
 ### Aimscatter#ded3
 
@@ -17851,7 +17858,63 @@ _Note: A handwritten signature alone does not provide this card's artifact-chang
 
 ---
 
-### Mind/Inference (28)
+### RegressionToMean#9c60
+
+`Mind` · `Dynamics` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/RegressionToMean.json)
+
+**Gloss.** A result picked out because it was extreme is usually followed by one closer to typical, because part of what made it extreme was chance
+
+**Mechanism.**
+
+> A measurement that varies partly by chance comes out extreme: a spike in errors, a record quarter, an unusually bad score. Because part of the extremity was chance, a later measurement of the same thing is usually closer to typical, and the expected return grows with the share of chance in the measure. Extremes are often what prompt a response, so the return tends to arrive just after it, and any real effect of the response adds to the return or offsets it rather than replacing it. Estimating what the response did therefore needs a comparison that shares the regression, such as similar extremes left alone, or the return expected from how noisy the measure is. A measure with no chance component does not regress.
+
+**Invariants.**
+- A measurement with a chance component was picked out or noticed because it was extreme.
+- Later measurements of the same thing are expected to lie closer to typical, by an amount that grows with the share of chance in the measure.
+
+**Failure modes.**
+- Return read as effect: the move back toward typical after an extreme is credited wholly to the response.
+- Decline read as harm: praise or reward after an unusually good result is blamed for the ordinary result that follows.
+- Effect dismissed as regression: a real effect of a response is written off, although regression accounts only for the part of the change that the measure's noise predicts.
+
+#### Design
+
+**Why it exists.** Action is usually taken when results are extreme, and extreme results are partly chance, so the next result tends to be less extreme whether or not the action did anything. Teams and agents then credit fixes for a return that would have happened anyway, or blame praise for the dip after a lucky peak. RegressionToMean names the expected return, so that an action is judged against the regression it shares.
+
+**Why Mind.** Judging what a change after an extreme result shows is one reasoner's inference.
+
+**Can it be removed?** Experiment compares a treatment with a control, BaseRateInclude anchors a judgment on a reference class, and Causation defines what a cause is; none describes the return toward typical after a chance extreme, or how it gets credited to the response. Removable if every change after an extreme is taken as an effect.
+
+**Intended use.** judging whether an improvement or decline after an extreme result shows an effect of what was done in between.
+
+**Future uses.** agents evaluating their own fixes after an incident; agents judging interventions, rewards or feedback from before-and-after numbers.
+
+**Broad-use contexts.** incident response and monitoring, medicine, education and coaching, management, sport, tests run on outlier segments.
+
+**Broad-use intersection (review hypothesis).** a measurement with a chance component, an extreme result, and a later comparison with it.
+
+**Varies (descendant territory).** how much of the measure is chance, how extreme the result was, and what comparison shares the regression.
+
+**Extension shape.** a variant for incident and alert metrics; a variant for units selected by extreme scores.
+
+**Design tensions.**
+- The expected return depends on how noisy the measure is, which is often unknown, so the size of the regression is itself an estimate.
+
+**Tradeoffs.**
+- Gains: a baseline for judging actions taken after extremes.
+- Gives up: crediting an action with whatever follows it.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. Experiment is one way to get a comparison that shares the regression.
+- Novelty, from recall and unverified: known. Nearest known concepts: regression toward the mean (Galton); the regression fallacy; the cover jinx.
+
+**In the family.** Experiment controls a comparison, BaseRateInclude anchors on a reference class, ConfoundedAttribution credits one of several changes, and RegressionToMean is the return toward typical after a chance extreme.
+
+---
+
+### Mind/Inference (27)
 
 ### AbsenceEvidence#10a3
 
@@ -19510,62 +19573,6 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 - `RegimeSense#430b`
 - `RegimeSense#56ec`
 - `RegimeSense#78eb`
-
----
-
-### RegressionToMean#9c60
-
-`Mind` · `Inference` · R2 · T2
-
-[Source card (JSON)](../../data/vocabulary/RegressionToMean.json)
-
-**Gloss.** A result picked out because it was extreme is usually followed by one closer to typical, because part of what made it extreme was chance
-
-**Mechanism.**
-
-> A measurement that varies partly by chance comes out extreme: a spike in errors, a record quarter, an unusually bad score. Because part of the extremity was chance, a later measurement of the same thing is usually closer to typical, and the expected return grows with the share of chance in the measure. Extremes are often what prompt a response, so the return tends to arrive just after it, and any real effect of the response adds to the return or offsets it rather than replacing it. Estimating what the response did therefore needs a comparison that shares the regression, such as similar extremes left alone, or the return expected from how noisy the measure is. A measure with no chance component does not regress.
-
-**Invariants.**
-- A measurement with a chance component was picked out or noticed because it was extreme.
-- Later measurements of the same thing are expected to lie closer to typical, by an amount that grows with the share of chance in the measure.
-
-**Failure modes.**
-- Return read as effect: the move back toward typical after an extreme is credited wholly to the response.
-- Decline read as harm: praise or reward after an unusually good result is blamed for the ordinary result that follows.
-- Effect dismissed as regression: a real effect of a response is written off, although regression accounts only for the part of the change that the measure's noise predicts.
-
-#### Design
-
-**Why it exists.** Action is usually taken when results are extreme, and extreme results are partly chance, so the next result tends to be less extreme whether or not the action did anything. Teams and agents then credit fixes for a return that would have happened anyway, or blame praise for the dip after a lucky peak. RegressionToMean names the expected return, so that an action is judged against the regression it shares.
-
-**Why Mind.** Judging what a change after an extreme result shows is one reasoner's inference.
-
-**Can it be removed?** Experiment compares a treatment with a control, BaseRateInclude anchors a judgment on a reference class, and Causation defines what a cause is; none describes the return toward typical after a chance extreme, or how it gets credited to the response. Removable if every change after an extreme is taken as an effect.
-
-**Intended use.** judging whether an improvement or decline after an extreme result shows an effect of what was done in between.
-
-**Future uses.** agents evaluating their own fixes after an incident; agents judging interventions, rewards or feedback from before-and-after numbers.
-
-**Broad-use contexts.** incident response and monitoring, medicine, education and coaching, management, sport, tests run on outlier segments.
-
-**Broad-use intersection (review hypothesis).** a measurement with a chance component, an extreme result, and a later comparison with it.
-
-**Varies (descendant territory).** how much of the measure is chance, how extreme the result was, and what comparison shares the regression.
-
-**Extension shape.** a variant for incident and alert metrics; a variant for units selected by extreme scores.
-
-**Design tensions.**
-- The expected return depends on how noisy the measure is, which is often unknown, so the size of the regression is itself an estimate.
-
-**Tradeoffs.**
-- Gains: a baseline for judging actions taken after extremes.
-- Gives up: crediting an action with whatever follows it.
-
-**Critique (diagnostic, not contract requirements).**
-- The card describes a process and prescribes no response. Experiment is one way to get a comparison that shares the regression.
-- Novelty, from recall and unverified: known. Nearest known concepts: regression toward the mean (Galton); the regression fallacy; the cover jinx.
-
-**In the family.** Experiment controls a comparison, BaseRateInclude anchors on a reference class, ConfoundedAttribution credits one of several changes, and RegressionToMean is the return toward typical after a chance extreme.
 
 ---
 

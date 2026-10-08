@@ -55,9 +55,9 @@ Breakdown of patterns by Civilization Layer and Functional Category.
 | :--- | :---: |
 | Strategy | 104 |
 | Reasoning | 98 |
-| Inference | 28 |
+| Inference | 27 |
 | Memory | 18 |
-| Dynamics | 13 |
+| Dynamics | 14 |
 
 ### Society (156)
 
