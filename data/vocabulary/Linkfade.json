@@ -13,7 +13,7 @@
   "_meta": {
     "path": [
       "Society",
-      "Protocols"
+      "Dynamics"
     ],
     "ring": 2,
     "tier": 2,
@@ -28,5 +28,5 @@
   "sema_ref": "Linkfade#fb82",
   "sema_stub": "fb82",
   "sema_layer": "Society",
-  "sema_category": "Protocols"
+  "sema_category": "Dynamics"
 }

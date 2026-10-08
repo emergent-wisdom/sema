@@ -182,6 +182,42 @@ conceptually operates on, and not by how foundational it feels.
 The sharpest lines are *Physics vs Infrastructure* (substrate-given vs
 author-designed) and *Mind vs Society* (single-party-sufficient vs multi-party-required).
 
+### The Dynamics category (a process to recognise, not a procedure to follow)
+
+Within its layer, a pattern that describes how a system behaves (a process with a
+characteristic course, or a regularity or limit its states obey) and prescribes no
+response is filed under that layer's `Dynamics` category, whatever its topic. Most
+patterns about the world an agent models, such as demography, war, economies and
+epidemics, are of this kind. A consuming agent applies such a pattern to interpret a
+case: it checks whether the invariants hold there, expects what the mechanism predicts,
+and treats the failure modes as misreadings of the case. It does not execute it. The
+procedure, protocol, guard or review that answers a Dynamics pattern stays in its own
+category (`StopDrill` answers `Brakefade`, `PurposeLinkReview` answers `Meaningthin`),
+so the description and the response stay separately reusable.
+
+The layer still comes from the mechanism-sufficiency test, read as what the process
+needs in order to occur: `WaveOfAdvance` needs only a growing population whose members
+move (Physics), `Meaningthin` a purpose valued from some perspective (Mind), and
+`Warsift` competing polities (Society).
+
+Two kinds of descriptive pattern stay where they are. Elementary concepts such as
+`Equilibrium`, `Attractor`, `PhaseTransition` and `Decay` remain primitives. Some of
+them describe change over time; they stay because they are general building blocks
+that other patterns, Dynamics patterns among them, are composed from. Patterns that
+name a judgment error or a state of the evidence, such as `ConfoundedAttribution`,
+`QuestionSubstitution` and `EvidenceDependence`, remain with the inference and
+reasoning patterns, because the consuming agent uses them to check inference, its own
+or another's. A phenomenon that occurs whether or not anyone misjudges it is a
+Dynamics pattern even when its usual risk is a misattribution, as with
+`RegressionToMean`.
+
+The rule runs one way. A pattern in `Dynamics` is a model to recognise; a pattern
+outside it is not thereby a procedure to follow, since structures, primitives, judgment
+errors and states of the evidence stay outside too.
+
+The category is metadata outside the hash, so filing a pattern under `Dynamics`, or
+moving it out, changes no identity.
+
 ### The two-criteria minting rule (whether to mint at all)
 
 A concept earns a pattern only if it meets at least one of:

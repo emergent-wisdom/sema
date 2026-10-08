@@ -38,9 +38,12 @@ Notices:
 Full legal code: https://creativecommons.org/licenses/by/4.0/legalcode
 Human-readable summary: https://creativecommons.org/licenses/by/4.0/
 
-Suggested attribution:
-  "Sema pattern vocabulary by Henrik Westerberg, licensed under CC BY 4.0,
-   https://github.com/emergent-wisdom/sema"
+Suggested attribution when sharing the vocabulary:
+  Vocabulary from Sema (https://github.com/emergent-wisdom/sema), licensed
+  under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).
+
+Contributors keep the copyright in their own contributions and license them
+under these same terms.
 
 For citation in academic work, see CITATION.cff in the repository root.
 The source code (everything outside the scopes listed above) is licensed

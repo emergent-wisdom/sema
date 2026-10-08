@@ -16,11 +16,11 @@
   "sema_ref": "DemographicTransition#6e31",
   "sema_stub": "6e31",
   "sema_layer": "Society",
-  "sema_category": "Economics",
+  "sema_category": "Dynamics",
   "_meta": {
     "path": [
       "Society",
-      "Economics"
+      "Dynamics"
     ],
     "ring": 2,
     "tier": 2,

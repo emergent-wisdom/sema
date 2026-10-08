@@ -14,7 +14,7 @@
   "_meta": {
     "path": [
       "Mind",
-      "Reasoning"
+      "Dynamics"
     ],
     "ring": 2,
     "tier": 2,
@@ -29,5 +29,5 @@
   "sema_ref": "Echoverturn#ad14",
   "sema_stub": "ad14",
   "sema_layer": "Mind",
-  "sema_category": "Reasoning"
+  "sema_category": "Dynamics"
 }

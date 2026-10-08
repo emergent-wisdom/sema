@@ -19,7 +19,7 @@
   "_meta": {
     "path": [
       "Society",
-      "Governance"
+      "Dynamics"
     ],
     "ring": 2,
     "tier": 2,
@@ -35,5 +35,5 @@
     }
   },
   "sema_layer": "Society",
-  "sema_category": "Governance"
+  "sema_category": "Dynamics"
 }

@@ -14,7 +14,7 @@
   "_meta": {
     "path": [
       "Society",
-      "Protocols"
+      "Dynamics"
     ],
     "ring": 2,
     "tier": 2,
@@ -29,5 +29,5 @@
   "sema_ref": "Sideinherit#45d5",
   "sema_stub": "45d5",
   "sema_layer": "Society",
-  "sema_category": "Protocols"
+  "sema_category": "Dynamics"
 }

@@ -13,7 +13,7 @@
   "_meta": {
     "path": [
       "Physics",
-      "Time"
+      "Dynamics"
     ],
     "ring": 2,
     "tier": 2,
@@ -27,5 +27,5 @@
   "sema_ref": "Syncdrift#8e74",
   "sema_stub": "8e74",
   "sema_layer": "Physics",
-  "sema_category": "Time"
+  "sema_category": "Dynamics"
 }

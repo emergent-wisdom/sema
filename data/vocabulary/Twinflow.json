@@ -15,11 +15,11 @@
   "sema_ref": "Twinflow#9474",
   "sema_stub": "9474",
   "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_category": "Dynamics",
   "_meta": {
     "path": [
       "Society",
-      "Protocols"
+      "Dynamics"
     ],
     "ring": 2,
     "tier": 2,

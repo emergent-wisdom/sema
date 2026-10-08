@@ -10,6 +10,55 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
+## [0.9.0] - 2026-10-08
+
+### Changed
+
+Every layer now has a `Dynamics` category for patterns that describe how a system
+behaves (a process, a regularity or a limit) and prescribe no response. A pattern
+filed there is a model to recognise in a case, not steps to follow. The rule runs one
+way: structures, primitives, judgment errors and states of the evidence also stay
+outside Dynamics, so a pattern outside it is not thereby a procedure. 43 patterns move
+there from categories that held procedures or topics:
+
+- Physics/Dynamics: `Brakefade`, `Ripplelag`, `Swayhold`, `Syncdrift`,
+  `VirginSoilEpidemic` and `WaveOfAdvance`.
+- Infrastructure/Dynamics: `Formelt`, `Limitblur` and `Regulapse`.
+- Mind/Dynamics: `Aimscatter`, `Capacitylag`, `Crossripening`, `Echohollow`,
+  `Echoverturn`, `Foundationfray`, `Futurefold`, `Identitylag`, `Labelloop`,
+  `Meaningthin`, `Mirrorbloom`, `Quietroot`, `Readyrise` and `RegressionToMean`.
+- Society/Dynamics: `CumulativeCulture`, `DemographicTransition`,
+  `DensityRatchet`, `DiminishingComplexityReturns`, `ExitCage`, `Focalpeer`,
+  `FreeRiderProblem`, `InnovationDiffusion`, `Linkfade`, `MalthusianTrap`,
+  `Quietsever`, `Recifluence`, `Scaleasynchrony`, `SecurityDilemma`,
+  `Sideinherit`, `StructuralDemographicCycle`, `Sunbound`, `SurplusBound`,
+  `Twinflow` and `Warsift`.
+
+No layer changes. The category is unhashed metadata, so every pattern keeps its
+identity and both vocabulary roots are unchanged. Patterns naming a judgment error or
+a state of the evidence stay with the inference and reasoning patterns, while
+`RegressionToMean`, a phenomenon that occurs whether or not anyone misjudges it,
+moves. Elementary concepts stay primitives as general building blocks, including
+those that describe change over time, such as `Decay` and `PhaseTransition`. The design manual states the rule, and the MCP
+server's instructions and the usage skill tell agents to apply a Dynamics pattern as
+a model to test against the case, not as steps to run.
+
+Clients from 0.8.1 and earlier reject patterns on the new Infrastructure, Mind and
+Society Dynamics paths wherever they validate patterns: in `sema pull --source` from
+this vocabulary, and when installing or updating a library that uses the new paths. A
+0.8.1 `sema pull --source` stops with validation errors and restores its database
+unchanged. Upgrade the client before taking the new vocabulary; a plain `sema pull`
+reads the vocabulary bundled with the installed client, so the two arrive together. A
+service that hosts the vocabulary, such as sema-web, must deploy this runtime first,
+then update its bootstrap vocabulary and refresh its caches; updating the bootstrap
+first fails validation.
+
+The suggested credit for reusing the vocabulary now names the shared project rather
+than an individual: *Vocabulary from Sema (https://github.com/emergent-wisdom/sema),
+licensed under CC BY 4.0*. The licence itself is unchanged, and contributors keep the
+copyright in their contributions. The GitHub release attaches the licence file next to
+the bootstrap package, which cannot carry it itself.
+
 ## [0.8.1] - 2026-10-08
 
 ### Added

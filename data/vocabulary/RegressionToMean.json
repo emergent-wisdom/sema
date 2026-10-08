@@ -14,7 +14,7 @@
   "_meta": {
     "path": [
       "Mind",
-      "Inference"
+      "Dynamics"
     ],
     "ring": 2,
     "tier": 2,
@@ -30,5 +30,5 @@
   "sema_ref": "RegressionToMean#9c60",
   "sema_stub": "9c60",
   "sema_layer": "Mind",
-  "sema_category": "Inference"
+  "sema_category": "Dynamics"
 }

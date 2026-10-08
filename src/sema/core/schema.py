@@ -25,22 +25,30 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator, model_valida
 # the separate `_meta.layer` + `_meta.category` fields with a single
 # `_meta.path` list to make this explicit.
 #
+# Every layer has a `Dynamics` category for patterns that describe how a
+# system behaves (a process, a regularity or a limit) and prescribe no
+# response: an agent recognises them in a case rather than executing them.
+# The layer still follows what the mechanism requires.
+#
 # Adding a new path: extend the set. Schema and graph will pick it up
 # on the next apply. Deeper hierarchies (3+ levels) are supported by the
 # data model — just add a longer tuple.
 VALID_PATHS: set[tuple[str, ...]] = {
     ("Infrastructure", "Data Structures"),
+    ("Infrastructure", "Dynamics"),
     ("Infrastructure", "Primitives"),
     ("Infrastructure", "Safety"),
     ("Infrastructure", "Verification"),
     ("Physics", "Dynamics"),
     ("Physics", "Primitives"),
     ("Physics", "Time"),
+    ("Mind", "Dynamics"),
     ("Mind", "Inference"),
     ("Mind", "Memory"),
     ("Mind", "Reasoning"),
     ("Mind", "Strategy"),
     ("Society", "Coordination"),
+    ("Society", "Dynamics"),
     ("Society", "Economics"),
     ("Society", "Governance"),
     ("Society", "Protocols"),

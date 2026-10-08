@@ -18,11 +18,11 @@
   "sema_ref": "SecurityDilemma#a61b",
   "sema_stub": "a61b",
   "sema_layer": "Society",
-  "sema_category": "Coordination",
+  "sema_category": "Dynamics",
   "_meta": {
     "path": [
       "Society",
-      "Coordination"
+      "Dynamics"
     ],
     "ring": 2,
     "tier": 2,
