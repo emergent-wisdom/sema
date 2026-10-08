@@ -11,7 +11,7 @@ requires-python = ">=3.10"
 license = "MIT AND CC-BY-4.0"
 license-files = ["LICENSE", "LICENSE-CONTENT", "THIRD_PARTY_NOTICES.md"]
 authors = [
-  { name = "Henrik Westerberg", email = "henrik@emergentwisdom.org" },
+  { name = "Henrik Westerberg", email = "henrik.westerberg@emergentwisdom.org" },
 ]
 keywords = ["ai", "agents", "mcp", "semantics", "coordination", "content-addressing", "vocabulary"]
 classifiers = [
