@@ -29,7 +29,7 @@ jobs:
       - name: Build frontend
         run: |
           cd web
-          npm install
+          npm ci
           npm run build
           mkdir -p ../src/sema/server/static
           cp -r build/client/* ../src/sema/server/static/
@@ -39,6 +39,9 @@ jobs:
 
       - name: Build package
         run: python -m build
+
+      - name: Verify release artifacts
+        run: python scripts/verify_release_artifacts.py
 
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
@@ -68,4 +71,3 @@ jobs:
 
       - name: Publish server.json
         run: ./mcp-publisher publish server.json
-

@@ -67,6 +67,33 @@ jobs:
         if: matrix.python-version == '3.12'
         run: python scripts/verify_vocabulary_change.py
 
+  release-artifacts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Build frontend
+        run: |
+          cd web
+          npm ci
+          npm run build
+          mkdir -p ../src/sema/server/static
+          cp -r build/client/* ../src/sema/server/static/
+
+      - name: Build and verify release artifacts
+        run: |
+          pip install build
+          python -m build
+          python scripts/verify_release_artifacts.py
+
   delta-reconstruction:
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -107,6 +134,7 @@ jobs:
           scripts/build_bootstrap_release.py
           scripts/rebuild_vocabulary.py
           scripts/verify_vocabulary_change.py
+          scripts/verify_release_artifacts.py
           scripts/vocabulary_merkle_root.py
           experiments/delta_reconstruction/reproduce.py
           hooks/
@@ -119,6 +147,7 @@ jobs:
           scripts/build_bootstrap_release.py
           scripts/rebuild_vocabulary.py
           scripts/verify_vocabulary_change.py
+          scripts/verify_release_artifacts.py
           scripts/vocabulary_merkle_root.py
           experiments/delta_reconstruction/reproduce.py
           hooks/

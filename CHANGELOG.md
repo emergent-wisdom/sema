@@ -27,6 +27,9 @@ design manual now defines: authored procedures for changing a running system wit
 breaking the parts that depend on it. Each pattern includes its design commentary and
 use boundaries. The existing 606 definitions retain their identities.
 
+Release builds now verify wheel and source archive contents against approved inputs,
+including the bundled vocabulary, database and complete viewer assets, before upload.
+
 ### Changed
 
 Rebuilding the bundled database recomputed the search embeddings of 84 existing
