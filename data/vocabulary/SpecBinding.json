@@ -1,0 +1,41 @@
+{
+  "handle": "SpecBinding",
+  "gloss": "Bind an implementation to an external specification by a pinned version, a two-way map and a ledger of deviations",
+  "mechanism": "An implementation, such as code, a procedure or a set of controls, is bound to an external {{spec}}, such as a paper, a standard, a regulation or a design document, in four ways. One document is named authoritative and its exact version pinned, such as a commit, an edition or a dated consolidated text. Every restatement, summary, comment or test is marked as derived, never as a second source. A two-way map links each rule of the specification to the part of the implementation that carries it out, and links each consequential part to the rule it serves or to a recorded implementation choice; the binding states its criterion for what is consequential. A deviation ledger records rules not implemented, choices the specification leaves open (precision, rounding, ordering, or how a vague clause is read) and places where the implementation knowingly differs. When the pin or a mapped part changes, the map is checked again before the change is accepted, and a value whose meaning changes is swept as in {{meaning_change_sweep}}. {{verification}} against the binding establishes conformance to the pinned version only, not that the specification is right.",
+  "invariants": [
+    "Exactly one source is authoritative for each rule, and its version is pinned.",
+    "Every specification rule maps to part of the implementation, to a test, or to a ledger entry stating why it does not.",
+    "Every part of the implementation that the binding's stated criterion marks as consequential maps to a rule or to a recorded implementation choice.",
+    "A change to the pin or to a mapped part of the implementation triggers the map check before the change is accepted."
+  ],
+  "failure_modes": [
+    "Floating pin: the implementation cites the specification without a version, so a later edit silently changes what it claims to implement.",
+    "Second source: a summary, a lighter edition or a test suite drifts and is treated as authoritative.",
+    "One-way map: rules map to the implementation, but consequential parts of it map to nothing, so unspecified behaviour stays hidden.",
+    "Ledger rot: a recorded deviation, comment or test keeps describing an implementation or meaning that has since changed."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "SpecIntentCheck",
+      "Trace#b68d"
+    ]
+  },
+  "sema_id": "sema:SpecBinding#mh:SHA-256:16e5d03844bf2b95629b6fedc9f9067d2611a701431dc6f933395e7f0911f2e5",
+  "sema_ref": "SpecBinding#16e5",
+  "sema_stub": "16e5",
+  "dependencies": {
+    "references": {
+      "meaning_change_sweep": "sema:MeaningChangeSweep#mh:SHA-256:b1e06b26420768c8bb55aa8d13a1f3b8a719111364f28c4c6b2175f4f50f2369",
+      "spec": "sema:Spec#mh:SHA-256:c9537551b2bfa2639c15270994fdbb5a52a41d098f499c5ed5d61945a7c50da7",
+      "verification": "sema:Verification#mh:SHA-256:c8de453752e750eb54e0494e7a222377cea99a739b049087ab426cd968b38778"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

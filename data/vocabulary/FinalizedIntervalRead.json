@@ -1,0 +1,35 @@
+{
+  "handle": "FinalizedIntervalRead",
+  "gloss": "Freeze, settle or report a time-indexed value only once its period can no longer change; until then treat it as provisional",
+  "mechanism": "A value indexed by time, such as a price at an instant, a day's total or a vote count, is frozen, settled or reported as final only once its interval is final, meaning no further write can land in it. Until then the value is provisional, and whoever uses it records the rule that will make it final. A value read at the current instant, or from the open end of a log, can still change: a later write in the same block, tick or reporting period may replace it. A closing rule that is an estimate or a confidence threshold, such as a watermark that still admits late data or a confirmation depth, leaves values provisional.",
+  "invariants": [
+    "A frozen or final value is read from an interval no further write can land in, or is labelled provisional with the closing rule it relied on.",
+    "The rule that closes an interval is stated where writes are admitted, including whether it is final or an estimate.",
+    "A provisional value used in a decision is rechecked once its interval is final, or the decision records the risk."
+  ],
+  "failure_modes": [
+    "Same-instant overwrite: a value read at the current instant is replaced later in the same instant, so two readers freeze different values for one time.",
+    "Early report: a period's total is published before the period closes and later writes are lost from the report.",
+    "Undefined closing: writers and readers disagree about when an interval closes.",
+    "Estimate read as final: a value is frozen at a watermark or confirmation threshold that still admits later writes."
+  ],
+  "_meta": {
+    "path": [
+      "Infrastructure",
+      "Primitives"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Snapshot#390d",
+      "Oracle#cd16",
+      "CausalBarrier#cf54",
+      "IdempotentWrite#7226"
+    ]
+  },
+  "sema_id": "sema:FinalizedIntervalRead#mh:SHA-256:d5e82d36ac202d0053c087be15ffaf68bfb77989e2bce9200d11eb2229efd964",
+  "sema_ref": "FinalizedIntervalRead#d5e8",
+  "sema_stub": "d5e8",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives"
+}

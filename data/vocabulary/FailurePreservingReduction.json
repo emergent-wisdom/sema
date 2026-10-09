@@ -1,0 +1,41 @@
+{
+  "handle": "FailurePreservingReduction",
+  "gloss": "Shrink a failing input or action sequence while the same failure keeps occurring",
+  "mechanism": "Given an input, configuration or action sequence that triggers a failure, and a check that reliably recognises that same failure rather than any failure, smaller candidates are tried repeatedly, each from the starting state recorded for the original case, and any candidate on which the same failure still occurs is kept, for example by removing coarse chunks first and then finer ones. Where the failure is intermittent, the check runs each candidate a stated number of times. Reduction stops when no candidate the strategy generates keeps the failure, or when a declared budget runs out. Unlike {{bisect}}, which assumes the cause lies in one half, reduction keeps elements that fail only together; unlike the ablation in {{parsimony}}, which asks whether a part is needed for a function, it preserves a failure. The reduced case is a reproduction, not a diagnosis: it shows what suffices to trigger the failure, not why it occurs.",
+  "invariants": [
+    "Every candidate runs from the starting state recorded for the original failing case.",
+    "Every kept candidate reproduces the original failure signature, not merely some failure.",
+    "The result states its failure signature and whether it stopped because no candidate kept the failure or because the budget ran out.",
+    "The reduced case is reported as sufficient to trigger the failure, not as its cause."
+  ],
+  "failure_modes": [
+    "Failure slippage: the shrunk case fails for a different reason, for example a crash replacing an assertion, so it no longer points at the original defect.",
+    "Carried-over state: a trial leaves state behind, such as a system left armed, so a later candidate appears to fail on its own.",
+    "Flaky check: a nondeterministic failure is kept or dropped by chance, so the reduction is arbitrary.",
+    "Cause read from the minimum: the remaining elements are taken as the cause though they only suffice to trigger it.",
+    "Masked second fault: removing setup hides a second defect that the original case also exercised."
+  ],
+  "_meta": {
+    "path": [
+      "Infrastructure",
+      "Verification"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "DistinguishingTest#0439",
+      "RecursiveRootCause#f132"
+    ]
+  },
+  "sema_id": "sema:FailurePreservingReduction#mh:SHA-256:51d4b787f4351dc74899a24a880f2cae1509c591fc77bad1f8cffbdeb3302e76",
+  "sema_ref": "FailurePreservingReduction#51d4",
+  "sema_stub": "51d4",
+  "dependencies": {
+    "references": {
+      "bisect": "sema:Bisect#mh:SHA-256:88a2cebffb3f547904dcaceac95dd302480fe8d45db8b6788eb3e4f04958a8ca",
+      "parsimony": "sema:Parsimony#mh:SHA-256:4df866b08c5797a42a104097a24ea332aa3f4dfeccd73e38f27564cdb7cc6c9e"
+    }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Verification"
+}

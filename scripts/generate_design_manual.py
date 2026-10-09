@@ -218,6 +218,16 @@ errors and states of the evidence stay outside too.
 The category is metadata outside the hash, so filing a pattern under `Dynamics`, or
 moving it out, changes no identity.
 
+### The Safety category (changing what others depend on)
+
+`Infrastructure/Safety` holds authored procedures for changing a running system without
+breaking the parts that depend on it, such as staging a format change so that every
+consumer keeps working until none needs the old form (`ExpandContractMigration`). A
+pattern belongs here when its product is a safely completed change. Guards that block,
+filter or check produce a refusal or evidence instead, so they stay in
+`Infrastructure/Verification` and `Infrastructure/Primitives`. Like `Dynamics`, the
+category is metadata outside the hash.
+
 ### The two-criteria minting rule (whether to mint at all)
 
 A concept earns a pattern only if it meets at least one of:
