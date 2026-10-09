@@ -1,0 +1,41 @@
+{
+  "handle": "ReleaseArtifactVerification",
+  "gloss": "Test the exact artifact consumers receive, and bind the evidence to its digest",
+  "mechanism": "Before a release is declared verified, the artifact that will actually be distributed or deployed, such as a package, image, bundle, compiled bytecode, document or dataset, is identified by a content digest, installed, deployed or opened the way a consumer receives it, and exercised there. Each piece of evidence records the digest it ran against, as {{verification}} states what it was checked against. Evidence gathered on a source tree, a development build or another digest counts for the artifact only for a property the build is stated to preserve, with that assumption recorded, as when a proof about source is carried to bytecode built by a pinned compiler; a reproducible build shows that builds match, not that a property survives the build. Packaging and installation, or opening for a document or dataset, are always checked on the artifact itself, and a changed digest invalidates the evidence until it is rerun or its assumption is restated. Tests that replace production components with stand-ins state which components they replaced.",
+  "invariants": [
+    "Every verification claim names the digest it ran against.",
+    "Evidence gathered on anything other than the released digest counts only for a property the build is stated to preserve, with that assumption recorded.",
+    "Packaging and installation, or opening for a document or dataset, are checked on the released artifact itself.",
+    "Evidence that ran with stand-ins for production components names the substitutions."
+  ],
+  "failure_modes": [
+    "Source-tree pass: tests pass on the repository and are counted for the artifact, though the build changes what they covered through flags, missing files or a stale lock file.",
+    "Stand-in coverage: a test harness replaces a production component, so the production path is never exercised although the test count suggests it was.",
+    "Rebuilt after testing: the artifact is rebuilt after verification, so the deployed digest was never tested.",
+    "Environment gap: the artifact is exercised in an environment unlike the consumer's, with different permissions, configuration or neighbours."
+  ],
+  "_meta": {
+    "path": [
+      "Infrastructure",
+      "Verification"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Deploy#bc5c",
+      "Canary#d38c",
+      "RolloutWatch#e8ba",
+      "Trace#b68d"
+    ]
+  },
+  "sema_id": "sema:ReleaseArtifactVerification#mh:SHA-256:c4668a479ba21c1d2a8bc1f4475bcb1084eebf9125ea220110a3015f3fcf5d75",
+  "sema_ref": "ReleaseArtifactVerification#c466",
+  "sema_stub": "c466",
+  "dependencies": {
+    "references": {
+      "verification": "sema:Verification#mh:SHA-256:c8de453752e750eb54e0494e7a222377cea99a739b049087ab426cd968b38778"
+    }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Verification"
+}

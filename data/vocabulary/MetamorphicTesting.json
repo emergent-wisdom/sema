@@ -1,0 +1,41 @@
+{
+  "handle": "MetamorphicTesting",
+  "gloss": "Test a stated relation among the outputs of several runs, which needs no exact expected answer for any single run",
+  "mechanism": "Instead of checking each run against a known answer, related runs are compared: a relation states how the outputs must correspond when the inputs are changed in a stated way, as permuting the rows fed to an order-independent aggregation must leave its result unchanged. A relation may involve more than two runs. Each relation is derived, before any run, from a property the correct output must have, stated in the {{spec}} or known of the domain, never from the implementation's behaviour, and it states how a violation is decided: exactly, within a tolerance, or by a statistical test where outputs are random. Follow-up inputs are generated from source inputs, and a violation is a failure on that set of inputs. A satisfied relation shows the outputs are consistent under that relation, not that any single output is correct. It builds tests for {{empirical_test}} that need no exact expected answer, including where the correct output cannot be computed independently.",
+  "invariants": [
+    "Each relation is derived from a stated property of the correct output, from the specification or the domain, and recorded before execution together with how a violation is decided.",
+    "A violation is reported with the source inputs, the transformations and every output the relation involves.",
+    "A pass is reported as consistency under the named relations, never as correctness."
+  ],
+  "failure_modes": [
+    "Weak relation: the relation also holds for wrong implementations, for example one any constant output satisfies, so passing proves little.",
+    "Relation read off the code: the relation is derived from the implementation's behaviour, so the test cannot disagree with it.",
+    "Shared error: the defect changes every related output in the same way, so the relation holds.",
+    "Tolerance creep: numeric relations get tolerances wide enough to hide real violations."
+  ],
+  "_meta": {
+    "path": [
+      "Infrastructure",
+      "Verification"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "DetectorSelfTest#8d48",
+      "ClosureConservationCheck",
+      "Morphproof#f5bb",
+      "Falsification#3543"
+    ]
+  },
+  "sema_id": "sema:MetamorphicTesting#mh:SHA-256:7129619c60f2d3773b9a985ae4365bf2dbdba782131b9c804e079142656dae9c",
+  "sema_ref": "MetamorphicTesting#7129",
+  "sema_stub": "7129",
+  "dependencies": {
+    "references": {
+      "empirical_test": "sema:EmpiricalTest#mh:SHA-256:75ae9b3629a0075fc40a64b8615e553fc25e5866c8c276e682790e2069fefd39",
+      "spec": "sema:Spec#mh:SHA-256:c9537551b2bfa2639c15270994fdbb5a52a41d098f499c5ed5d61945a7c50da7"
+    }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Verification"
+}

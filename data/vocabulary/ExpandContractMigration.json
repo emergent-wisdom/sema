@@ -1,0 +1,42 @@
+{
+  "handle": "ExpandContractMigration",
+  "gloss": "Change a shared format by adding the new form beside the old, moving every consumer, then removing the old",
+  "mechanism": "To change an interface, schema, storage layout or message format shared by producers and consumers that deploy independently, the change runs in three phases with a gate between each. Expand: the new form is introduced beside the old so every deployed reader and writer still works; writers may write both. Migrate: consumers move to the new form and stored data is backfilled, with {{compatibility_check}} run for every inventoried producer-consumer pair in each direction in which the pair communicates. Contract: the old form is removed only after an inventory of its remaining consumers, including old versions, caches, copies of the interface and in-flight messages, comes back empty. Each phase records the conditions under which it can be rolled back. Reusing an existing field or name with a new meaning is a contraction of the old meaning and an expansion of the new one in a single step, and its readers are found as in {{meaning_change_sweep}}.",
+  "invariants": [
+    "At every point in the transition, every inventoried producer-consumer pair can interoperate in each direction in which it communicates.",
+    "The old form is removed only after an inventory of its remaining consumers comes back empty, with the inventory's scope recorded.",
+    "A change of meaning under an unchanged name or position is treated as a removal plus an addition, never as compatible."
+  ],
+  "failure_modes": [
+    "Forgotten consumer: an offline, embedded or third-party reader, such as an indexer or a hand-copied interface, still depends on the old form when it is removed.",
+    "Dual-write divergence: the two forms drift because some writes reach only one of them.",
+    "Single-step change: expansion and contraction ship together, so there is never a state where both forms work.",
+    "Permanent expansion: contraction never happens and both forms are maintained indefinitely.",
+    "Silent repurpose: a field keeps its name and type while its meaning changes, which shape-level compatibility checks cannot detect."
+  ],
+  "_meta": {
+    "path": [
+      "Infrastructure",
+      "Safety"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Rollout#ea8c",
+      "Deploy#bc5c",
+      "FeatureFlag#dd17",
+      "TranslationProxy#1db2"
+    ]
+  },
+  "sema_id": "sema:ExpandContractMigration#mh:SHA-256:14c61a53ba4bbc21a5a0f6b43c4510a812ce04b3ada87bf378ded624b9135e7f",
+  "sema_ref": "ExpandContractMigration#14c6",
+  "sema_stub": "14c6",
+  "dependencies": {
+    "references": {
+      "compatibility_check": "sema:CompatibilityCheck#mh:SHA-256:7f70838f05f3aad069b89dcbc705283872f66fde4bc95c6bfa0dc917955e050d",
+      "meaning_change_sweep": "sema:MeaningChangeSweep#mh:SHA-256:b1e06b26420768c8bb55aa8d13a1f3b8a719111364f28c4c6b2175f4f50f2369"
+    }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Safety"
+}

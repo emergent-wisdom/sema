@@ -10,6 +10,27 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
+### Added
+
+Ten patterns for verification, change management and triage bring the vocabulary to
+616 patterns:
+
+- `ClosureConservationCheck`, `ExpandContractMigration`, `FailurePreservingReduction`,
+  `FinalizedIntervalRead`, `FixPathTriage`, `MeaningChangeSweep`,
+  `MetamorphicTesting`, `ReleaseArtifactVerification`, `SpecBinding` and
+  `SpecIntentCheck`.
+
+`ExpandContractMigration` is the first pattern in `Infrastructure/Safety`, which the
+design manual now defines: authored procedures for changing a running system without
+breaking the parts that depend on it. Each pattern includes its design commentary and
+use boundaries. The existing 606 definitions retain their identities.
+
+### Changed
+
+Rebuilding the bundled database recomputed the search embeddings of 84 existing
+patterns from their current text. Identities are unchanged; semantic search results
+for those patterns may shift slightly.
+
 ## [0.9.0] - 2026-10-08
 
 ### Changed

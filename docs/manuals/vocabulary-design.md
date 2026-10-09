@@ -6,8 +6,8 @@
      and export through `docs/guides/authoring.md`. Edit commentary in
      `data/design_critique.json`. Never edit canonical exports directly. -->
 
-_Patterns covered: 606 (from `data/vocabulary/`)_
-_Commentary entries in sidecar: 606 (from `data/design_critique.json`)_
+_Patterns covered: 616 (from `data/vocabulary/`)_
+_Commentary entries in sidecar: 616 (from `data/design_critique.json`)_
 
 This manual is the design reference for the Sema Bootstrap Library. For each pattern, it shows the definition (mechanism, invariants, pre/postconditions, failure modes, parameters, data schema, and dependency bindings) alongside the design commentary: why it exists, why it sits where it does, whether it could be removed, how it's used across contexts, its design tensions and tradeoffs, critique, and where it sits in its family. Machine validation checks structure, references, and hashes; the meaning and adequacy of the contracts require review. Source links point to the rendered card, including its staging copy when present.
 
@@ -194,6 +194,16 @@ errors and states of the evidence stay outside too.
 
 The category is metadata outside the hash, so filing a pattern under `Dynamics`, or
 moving it out, changes no identity.
+
+### The Safety category (changing what others depend on)
+
+`Infrastructure/Safety` holds authored procedures for changing a running system without
+breaking the parts that depend on it, such as staging a format change so that every
+consumer keeps working until none needs the old form (`ExpandContractMigration`). A
+pattern belongs here when its product is a safely completed change. Guards that block,
+filter or check produce a refusal or evidence instead, so they stay in
+`Infrastructure/Verification` and `Infrastructure/Primitives`. Like `Dynamics`, the
+category is metadata outside the hash.
 
 ### The two-criteria minting rule (whether to mint at all)
 
@@ -1649,7 +1659,7 @@ themselves; rewrite them around the semantic risk and run the placement test.
 
 ---
 
-## Infrastructure (167)
+## Infrastructure (173)
 
 ### Infrastructure/Data Structures (101)
 
@@ -11930,7 +11940,7 @@ _Note: The same move applies to commitments, tools, authority and consent. Those
 
 ---
 
-### Infrastructure/Primitives (53)
+### Infrastructure/Primitives (54)
 
 ### Act#2dfe
 
@@ -13582,6 +13592,68 @@ _Note: Retry eligibility, finite budgets, and reset conditions are caller policy
 - `FeedbackSignal#f904`
 - `FeedbackSignal#9e3b`
 - `FeedbackSignal#b17b`
+
+---
+
+### FinalizedIntervalRead#d5e8
+
+`Infrastructure` · `Primitives` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/FinalizedIntervalRead.json)
+
+**Gloss.** Freeze, settle or report a time-indexed value only once its period can no longer change; until then treat it as provisional
+
+**Mechanism.**
+
+> A value indexed by time, such as a price at an instant, a day's total or a vote count, is frozen, settled or reported as final only once its interval is final, meaning no further write can land in it. Until then the value is provisional, and whoever uses it records the rule that will make it final. A value read at the current instant, or from the open end of a log, can still change: a later write in the same block, tick or reporting period may replace it. A closing rule that is an estimate or a confidence threshold, such as a watermark that still admits late data or a confirmation depth, leaves values provisional.
+
+**Invariants.**
+- A frozen or final value is read from an interval no further write can land in, or is labelled provisional with the closing rule it relied on.
+- The rule that closes an interval is stated where writes are admitted, including whether it is final or an estimate.
+- A provisional value used in a decision is rechecked once its interval is final, or the decision records the risk.
+
+**Failure modes.**
+- Same-instant overwrite: a value read at the current instant is replaced later in the same instant, so two readers freeze different values for one time.
+- Early report: a period's total is published before the period closes and later writes are lost from the report.
+- Undefined closing: writers and readers disagree about when an interval closes.
+- Estimate read as final: a value is frozen at a watermark or confirmation threshold that still admits later writes.
+
+#### Design
+
+**Why it exists.** A value read at the current instant can be overwritten later in the same instant: a second update in the same block, a late event in the same window, a correction before the period closes. Freezing such a value lets two readers disagree about one time. FinalizedIntervalRead reads only intervals no write can still land in, or labels the value provisional with the closing rule it relied on.
+
+**Why Infrastructure.** Restricting reads to final intervals, and stating when an interval closes, are authored rules a program executes.
+
+**Can it be removed?** Snapshot records state at a time without saying whether that time could still change; Oracle requires consistent answers from the source; CausalBarrier orders events. None tells a consumer when a value is final. Removable if writes never share an instant with reads.
+
+**Intended use.** freezing or consuming time-indexed values only once no further write can change them, or labelling them provisional.
+
+**Future uses.** agents writing settlement, reporting and pricing code; agents reviewing data-feed and stream consumers.
+
+**Broad-use contexts.** block timestamps and on-chain data feeds, stream processing with watermarks and late data, accounting period close, metrics dashboards for the current minute, replicated databases with in-flight writes, end-of-day market data, vote counts and preliminary statistics before certification.
+
+**Broad-use intersection (review hypothesis).** a stated rule for when an interval closes, including whether it is final or an estimate, reads restricted to final intervals or labelled provisional, and a recheck or recorded risk for provisional values used in decisions.
+
+**Varies (descendant territory).** the closing rule (block end, period close, watermark, confirmation depth) and, for estimated rules, the revision risk accepted.
+
+**Extension shape.** a stream variant with watermarks and allowed lateness; a chain variant with confirmation depth.
+
+_Note: Hypothetical example: an end-of-day report sums transactions stamped up to 23:59:59 while a settlement batch stamped 23:59:59 is still being written, so the report and the ledger disagree about the same day._
+
+**Design tensions.**
+- Waiting for finality adds latency; tolerating revision adds rework.
+
+**Tradeoffs.**
+- Gains: one final value per time for every reader.
+- Gives up: immediacy.
+
+**Critique (diagnostic, not contract requirements).**
+- Potentially related concepts: finality; period close; read-committed isolation; watermarks in stream processing.
+- Finality and estimated closure are kept apart: a watermark can still admit late data and a confirmation depth is a confidence threshold, so values read under them stay provisional.
+- Recording the rule that will make a value final is more than labelling it provisional: the rule is what lets the value be rechecked, and replaced if needed, once its interval closes.
+- It governs reads rather than checking anything; its neighbours IdempotentWrite, StateSnapshot and Heartbeat are in Infrastructure/Primitives.
+
+**In the family.** Snapshot records state at a time, Oracle supplies values, CausalBarrier orders events, and FinalizedIntervalRead decides when a time-indexed value is final.
 
 ---
 
@@ -16312,7 +16384,80 @@ _Note: A handwritten signature alone does not provide this card's artifact-chang
 
 ---
 
-### Infrastructure/Verification (10)
+### Infrastructure/Safety (1)
+
+### ExpandContractMigration#14c6
+
+`Infrastructure` · `Safety` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/ExpandContractMigration.json)
+
+**Gloss.** Change a shared format by adding the new form beside the old, moving every consumer, then removing the old
+
+**Mechanism.**
+
+> To change an interface, schema, storage layout or message format shared by producers and consumers that deploy independently, the change runs in three phases with a gate between each. Expand: the new form is introduced beside the old so every deployed reader and writer still works; writers may write both. Migrate: consumers move to the new form and stored data is backfilled, with {{compatibility_check}} run for every inventoried producer-consumer pair in each direction in which the pair communicates. Contract: the old form is removed only after an inventory of its remaining consumers, including old versions, caches, copies of the interface and in-flight messages, comes back empty. Each phase records the conditions under which it can be rolled back. Reusing an existing field or name with a new meaning is a contraction of the old meaning and an expansion of the new one in a single step, and its readers are found as in {{meaning_change_sweep}}.
+
+**Invariants.**
+- At every point in the transition, every inventoried producer-consumer pair can interoperate in each direction in which it communicates.
+- The old form is removed only after an inventory of its remaining consumers comes back empty, with the inventory's scope recorded.
+- A change of meaning under an unchanged name or position is treated as a removal plus an addition, never as compatible.
+
+**Failure modes.**
+- Forgotten consumer: an offline, embedded or third-party reader, such as an indexer or a hand-copied interface, still depends on the old form when it is removed.
+- Dual-write divergence: the two forms drift because some writes reach only one of them.
+- Single-step change: expansion and contraction ship together, so there is never a state where both forms work.
+- Permanent expansion: contraction never happens and both forms are maintained indefinitely.
+- Silent repurpose: a field keeps its name and type while its meaning changes, which shape-level compatibility checks cannot detect.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{compatibility_check}}` | `sema:CompatibilityCheck#mh:SHA-256:7f70838f05f3aad069b89dcbc705283872f66fde4bc95c6bfa0dc917955e050d` |
+| `references` | `{{meaning_change_sweep}}` | `sema:MeaningChangeSweep#mh:SHA-256:b1e06b26420768c8bb55aa8d13a1f3b8a719111364f28c4c6b2175f4f50f2369` |
+
+#### Design
+
+**Why it exists.** A shared format cannot be changed in one step when its readers and writers deploy at different times. Changing it anyway breaks every consumer that has not moved, and reusing a field with a new meaning breaks them silently because the shape still matches. ExpandContractMigration orders the change so both forms work until an inventory shows the old one has no consumers.
+
+**Why Infrastructure.** Executing a supplied migration plan needs no second party, since one owner's rolling deploys need it too, and no judgment once the consumer inventory is supplied; the inventory is an input to the contraction gate, as the closure is for ClosureConservationCheck. Competing reading: taking the inventory is part of the execution and needs judgment, as finding readers does in MeaningChangeSweep, which would put the card in Mind.
+
+**Can it be removed?** CompatibilityCheck tests one direction between two entities at one moment; Rollout stages the deployment of one change; TranslationProxy wraps a legacy system indefinitely. None orders a format change across independently deployed consumers. Removable if every producer and consumer can switch atomically.
+
+**Intended use.** changing an interface, schema, storage layout or message format shared by independently deployed producers and consumers.
+
+**Future uses.** agents changing APIs, database schemas, event formats, configuration formats, or contract interfaces read by indexers and front ends.
+
+**Broad-use contexts.** database schema migrations, public and internal APIs, event and message formats, file formats, contract interfaces read by off-chain indexers, configuration keys, supersedes lineage in a content-addressed vocabulary.
+
+**Broad-use intersection (review hypothesis).** a period in which both forms work, a migration of consumers and data, and removal of the old form only after an inventory of its consumers.
+
+**Varies (descendant territory).** dual writing or translation at read time, how long the expansion lasts, how the consumer inventory is taken, and what each phase's rollback requires.
+
+**Extension shape.** a database variant (add column, backfill, switch reads, drop); an API variant with versioned endpoints and deprecation notices.
+
+_Note: Hypothetical example: a payments API replaces `amount` in dollars with `amount_minor` in cents. Expand adds the new field beside the old, clients migrate, and the old field is removed only when request logs and the client inventory show no reader left._
+
+**Design tensions.**
+- A long expansion lowers breakage risk and raises the cost of maintaining two forms; the Permanent expansion failure mode is where it ends.
+
+**Tradeoffs.**
+- Gains: no point in the change at which a deployed consumer breaks.
+- Gives up: speed, and the simplicity of one form.
+
+**Critique (diagnostic, not contract requirements).**
+- Potentially related concepts: parallel change (expand and contract); backward-compatible schema evolution; deprecation policy.
+- Rollback is recorded per phase rather than assumed: a lossy backfill cannot be undone, and a removal can be undone where the old data is kept.
+- Compatibility is checked in the directions a pair communicates. A producer that never reads from its consumer needs no check in that direction, as CompatibilityCheck's directional result allows.
+- The interoperability invariant covers inventoried pairs, since pairs nobody knows about cannot be checked; the inventory's recorded scope says what it covered.
+- A repurpose is classified here as a removal plus an addition, and its readers are found by MeaningChangeSweep.
+
+**In the family.** CompatibilityCheck is the check run between phases, Rollout stages each deployment, FeatureFlag separates deployment from release, TranslationProxy is the alternative of wrapping the old form indefinitely, and MeaningChangeSweep finds the readers of a repurposed value.
+
+---
+
+### Infrastructure/Verification (14)
 
 ### AuditTrail#163b
 
@@ -16401,6 +16546,76 @@ _Note: A handwritten signature alone does not provide this card's artifact-chang
 - `AuditTrail#b441`
 - `AuditTrail#bf18`
 - `AuditTrail#46f7`
+
+---
+
+### ClosureConservationCheck#3aa4
+
+`Infrastructure` · `Verification` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/ClosureConservationCheck.json)
+
+**Gloss.** Check that a conserved quantity balances over every holder, as an equality, not as a lower bound on the holders being watched
+
+**Mechanism.**
+
+> A test of a conserved quantity, as in {{conservation}}, names the closure, meaning every holder of the quantity, including system accounts, fee pools, stock or funds in transit, and rounding remainders, and asserts that the opening balance plus inflows across the boundary equals the outflows plus the closing balance, within a stated rounding bound. A one-sided check, such as asserting that each user gets back at least what they put in, is reported as a bound, not as conservation. The equality constrains totals only: a transfer between two holders inside the closure passes it, even to the wrong holder. The check is itself tested by injecting an unbalanced change, such as a movement recorded on one side only or a balance left out of the sum, as in {{detector_self_test}}.
+
+**Invariants.**
+- The closure is named, and every holder in it is included in the check.
+- Conservation is asserted as opening balance plus inflows equals outflows plus closing balance, within a stated rounding bound; a one-sided bound is reported as a bound.
+- The check is shown to fail when an unbalanced change is injected.
+
+**Failure modes.**
+- Watched-holder bound: only the visible holders, such as customer accounts, are checked, so quantity created for them, or lost from a system account, goes unseen.
+- Open closure: a holder of the quantity, such as a fee pool or an account that collects rounding remainders, is left out.
+- Rounding slack: the tolerance is wide enough to absorb a real leak.
+- Misallocation read as conservation: a transfer to the wrong holder passes, since the equality constrains totals only.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{conservation}}` | `sema:Conservation#mh:SHA-256:0b32d007b27a9b5201c46931bdbabd09d08ff9d7b01cf49469f61709989507c2` |
+| `references` | `{{detector_self_test}}` | `sema:DetectorSelfTest#mh:SHA-256:8d48b9e7f6dbfc6ea93f0de86259339a64d1ad994089f2ff5d8642b1d2cc842a` |
+
+#### Design
+
+**Why it exists.** Conservation tests are often written as one-sided bounds on the holders someone thought to watch: each user gets back at least what they put in. Such a test cannot see value created for those users, or value lost from an unwatched account such as fees or rounding remainders. ClosureConservationCheck asserts an equality over every holder of the quantity and shows that the check fails when an unbalanced change is injected.
+
+**Why Infrastructure.** Summing a quantity over named holders and checking an equality runs without judgment, as with DetectorSelfTest; naming the closure is the input.
+
+**Can it be removed?** Conservation states the law for a closed system; Ledger corrects by offsetting entries; DetectorSelfTest tests detectors in general. None states how a conservation test is written. A usage note on Conservation would sit in the sidecar, which no agent resolves at runtime, and an edit to Conservation's hashed text would rehash 332 patterns. Removable if conservation tests are always written as closed equalities.
+
+**Intended use.** testing that a conserved quantity is neither created nor destroyed across every holder of it.
+
+**Future uses.** agents writing invariant tests for ledgers, token systems, inventories and resource accounting.
+
+**Broad-use contexts.** token and escrow contracts, double-entry accounting (trial balance), inventory systems, memory allocators (allocated equals freed plus live), message queues (produced equals consumed plus in flight plus dead-lettered), energy accounting in simulations.
+
+**Broad-use intersection (review hypothesis).** a named closure, an equality of opening balance plus inflows with outflows plus closing balance within a stated rounding bound, and an injected unbalanced change the check must catch.
+
+**Varies (descendant territory).** the quantity, the rounding bound, and how system accounts are enumerated.
+
+**Extension shape.** a ledger variant (trial balance); a queue variant.
+
+_Note: Hypothetical example: a warehouse system asserts that opening stock plus receipts equals shipments plus closing stock plus items in transit; a planted receipt with no matching stock change makes the check fail, while a pallet moved to the wrong bay passes it._
+
+**Design tensions.**
+- A tight rounding bound catches small leaks and fails on legitimate rounding remainders; a loose one passes real leaks.
+
+**Tradeoffs.**
+- Gains: conservation claims that see every account.
+- Gives up: the convenience of checking only user-facing balances.
+
+**Critique (diagnostic, not contract requirements).**
+- Potentially related concepts: double-entry bookkeeping and the trial balance; reconciliation; supply invariants.
+- The equality constrains totals only. A transfer between two holders inside the closure passes it, even to the wrong holder; checking who receives what needs per-holder expectations, which this card does not provide.
+- The closure is described in terms of holders rather than parties: it includes accounts, stores and buffers as well as agents, and 'party' would suggest the Society layer's sense of independent agents.
+- The self-test injects an unbalanced change, because a balanced transfer conserves the total and must pass.
+- The equation carries opening and closing balances so that it applies to a running system, not only to one that starts empty.
+
+**In the family.** Conservation states the law, DetectorSelfTest tests detectors, MetamorphicTesting checks relations among runs, and ClosureConservationCheck writes the conservation test as a closed equality.
 
 ---
 
@@ -16605,6 +16820,78 @@ _Note: A handwritten signature alone does not provide this card's artifact-chang
 
 ---
 
+### FailurePreservingReduction#51d4
+
+`Infrastructure` · `Verification` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/FailurePreservingReduction.json)
+
+**Gloss.** Shrink a failing input or action sequence while the same failure keeps occurring
+
+**Mechanism.**
+
+> Given an input, configuration or action sequence that triggers a failure, and a check that reliably recognises that same failure rather than any failure, smaller candidates are tried repeatedly, each from the starting state recorded for the original case, and any candidate on which the same failure still occurs is kept, for example by removing coarse chunks first and then finer ones. Where the failure is intermittent, the check runs each candidate a stated number of times. Reduction stops when no candidate the strategy generates keeps the failure, or when a declared budget runs out. Unlike {{bisect}}, which assumes the cause lies in one half, reduction keeps elements that fail only together; unlike the ablation in {{parsimony}}, which asks whether a part is needed for a function, it preserves a failure. The reduced case is a reproduction, not a diagnosis: it shows what suffices to trigger the failure, not why it occurs.
+
+**Invariants.**
+- Every candidate runs from the starting state recorded for the original failing case.
+- Every kept candidate reproduces the original failure signature, not merely some failure.
+- The result states its failure signature and whether it stopped because no candidate kept the failure or because the budget ran out.
+- The reduced case is reported as sufficient to trigger the failure, not as its cause.
+
+**Failure modes.**
+- Failure slippage: the shrunk case fails for a different reason, for example a crash replacing an assertion, so it no longer points at the original defect.
+- Carried-over state: a trial leaves state behind, such as a system left armed, so a later candidate appears to fail on its own.
+- Flaky check: a nondeterministic failure is kept or dropped by chance, so the reduction is arbitrary.
+- Cause read from the minimum: the remaining elements are taken as the cause though they only suffice to trigger it.
+- Masked second fault: removing setup hides a second defect that the original case also exercised.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{bisect}}` | `sema:Bisect#mh:SHA-256:88a2cebffb3f547904dcaceac95dd302480fe8d45db8b6788eb3e4f04958a8ca` |
+| `references` | `{{parsimony}}` | `sema:Parsimony#mh:SHA-256:4df866b08c5797a42a104097a24ea332aa3f4dfeccd73e38f27564cdb7cc6c9e` |
+
+#### Design
+
+**Why it exists.** A failing case found by fuzzing, an invariant campaign or a user report is usually too large to read. Shrinking it by hand is slow, and shrinking it carelessly swaps the failure for a different one. FailurePreservingReduction keeps the same failure signature at every step, runs every trial from the same starting state, and reports the result as what suffices to trigger the failure, not as its cause.
+
+**Why Infrastructure.** Given a check that recognises the failure, generating and trying smaller candidates runs without judgment; ddmin, C-Reduce and property-based shrinkers are programs. Writing the check is the input.
+
+**Can it be removed?** Bisect isolates one target in an ordered space and assumes it lies in one half; Parsimony ablates parts to test a function; RecursiveRootCause asks why. None shrinks a failing case while keeping the failure. Removable if failing cases are always small.
+
+**Intended use.** reducing a failing input, configuration or action sequence to a small case that fails the same way.
+
+**Future uses.** agents triaging fuzzer and invariant-test counterexamples; agents preparing bug reports; agents reducing a tool-call sequence or transcript that triggers a failure.
+
+**Broad-use contexts.** compiler and parser bugs, fuzzing, property-based testing, stateful testing of services and contracts, configuration bugs, and intermittent failures such as flaky tests or failing prompts and agent trajectories, each judged over repeated trials.
+
+**Broad-use intersection (review hypothesis).** a failing case, a check that reliably recognises the same failure, a starting state every trial shares, candidates smaller than the current case, and a stopping rule.
+
+**Varies (descendant territory).** the reduction strategy (coarse-to-fine chunk removal, type-directed shrinking, hierarchical reduction), how the starting state is restored, the definition of the failure signature, and the budget.
+
+**Extension shape.** a ddmin descendant that pins coarse-to-fine removal and guarantees one-minimality; a descendant that isolates the failure-inducing difference between a passing and a failing version.
+
+_Note: Hypothetical example: a 4,000-step random action sequence that corrupts a cache reduces to three steps that still corrupt it from a fresh start._
+
+**Design tensions.**
+- A strict failure signature prevents slippage and can reject a smaller case that shows the same defect through a different message.
+
+**Tradeoffs.**
+- Gains: a reproduction small enough to read.
+- Gives up: the context the failure was found in, including any second fault it exercised.
+
+**Critique (diagnostic, not contract requirements).**
+- Potentially related concepts: delta debugging and ddmin (Zeller and Hildebrandt); test-case reduction; shrinking in QuickCheck and Hypothesis.
+- Coarse-to-fine removal and one-minimality belong to the ddmin strategy. Type-directed shrinkers reduce differently and stop at a local minimum of their own candidates, so the card names only the stopping rule and leaves the strategy to descendants.
+- Every trial starts from the state recorded for the original case, because a trial that leaves state behind, such as a system left armed, can make a later candidate appear to fail on its own. Recording the state makes the requirement checkable; how it is restored is the caller's choice.
+- The check must recognise the failure reliably. Where the failure is intermittent, as with flaky tests or sampled model outputs, each candidate runs a stated number of times; a single run would keep or drop candidates by chance, which is the Flaky check failure mode.
+- Layer, competing reading: Bisect sits in Mind/Reasoning, which points the other way; the mechanism-sufficiency test points to Infrastructure because programs execute the reduction.
+
+**In the family.** Bisect narrows to one target, Parsimony ablates for function, RecursiveRootCause asks why, and FailurePreservingReduction shrinks a failing case while the failure holds. Its output feeds DistinguishingTest and RecursiveRootCause.
+
+---
+
 ### HumanApprove#cf56
 
 `Infrastructure` · `Verification` · R1 · T2
@@ -16771,6 +17058,76 @@ _Note: A handwritten signature alone does not provide this card's artifact-chang
 - `InputGuard#fb82`
 - `InputGuard#8c3e`
 - `InputGuard#f33c`
+
+---
+
+### MetamorphicTesting#7129
+
+`Infrastructure` · `Verification` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/MetamorphicTesting.json)
+
+**Gloss.** Test a stated relation among the outputs of several runs, which needs no exact expected answer for any single run
+
+**Mechanism.**
+
+> Instead of checking each run against a known answer, related runs are compared: a relation states how the outputs must correspond when the inputs are changed in a stated way, as permuting the rows fed to an order-independent aggregation must leave its result unchanged. A relation may involve more than two runs. Each relation is derived, before any run, from a property the correct output must have, stated in the {{spec}} or known of the domain, never from the implementation's behaviour, and it states how a violation is decided: exactly, within a tolerance, or by a statistical test where outputs are random. Follow-up inputs are generated from source inputs, and a violation is a failure on that set of inputs. A satisfied relation shows the outputs are consistent under that relation, not that any single output is correct. It builds tests for {{empirical_test}} that need no exact expected answer, including where the correct output cannot be computed independently.
+
+**Invariants.**
+- Each relation is derived from a stated property of the correct output, from the specification or the domain, and recorded before execution together with how a violation is decided.
+- A violation is reported with the source inputs, the transformations and every output the relation involves.
+- A pass is reported as consistency under the named relations, never as correctness.
+
+**Failure modes.**
+- Weak relation: the relation also holds for wrong implementations, for example one any constant output satisfies, so passing proves little.
+- Relation read off the code: the relation is derived from the implementation's behaviour, so the test cannot disagree with it.
+- Shared error: the defect changes every related output in the same way, so the relation holds.
+- Tolerance creep: numeric relations get tolerances wide enough to hide real violations.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{empirical_test}}` | `sema:EmpiricalTest#mh:SHA-256:75ae9b3629a0075fc40a64b8615e553fc25e5866c8c276e682790e2069fefd39` |
+| `references` | `{{spec}}` | `sema:Spec#mh:SHA-256:c9537551b2bfa2639c15270994fdbb5a52a41d098f499c5ed5d61945a7c50da7` |
+
+#### Design
+
+**Why it exists.** Much software has no oracle: the exact correct output of a pricing model, a simulator or a ranking cannot be computed independently, so tests either compare against a second implementation that shares the misunderstanding or are not written. A relation among runs can still be checked. MetamorphicTesting states the relation from what the correct output must satisfy and reads a pass as consistency, not correctness.
+
+**Why Infrastructure.** Once a relation is stated, generating follow-up inputs and comparing outputs can be automated without judgment, as with DetectorSelfTest's fault injection; the relation is an input chosen before any run.
+
+**Can it be removed?** EmpiricalTest checks a conclusion's predictions and assumes a prediction can be stated for one run; Morphproof defines a category by the transformations its members survive; DetectorSelfTest tests detectors with known faults. None builds tests from relations among runs. Removable if every output under test has an independent oracle and relations add nothing to it.
+
+**Intended use.** testing a computation through relations among the outputs of several runs, especially where its exact correct output cannot be computed independently.
+
+**Future uses.** agents testing numerical, financial or scientific code; agents checking model or search behaviour under input transformations; agents reviewing whether an invariant suite proves what it claims.
+
+**Broad-use contexts.** numerical and scientific software, compilers (equivalent programs), search and ranking, machine-learning models (label-preserving transformations), financial and accounting computations, simulations, including stochastic ones (symmetries), route planning (triangle inequality across three runs).
+
+**Broad-use intersection (review hypothesis).** a stated transformation of inputs, a predicted relation among outputs derived from a property of the correct output, a rule for deciding a violation, and the related runs compared.
+
+**Varies (descendant territory).** the relation family (equality, proportionality, inclusion, ordering), the number of runs a relation spans, how inputs are generated, and how a violation is decided (exactly, within a tolerance, or by a statistical test).
+
+**Extension shape.** a property-based variant that generates source inputs randomly; a variant for stochastic outputs that compares distributions.
+
+_Note: Hypothetical examples: a portfolio's value must double when every holding doubles; a shortest route from A to C must be no longer than the route from A to B plus the route from B to C; a cumulative entitlement claimed in one step or in several must pay the same total._
+
+**Design tensions.**
+- A strong relation catches more defects and is harder to derive from the specification; a weak one is easy to state and passes wrong implementations.
+
+**Tradeoffs.**
+- Gains: tests where no exact answer exists, and a second line of evidence where one does.
+- Gives up: any claim that a single output is correct.
+
+**Critique (diagnostic, not contract requirements).**
+- Potentially related concepts: metamorphic testing (Chen, Cheung and Yiu); the test oracle problem; property-based testing.
+- A relation can come from the domain as well as the specification: a simulator's rotational symmetry is rarely written in its specification. The card therefore asks for a stated property of the correct output, wherever it is stated.
+- The absence of an exact answer is the main use, not a precondition: relations also complement an oracle where one exists, and a relation can span more than two runs.
+- Each relation states how a violation is decided, exactly, within a tolerance or by a statistical test, and that rule is recorded before execution. This admits random outputs, such as sampled model responses or stochastic simulations, where a relation holds only in distribution, and lets the variant for them extend this card rather than contradict it.
+- Layer, competing reading: the first invariant constrains how relations are derived, which is judgment, and on that reading the card belongs in Mind/Strategy beside EmpiricalTest. It sits in Infrastructure/Verification on the DetectorSelfTest precedent, where the chosen inputs are judgment and the execution is not.
+
+**In the family.** EmpiricalTest checks predictions of a conclusion, DistinguishingTest chooses the observation rivals disagree about, DetectorSelfTest tests the detectors, and MetamorphicTesting builds tests from relations among runs. ClosureConservationCheck is the case where the relation is a conserved total.
 
 ---
 
@@ -16954,6 +17311,75 @@ _Note: A handwritten signature alone does not provide this card's artifact-chang
 
 ---
 
+### ReleaseArtifactVerification#c466
+
+`Infrastructure` · `Verification` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/ReleaseArtifactVerification.json)
+
+**Gloss.** Test the exact artifact consumers receive, and bind the evidence to its digest
+
+**Mechanism.**
+
+> Before a release is declared verified, the artifact that will actually be distributed or deployed, such as a package, image, bundle, compiled bytecode, document or dataset, is identified by a content digest, installed, deployed or opened the way a consumer receives it, and exercised there. Each piece of evidence records the digest it ran against, as {{verification}} states what it was checked against. Evidence gathered on a source tree, a development build or another digest counts for the artifact only for a property the build is stated to preserve, with that assumption recorded, as when a proof about source is carried to bytecode built by a pinned compiler; a reproducible build shows that builds match, not that a property survives the build. Packaging and installation, or opening for a document or dataset, are always checked on the artifact itself, and a changed digest invalidates the evidence until it is rerun or its assumption is restated. Tests that replace production components with stand-ins state which components they replaced.
+
+**Invariants.**
+- Every verification claim names the digest it ran against.
+- Evidence gathered on anything other than the released digest counts only for a property the build is stated to preserve, with that assumption recorded.
+- Packaging and installation, or opening for a document or dataset, are checked on the released artifact itself.
+- Evidence that ran with stand-ins for production components names the substitutions.
+
+**Failure modes.**
+- Source-tree pass: tests pass on the repository and are counted for the artifact, though the build changes what they covered through flags, missing files or a stale lock file.
+- Stand-in coverage: a test harness replaces a production component, so the production path is never exercised although the test count suggests it was.
+- Rebuilt after testing: the artifact is rebuilt after verification, so the deployed digest was never tested.
+- Environment gap: the artifact is exercised in an environment unlike the consumer's, with different permissions, configuration or neighbours.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{verification}}` | `sema:Verification#mh:SHA-256:c8de453752e750eb54e0494e7a222377cea99a739b049087ab426cd968b38778` |
+
+#### Design
+
+**Why it exists.** Tests usually run on a source tree or a development build, and the release is built afterwards with different flags, files or dependencies. The evidence then describes something nobody receives. ReleaseArtifactVerification ties every claim to the digest of what ships, and lets evidence from elsewhere count only for properties the build is stated to preserve.
+
+**Why Infrastructure.** Binding evidence to a content digest and exercising the installed artifact can be automated without judgment.
+
+**Can it be removed?** Verification states what it was checked against but does not require it to be the shipped artifact; Deploy names configuration drift only as a failure mode; Canary exercises a real coordination path before commitment. None binds evidence to the released digest. Removable if what is tested is byte-identical to what ships by construction.
+
+**Intended use.** declaring a release verified only on evidence bound to the artifact consumers receive.
+
+**Future uses.** agents preparing releases of packages, images and contracts; agents auditing verification claims in release notes.
+
+**Broad-use contexts.** package releases (wheels, npm), container images, mobile app bundles, firmware, compiled contract bytecode, deposited papers and datasets, model weights.
+
+**Broad-use intersection (review hypothesis).** a content digest of the released artifact, evidence that names the digest it ran against, a rule for evidence gathered on anything else, and packaging and installation checked on the artifact.
+
+**Varies (descendant territory).** how the digest is computed, which properties the build is trusted to preserve and on what grounds, and which consumer environment is reproduced.
+
+**Extension shape.** a reproducible-build variant; an attestation variant that signs the evidence with the digest; a formal-verification variant that states the compiler assumptions carrying source proofs to the artifact.
+
+_Note: Hypothetical example: a library's tests pass on the repository, but the published wheel omits a data file the tests loaded from the source tree, and the installed package fails on first import._
+
+**Design tensions.**
+- Accepting source-level evidence lets proofs and unit tests count, and every accepted property rests on an assumption about the build that may be wrong.
+
+**Tradeoffs.**
+- Gains: verification claims that describe what consumers run.
+- Gives up: the convenience of testing whatever is at hand.
+
+**Critique (diagnostic, not contract requirements).**
+- Potentially related concepts: reproducible builds; SLSA provenance; test what you ship.
+- The identity is the digest, not the number of builds: reproducible builds rebuild independently and compare digests.
+- A reproducible build shows that builds match, not that a property checked on source survives the build: a package can reproducibly omit a module the source tests exercised. Source-level evidence therefore counts only for properties the build is stated to preserve, and packaging and installation are checked on the artifact itself.
+- Verification is referenced because this card specialises its rule that a verification states what it was checked against.
+
+**In the family.** Verification states what was checked, Deploy moves the artifact, Canary and Rollout exercise the real path, RolloutWatch watches it after release, and ReleaseArtifactVerification binds the evidence to what ships.
+
+---
+
 ### SpotAudit#d3a9
 
 `Infrastructure` · `Verification` · R1 · T1
@@ -17117,7 +17543,7 @@ _Note: A handwritten signature alone does not provide this card's artifact-chang
 
 ---
 
-## Mind (261)
+## Mind (265)
 
 ### Mind/Dynamics (14)
 
@@ -21605,7 +22031,7 @@ An unresolved metric issue remains: `usage.varies` offers accuracy, KL divergenc
 
 ---
 
-### Mind/Reasoning (98)
+### Mind/Reasoning (101)
 
 ### Abduction#e738
 
@@ -25615,6 +26041,73 @@ _Note: A cue can have evidential value through independently validated predictiv
 
 ---
 
+### MeaningChangeSweep#b1e0
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/MeaningChangeSweep.json)
+
+**Gloss.** When a value's meaning changes, find and recheck every reader of the old meaning
+
+**Mechanism.**
+
+> When the meaning of a value changes while its name, type or position stays, every reader of that value is enumerated before the change is declared done: code paths, tests that compute with it, documents, configuration comments, dashboards, other repositories and hand-copied interfaces. Each reader is updated, rechecked against the new meaning, or recorded as unaffected with a reason. A passing test suite is not evidence of completeness: a test relied on to tell the meanings apart is checked for what it now asserts, for example by running it against the old reading, as in {{detector_self_test}}. The sweep is recorded with its search scope, and readers outside that scope are listed as unchecked.
+
+**Invariants.**
+- Every reader found is updated, rechecked or recorded as unaffected, with a reason.
+- The search scope is recorded, and readers outside it are reported as unchecked.
+- A test relied on to distinguish the old meaning from the new counts as checking it only once it has been shown to fail under the old meaning.
+
+**Failure modes.**
+- Green suite read as complete: tests that still assert the old meaning pass, so stale readers survive.
+- Repository boundary: readers in another repository, indexer or client copy are not searched.
+- Prose readers missed: documents, configuration comments and runbooks keep the old formula.
+- Name search only: readers that receive the value through a renamed variable or a tuple position are not found.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{detector_self_test}}` | `sema:DetectorSelfTest#mh:SHA-256:8d48b9e7f6dbfc6ea93f0de86259339a64d1ad994089f2ff5d8642b1d2cc842a` |
+
+#### Design
+
+**Why it exists.** When a value keeps its name and changes its meaning, nothing breaks at the shape level: types check, tests pass, documents read fluently, and every reader of the old meaning is now wrong. MeaningChangeSweep enumerates the readers, gives each a disposition, and does not count a green test suite as evidence that the sweep is complete.
+
+**Why Mind.** Finding readers that a name search misses, and judging whether a document or test uses the old meaning, needs a reader's judgment; one agent can do it.
+
+**Can it be removed?** Termdrift tracks a term through one text; CompatibilityCheck compares shapes and cannot see meaning; MetricReading names the mismatch for metrics only. None finds every reader of a value whose meaning changed. Removable if meanings never change under unchanged names.
+
+**Intended use.** rechecking every reader of a value whose meaning changed while its name, type or position stayed.
+
+**Future uses.** agents changing code, metrics, schemas or definitions; agents reviewing whether a merged change left stale readers.
+
+**Broad-use contexts.** repurposed fields and return values in code, database columns whose units change, redefined metrics and KPIs, amended legal or policy definitions, survey variables recoded across waves, a vocabulary entry whose meaning changes while dependents keep the handle.
+
+**Broad-use intersection (review hypothesis).** an enumeration of readers within a recorded scope, a disposition for each reader, and the readers outside the scope listed as unchecked.
+
+**Varies (descendant territory).** how readers are found (search, call graph, data lineage) and what counts as rechecked for each kind of reader.
+
+**Extension shape.** a code variant using the call graph and type flow; a metrics variant using dashboard and query lineage.
+
+_Note: Hypothetical example: a dashboard metric 'active users' is redefined from 'logged in this month' to 'performed an action this month'; alert thresholds, a finance spreadsheet and the onboarding guide still assume the old definition, while a test that only checks the count is non-negative stays correct and is recorded as unaffected._
+
+**Design tensions.**
+- A wide scope finds more readers and may never finish; a narrow one finishes and leaves readers unchecked, which the record must then say.
+
+**Tradeoffs.**
+- Gains: changes of meaning that leave no silent readers behind.
+- Gives up: the shortcut of treating a passing suite as done.
+
+**Critique (diagnostic, not contract requirements).**
+- Potentially related concepts: change impact analysis; Hyrum's law; semantic breaking changes.
+- Only tests relied on to tell the meanings apart must be shown to fail under the old meaning. A test whose assertion holds under both, such as a positivity check when metres become centimetres, is recorded as unaffected with a reason.
+- This card is the one home for finding readers after a change of meaning; ExpandContractMigration and SpecBinding reference it.
+
+**In the family.** Termdrift tracks a term within one text, Endsettle has the same list-and-dispose shape for open obligations, ExpandContractMigration stages format changes, and MeaningChangeSweep finds the readers when a meaning changes in place.
+
+---
+
 ### MetaPrompt#5d11
 
 `Mind` · `Reasoning` · R2 · T1
@@ -27322,6 +27815,150 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 
 ---
 
+### SpecBinding#16e5
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/SpecBinding.json)
+
+**Gloss.** Bind an implementation to an external specification by a pinned version, a two-way map and a ledger of deviations
+
+**Mechanism.**
+
+> An implementation, such as code, a procedure or a set of controls, is bound to an external {{spec}}, such as a paper, a standard, a regulation or a design document, in four ways. One document is named authoritative and its exact version pinned, such as a commit, an edition or a dated consolidated text. Every restatement, summary, comment or test is marked as derived, never as a second source. A two-way map links each rule of the specification to the part of the implementation that carries it out, and links each consequential part to the rule it serves or to a recorded implementation choice; the binding states its criterion for what is consequential. A deviation ledger records rules not implemented, choices the specification leaves open (precision, rounding, ordering, or how a vague clause is read) and places where the implementation knowingly differs. When the pin or a mapped part changes, the map is checked again before the change is accepted, and a value whose meaning changes is swept as in {{meaning_change_sweep}}. {{verification}} against the binding establishes conformance to the pinned version only, not that the specification is right.
+
+**Invariants.**
+- Exactly one source is authoritative for each rule, and its version is pinned.
+- Every specification rule maps to part of the implementation, to a test, or to a ledger entry stating why it does not.
+- Every part of the implementation that the binding's stated criterion marks as consequential maps to a rule or to a recorded implementation choice.
+- A change to the pin or to a mapped part of the implementation triggers the map check before the change is accepted.
+
+**Failure modes.**
+- Floating pin: the implementation cites the specification without a version, so a later edit silently changes what it claims to implement.
+- Second source: a summary, a lighter edition or a test suite drifts and is treated as authoritative.
+- One-way map: rules map to the implementation, but consequential parts of it map to nothing, so unspecified behaviour stays hidden.
+- Ledger rot: a recorded deviation, comment or test keeps describing an implementation or meaning that has since changed.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{meaning_change_sweep}}` | `sema:MeaningChangeSweep#mh:SHA-256:b1e06b26420768c8bb55aa8d13a1f3b8a719111364f28c4c6b2175f4f50f2369` |
+| `references` | `{{spec}}` | `sema:Spec#mh:SHA-256:c9537551b2bfa2639c15270994fdbb5a52a41d098f499c5ed5d61945a7c50da7` |
+| `references` | `{{verification}}` | `sema:Verification#mh:SHA-256:c8de453752e750eb54e0494e7a222377cea99a739b049087ab426cd968b38778` |
+
+#### Design
+
+**Why it exists.** When the specification is a paper, a standard or a regulation, implementations drift from it in two quiet ways: the document changes under an unpinned citation, and the implementation acquires behaviour no rule asked for. SpecBinding pins the authoritative version, maps both directions, and keeps a ledger of what the implementation knowingly does differently.
+
+**Why Mind.** Deciding which part of the implementation serves which rule, and which parts are consequential, needs a reader's judgment; one agent can do it.
+
+**Can it be removed?** Spec defines requirements; Verification checks an artifact against them; Trace records provenance. None pins an external document's version, maps the implementation back to rules, or keeps a deviation ledger. Removable if the specification is the implementation itself.
+
+**Intended use.** binding an implementation, such as code, a process or a set of controls, to an external specification such as a paper, standard, regulation or design document.
+
+**Future uses.** agents implementing papers, RFCs or regulations; agents mapping an organisation's controls to a regulation; agents auditing whether an implementation follows the version it claims.
+
+**Broad-use contexts.** protocol implementations of RFCs, contracts implementing a white paper, regulatory and accounting rules in software, scientific code implementing a published method, safety-critical requirements traceability, evaluation specifications, compliance programmes that map a regulation to an organisation's controls with a gap register, manufacturing to a drawing revision with recorded deviations.
+
+**Broad-use intersection (review hypothesis).** one pinned authoritative source per rule, a map from rules to the implementation and from the implementation to rules, and a ledger for gaps, open choices and deviations.
+
+**Varies (descendant territory).** what the implementation is (code, a process, a set of controls), the pin (commit, digest, edition), the map's granularity, the criterion for consequential parts, and how the map check is made executable.
+
+**Extension shape.** a variant that names tests after specification rules so the map check runs in CI; a regulated-industry variant with formal trace matrices.
+
+_Note: Hypothetical example: a TLS library cites RFC 8446 with its errata pinned to a date, maps each MUST to the code that implements it, and lists in its ledger the optional extensions it leaves out and the places where it rounds timeouts differently from the text._
+
+_Note: Hypothetical example: a company maps each article of a data-protection regulation, pinned to the consolidated text of a given date, to the controls that meet it, maps each control back to an article or a recorded business choice, and keeps a gap register for the articles it does not yet meet._
+
+**Design tensions.**
+- A fine-grained map catches more drift and costs more to keep current.
+
+**Tradeoffs.**
+- Gains: a checkable claim about which version is implemented, and visible unspecified behaviour.
+- Gives up: freedom to change the implementation without touching the map.
+
+**Critique (diagnostic, not contract requirements).**
+- Potentially related concepts: bidirectional requirements traceability; conformance statements; deviation lists in standards compliance.
+- SpecBinding references Spec rather than extending it: it is a procedure over a Spec, not a kind of Spec. Spec's Immutability holds for each pinned version, so a living document is compatible with it.
+- Which parts of the implementation are consequential is decided by a criterion the binding states, since the word alone is not decidable.
+- The contracts speak of the implementation rather than of code, so the same binding serves code, processes and compliance controls; in code, the consequential parts are code paths.
+- The mechanism opens with its four moves, pinning one source, marking every restatement as derived, mapping both ways and keeping a ledger, so that marking summaries as derived is not lost in the detail.
+- Readers of a value whose meaning changes are found by MeaningChangeSweep, which the binding references rather than restating.
+
+**In the family.** Spec is what is bound, Verification checks against the binding, SpecIntentCheck asks whether the bound version is right, MeaningChangeSweep handles a change of meaning, and Trace records provenance.
+
+---
+
+### SpecIntentCheck#29a2
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/SpecIntentCheck.json)
+
+**Gloss.** Check the specification itself against intent and its own consequences before trusting conformance to it
+
+**Mechanism.**
+
+> A {{spec}} is checked as an artifact in its own right, separately from {{verification}} of an implementation against it. Its claims are made checkable where possible, through exact computation, worked examples, proofs or simulation. Its consequences are derived and shown to whoever holds the intent it encodes, in a form they can judge, such as a chart of what each party would receive under it. A consequence they did not expect is resolved by changing the specification or by recording that it is accepted; until then, or if they reject the specification, validation is withheld. Validation evidence is pinned to the specification version it checked.
+
+**Invariants.**
+- Validation of the specification is reported separately from verification of an implementation against it.
+- Each validation result names the specification version it checked.
+- A specification is reported as validated only when every consequence the intent-holder did not expect has been resolved by a specification change or an explicit acceptance.
+- Conformance to an unvalidated specification is reported as conformance only.
+
+**Failure modes.**
+- Circular validation: the specification is checked against the implementation built from it, so their shared errors confirm each other.
+- Intent drift: the intent-holder's understanding moves while the specification stays, so the implementation conforms to an outdated intent.
+- Unshown consequence: consequences are derived but never presented to the intent-holder in a form they can judge.
+- Text pinned, meaning unchecked: checks pin the specification's wording, so they detect edits but not wrong mathematics.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{spec}}` | `sema:Spec#mh:SHA-256:c9537551b2bfa2639c15270994fdbb5a52a41d098f499c5ed5d61945a7c50da7` |
+| `references` | `{{verification}}` | `sema:Verification#mh:SHA-256:c8de453752e750eb54e0494e7a222377cea99a739b049087ab426cd968b38778` |
+
+#### Design
+
+**Why it exists.** Conformance testing shows that code matches the specification, never that the specification says what was meant, so errors in the specification pass every conformance test. SpecIntentCheck checks the specification itself, shows its consequences to whoever holds the intent, and withholds validation until each surprise is resolved.
+
+**Why Mind.** Deriving a specification's consequences and judging them against intent needs cognition; one agent can check its own specification, though the intent-holder is often another party.
+
+**Can it be removed?** Verification checks an artifact against a spec; AcceptSpec and FrameSpec name spec drift only as failure modes; IntentGap analyses decision against outcome after the fact; BoundaryReview tests stated limits against practice. None checks a specification against intent before it is relied on. Removable if specifications are always written and checked by whoever holds the intent.
+
+**Intended use.** checking a specification against the intent it encodes and against its own consequences.
+
+**Future uses.** agents writing or reviewing specifications, mechanism designs, policies and acceptance criteria.
+
+**Broad-use contexts.** protocol and mechanism design, product requirements, regulations and policies, model evaluation criteria, contracts, scientific protocols.
+
+**Broad-use intersection (review hypothesis).** a version of the specification, consequences derived from it, an intent-holder who judges them, and validation withheld while an unexpected consequence is unresolved.
+
+**Varies (descendant territory).** how consequences are derived (computation, proof, simulation, worked examples) and how they are presented.
+
+**Extension shape.** a mechanism-design variant with simulated outcomes per party; a policy variant with worked cases.
+
+_Note: Hypothetical example: a grant-allocation formula is checked by computing allocations for twenty sample applicants and showing them to the committee, who find that the smallest applicants receive nothing and change the formula._
+
+**Design tensions.**
+- Showing every consequence overwhelms the intent-holder; showing a selection lets the surprising one go unseen.
+
+**Tradeoffs.**
+- Gains: errors in the specification found before code conforms to them.
+- Gives up: the assumption that a precise specification is a correct one.
+
+**Critique (diagnostic, not contract requirements).**
+- Potentially related concepts: verification versus validation ('building the product right' against 'building the right product'); requirements validation.
+- An unexpected consequence may stay unresolved, or the intent-holder may reject the specification. Validation is then withheld, rather than forced into a change or an acceptance.
+- Verification is referenced as the activity this card is defined against.
+
+**In the family.** SpecBinding binds code to a pinned specification, Verification checks conformance, SpecIntentCheck checks the specification against intent, and BoundaryReview tests stated limits against practice.
+
+---
+
 ### Specialize#799d
 
 `Mind` · `Reasoning` · R2 · T1
@@ -28758,7 +29395,7 @@ _Note: The coined handle names the failure and the card defines the guard, as Co
 
 ---
 
-### Mind/Strategy (104)
+### Mind/Strategy (105)
 
 ### ActionConvergence#89d1
 
@@ -31710,6 +32347,69 @@ _Note: The coined handle names the failure and the card defines the guard, as Co
 **Supersedes (prior versions).**
 - `Falsification#3e36`
 - `Falsification#e44f`
+
+---
+
+### FixPathTriage#19e5
+
+`Mind` · `Strategy` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/FixPathTriage.json)
+
+**Gloss.** Classify each finding by what fixing it requires in the deployed system, and report that beside its impact and likelihood
+
+**Mechanism.**
+
+> Before findings are ranked, each is classified by what fixing it requires in the deployed system, for example patchable in place, fixable only for future instances while existing instances keep the defect, or permanent, with no fix short of replacement, recall, migration or restart. The class is reported beside impact and likelihood, not folded into them, and is grounded in the deployment's actual upgrade paths, naming any that rely on a trusted party or need another party's consent. The classification is redone when those upgrade paths change.
+
+**Invariants.**
+- Every finding carries a fix-path class grounded in the deployed system's actual upgrade paths.
+- The fix-path class is reported separately from impact and likelihood.
+- A change to the deployment's upgrade paths triggers reclassification.
+
+**Failure modes.**
+- Source-only triage: findings are ranked as if every component could be patched, so defects in immutable components are under-ranked.
+- Assumed upgradability: a component is treated as patchable without checking who holds the upgrade authority or whether instances are pinned.
+- Assumed permanence: a component is classified as permanent without checking whether its upgrade path can carry a migration, so a replacement or restart is chosen where an upgrade would do.
+- Stale class: an upgrade path is removed or frozen after triage and the classes are not redone.
+
+#### Design
+
+**Why it exists.** Findings are usually ranked by impact and likelihood as if every component could be patched. In a deployed system some cannot: a defect in immutable code, shipped firmware or a published hash stays in every existing instance. FixPathTriage reports where a fix can land beside how bad the defect is, and leaves the ranking to the caller.
+
+**Why Mind.** Classifying findings by upgrade path is one agent's judgment.
+
+**Can it be removed?** Risk carries probability, severity, mitigation and trigger; Prioritize ranks by impact over effort; ErrorCostAsymmetry sets a threshold from unequal costs; ReversibilityCheck gates irreversible actions. None classifies findings by what fixing them requires in the deployed system. Removable if every component is patchable in place.
+
+**Intended use.** classifying audit and review findings by what fixing them requires in the deployed system.
+
+**Future uses.** agents triaging security findings, incident follow-ups and review reports for deployed systems.
+
+**Broad-use contexts.** upgradeable and immutable contracts, firmware and embedded devices, mobile apps with slow update uptake, published APIs with external clients, content-addressed or published artifacts (papers, datasets, vocabulary entries), hardware.
+
+**Broad-use intersection (review hypothesis).** a fix-path class per finding, grounded in the deployment's upgrade paths and reported separately from impact and likelihood.
+
+**Varies (descendant territory).** the class set, the parties an upgrade path depends on, and how the class is weighed in the ranking.
+
+**Extension shape.** a device-fleet variant with update uptake; a variant for content-addressed artifacts, where a fix reaches only new pins.
+
+_Note: Hypothetical example: a firmware defect in a thermostat without over-the-air updates is permanent for units already sold, fixable only for units still in the factory, and patchable in place for the companion app; the finding reports all three beside one severity._
+
+**Design tensions.**
+- Weighting permanence heavily protects users of immutable parts and can starve patchable defects that are doing harm now.
+
+**Tradeoffs.**
+- Gains: rankings that reflect where a fix can land.
+- Gives up: a single severity number.
+
+**Critique (diagnostic, not contract requirements).**
+- Potentially related concepts: remediation level in CVSS; upgradeability review in contract audits; field upgradability.
+- Not a descendant of ReversibilityCheck: that card gates an action before it is taken, while this one classifies findings about what is already deployed.
+- Ranking policy, such as escalating permanent defects at moderate impact, is left to callers; the card requires only that the class be reported beside impact and likelihood.
+- Another party's consent is a property of an upgrade path and can apply to several classes, so it is named on the path rather than added as a class.
+- Classes can be wrong in both directions. Assumed upgradability treats a fixed component as patchable; Assumed permanence treats a component as fixed when its upgrade path could carry a migration, so a costly replacement or restart is chosen where an upgrade would do.
+
+**In the family.** Risk and Prioritize rank, ErrorCostAsymmetry weighs unequal mistakes, ReversibilityCheck gates irreversible actions, and FixPathTriage classifies findings by where a fix can land.
 
 ---
 

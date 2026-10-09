@@ -1,0 +1,39 @@
+{
+  "handle": "ClosureConservationCheck",
+  "gloss": "Check that a conserved quantity balances over every holder, as an equality, not as a lower bound on the holders being watched",
+  "mechanism": "A test of a conserved quantity, as in {{conservation}}, names the closure, meaning every holder of the quantity, including system accounts, fee pools, stock or funds in transit, and rounding remainders, and asserts that the opening balance plus inflows across the boundary equals the outflows plus the closing balance, within a stated rounding bound. A one-sided check, such as asserting that each user gets back at least what they put in, is reported as a bound, not as conservation. The equality constrains totals only: a transfer between two holders inside the closure passes it, even to the wrong holder. The check is itself tested by injecting an unbalanced change, such as a movement recorded on one side only or a balance left out of the sum, as in {{detector_self_test}}.",
+  "invariants": [
+    "The closure is named, and every holder in it is included in the check.",
+    "Conservation is asserted as opening balance plus inflows equals outflows plus closing balance, within a stated rounding bound; a one-sided bound is reported as a bound.",
+    "The check is shown to fail when an unbalanced change is injected."
+  ],
+  "failure_modes": [
+    "Watched-holder bound: only the visible holders, such as customer accounts, are checked, so quantity created for them, or lost from a system account, goes unseen.",
+    "Open closure: a holder of the quantity, such as a fee pool or an account that collects rounding remainders, is left out.",
+    "Rounding slack: the tolerance is wide enough to absorb a real leak.",
+    "Misallocation read as conservation: a transfer to the wrong holder passes, since the equality constrains totals only."
+  ],
+  "_meta": {
+    "path": [
+      "Infrastructure",
+      "Verification"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "MetamorphicTesting",
+      "Ledger#4dda"
+    ]
+  },
+  "sema_id": "sema:ClosureConservationCheck#mh:SHA-256:3aa4a97c655aa4c572021d6412fe494d8d5a40eb1627849eb22e207e05fba3f5",
+  "sema_ref": "ClosureConservationCheck#3aa4",
+  "sema_stub": "3aa4",
+  "dependencies": {
+    "references": {
+      "conservation": "sema:Conservation#mh:SHA-256:0b32d007b27a9b5201c46931bdbabd09d08ff9d7b01cf49469f61709989507c2",
+      "detector_self_test": "sema:DetectorSelfTest#mh:SHA-256:8d48b9e7f6dbfc6ea93f0de86259339a64d1ad994089f2ff5d8642b1d2cc842a"
+    }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Verification"
+}

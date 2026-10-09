@@ -1,0 +1,41 @@
+{
+  "handle": "SpecIntentCheck",
+  "gloss": "Check the specification itself against intent and its own consequences before trusting conformance to it",
+  "mechanism": "A {{spec}} is checked as an artifact in its own right, separately from {{verification}} of an implementation against it. Its claims are made checkable where possible, through exact computation, worked examples, proofs or simulation. Its consequences are derived and shown to whoever holds the intent it encodes, in a form they can judge, such as a chart of what each party would receive under it. A consequence they did not expect is resolved by changing the specification or by recording that it is accepted; until then, or if they reject the specification, validation is withheld. Validation evidence is pinned to the specification version it checked.",
+  "invariants": [
+    "Validation of the specification is reported separately from verification of an implementation against it.",
+    "Each validation result names the specification version it checked.",
+    "A specification is reported as validated only when every consequence the intent-holder did not expect has been resolved by a specification change or an explicit acceptance.",
+    "Conformance to an unvalidated specification is reported as conformance only."
+  ],
+  "failure_modes": [
+    "Circular validation: the specification is checked against the implementation built from it, so their shared errors confirm each other.",
+    "Intent drift: the intent-holder's understanding moves while the specification stays, so the implementation conforms to an outdated intent.",
+    "Unshown consequence: consequences are derived but never presented to the intent-holder in a form they can judge.",
+    "Text pinned, meaning unchecked: checks pin the specification's wording, so they detect edits but not wrong mathematics."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "SpecBinding",
+      "BoundaryReview#aa3b",
+      "IntentGap#0c14"
+    ]
+  },
+  "sema_id": "sema:SpecIntentCheck#mh:SHA-256:29a260fbf62ec221bd2c12f0394f457ef5362687773a6f00ca9f51616d3bc2c5",
+  "sema_ref": "SpecIntentCheck#29a2",
+  "sema_stub": "29a2",
+  "dependencies": {
+    "references": {
+      "spec": "sema:Spec#mh:SHA-256:c9537551b2bfa2639c15270994fdbb5a52a41d098f499c5ed5d61945a7c50da7",
+      "verification": "sema:Verification#mh:SHA-256:c8de453752e750eb54e0494e7a222377cea99a739b049087ab426cd968b38778"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

@@ -1,0 +1,41 @@
+{
+  "handle": "MeaningChangeSweep",
+  "gloss": "When a value's meaning changes, find and recheck every reader of the old meaning",
+  "mechanism": "When the meaning of a value changes while its name, type or position stays, every reader of that value is enumerated before the change is declared done: code paths, tests that compute with it, documents, configuration comments, dashboards, other repositories and hand-copied interfaces. Each reader is updated, rechecked against the new meaning, or recorded as unaffected with a reason. A passing test suite is not evidence of completeness: a test relied on to tell the meanings apart is checked for what it now asserts, for example by running it against the old reading, as in {{detector_self_test}}. The sweep is recorded with its search scope, and readers outside that scope are listed as unchecked.",
+  "invariants": [
+    "Every reader found is updated, rechecked or recorded as unaffected, with a reason.",
+    "The search scope is recorded, and readers outside it are reported as unchecked.",
+    "A test relied on to distinguish the old meaning from the new counts as checking it only once it has been shown to fail under the old meaning."
+  ],
+  "failure_modes": [
+    "Green suite read as complete: tests that still assert the old meaning pass, so stale readers survive.",
+    "Repository boundary: readers in another repository, indexer or client copy are not searched.",
+    "Prose readers missed: documents, configuration comments and runbooks keep the old formula.",
+    "Name search only: readers that receive the value through a renamed variable or a tuple position are not found."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Termdrift#18ef",
+      "Endsettle#d716",
+      "ExpandContractMigration",
+      "SpecBinding",
+      "CompatibilityCheck#7f70"
+    ]
+  },
+  "sema_id": "sema:MeaningChangeSweep#mh:SHA-256:b1e06b26420768c8bb55aa8d13a1f3b8a719111364f28c4c6b2175f4f50f2369",
+  "sema_ref": "MeaningChangeSweep#b1e0",
+  "sema_stub": "b1e0",
+  "dependencies": {
+    "references": {
+      "detector_self_test": "sema:DetectorSelfTest#mh:SHA-256:8d48b9e7f6dbfc6ea93f0de86259339a64d1ad994089f2ff5d8642b1d2cc842a"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}
