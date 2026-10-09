@@ -10,6 +10,8 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
+## [0.9.1] - 2026-10-09
+
 ### Added
 
 Ten patterns for verification, change management and triage bring the vocabulary to
