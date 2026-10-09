@@ -20144,7 +20144,7 @@
         "Not a descendant of ReversibilityCheck: that card gates an action before it is taken, while this one classifies findings about what is already deployed.",
         "Ranking policy, such as escalating permanent defects at moderate impact, is left to callers; the card requires only that the class be reported beside impact and likelihood.",
         "Another party's consent is a property of an upgrade path and can apply to several classes, so it is named on the path rather than added as a class.",
-        "Classes can be wrong in both directions. Assumed upgradability treats a fixed component as patchable; Assumed permanence treats a component as fixed when its upgrade path could carry a migration, so a costly replacement or restart is chosen where an upgrade would do."
+        "Classes can be wrong in both directions. Assumed upgradability treats a fixed component as patchable; Assumed permanence treats a component as fixed when its existing upgrade path could carry the fix, so a costly replacement or restart is chosen where an upgrade would do. A migration carried through an existing upgrade path therefore counts as patchable in place; moving state to a new instance is the permanent class's remedy."
       ]
     },
     "family_discussion": "Risk and Prioritize rank, ErrorCostAsymmetry weighs unequal mistakes, ReversibilityCheck gates irreversible actions, and FixPathTriage classifies findings by where a fix can land."

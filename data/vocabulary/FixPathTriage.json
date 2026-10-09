@@ -1,7 +1,7 @@
 {
   "handle": "FixPathTriage",
   "gloss": "Classify each finding by what fixing it requires in the deployed system, and report that beside its impact and likelihood",
-  "mechanism": "Before findings are ranked, each is classified by what fixing it requires in the deployed system, for example patchable in place, fixable only for future instances while existing instances keep the defect, or permanent, with no fix short of replacement, recall, migration or restart. The class is reported beside impact and likelihood, not folded into them, and is grounded in the deployment's actual upgrade paths, naming any that rely on a trusted party or need another party's consent. The classification is redone when those upgrade paths change.",
+  "mechanism": "Before findings are ranked, each is classified by what fixing it requires in the deployed system, for example patchable in place, including by a migration carried through an existing upgrade path; fixable only for future instances while existing instances keep the defect; or permanent, fixable only by replacing or recalling instances, or by moving their state to a new instance and restarting. The class is reported beside impact and likelihood, not folded into them, and is grounded in the deployment's actual upgrade paths, naming any that rely on a trusted party or need another party's consent. The classification is redone when those upgrade paths change.",
   "invariants": [
     "Every finding carries a fix-path class grounded in the deployed system's actual upgrade paths.",
     "The fix-path class is reported separately from impact and likelihood.",
@@ -10,7 +10,7 @@
   "failure_modes": [
     "Source-only triage: findings are ranked as if every component could be patched, so defects in immutable components are under-ranked.",
     "Assumed upgradability: a component is treated as patchable without checking who holds the upgrade authority or whether instances are pinned.",
-    "Assumed permanence: a component is classified as permanent without checking whether its upgrade path can carry a migration, so a replacement or restart is chosen where an upgrade would do.",
+    "Assumed permanence: a component is classified as permanent without checking whether its existing upgrade path can carry the fix, including a migration of its state, so a replacement or restart is chosen where an upgrade would do.",
     "Stale class: an upgrade path is removed or frozen after triage and the classes are not redone."
   ],
   "_meta": {
@@ -27,9 +27,9 @@
       "ReversibilityCheck#7dfa"
     ]
   },
-  "sema_id": "sema:FixPathTriage#mh:SHA-256:19e5bbba8ac110784672d1cf07e43d49b4f13ba04ed46183ee4459d4584afb31",
-  "sema_ref": "FixPathTriage#19e5",
-  "sema_stub": "19e5",
+  "sema_id": "sema:FixPathTriage#mh:SHA-256:c2071c0751e95db8570f9e5581bf503845b9250c7b85077fddf5077b8e9d2ede",
+  "sema_ref": "FixPathTriage#c207",
+  "sema_stub": "c207",
   "sema_layer": "Mind",
   "sema_category": "Strategy"
 }

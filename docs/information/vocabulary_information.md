@@ -2,13 +2,13 @@
 
 ## System Status
 
-- **Semantic-set Root**: `22655282cfb9d7dd78a8307ac4fcc21aedd2b3498311e32b097aa38a0ea7f906`
+- **Semantic-set Root**: `3a10ccf481dbd54d33f81eda13858a8a3e8df2b2e5e92de5348d1fa464f416b4`
 - **Semantic-set Scheme**: `sema-semantic-set-v1`
-- **Catalog Root**: `4aaa820f4443be9e43ed3c1a6e496e901c662d3b848882f706b28563b649f219`
+- **Catalog Root**: `adaca5ba4d6bbb789d941fee288db4e593cfee1d4a3c33da2dc6241a9ae883c0`
 - **Catalog Scheme**: `sema-catalog-v1`
 - **Pattern Count**: 616
 - **Unique Definition Count**: 616
-- **Verified Against Semantic Root**: `22655282cfb9d7dd…`
+- **Verified Against Semantic Root**: `3a10ccf481dbd54d…`
 
 ## Usage
 
@@ -23,7 +23,7 @@ a target rename can also change dependent definition digests:
 import json
 
 # Agent A shares semantic-set root + scheme
-semantic_root_A = "22655282cfb9d7dd78a8307ac4fcc21aedd2b3498311e32b097aa38a0ea7f906"
+semantic_root_A = "3a10ccf481dbd54d33f81eda13858a8a3e8df2b2e5e92de5348d1fa464f416b4"
 scheme_A = "sema-semantic-set-v1"
 
 # Agent B independently reads its local versioned roots

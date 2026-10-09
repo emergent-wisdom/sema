@@ -1468,6 +1468,7 @@ Scanning 616 patterns for unlinked handle mentions...
    • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  FixPathTriage:
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Focalpeer:
    • Mentions 'Act' (unlinked). Should it be '{{{ghost}}}'?

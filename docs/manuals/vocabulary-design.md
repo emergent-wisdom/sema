@@ -32350,7 +32350,7 @@ _Note: The coined handle names the failure and the card defines the guard, as Co
 
 ---
 
-### FixPathTriage#19e5
+### FixPathTriage#c207
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -32360,7 +32360,7 @@ _Note: The coined handle names the failure and the card defines the guard, as Co
 
 **Mechanism.**
 
-> Before findings are ranked, each is classified by what fixing it requires in the deployed system, for example patchable in place, fixable only for future instances while existing instances keep the defect, or permanent, with no fix short of replacement, recall, migration or restart. The class is reported beside impact and likelihood, not folded into them, and is grounded in the deployment's actual upgrade paths, naming any that rely on a trusted party or need another party's consent. The classification is redone when those upgrade paths change.
+> Before findings are ranked, each is classified by what fixing it requires in the deployed system, for example patchable in place, including by a migration carried through an existing upgrade path; fixable only for future instances while existing instances keep the defect; or permanent, fixable only by replacing or recalling instances, or by moving their state to a new instance and restarting. The class is reported beside impact and likelihood, not folded into them, and is grounded in the deployment's actual upgrade paths, naming any that rely on a trusted party or need another party's consent. The classification is redone when those upgrade paths change.
 
 **Invariants.**
 - Every finding carries a fix-path class grounded in the deployed system's actual upgrade paths.
@@ -32370,7 +32370,7 @@ _Note: The coined handle names the failure and the card defines the guard, as Co
 **Failure modes.**
 - Source-only triage: findings are ranked as if every component could be patched, so defects in immutable components are under-ranked.
 - Assumed upgradability: a component is treated as patchable without checking who holds the upgrade authority or whether instances are pinned.
-- Assumed permanence: a component is classified as permanent without checking whether its upgrade path can carry a migration, so a replacement or restart is chosen where an upgrade would do.
+- Assumed permanence: a component is classified as permanent without checking whether its existing upgrade path can carry the fix, including a migration of its state, so a replacement or restart is chosen where an upgrade would do.
 - Stale class: an upgrade path is removed or frozen after triage and the classes are not redone.
 
 #### Design
@@ -32407,7 +32407,7 @@ _Note: Hypothetical example: a firmware defect in a thermostat without over-the-
 - Not a descendant of ReversibilityCheck: that card gates an action before it is taken, while this one classifies findings about what is already deployed.
 - Ranking policy, such as escalating permanent defects at moderate impact, is left to callers; the card requires only that the class be reported beside impact and likelihood.
 - Another party's consent is a property of an upgrade path and can apply to several classes, so it is named on the path rather than added as a class.
-- Classes can be wrong in both directions. Assumed upgradability treats a fixed component as patchable; Assumed permanence treats a component as fixed when its upgrade path could carry a migration, so a costly replacement or restart is chosen where an upgrade would do.
+- Classes can be wrong in both directions. Assumed upgradability treats a fixed component as patchable; Assumed permanence treats a component as fixed when its existing upgrade path could carry the fix, so a costly replacement or restart is chosen where an upgrade would do. A migration carried through an existing upgrade path therefore counts as patchable in place; moving state to a new instance is the permanent class's remedy.
 
 **In the family.** Risk and Prioritize rank, ErrorCostAsymmetry weighs unequal mistakes, ReversibilityCheck gates irreversible actions, and FixPathTriage classifies findings by where a fix can land.
 
