@@ -1,0 +1,51 @@
+{
+  "handle": "SolverDecomposition",
+  "extends": "sema:ConceptualDecomposition#mh:SHA-256:f1f430fc38f3944d3a02b34e0ae04d4004a002795b375b665f1ebb7a4e57b264",
+  "mechanism": "The cognitive act of taking a concept, typically the capability that frames a problem, once its claim frame is stated and it has been located among broader kinds, and breaking it into sub-concepts where each sub-concept is bound by the {{solver}} contract (it exposes at least the Manifest and Execute surfaces of the five-surface contract, so it is independently delegatable). Generic {{decompose}} requires independent parts that combine into the whole; this method adds the claim frame, the location and the tests of the general method it extends, and binds every part to the solver contract, so the same five-surface contract governs every level and the structure can recurse. It asks which differentiated dimensions the capability needs across the instances it claims, not which steps would accomplish it, which would produce a procedural carve. Candidate dimensions are generated and each is put to the {{decomposition_gate}} tests; a failed or uncertain candidate may be reframed, narrowed or kept as a labelled alternative in the frontier of the {{archive_serving_frontier}}. A bounded search then looks for any dimension the accepted set still misses, and a {{routing_sanity_check}} routes a few concrete tasks through the carve before it is kept. Accepted dimensions are bound to the parent by {{composition_edge}} links, the split declares the {{synthesis}} that recomposes them, and recursion continues into a dimension only while the {{marginal_value_rule}} says further depth pays. A few agents can take these solver roles for one problem, and the resulting structure may persist as a reusable pattern or be torn down at completion.",
+  "gloss": "Breaking a concept into solver-contract-bound sub-concepts \u2014 the move that enables fractal recursion",
+  "invariants": [
+    "The claim frame is stated before any candidate is tested.",
+    "The concept is located among broader kinds before it is carved.",
+    "Every sub-concept exposes at least the Manifest and Execute surfaces of the {{solver}} interface as a condition of the split being accepted, not as later repair.",
+    "Only candidate dimensions that pass the {{decomposition_gate}} tests are spawned as children.",
+    "The split declares the {{synthesis}} that will recompose it; a concept with no available synthesis is not decomposed."
+  ],
+  "failure_modes": [
+    "Premature decomposition: the parent concept is broken apart before it is clearly framed, producing sub-concepts that don't cover the actual problem.",
+    "Coupled split: two dimensions cannot vary or fail separately; the {{decomposition_gate}} Independence test should catch this but can miss overlap that is semantic rather than structural.",
+    "Contract violation: sub-concepts that do not cleanly expose Manifest + Execute cannot be dispatched \u2014 the decomposition produced descriptions, not delegatable units.",
+    "Leaky abstraction: sub-concepts that require global context the Solver contract doesn't carry, forcing each child to reach back for the parent's context.",
+    "Procedural carve: the concept is split into the steps of one way of doing it rather than the dimensions it needs, so the carve fits one workflow and not the capability."
+  ],
+  "_meta": {
+    "tier": 1,
+    "ring": 1,
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "related": [
+      "MandatoryAbstraction",
+      "FractalIntelligence"
+    ]
+  },
+  "sema_id": "sema:SolverDecomposition#mh:SHA-256:ff4b4921d148c7672540eb0ec6201e5eed9b7c06b6442c6525399a856f121bfa",
+  "sema_ref": "SolverDecomposition#ff4b",
+  "sema_stub": "ff4b",
+  "dependencies": {
+    "composes_with": {
+      "decomposition_gate": "sema:DecompositionGate#mh:SHA-256:1b2d7263900f2721658ea188e416b2c53cb14c4ce13f35b9b82728f68fcfe7c5",
+      "synthesis": "sema:Synthesis#mh:SHA-256:4f1fecba4183e6a79bfb3bd8f1981a6b6fb9f3dced92a484a9aa466c93ae249b"
+    },
+    "references": {
+      "archive_serving_frontier": "sema:ArchiveServingFrontier#mh:SHA-256:27653c08dbb23917a945b15020bbdabae18ccc9256dda0d2249354896d4a4313",
+      "composition_edge": "sema:CompositionEdge#mh:SHA-256:2be81d974795a345a4518b540b6110bed48e2e1fc084363193dc0bb609616bbb",
+      "decompose": "sema:Decompose#mh:SHA-256:69942e7e0dcdc7781144da58c8f09b2e8a17c247be435dadf3325cb0d0bbb22b",
+      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:661109205c507b2c26d683d091de7f8b782bf2d6c2e9192373b242a9b078ac71",
+      "routing_sanity_check": "sema:RoutingSanityCheck#mh:SHA-256:71bdf79f3d471779f7312d699718cab13efef2db27d45873aeb0e91e35c73a8b",
+      "solver": "sema:Solver#mh:SHA-256:a4478611882cced1b069f8dc551d401c74b35cefe02ed67d37d1aa135e19825b"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

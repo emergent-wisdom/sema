@@ -511,12 +511,18 @@ def _validate_pattern_file(file_path: Path) -> dict:
     return {"error": None, "data": data}
 
 
-def search_patterns(query, use_semantic=False, verbose=False, as_json=False):
+def search_patterns(
+    query, use_semantic=False, verbose=False, as_json=False, layer=None, category=None
+):
     # Banner goes to stderr under --json so stdout stays parseable
     # (`sema search --json | jq` must work).
     print(f"🔍 Semantic Search for: '{query}'...", file=sys.stderr if as_json else sys.stdout)
     manager = get_registry()
-    results = manager.search(query, use_semantic=use_semantic)
+    try:
+        results = manager.search(query, use_semantic=use_semantic, layer=layer, category=category)
+    except ValueError as exc:
+        print(f"❌ {exc}", file=sys.stderr)
+        sys.exit(1)
 
     if as_json:
         full_results = []
@@ -2327,6 +2333,11 @@ def main():
     )
     search.add_argument("--verbose", "-v", action="store_true", help="Show details")
     search.add_argument("--json", action="store_true", help="JSON output")
+    search.add_argument("--layer", help="Only search this layer, e.g. Mind")
+    search.add_argument(
+        "--category",
+        help="Only search this category, e.g. Verification; an unknown name lists the valid ones",
+    )
 
     # Resolve
     resolve = subparsers.add_parser(
@@ -2588,7 +2599,12 @@ def main():
         )
     elif args.command == "search":
         search_patterns(
-            args.query, use_semantic=not args.keyword_only, verbose=args.verbose, as_json=args.json
+            args.query,
+            use_semantic=not args.keyword_only,
+            verbose=args.verbose,
+            as_json=args.json,
+            layer=args.layer,
+            category=args.category,
         )
     elif args.command == "resolve":
         resolve_graph(args.handle)

@@ -283,7 +283,13 @@ sema search -v "trust"
 
 # JSON output
 sema search --json "verification"
+
+# Search inside one layer or category (case-insensitive)
+sema search --category verification "release check"
+sema search --layer Mind --category Strategy "stuck on a problem"
 ```
+
+An unknown layer or category exits with an error that lists the valid names.
 
 ### resolve - Resolve Dependencies
 

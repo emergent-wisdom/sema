@@ -1,6 +1,6 @@
 {
   "name": "sema",
-  "version": "0.9.1",
+  "version": "0.10.0",
   "description": "Content-addressed vocabulary protocol \u2014 shared meaning for AI agents",
   "skills": "./skills/",
   "hooks": "./hooks/hooks.json",
