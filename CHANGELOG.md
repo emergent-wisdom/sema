@@ -10,6 +10,8 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
+## [0.10.0] - 2026-10-10
+
 ### Added
 
 `sema_search`, `sema search` and the local server's `/api/search` take an optional
