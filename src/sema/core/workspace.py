@@ -129,9 +129,14 @@ class GraphWorkspace:
         use_semantic: bool = True,
         enrich_top_n: int = 3,
         limit: int | None = None,
+        layer: str | None = None,
+        category: str | None = None,
     ) -> list[dict[str, Any]]:
         self.refresh()
-        results = self.registry_manager.search(query, use_semantic=use_semantic)
+        # Pass a scope only when one is asked for, so registry stand-ins that
+        # predate layer and category filtering keep working.
+        scope = {key: value for key, value in (("layer", layer), ("category", category)) if value}
+        results = self.registry_manager.search(query, use_semantic=use_semantic, **scope)
         if limit is not None:
             results = results[: max(1, min(limit, 20))]
         if session is None:
@@ -149,6 +154,11 @@ class GraphWorkspace:
                     "gloss": result.get("gloss"),
                     "score": result.get("score"),
                 }
+                if not seen:
+                    # Where new matches sit shows whether they cluster in one
+                    # category worth searching inside.
+                    summary["layer"] = result.get("layer")
+                    summary["category"] = result.get("category")
                 summary["_seen" if seen else "_summary"] = True
                 compacted.append(summary)
                 if not seen:

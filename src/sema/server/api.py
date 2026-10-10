@@ -4,6 +4,7 @@ import hashlib
 import hmac
 import json
 import os
+import re
 import secrets
 import sqlite3
 import threading
@@ -708,9 +709,19 @@ def get_pattern_details(handle: str):
 
 
 @app.get("/api/search")
-def search_patterns(q: str, semantic: bool = True, limit: int | None = None):
+def search_patterns(
+    q: str,
+    semantic: bool = True,
+    limit: int | None = None,
+    layer: str | None = None,
+    category: str | None = None,
+):
     """Search patterns (Hybrid: Keyword + Semantic if available)."""
-    keyword_results = registry.search(q, use_semantic=semantic)
+    scope = {key: value for key, value in (("layer", layer), ("category", category)) if value}
+    try:
+        keyword_results = registry.search(q, use_semantic=semantic, **scope)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
 
     def limit_results(results: list[dict]) -> list[dict]:
         if limit is None:
@@ -721,37 +732,60 @@ def search_patterns(q: str, semantic: bool = True, limit: int | None = None):
     if not semantic:
         return limit_results(keyword_results)
 
-    # Merge results with name-match boosting
+    # Boost results whose name the query is looking for, on top of the
+    # registry's own keyword or semantic score, which is kept so a weak match
+    # still reads as weak.
+    query_compact = _compact(q)
+    query_terms = _significant_terms(q)
     merged = {}
-    query_lower = q.lower().strip()
-
-    def calculate_name_boost(handle: str) -> float:
-        import re
-
-        name = handle.split("#")[0].lower()
-        if name == query_lower:
-            return 3.0
-        if name.startswith(query_lower):
-            return 2.5
-        if query_lower in name:
-            return 2.0
-        name_words = [w.lower() for w in re.findall(r"[A-Z][a-z]*", handle.split("#")[0])]
-        query_words = query_lower.split()
-        if any(
-            qw in name_words or any(nw.startswith(qw) for nw in name_words) for qw in query_words
-        ):
-            return 1.5
-        return 0.0
-
     for r in keyword_results:
-        h = r["handle"]
-        r["source"] = "keyword"
-        name_boost = calculate_name_boost(h)
-        r["score"] = 1.0 + name_boost
-        merged[h] = r
+        r["score"] = float(r.get("score", 0.0)) + _name_boost(
+            r["handle"], query_compact, query_terms
+        )
+        merged[r["handle"]] = r
 
     results = sorted(merged.values(), key=lambda x: x.get("score", 0), reverse=True)
     return limit_results(results)
+
+
+_STOPWORDS = frozenset(
+    "a an and are as at be been but by can could did do does for from had has have how "
+    "i if in into is it its itself may might my no not of on or our should so still than "
+    "that the their them then there these they this those to was we were what when where "
+    "which who why will with would you your".split()
+)
+
+
+def _compact(text: str) -> str:
+    """Lower-case text and drop spaces and punctuation, to compare with a handle."""
+    return re.sub(r"[^a-z0-9]", "", text.lower())
+
+
+def _significant_terms(text: str) -> list[str]:
+    """Query words of three or more letters that are not stop words."""
+    words = re.findall(r"[a-z0-9]+", text.lower())
+    return [w for w in words if len(w) >= 3 and w not in _STOPWORDS]
+
+
+def _name_boost(handle: str, query_compact: str, query_terms: list[str]) -> float:
+    """How strongly a pattern's name answers the query.
+
+    An exact name, a name prefix or part of three or more letters, or a name
+    containing every meaningful query word. A shared short word such as "a",
+    or one word of several, does not lift a name above the semantic matches.
+    """
+    bare = handle.split("#")[0]
+    name = bare.lower()
+    if name == query_compact:
+        return 3.0
+    if len(query_compact) >= 3 and name.startswith(query_compact):
+        return 2.5
+    if len(query_compact) >= 3 and query_compact in name:
+        return 2.0
+    name_words = [w.lower() for w in re.findall(r"[A-Z][a-z0-9]*", bare)]
+    if query_terms and all(any(nw.startswith(t) for nw in name_words) for t in query_terms):
+        return 1.5
+    return 0.0
 
 
 @app.get("/api/patterns/by-category/{category}")

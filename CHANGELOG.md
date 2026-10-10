@@ -10,6 +10,37 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
+### Added
+
+`sema_search`, `sema search` and the local server's `/api/search` take an optional
+layer and category (`--layer` and `--category` on the command line). Both the
+keyword and the semantic pass are restricted to that scope, so a search returns the
+closest patterns inside a category rather than whichever overall matches fall in it.
+Inside a scope, weak semantic matches below the usual 0.2 cut-off are kept, ranked by
+score, so a scoped search shows the category's nearest patterns instead of nothing.
+Names are case-insensitive, and an unknown one returns an error listing the valid
+names. New results in `sema_search`'s compact summaries now name their layer and
+category. A scoped search complements an unscoped one rather than replacing it, since a
+category guessed from the top results is often the wrong one.
+
+### Changed
+
+Keyword search matches each meaningful query word, not only the whole query. It used
+to find a pattern only when its text contained the query verbatim, so a question such
+as "make a failing test case smaller" found nothing in an installed library, which has
+no embeddings. Each word is now matched against the name, signatures, gloss and
+mechanism with light suffix stripping, rarer words count for more, and a pattern keeps
+the better of its whole-query and per-word score. A whole name still ranks above a
+longer name that contains it. Multi-word keyword matches are capped at the best 50.
+
+### Fixed
+
+The local server's `/api/search` (`sema serve`) kept its name boost but replaced every
+result's score with 1 plus that boost, so a weak semantic match and a strong one looked
+the same, and any query word, even "a", could lift an unrelated name. It now keeps the
+registry's score and source and boosts a name only for an exact name, a prefix or part
+of at least three letters, or a name containing every meaningful query word.
+
 ## [0.9.1] - 2026-10-09
 
 ### Added

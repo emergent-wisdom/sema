@@ -157,7 +157,12 @@ def sema_reset_session() -> str:
 
 
 @mcp.tool()
-def sema_search(query: str, limit: int = 10) -> str:
+def sema_search(
+    query: str,
+    limit: int = 10,
+    layer: str | None = None,
+    category: str | None = None,
+) -> str:
     """Search Sema patterns by name, description, or meaning (semantic search).
 
     Also search with the problem in front of you, for example "decide under
@@ -166,19 +171,31 @@ def sema_search(query: str, limit: int = 10) -> str:
 
     Returns at most 20 ranked matches. The first three unseen matches include
     search detail; later and previously seen matches use compact summaries.
+    New matches name their layer and category. Searching inside a layer or
+    category ranks its closest patterns, weak matches included: use it when
+    you know which category fits or the first results miss, alongside the
+    unscoped search rather than instead of it, since a category guessed from
+    the top results is often the wrong one.
     Use sema_resolve() to fetch the complete Pattern Card you need.
 
     Args:
         query: Search term or concept description.
         limit: Maximum matches to return. Defaults to 10 and is capped at 20.
+        layer: Only search this layer (Physics, Mind, Society, Infrastructure).
+        category: Only search this category, e.g. "Verification". Names are
+            case-insensitive; sema_tree() lists them.
 
     Returns:
-        JSON array of matching patterns.
+        JSON array of matching patterns, or an error naming the valid layers
+        or categories when the one given does not exist.
     """
-    return json.dumps(
-        _active_workspace().search(query, session=_SESSION, limit=limit),
-        indent=2,
-    )
+    try:
+        results = _active_workspace().search(
+            query, session=_SESSION, limit=limit, layer=layer, category=category
+        )
+    except ValueError as exc:
+        return json.dumps({"error": str(exc)}, indent=2)
+    return json.dumps(results, indent=2)
 
 
 @mcp.tool()

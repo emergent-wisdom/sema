@@ -438,6 +438,60 @@ class SearchResult(BaseModel):
     score: float = Field(default=0.0)
 
 
+# Per-word keyword matching. The whole-query pass only finds a pattern whose
+# text contains the query verbatim, so a question such as "make a failing test
+# case smaller" found nothing without embeddings. Each meaningful query word is
+# also matched against the same fields, with light suffix stripping applied to
+# query and text alike, and rare words count for more than common ones.
+_SEARCH_FIELD_WEIGHTS = {"handle": 1.00, "signature": 0.75, "gloss": 0.70, "mechanism": 0.55}
+_SEARCH_STOPWORDS = frozenset(
+    "a an and are as at be been but by can could did do does for from had has have how "
+    "i if in into is it its itself may might my no not of on or our should so still than "
+    "that the their them then there these they this those to was we were what when where "
+    "which who why will with would you your".split()
+)
+# One word of a compound name is weaker evidence than the whole name, which
+# the whole-query pass scores 1.0, so "Break" still finds Break before
+# CircuitBreaker.
+_WORD_FIELD_WEIGHTS = {**_SEARCH_FIELD_WEIGHTS, "handle": 0.9}
+_MAX_QUERY_WORDS = 8
+_MAX_WORD_MATCHES = 50
+_SUFFIXES = (("ies", "y"), ("ied", "y"), ("ings", ""), ("ing", ""), ("ers", ""), ("er", ""))
+_SUFFIXES += (("ed", ""), ("s", ""))
+
+
+def _stem(word: str) -> str:
+    """Strip one common English suffix, keeping at least three letters."""
+    for suffix, replacement in _SUFFIXES:
+        if word.endswith(suffix) and len(word) - len(suffix) >= 3:
+            return word[: -len(suffix)] + replacement
+    return word
+
+
+def _word_stems(text: str) -> tuple[str, ...]:
+    """Sorted distinct stems of a text, for prefix lookup by bisection."""
+    return tuple(sorted({_stem(w) for w in re.findall(r"[a-z0-9]+", text.lower())}))
+
+
+def _query_words(query: str) -> list[str]:
+    """The first distinct meaningful query words, stemmed."""
+    words = re.findall(r"[a-z0-9]+", query.lower())
+    stems = dict.fromkeys(_stem(w) for w in words if len(w) >= 3 and w not in _SEARCH_STOPWORDS)
+    return list(stems)[:_MAX_QUERY_WORDS]
+
+
+def _word_match(stems: tuple[str, ...], word: str) -> float:
+    """1.0 for the same stem, 0.6 when a text stem extends a stem of four or more letters."""
+    from bisect import bisect_left
+
+    i = bisect_left(stems, word)
+    if i < len(stems) and stems[i] == word:
+        return 1.0
+    if len(word) >= 4 and i < len(stems) and stems[i].startswith(word):
+        return 0.6
+    return 0.0
+
+
 class RegistryManager:
     def __init__(self, vocab_dir=None, db_path=None):
         self.vocab_dir = vocab_dir or get_default_vocab_dir()
@@ -445,6 +499,7 @@ class RegistryManager:
         self._semantic_lock = Lock()
         self._embedding_service = None
         self._semantic_candidates = None
+        self._word_index = None
 
         self.source = "unknown"
         self.registry = self._load_registry()
@@ -546,6 +601,7 @@ class RegistryManager:
         with self._semantic_lock:
             self.registry = refreshed_registry
             self._semantic_candidates = None
+            self._word_index = None
 
     def count(self) -> int:
         return len(self.registry)
@@ -739,9 +795,117 @@ class RegistryManager:
 
         return resolved
 
-    def search(self, query: str, use_semantic: bool = True) -> list[dict]:
-        """Search the registry. Returns a list of dicts (compatible with SearchResult)."""
+    def _search_word_index(self) -> dict[str, dict[str, tuple[str, ...]]]:
+        """Stems per field for every pattern, built once per loaded registry."""
+        registry = self.registry
+        if self._word_index is not None and self._word_index[0] is registry:
+            return self._word_index[1]
+        index = {}
+        for handle, data in registry.items():
+            index[handle] = {
+                "handle": _word_stems(
+                    " ".join(re.findall(r"[A-Z][a-z0-9]*|[a-z0-9]+", handle)) + " " + handle
+                ),
+                "signature": _word_stems(" ".join(data.get("signature") or [])),
+                "gloss": _word_stems(data.get("gloss", "")),
+                "mechanism": _word_stems(data.get("mechanism", "")),
+            }
+        self._word_index = (registry, index)
+        return index
+
+    def _word_scores(
+        self, words: list[str], scope: set[str] | None
+    ) -> dict[str, tuple[float, list[str]]]:
+        """Score patterns by the share of query words they contain.
+
+        Each word counts by its best field weight and by its rarity across the
+        whole vocabulary (BM25 inverse document frequency), so a pattern that
+        contains every rare word scores near 1 and one that shares a common
+        word scores low.
+        """
+        import math
+
+        index = self._search_word_index()
+        total = len(index)
+        matches: dict[str, list[tuple[float, set[str]]]] = {}
+        weights = []
+        for word in words:
+            found = {}
+            for handle, fields in index.items():
+                best, where = 0.0, set()
+                for field, stems in fields.items():
+                    hit = _word_match(stems, word) * _WORD_FIELD_WEIGHTS[field]
+                    if hit:
+                        where.add(field)
+                        best = max(best, hit)
+                if best:
+                    found[handle] = (best, where)
+            df = len(found)
+            weights.append(math.log((total - df + 0.5) / (df + 0.5) + 1))
+            matches[word] = found
+        weight_sum = sum(weights) or 1.0
+        scores: dict[str, tuple[float, list[str]]] = {}
+        for weight, word in zip(weights, words, strict=True):
+            for handle, (best, where) in matches[word].items():
+                if scope is not None and handle not in scope:
+                    continue
+                score, fields = scores.get(handle, (0.0, []))
+                fields = [f for f in _SEARCH_FIELD_WEIGHTS if f in where or f in fields]
+                scores[handle] = (score + weight * best / weight_sum, fields)
+        return scores
+
+    def scope_handles(
+        self, layer: str | None = None, category: str | None = None
+    ) -> set[str] | None:
+        """Handles in a layer and/or category, matched case-insensitively.
+
+        Returns None when neither is given. Raises ValueError naming the
+        valid choices when nothing matches, so a misspelt category is not
+        mistaken for an empty one.
+        """
+        if not layer and not category:
+            return None
+        want_layer = layer.strip().lower() if layer else None
+        want_category = category.strip().lower() if category else None
+        handles = set()
+        layers: set[str] = set()
+        categories: set[str] = set()
+        for handle, data in self.registry.items():
+            p_layer = data.get("sema_layer") or data.get("layer") or "Unknown"
+            p_category = data.get("sema_category") or data.get("category") or "Unknown"
+            layers.add(p_layer)
+            if want_layer and p_layer.lower() != want_layer:
+                continue
+            categories.add(p_category)
+            if want_category and p_category.lower() != want_category:
+                continue
+            handles.add(handle)
+        if handles:
+            return handles
+        if want_layer and not categories:
+            raise ValueError(f"Unknown layer '{layer}'. Layers: {', '.join(sorted(layers))}")
+        where = f" in layer '{layer}'" if want_layer else ""
+        raise ValueError(
+            f"Unknown category '{category}'{where}. Categories: {', '.join(sorted(categories))}"
+        )
+
+    def search(
+        self,
+        query: str,
+        use_semantic: bool = True,
+        *,
+        layer: str | None = None,
+        category: str | None = None,
+    ) -> list[dict]:
+        """Search the registry. Returns a list of dicts (compatible with SearchResult).
+
+        ``layer`` and ``category`` restrict both the keyword and the semantic
+        pass, so the closest matches inside a category are found rather than
+        whatever of the overall top matches happens to fall in it.
+        """
         import re
+
+        scope = self.scope_handles(layer, category)
 
         # 1. Keyword Search with tiered scoring
         #
@@ -791,7 +955,10 @@ class RegistryManager:
                 base = min(1.0, base + 0.05 * math.log2(n))
             return base
 
+        keyword_scores: dict[str, tuple[float, list[str]]] = {}
         for handle, data in self.registry.items():
+            if scope is not None and handle not in scope:
+                continue
             gloss = data.get("gloss", "")
             mechanism = data.get("mechanism", "")
             signatures = " ".join(data.get("signature") or [])
@@ -806,26 +973,38 @@ class RegistryManager:
             total_score = max(scores.values())
             if total_score == 0.0:
                 continue
-
-            # Resolve templates for the result snippet
-            resolved_gloss = self.resolve_templates(gloss)
-            resolved_mechanism = self.resolve_templates(mechanism)
-
             # Record which field the top score came from (debug aid)
-            matched_fields = [f for f, s in scores.items() if s > 0]
+            keyword_scores[handle] = (total_score, [f for f, s in scores.items() if s > 0])
 
-            result = {
-                "handle": handle,
-                "gloss": resolved_gloss,
-                "mechanism": resolved_mechanism,
-                "category": data.get("sema_category") or data.get("category", "Unknown"),
-                "layer": data.get("sema_layer") or data.get("layer", "Unknown"),
-                "sema_ref": data.get("sema_ref", f"{handle}#????"),
-                "score": round(total_score, 3),
-                "source": "keyword",
-                "matched_fields": matched_fields,
-            }
-            keyword_results.append(result)
+        # Per-word pass: a pattern keeps the better of its whole-query and its
+        # per-word score. Word matches reach far more patterns than the whole
+        # query, so a multi-word query keeps only the best of them.
+        words = _query_words(query)
+        if words:
+            for handle, (score, fields) in self._word_scores(words, scope).items():
+                phrase_score, phrase_fields = keyword_scores.get(handle, (0.0, []))
+                merged_fields = [f for f in FIELD_WEIGHTS if f in fields or f in phrase_fields]
+                keyword_scores[handle] = (max(score, phrase_score), merged_fields)
+        ranked = sorted(keyword_scores.items(), key=lambda item: item[1][0], reverse=True)
+        if len(words) >= 2:
+            ranked = ranked[:_MAX_WORD_MATCHES]
+
+        for handle, (total_score, matched_fields) in ranked:
+            data = self.registry[handle]
+            keyword_results.append(
+                {
+                    "handle": handle,
+                    # Resolve templates only for the results returned
+                    "gloss": self.resolve_templates(data.get("gloss", "")),
+                    "mechanism": self.resolve_templates(data.get("mechanism", "")),
+                    "category": data.get("sema_category") or data.get("category", "Unknown"),
+                    "layer": data.get("sema_layer") or data.get("layer", "Unknown"),
+                    "sema_ref": data.get("sema_ref", f"{handle}#????"),
+                    "score": round(total_score, 3),
+                    "source": "keyword",
+                    "matched_fields": matched_fields,
+                }
+            )
 
         # 2. Semantic Search (Optional)
         semantic_results = []
@@ -859,8 +1038,14 @@ class RegistryManager:
                         self._semantic_candidates = (candidates, handle_map)
 
                     candidates, handle_map = self._semantic_candidates
+                    threshold = 0.2
+                    if scope is not None:
+                        candidates = [c for c in candidates if handle_map.get(c[0]) in scope]
+                        # Inside a chosen scope, show its closest patterns even
+                        # when they are weak matches; the scores say how weak.
+                        threshold = 0.0
                     sim_results = (
-                        service.find_similar(query_vec, candidates, top_k=20, threshold=0.2)
+                        service.find_similar(query_vec, candidates, top_k=20, threshold=threshold)
                         if candidates
                         else []
                     )
