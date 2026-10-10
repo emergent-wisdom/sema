@@ -604,9 +604,11 @@ def sema_handshake(
     coordinating on a pattern. It does not replace behavioral testing.
 
     Args:
-        ref: Pattern reference (e.g., "StateLock#c9c2" or "StateLock"),
+        ref: Pattern reference (e.g., "StateLock#c9c2", "StateLock", or the
+             full "sema:StateLock#mh:SHA-256:<64 hex>" a document carries),
              "vocab" for the semantic-set root, or "catalog" for exact
-             handle-to-definition bindings.
+             handle-to-definition bindings. A hash inside ref is compared
+             like your_hash; your_hash takes precedence when both are given.
         your_hash: Your local hash — the 4-char pattern stub, or the
              16-char vocab root stub (or full 64-char root). If omitted,
              returns the canonical hash for you to compare.

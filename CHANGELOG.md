@@ -40,6 +40,11 @@ result's score with 1 plus that boost, so a weak semantic match and a strong one
 the same, and any query word, even "a", could lift an unrelated name. It now keeps the
 registry's score and source and boosts a name only for an exact name, a prefix or part
 of at least three letters, or a name containing every meaningful query word.
+`sema_handshake` accepts a full written reference such as
+`sema:StateLock#mh:SHA-256:<hash>`, with or without `sema:`, for patterns and for the
+`vocab` and `catalog` roots. It used to report a valid current reference as not found
+(with the prefix) or as drift (without it). A hash given in `your_hash` still takes
+precedence over one inside the reference.
 
 ## [0.9.1] - 2026-10-09
 
