@@ -6,8 +6,8 @@
      and export through `docs/guides/authoring.md`. Edit commentary in
      `data/design_critique.json`. Never edit canonical exports directly. -->
 
-_Patterns covered: 616 (from `data/vocabulary/`)_
-_Commentary entries in sidecar: 616 (from `data/design_critique.json`)_
+_Patterns covered: 617 (from `data/vocabulary/`)_
+_Commentary entries in sidecar: 617 (from `data/design_critique.json`)_
 
 This manual is the design reference for the Sema Bootstrap Library. For each pattern, it shows the definition (mechanism, invariants, pre/postconditions, failure modes, parameters, data schema, and dependency bindings) alongside the design commentary: why it exists, why it sits where it does, whether it could be removed, how it's used across contexts, its design tensions and tradeoffs, critique, and where it sits in its family. Machine validation checks structure, references, and hashes; the meaning and adequacy of the contracts require review. Source links point to the rendered card, including its staging copy when present.
 
@@ -17543,7 +17543,7 @@ _Note: Hypothetical example: a library's tests pass on the repository, but the p
 
 ---
 
-## Mind (265)
+## Mind (266)
 
 ### Mind/Dynamics (14)
 
@@ -20431,7 +20431,7 @@ An unresolved metric issue remains: `usage.varies` offers accuracy, KL divergenc
 
 ---
 
-### TemporalEnsembleForecasting#7e79
+### TemporalEnsembleForecasting#8102
 
 `Mind` · `Inference` · R2 · T2
 
@@ -20452,7 +20452,7 @@ An unresolved metric issue remains: `usage.varies` offers accuracy, KL divergenc
 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
-| `composes_with` | `{{conceptual_decomposition}}` | `sema:ConceptualDecomposition#mh:SHA-256:d0fc6e67c984608fb949bed69ba7e5e3bc022b45bfe173042eec4846b33a5538` |
+| `composes_with` | `{{conceptual_decomposition}}` | `sema:ConceptualDecomposition#mh:SHA-256:f1f430fc38f3944d3a02b34e0ae04d4004a002795b375b665f1ebb7a4e57b264` |
 
 #### Design
 
@@ -20485,10 +20485,11 @@ An unresolved metric issue remains: `usage.varies` offers accuracy, KL divergenc
 - `TemporalEnsembleForecasting#0913`
 - `TemporalEnsembleForecasting#c8fa`
 - `TemporalEnsembleForecasting#2cf5`
+- `TemporalEnsembleForecasting#7e79`
 
 ---
 
-### TruthseekingProtocol#9f5a
+### TruthseekingProtocol#8e4f
 
 `Mind` · `Inference` · R2 · T2
 
@@ -20511,7 +20512,7 @@ An unresolved metric issue remains: `usage.varies` offers accuracy, KL divergenc
 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
-| `composes_with` | `{{conceptual_decomposition}}` | `sema:ConceptualDecomposition#mh:SHA-256:d0fc6e67c984608fb949bed69ba7e5e3bc022b45bfe173042eec4846b33a5538` |
+| `composes_with` | `{{conceptual_decomposition}}` | `sema:ConceptualDecomposition#mh:SHA-256:f1f430fc38f3944d3a02b34e0ae04d4004a002795b375b665f1ebb7a4e57b264` |
 | `composes_with` | `{{marginal_value_rule}}` | `sema:MarginalValueRule#mh:SHA-256:661109205c507b2c26d683d091de7f8b782bf2d6c2e9192373b242a9b078ac71` |
 | `references` | `{{validate}}` | `sema:Validate#mh:SHA-256:ffd128811cea63d7a4dac2c45c95fd8ac1d8a7d3788423fb6710b622167305ed` |
 
@@ -20547,6 +20548,7 @@ An unresolved metric issue remains: `usage.varies` offers accuracy, KL divergenc
 - `TruthseekingProtocol#e2d3`
 - `TruthseekingProtocol#0113`
 - `TruthseekingProtocol#78d5`
+- `TruthseekingProtocol#9f5a`
 
 ---
 
@@ -22031,7 +22033,7 @@ An unresolved metric issue remains: `usage.varies` offers accuracy, KL divergenc
 
 ---
 
-### Mind/Reasoning (101)
+### Mind/Reasoning (102)
 
 ### Abduction#e738
 
@@ -23091,7 +23093,7 @@ _Note: A shortfall explained by reframing or differing premises is withdrawn. Pr
 
 ---
 
-### CollaborativeWritingProtocol#99af
+### CollaborativeWritingProtocol#b4f1
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -23112,7 +23114,7 @@ _Note: A shortfall explained by reframing or differing premises is withdrawn. Pr
 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
-| `composes_with` | `{{conceptual_decomposition}}` | `sema:ConceptualDecomposition#mh:SHA-256:d0fc6e67c984608fb949bed69ba7e5e3bc022b45bfe173042eec4846b33a5538` |
+| `composes_with` | `{{conceptual_decomposition}}` | `sema:ConceptualDecomposition#mh:SHA-256:f1f430fc38f3944d3a02b34e0ae04d4004a002795b375b665f1ebb7a4e57b264` |
 | `composes_with` | `{{marginal_value_rule}}` | `sema:MarginalValueRule#mh:SHA-256:661109205c507b2c26d683d091de7f8b782bf2d6c2e9192373b242a9b078ac71` |
 
 #### Design
@@ -23145,6 +23147,7 @@ _Note: A shortfall explained by reframing or differing premises is withdrawn. Pr
 - `CollaborativeWritingProtocol#4d6a`
 - `CollaborativeWritingProtocol#1305`
 - `CollaborativeWritingProtocol#bcd1`
+- `CollaborativeWritingProtocol#99af`
 
 ---
 
@@ -23209,30 +23212,31 @@ _Note: A shortfall explained by reframing or differing premises is withdrawn. Pr
 
 ---
 
-### ConceptualDecomposition#d0fc
+### ConceptualDecomposition#f1f4
 
 `Mind` · `Reasoning` · R1 · T1
 
 [Source card (JSON)](../../data/vocabulary/ConceptualDecomposition.json)
 
-**Gloss.** Breaking a concept into solver-contract-bound sub-concepts — the move that enables fractal recursion
+**Gloss.** Finding what a concept is made of: locate it, carve it into the dimensions every case it claims needs, test each, search for what is missing, route real cases through it, say how the parts make the whole, and carve again below
 
 **Mechanism.**
 
-> The cognitive act of taking a concept, typically the capability that frames a problem, once it has been located, and breaking it into sub-concepts where each sub-concept is bound by the {{solver}} contract (it exposes at least the Manifest and Execute surfaces of the five-surface contract, so it is independently delegatable). Distinct from generic {{decompose}}: Decompose merely divides; ConceptualDecomposition divides into solver-compatible units, so the same five-surface contract governs every level and the structure can recurse. It asks which differentiated dimensions the capability needs across the instances it claims, not which steps would accomplish it, which would produce a procedural carve. Candidate dimensions are generated and each is put to the {{decomposition_gate}} tests; a failed or uncertain candidate may be reframed, narrowed or kept as a labelled alternative in the frontier of the {{archive_serving_frontier}}. A bounded search then looks for any dimension the accepted set still misses, and a {{routing_sanity_check}} routes a few concrete tasks through the carve before it is kept. Accepted dimensions are bound to the parent by {{composition_edge}} links, the split declares the {{synthesis}} that recomposes them, and recursion continues into a dimension only while the {{marginal_value_rule}} says further depth pays. A few agents can take these solver roles for one problem, and the resulting structure may persist as a reusable pattern or be torn down at completion.
+> The cognitive act of carving a concept into the differentiated dimensions it needs across every case it claims, rather than the steps of one way of achieving it. A claim frame is stated first: the concept, the purpose of the carve and the range of cases it claims. The concept is then located by climbing {{specialization_edge}} links to broader kinds, each step naming the genus and the differentia and searching for siblings, and the carve is made on the route back down. Candidate dimensions are generated and each is put to the {{decomposition_gate}} tests; a failed or uncertain candidate is reframed, narrowed or kept with its verdict as a labelled alternative in the frontier of the {{archive_serving_frontier}}. A bounded search then looks for any dimension the accepted set still misses, and a {{routing_sanity_check}} routes concrete cases through the carve before it is kept. Accepted dimensions are bound to the concept by {{composition_edge}} links, and the carve declares the {{synthesis}} by which they together make the whole. Each dimension is itself a concept, carved again the same way wherever the {{marginal_value_rule}} says further depth pays. A dimension is something every claimed case has. Where cases instead fall into mutually exclusive kinds, the division can be one dimension, a classification axis, but its alternative values are kinds of the concept, linked by {{specialization_edge}} rather than bound as parts by {{composition_edge}}. Generic {{decompose}} splits one task into independent subproblems whose solutions combine into the whole; this method carves a concept across every case it claims and adds what that needs: the claim frame, the location among broader kinds, the Necessity and Universality tests, the search for missing dimensions and the routing of real cases.
 
 **Invariants.**
-- Every sub-concept exposes at least the Manifest and Execute surfaces of the {{solver}} interface as a condition of the split being accepted, not as later repair.
-- Only candidate dimensions that pass the {{decomposition_gate}} tests are spawned as children.
-- The split declares the {{synthesis}} that will recompose it; a concept with no available synthesis is not decomposed.
-- The concept is located before it is carved.
+- The claim frame is stated before any candidate is tested.
+- The concept is located among broader kinds before it is carved.
+- Only candidates that pass the {{decomposition_gate}} tests become dimensions.
+- The carve declares the {{synthesis}} by which its dimensions make the whole; a concept with no available synthesis is not carved.
+- Each accepted dimension can be carved again by the same procedure.
 
 **Failure modes.**
-- Premature decomposition: the parent concept is broken apart before it is clearly framed, producing sub-concepts that don't cover the actual problem.
-- Coupled split: two dimensions cannot vary or fail separately; the {{decomposition_gate}} Independence test should catch this but can miss overlap that is semantic rather than structural.
-- Contract violation: sub-concepts that do not cleanly expose Manifest + Execute cannot be dispatched — the decomposition produced descriptions, not delegatable units.
-- Leaky abstraction: sub-concepts that require global context the Solver contract doesn't carry, forcing each child to reach back for the parent's context.
-- Procedural carve: the concept is split into the steps of one way of doing it rather than the dimensions it needs, so the carve fits one workflow and not the capability.
+- Procedural carve: the concept is split into the steps of one way of doing it rather than the dimensions it needs, so the carve fits one workflow and not the concept.
+- Carve in place: the concept is carved as it was stated, without being located among broader kinds, so the carve inherits the stated framing.
+- Coupled split: two dimensions cannot vary or fail separately; the Independence test can miss overlap that is semantic rather than structural.
+- Fitted routing: the cases routed through the carve are chosen after it is made, so the check confirms the carve instead of testing it.
+- Shallow carve: accepted dimensions are not carved in turn where depth would pay, so the result is a list rather than a tree.
 
 **Dependency bindings.**
 
@@ -23245,38 +23249,45 @@ _Note: A shortfall explained by reframing or differing premises is withdrawn. Pr
 | `references` | `{{decompose}}` | `sema:Decompose#mh:SHA-256:69942e7e0dcdc7781144da58c8f09b2e8a17c247be435dadf3325cb0d0bbb22b` |
 | `references` | `{{marginal_value_rule}}` | `sema:MarginalValueRule#mh:SHA-256:661109205c507b2c26d683d091de7f8b782bf2d6c2e9192373b242a9b078ac71` |
 | `references` | `{{routing_sanity_check}}` | `sema:RoutingSanityCheck#mh:SHA-256:71bdf79f3d471779f7312d699718cab13efef2db27d45873aeb0e91e35c73a8b` |
-| `references` | `{{solver}}` | `sema:Solver#mh:SHA-256:a4478611882cced1b069f8dc551d401c74b35cefe02ed67d37d1aa135e19825b` |
+| `references` | `{{specialization_edge}}` | `sema:SpecializationEdge#mh:SHA-256:4d203b9383c917cc241dc8b4ab9cf6a48eb0113f86b60a0dda5cf3defb8b3017` |
 
 #### Design
 
-**Why it exists.** Generic Decompose merely divides; this pattern divides *into solver-compatible units*. That constraint — every sub-concept must expose at least the Manifest and Execute surfaces of the Solver contract — is what makes fractal recursion work: because children honor the same interface as the parent, the tree composes indefinitely. Without this pattern, decomposition produces descriptions rather than delegatable sub-problems.
+**Why it exists.** The reasoning protocols and world modelling share one procedure for finding what a concept is made of: frame, locate, test, search for what is missing, route real cases, synthesize, recurse. Seven protocols already cited it in that sense. Its previous card bound every part to the Solver contract, which is right for Fractal Intelligence's solver trees and wrong for a world model, whose dimensions are processes, or a curriculum, whose dimensions are subjects. That binding now lives in the descendant SolverDecomposition.
 
-**Why Mind.** breaking concept into contract-bound sub-concepts
+**Why Mind.** generating candidate dimensions and judging them against a claim frame takes judgment, and one knower can do it
 
-**Can it be removed?** No. The FractalIntelligence architecture rests on this move. Removing would either collapse it into generic Decompose (losing the contract-binding invariant) or require every caller to re-state 'decompose into solver-compatible chunks' at the call site.
+**Can it be removed?** No. Without it each protocol restates the procedure, or cites the solver-bound card for a carve with no solvers in it.
 
-**Intended use.** breaking a located concept into solver-bound dimensions that pass the four tests, with a declared synthesis and depth set per dimension.
+**Intended use.** carving a concept whose cases share structure into the differentiated dimensions it needs across the cases it claims, with each step recorded so the carve can be inspected and revised; a concept whose cases share no dimension divides into kinds instead.
+
+**Future uses.** agents building world models that must reach a stated depth; agents designing protocols, curricula, taxonomies or ontologies; reviewers checking whether a breakdown is a carve or a procedure.
+
+**Broad-use contexts.** problem-solving protocols (problem solving, discovery, verification depth, right action, quality-constrained production, responding to a person, forecasting); world modelling, where dimensions that can all rise together are followed as processes and those that compete for one unit become the categories of one division; ontology, taxonomy and curriculum design; Fractal Intelligence's solver trees, through SolverDecomposition.
+
+**Broad-use intersection (review hypothesis).** a claim frame stated first; the concept located among broader kinds; the DecompositionGate tests; a search for what is missing; routing real cases through the carve; a declared synthesis; recursion where depth pays.
+
+**Varies (descendant territory).** what a dimension becomes (a solver, a process, a sub-question, a category); how depth is budgeted; what independent list serves the completeness search; how many cases are routed.
+
+**Extension shape.** SolverDecomposition (children bound by the Solver contract); a world-modelling descendant whose dimensions become processes and divisions, if one is wanted.
+
+_Note: This handle names the general method. The solver-bound definition it previously held continues as SolverDecomposition; _meta.supersedes lists the earlier versions here because the protocols that cited them meant the general method._
+
+_Note: A recorded carve outside solver trees: the world-history model (github.com/emergent-wisdom/world-history, METHOD.md) carves a human way of living into twelve dimensions, each judged for Necessity, Independence and Universality against a frame stated before the verdicts, with the rejected candidates kept (technology failed Independence, because a technique is the means by which some dimension is realized). It routes claims from history's fields and recorded events through the carve, declares how each split's children give the parent, and keeps kinds and places as specializations, never as carves; an earlier run that cited this method for lists of kinds was recorded as a misuse._
 
 **Design tensions.**
-- Contract-binding vs domain shapes — not every domain has natural sub-solvers, and some concepts are inherently holistic. The pattern imposes a solver shape and a holistic concept should not be decomposed at all.
-- Gate cost vs caller latency — the four-test suite (Necessity, Independence, Universality, Completeness) is thorough and slow, and a time-sensitive caller pays for it before any child is spawned.
-- Declared recomposition vs lossy recomposition — the invariant requires the split to *declare* the `{{synthesis}}` that will recompose it, which is checkable. Whether that recomposition is faithful is not, and for many real problems it is lossy or fuzzy.
+- Located vs stated framing: climbing to broader kinds changes what the carve sees, and a caller in a hurry wants the concept carved as given. The climb is required because a carve made in place inherits the stated framing.
+- One procedure vs many uses: the same steps serve a solver tree and a world model, so the card cannot say what a dimension becomes; that is left to descendants and callers.
 
 **Tradeoffs.**
-- Contract-binding buys fractal scalability at the cost of forcing every sub-concept to carry the overhead of the Solver interface, even when the sub-task is trivial.
-- DecompositionGate enforcement buys well-formed carves (low-coupling, complete for the claimed promise) at the cost of latency and per-split ceremony.
-- Synthesis-based recomposability buys result coherence at the cost of requiring a matching Synthesis pattern for every decomposition — sometimes not available.
+- Requiring a declared synthesis buys carves whose parts are known to make the whole, at the cost of refusing to carve a concept whose recomposition nobody can yet state.
+- Keeping failed candidates as labelled alternatives buys revisable carves at the cost of a frontier that has to be kept.
 
 **Critique (diagnostic, not contract requirements).**
-- Resolved 2026-07-25, and reasoned from the card, tensions, tradeoffs and critique alone: this pattern's `usage` block declares no broad-use intersection and no varies line to adjudicate placement against. It is one of 33 patterns in that state. That is flagged rather than filled — inventing an intersection would manufacture the very evidence the placement test is supposed to consult.
-- Invariant 3 could not be satisfied in the cases this entry's own tradeoffs admit. 'Recomposability: results of sub-concepts compose back via Synthesis' is violated by construction wherever no matching synthesis exists — and the third tradeoff says exactly that, 'sometimes not available'. Restated as an obligation at split time, which is when the gate already runs: name the recomposition route, or do not split. That turns a silent breach into a refusal, and it does not require recomposition to be lossless, which is the third tension's real objection.
-- The third critique point — that the distinction from generic `Decompose` is 'asserted but not enforced' — has an enforceable answer, and it is about order. Contract-binding holds at decomposition time, so a sub-concept that cannot be made solver-shaped is rejected before the split is accepted rather than patched afterwards. Decomposing first and assigning solvers later reaches a similar end state having never been able to fail. Now stated in the invariant.
-- CORRECTED: the second critique point, that semantic coupling can survive a structural independence check, is already the second failure mode on this card — 'the Independence test should catch this but does not if the overlap is semantic rather than structural'. The critique restates the card.
-- Premature Closure was REJECTED here on placement. Declaring a decomposition complete before the Completeness criterion is exhausted is a property of that test, so it belongs to `DecompositionGate`, which currently names only the false-reject direction of Completeness and not the false-accept one. Recorded there rather than duplicated here.
-- REWORDED 2026-07-25: the recomposability tension described an invariant requiring results to compose back. What the invariant requires is that the split *declare the route* — a concept with no available synthesis is not decomposed — which is a weaker and checkable claim. The tension is retained because the gap it names moved rather than closed: declaring a route does not make the route lossless.
-- Follows the Fractal Intelligence paper's DECOMPOSE_CONCEPT: candidates are tested one at a time, failed ones may stay as frontier alternatives, a bounded completeness search and a routing sanity check come before crystallization, and depth is set per dimension by the marginal-value rule.
+- The completeness search is bounded and its outcome is a judgment: an independent outside list, where one exists, is the strongest check, but the card does not require one, since many concepts have none. Placement: caller policy.
+- Routing cases chosen after the carve confirm it rather than test it; the failure mode names this, and freezing the cases first is the remedy, left to callers because a quick carve may not have cases to freeze.
 
-**In the family.** The cognitive verb at the heart of the FI architecture. Located first by `MandatoryAbstraction`, gated by `DecompositionGate`, screened by `RoutingSanityCheck`, bound by `CompositionEdge`, deepened under `MarginalValueRule` and recomposed by `Synthesis`. Produces children that conform to the `Solver` interface. The move that differentiates FI from flat task delegation.
+**In the family.** The general method. Located by the climb it describes (MandatoryAbstraction is the solver-graph form of that climb), gated by DecompositionGate, screened by RoutingSanityCheck, bound by CompositionEdge, deepened under MarginalValueRule and recomposed by Synthesis. SolverDecomposition is its descendant for solver trees. Neighbours: Decompose splits one task into independent subproblems whose solutions combine, without the claim frame, the location, the Necessity and Universality tests or the routing; WhyClimb climbs a problem's abstraction by asking why; LeastToMost orders subproblems by difficulty; ConstructOntology builds a whole ontology from data or axioms.
 
 **Supersedes (prior versions).**
 - `ConceptualDecomposition#2cce`
@@ -23284,6 +23295,7 @@ _Note: A shortfall explained by reframing or differing premises is withdrawn. Pr
 - `ConceptualDecomposition#cdf8`
 - `ConceptualDecomposition#40d9`
 - `ConceptualDecomposition#9a52`
+- `ConceptualDecomposition#d0fc`
 
 ---
 
@@ -24427,7 +24439,7 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 
 ---
 
-### EthicalReasoningProtocol#bf96
+### EthicalReasoningProtocol#ee5d
 
 `Mind` · `Reasoning` · R1 · T2
 
@@ -24449,7 +24461,7 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
-| `composes_with` | `{{conceptual_decomposition}}` | `sema:ConceptualDecomposition#mh:SHA-256:d0fc6e67c984608fb949bed69ba7e5e3bc022b45bfe173042eec4846b33a5538` |
+| `composes_with` | `{{conceptual_decomposition}}` | `sema:ConceptualDecomposition#mh:SHA-256:f1f430fc38f3944d3a02b34e0ae04d4004a002795b375b665f1ebb7a4e57b264` |
 | `references` | `{{deliberative_align}}` | `sema:DeliberativeAlign#mh:SHA-256:dc9e3078f126856429b1372620bce9fecd733f71c1429fcd1c0332908355051e` |
 
 #### Design
@@ -24487,6 +24499,7 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 - `EthicalReasoningProtocol#8e7b`
 - `EthicalReasoningProtocol#e18b`
 - `EthicalReasoningProtocol#aec8`
+- `EthicalReasoningProtocol#bf96`
 
 ---
 
@@ -25227,7 +25240,7 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 
 ---
 
-### HumanEmulatorProtocol#b79c
+### HumanEmulatorProtocol#96ca
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -25248,7 +25261,7 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
-| `composes_with` | `{{conceptual_decomposition}}` | `sema:ConceptualDecomposition#mh:SHA-256:d0fc6e67c984608fb949bed69ba7e5e3bc022b45bfe173042eec4846b33a5538` |
+| `composes_with` | `{{conceptual_decomposition}}` | `sema:ConceptualDecomposition#mh:SHA-256:f1f430fc38f3944d3a02b34e0ae04d4004a002795b375b665f1ebb7a4e57b264` |
 | `composes_with` | `{{marginal_value_rule}}` | `sema:MarginalValueRule#mh:SHA-256:661109205c507b2c26d683d091de7f8b782bf2d6c2e9192373b242a9b078ac71` |
 
 #### Design
@@ -25281,6 +25294,7 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 - `HumanEmulatorProtocol#9ba0`
 - `HumanEmulatorProtocol#a632`
 - `HumanEmulatorProtocol#71ec`
+- `HumanEmulatorProtocol#b79c`
 
 ---
 
@@ -25970,7 +25984,7 @@ _Note: A cue can have evidential value through independently validated predictiv
 
 ---
 
-### MandatoryAbstraction#e172
+### MandatoryAbstraction#ac44
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -25980,7 +25994,7 @@ _Note: A cue can have evidential value through independently validated predictiv
 
 **Mechanism.**
 
-> A concrete problem is located before it is decomposed. The ascent starts at the most specific reusable capability that frames the problem and follows adjacent {{specialization_edge}} links upward until it reaches the {{root_solver}}. At every proposed attachment, existing and plausible siblings are searched, without any claim to have found them all, and the record states the parent's genus, the child's differentia, how the higher frame changes the later carve, whether the contracts fit, and whether an informative intermediate parent was omitted. An intermediate is inserted or reused only when it changes routing, exposes a reusable invariant or changes the dimensions visible below. The route is then traversed in exact reverse order, and only after it reaches the specific subject is that capability carved by {{conceptual_decomposition}} into children bound by {{composition_edge}} links. The ascent is mandatory for every case, while further downward depth stays governed by the {{marginal_value_rule}}. Locating a case on an existing route is distinct from adding a new higher parent, which needs evidence such as sibling comparison, recurrence or a frame error.
+> A concrete problem is located before it is decomposed. The ascent starts at the most specific reusable capability that frames the problem and follows adjacent {{specialization_edge}} links upward until it reaches the {{root_solver}}. At every proposed attachment, existing and plausible siblings are searched, without any claim to have found them all, and the record states the parent's genus, the child's differentia, how the higher frame changes the later carve, whether the contracts fit, and whether an informative intermediate parent was omitted. An intermediate is inserted or reused only when it changes routing, exposes a reusable invariant or changes the dimensions visible below. The route is then traversed in exact reverse order, and only after it reaches the specific subject is that capability carved by {{solver_decomposition}} into children bound by {{composition_edge}} links. The ascent is mandatory for every case, while further downward depth stays governed by the {{marginal_value_rule}}. Locating a case on an existing route is distinct from adding a new higher parent, which needs evidence such as sibling comparison, recurrence or a frame error.
 
 **Invariants.**
 - Every case is located by an ascent of specialization links from its most specific reusable capability to the root before it is decomposed.
@@ -26000,9 +26014,9 @@ _Note: A cue can have evidential value through independently validated predictiv
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
 | `references` | `{{composition_edge}}` | `sema:CompositionEdge#mh:SHA-256:2be81d974795a345a4518b540b6110bed48e2e1fc084363193dc0bb609616bbb` |
-| `references` | `{{conceptual_decomposition}}` | `sema:ConceptualDecomposition#mh:SHA-256:d0fc6e67c984608fb949bed69ba7e5e3bc022b45bfe173042eec4846b33a5538` |
 | `references` | `{{marginal_value_rule}}` | `sema:MarginalValueRule#mh:SHA-256:661109205c507b2c26d683d091de7f8b782bf2d6c2e9192373b242a9b078ac71` |
 | `references` | `{{root_solver}}` | `sema:RootSolver#mh:SHA-256:f7f5a39c4d93545b506ddc3eeb03660295425657486a5ab1f71811cb8e5816ca` |
+| `references` | `{{solver_decomposition}}` | `sema:SolverDecomposition#mh:SHA-256:ff4b4921d148c7672540eb0ec6201e5eed9b7c06b6442c6525399a856f121bfa` |
 | `references` | `{{specialization_edge}}` | `sema:SpecializationEdge#mh:SHA-256:4d203b9383c917cc241dc8b4ab9cf6a48eb0113f86b60a0dda5cf3defb8b3017` |
 
 #### Design
@@ -26038,6 +26052,9 @@ _Note: A cue can have evidential value through independently validated predictiv
 - Novelty, from recall and unverified: known in parts. Nearest known concepts: genus and differentia; taxonomic placement; step-back prompting. The mandatory ascent to a single root, with an exact reverse traversal before the carve, is the Fractal Intelligence paper's construction procedure.
 
 **In the family.** StepBack gains altitude, WhyClimb climbs by purpose, OntologyAdapt restructures categories, RootSolver is the root, and MandatoryAbstraction locates a problem on a specialization route to that root before it is carved.
+
+**Supersedes (prior versions).**
+- `MandatoryAbstraction#e172`
 
 ---
 
@@ -27812,6 +27829,82 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 - `SocraticLoop#7d52`
 - `SocraticLoop#e966`
 - `SocraticLoop#fd22`
+
+---
+
+### SolverDecomposition#ff4b
+
+`Mind` · `Reasoning` · R1 · T1
+
+[Source card (JSON)](../../data/vocabulary/SolverDecomposition.json)
+
+**Gloss.** Breaking a concept into solver-contract-bound sub-concepts — the move that enables fractal recursion
+
+**Mechanism.**
+
+> The cognitive act of taking a concept, typically the capability that frames a problem, once its claim frame is stated and it has been located among broader kinds, and breaking it into sub-concepts where each sub-concept is bound by the {{solver}} contract (it exposes at least the Manifest and Execute surfaces of the five-surface contract, so it is independently delegatable). Generic {{decompose}} requires independent parts that combine into the whole; this method adds the claim frame, the location and the tests of the general method it extends, and binds every part to the solver contract, so the same five-surface contract governs every level and the structure can recurse. It asks which differentiated dimensions the capability needs across the instances it claims, not which steps would accomplish it, which would produce a procedural carve. Candidate dimensions are generated and each is put to the {{decomposition_gate}} tests; a failed or uncertain candidate may be reframed, narrowed or kept as a labelled alternative in the frontier of the {{archive_serving_frontier}}. A bounded search then looks for any dimension the accepted set still misses, and a {{routing_sanity_check}} routes a few concrete tasks through the carve before it is kept. Accepted dimensions are bound to the parent by {{composition_edge}} links, the split declares the {{synthesis}} that recomposes them, and recursion continues into a dimension only while the {{marginal_value_rule}} says further depth pays. A few agents can take these solver roles for one problem, and the resulting structure may persist as a reusable pattern or be torn down at completion.
+
+**Invariants.**
+- The claim frame is stated before any candidate is tested.
+- The concept is located among broader kinds before it is carved.
+- Every sub-concept exposes at least the Manifest and Execute surfaces of the {{solver}} interface as a condition of the split being accepted, not as later repair.
+- Only candidate dimensions that pass the {{decomposition_gate}} tests are spawned as children.
+- The split declares the {{synthesis}} that will recompose it; a concept with no available synthesis is not decomposed.
+
+**Failure modes.**
+- Premature decomposition: the parent concept is broken apart before it is clearly framed, producing sub-concepts that don't cover the actual problem.
+- Coupled split: two dimensions cannot vary or fail separately; the {{decomposition_gate}} Independence test should catch this but can miss overlap that is semantic rather than structural.
+- Contract violation: sub-concepts that do not cleanly expose Manifest + Execute cannot be dispatched — the decomposition produced descriptions, not delegatable units.
+- Leaky abstraction: sub-concepts that require global context the Solver contract doesn't carry, forcing each child to reach back for the parent's context.
+- Procedural carve: the concept is split into the steps of one way of doing it rather than the dimensions it needs, so the carve fits one workflow and not the capability.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `composes_with` | `{{decomposition_gate}}` | `sema:DecompositionGate#mh:SHA-256:1b2d7263900f2721658ea188e416b2c53cb14c4ce13f35b9b82728f68fcfe7c5` |
+| `composes_with` | `{{synthesis}}` | `sema:Synthesis#mh:SHA-256:4f1fecba4183e6a79bfb3bd8f1981a6b6fb9f3dced92a484a9aa466c93ae249b` |
+| `references` | `{{archive_serving_frontier}}` | `sema:ArchiveServingFrontier#mh:SHA-256:27653c08dbb23917a945b15020bbdabae18ccc9256dda0d2249354896d4a4313` |
+| `references` | `{{composition_edge}}` | `sema:CompositionEdge#mh:SHA-256:2be81d974795a345a4518b540b6110bed48e2e1fc084363193dc0bb609616bbb` |
+| `references` | `{{decompose}}` | `sema:Decompose#mh:SHA-256:69942e7e0dcdc7781144da58c8f09b2e8a17c247be435dadf3325cb0d0bbb22b` |
+| `references` | `{{marginal_value_rule}}` | `sema:MarginalValueRule#mh:SHA-256:661109205c507b2c26d683d091de7f8b782bf2d6c2e9192373b242a9b078ac71` |
+| `references` | `{{routing_sanity_check}}` | `sema:RoutingSanityCheck#mh:SHA-256:71bdf79f3d471779f7312d699718cab13efef2db27d45873aeb0e91e35c73a8b` |
+| `references` | `{{solver}}` | `sema:Solver#mh:SHA-256:a4478611882cced1b069f8dc551d401c74b35cefe02ed67d37d1aa135e19825b` |
+
+#### Design
+
+**Why it exists.** Generic Decompose asks for independent parts that combine into the whole; this pattern also requires every part to be a *solver-compatible unit*. That constraint — every sub-concept must expose at least the Manifest and Execute surfaces of the Solver contract — is what makes fractal recursion work: because children honor the same interface as the parent, the tree composes indefinitely. Without this pattern, decomposition produces descriptions rather than delegatable sub-problems.
+
+**Why Mind.** breaking concept into contract-bound sub-concepts
+
+**Can it be removed?** No. The FractalIntelligence architecture rests on this move. Removing would either collapse it into generic Decompose (losing the contract-binding invariant) or require every caller to re-state 'decompose into solver-compatible chunks' at the call site.
+
+**Intended use.** breaking a located concept into solver-bound dimensions that pass the four tests, with a declared synthesis and depth set per dimension.
+
+_Note: ConceptualDecomposition is the general method, whose parts are the dimensions a concept needs across the cases it claims. This card adds the Solver contract for each part. World models, curricula and the reasoning protocols carve concepts whose parts are not solvers, so under the Occupancy Test (docs/specification/naming.md) the solver binding belongs in a descendant rather than on the general handle._
+
+**Design tensions.**
+- Contract-binding vs domain shapes — not every domain has natural sub-solvers, and some concepts are inherently holistic. The pattern imposes a solver shape and a holistic concept should not be decomposed at all.
+- Gate cost vs caller latency — the four-test suite (Necessity, Independence, Universality, Completeness) is thorough and slow, and a time-sensitive caller pays for it before any child is spawned.
+- Declared recomposition vs lossy recomposition — the invariant requires the split to *declare* the `{{synthesis}}` that will recompose it, which is checkable. Whether that recomposition is faithful is not, and for many real problems it is lossy or fuzzy.
+
+**Tradeoffs.**
+- Contract-binding buys fractal scalability at the cost of forcing every sub-concept to carry the overhead of the Solver interface, even when the sub-task is trivial.
+- DecompositionGate enforcement buys well-formed carves (low-coupling, complete for the claimed promise) at the cost of latency and per-split ceremony.
+- Synthesis-based recomposability buys result coherence at the cost of requiring a matching Synthesis pattern for every decomposition — sometimes not available.
+
+**Critique (diagnostic, not contract requirements).**
+- Resolved 2026-07-25, and reasoned from the card, tensions, tradeoffs and critique alone: this pattern's `usage` block declares no broad-use intersection and no varies line to adjudicate placement against. It is one of 33 patterns in that state. That is flagged rather than filled — inventing an intersection would manufacture the very evidence the placement test is supposed to consult.
+- Invariant 3 could not be satisfied in the cases this entry's own tradeoffs admit. 'Recomposability: results of sub-concepts compose back via Synthesis' is violated by construction wherever no matching synthesis exists — and the third tradeoff says exactly that, 'sometimes not available'. Restated as an obligation at split time, which is when the gate already runs: name the recomposition route, or do not split. That turns a silent breach into a refusal, and it does not require recomposition to be lossless, which is the third tension's real objection.
+- The third critique point — that the distinction from generic `Decompose` is 'asserted but not enforced' — has an enforceable answer, and it is about order. Contract-binding holds at decomposition time, so a sub-concept that cannot be made solver-shaped is rejected before the split is accepted rather than patched afterwards. Decomposing first and assigning solvers later reaches a similar end state having never been able to fail. Now stated in the invariant.
+- CORRECTED: the second critique point, that semantic coupling can survive a structural independence check, is already the second failure mode on this card — 'the Independence test should catch this but does not if the overlap is semantic rather than structural'. The critique restates the card.
+- Premature Closure was REJECTED here on placement. Declaring a decomposition complete before the Completeness criterion is exhausted is a property of that test, so it belongs to `DecompositionGate`, which currently names only the false-reject direction of Completeness and not the false-accept one. Recorded there rather than duplicated here.
+- REWORDED 2026-07-25: the recomposability tension described an invariant requiring results to compose back. What the invariant requires is that the split *declare the route* — a concept with no available synthesis is not decomposed — which is a weaker and checkable claim. The tension is retained because the gap it names moved rather than closed: declaring a route does not make the route lossless.
+- Follows the Fractal Intelligence paper's DECOMPOSE_CONCEPT: candidates are tested one at a time, failed ones may stay as frontier alternatives, a bounded completeness search and a routing sanity check come before crystallization, and depth is set per dimension by the marginal-value rule.
+
+**In the family.** The cognitive verb at the heart of the FI architecture. Located first by `MandatoryAbstraction`, gated by `DecompositionGate`, screened by `RoutingSanityCheck`, bound by `CompositionEdge`, deepened under `MarginalValueRule` and recomposed by `Synthesis`. Produces children that conform to the `Solver` interface. The move that differentiates FI from flat task delegation.
+
+**Extends (exact parent).** `sema:ConceptualDecomposition#mh:SHA-256:f1f430fc38f3944d3a02b34e0ae04d4004a002795b375b665f1ebb7a4e57b264`
 
 ---
 
@@ -31382,7 +31475,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 ---
 
-### DiscoveryProtocol#299c
+### DiscoveryProtocol#5c8e
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -31403,7 +31496,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
-| `composes_with` | `{{conceptual_decomposition}}` | `sema:ConceptualDecomposition#mh:SHA-256:d0fc6e67c984608fb949bed69ba7e5e3bc022b45bfe173042eec4846b33a5538` |
+| `composes_with` | `{{conceptual_decomposition}}` | `sema:ConceptualDecomposition#mh:SHA-256:f1f430fc38f3944d3a02b34e0ae04d4004a002795b375b665f1ebb7a4e57b264` |
 | `composes_with` | `{{novelty}}` | `sema:Novelty#mh:SHA-256:954f66918110b3dbbfadd1f47dd27ae095a8727113dce1c45d34931cf517d94a` |
 | `composes_with` | `{{synthesis}}` | `sema:Synthesis#mh:SHA-256:4f1fecba4183e6a79bfb3bd8f1981a6b6fb9f3dced92a484a9aa466c93ae249b` |
 | `references` | `{{discover}}` | `sema:Discover#mh:SHA-256:f6e09de2a5b38c031651d22539fafaa46e32869b06dae8009bde18cb249da69b` |
@@ -31443,6 +31536,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `DiscoveryProtocol#cc28`
 - `DiscoveryProtocol#09e2`
 - `DiscoveryProtocol#21f4`
+- `DiscoveryProtocol#299c`
 
 ---
 
@@ -32413,7 +32507,7 @@ _Note: Hypothetical example: a firmware defect in a thermostat without over-the-
 
 ---
 
-### FractalIntelligence#1dca
+### FractalIntelligence#27f7
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -32425,7 +32519,7 @@ _Note: Hypothetical example: a firmware defect in a thermostat without over-the-
 
 **Mechanism.**
 
-> Expansion of cognitive capability through {{conceptual_decomposition}}: a concept (problem or task) is broken into contract-bound sub-concepts, each governed by the same five-surface Solver Contract (Manifest, Execute, Consult, Verify, Feedback) that governs the parent. A few {{agent}}s can assign solver roles to themselves and perform lightweight fractal intelligence for a specific problem — the resulting structure may persist as a reusable pattern that improves through use, or may be torn down at completion; both are legitimate modes. The unified {{system}} of scalable cognition uses {{reason}} to orchestrate fractal expansion within the {{universal_solver_tree}}. A {{problem_framer}} initiates by formulating a high-level {{strategy}} before assigning a {{polymorphic_solver}} to a {{task}}; the solver executes a {{recursion_dive}} to spawn child nodes, each applying {{specialize}} with {{localized_learning}}, while {{experience_sharding}} and {{synthesis}} preserve global coherence. {{state_snapshot}} provides crash recovery for persistent instances. {{marginal_value_rule}} governs recursion depth. On failure, {{reframe}} restructures the tree.
+> Expansion of cognitive capability through {{solver_decomposition}}: a concept (problem or task) is broken into contract-bound sub-concepts, each governed by the same five-surface Solver Contract (Manifest, Execute, Consult, Verify, Feedback) that governs the parent. A few {{agent}}s can assign solver roles to themselves and perform lightweight fractal intelligence for a specific problem — the resulting structure may persist as a reusable pattern that improves through use, or may be torn down at completion; both are legitimate modes. The unified {{system}} of scalable cognition uses {{reason}} to orchestrate fractal expansion within the {{universal_solver_tree}}. A {{problem_framer}} initiates by formulating a high-level {{strategy}} before assigning a {{polymorphic_solver}} to a {{task}}; the solver executes a {{recursion_dive}} to spawn child nodes, each applying {{specialize}} with {{localized_learning}}, while {{experience_sharding}} and {{synthesis}} preserve global coherence. {{state_snapshot}} provides crash recovery for persistent instances. {{marginal_value_rule}} governs recursion depth. On failure, {{reframe}} restructures the tree.
 
 **Invariants.**
 - Fractal Self-Similarity: The process at the Root is identical to the process at the Leaf.
@@ -32436,7 +32530,6 @@ _Note: Hypothetical example: a firmware defect in a thermostat without over-the-
 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
-| `composes_with` | `{{conceptual_decomposition}}` | `sema:ConceptualDecomposition#mh:SHA-256:d0fc6e67c984608fb949bed69ba7e5e3bc022b45bfe173042eec4846b33a5538` |
 | `composes_with` | `{{localized_learning}}` | `sema:LocalizedLearning#mh:SHA-256:a6dbe910a57206b1a10d3b60733dfe3b98fa85696e701674abe860ee0b730950` |
 | `composes_with` | `{{marginal_value_rule}}` | `sema:MarginalValueRule#mh:SHA-256:661109205c507b2c26d683d091de7f8b782bf2d6c2e9192373b242a9b078ac71` |
 | `composes_with` | `{{polymorphic_solver}}` | `sema:PolymorphicSolver#mh:SHA-256:f7fe4635a7520f918c823f0047d6fed8e38fd820c1970ef4623cc8fd78d2b0bd` |
@@ -32444,6 +32537,7 @@ _Note: Hypothetical example: a firmware defect in a thermostat without over-the-
 | `composes_with` | `{{reason}}` | `sema:Reason#mh:SHA-256:81ec8196c7c1c761fe353c8d26463bcb61b54f844aa3422a40019f82ef202321` |
 | `composes_with` | `{{recursion_dive}}` | `sema:RecursionDive#mh:SHA-256:a86f17bad949a7a5405f04b4bc43a3e6be28c5c31e8328ccf178fa292719d754` |
 | `composes_with` | `{{reframe}}` | `sema:Reframe#mh:SHA-256:cbfd4fadde729367ef8f32a68951e5852535b7f7c3edc68a502d9187b8c1d54a` |
+| `composes_with` | `{{solver_decomposition}}` | `sema:SolverDecomposition#mh:SHA-256:ff4b4921d148c7672540eb0ec6201e5eed9b7c06b6442c6525399a856f121bfa` |
 | `composes_with` | `{{state_snapshot}}` | `sema:StateSnapshot#mh:SHA-256:d75752f332fe14ae3abf2253a45ab180034d2becc3a7e19e3e30da3c94b3c636` |
 | `composes_with` | `{{synthesis}}` | `sema:Synthesis#mh:SHA-256:4f1fecba4183e6a79bfb3bd8f1981a6b6fb9f3dced92a484a9aa466c93ae249b` |
 | `references` | `{{agent}}` | `sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd` |
@@ -32499,6 +32593,7 @@ _Note: Hypothetical example: a firmware defect in a thermostat without over-the-
 - `FractalIntelligence#7fad`
 - `FractalIntelligence#22a0`
 - `FractalIntelligence#5e3d`
+- `FractalIntelligence#1dca`
 
 ---
 
@@ -32563,7 +32658,7 @@ _Note: Hypothetical example: a firmware defect in a thermostat without over-the-
 
 ---
 
-### GeneralProblemSolvingProtocol#4351
+### GeneralProblemSolvingProtocol#7ad4
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -32588,7 +32683,7 @@ _Note: Hypothetical example: a firmware defect in a thermostat without over-the-
 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
-| `references` | `{{conceptual_decomposition}}` | `sema:ConceptualDecomposition#mh:SHA-256:d0fc6e67c984608fb949bed69ba7e5e3bc022b45bfe173042eec4846b33a5538` |
+| `references` | `{{conceptual_decomposition}}` | `sema:ConceptualDecomposition#mh:SHA-256:f1f430fc38f3944d3a02b34e0ae04d4004a002795b375b665f1ebb7a4e57b264` |
 | `references` | `{{root_solver}}` | `sema:RootSolver#mh:SHA-256:f7f5a39c4d93545b506ddc3eeb03660295425657486a5ab1f71811cb8e5816ca` |
 
 #### Design
@@ -32623,6 +32718,9 @@ _Note: Hypothetical example: a firmware defect in a thermostat without over-the-
 - Novelty, from recall and unverified: known in parts. Nearest known concepts: problem-solving schemes such as Polya's; stakeholder analysis; systems thinking's attention to dynamics.
 
 **In the family.** The specialized protocols each deepen one dimension: PURE deepens scope for evaluation, EthicalReasoningProtocol the meeting of stakeholders and constraints, and a making protocol mechanism. GeneralProblemSolvingProtocol is the default they refine.
+
+**Supersedes (prior versions).**
+- `GeneralProblemSolvingProtocol#4351`
 
 ---
 

@@ -23,6 +23,15 @@ names. New results in `sema_search`'s compact summaries now name their layer and
 category. A scoped search complements an unscoped one rather than replacing it, since a
 category guessed from the top results is often the wrong one.
 
+`SolverDecomposition` keeps the solver-bound definition that `ConceptualDecomposition` had, and `extends` it:
+every sub-concept exposes at least the Manifest and Execute surfaces of the `Solver` contract, and it states the
+general method's claim frame and location among broader kinds itself, since `extends` confers no contract.
+`FractalIntelligence` and `MandatoryAbstraction` now depend on it. The seven protocols that used the general
+method stay on `ConceptualDecomposition`: `CollaborativeWritingProtocol`, `DiscoveryProtocol`,
+`EthicalReasoningProtocol`, `GeneralProblemSolvingProtocol`, `HumanEmulatorProtocol`,
+`TemporalEnsembleForecasting` and `TruthseekingProtocol`. Ten patterns rehash, each listing its 0.9.1 identity in
+`_meta.supersedes`, and the vocabulary has 617 patterns.
+
 ### Changed
 
 Keyword search matches each meaningful query word, not only the whole query. It used
@@ -33,6 +42,18 @@ mechanism with light suffix stripping, rarer words count for more, and a pattern
 the better of its whole-query and per-word score. A whole name still ranks above a
 longer name that contains it. Multi-word keyword matches are capped at the best 50.
 
+`ConceptualDecomposition` now names the general method in one card: state the claim frame, locate the concept
+among broader kinds, test candidate dimensions with `DecompositionGate`, search for what is missing, route real
+cases through the carve with `RoutingSanityCheck`, declare the `Synthesis`, and carve each dimension again where the
+`MarginalValueRule` says depth pays. Its parts are the dimensions every case the concept claims has, which serves the
+reasoning protocols and world modelling as well as solver trees; where cases fall into mutually exclusive kinds,
+those kinds are specializations rather than parts. The card now also says what it adds to generic `Decompose`,
+which already requires independent subproblems that combine into the whole: the claim frame, the location among
+broader kinds, the Necessity and Universality tests, the search for missing dimensions and the routing of real
+cases. The previous card bound every part to the `Solver` contract, which the Occupancy Test flags as squatting on a
+general handle. `_meta.supersedes` keeps every earlier version, from the first through 0.9.1's
+`ConceptualDecomposition#d0fc`, as predecessors of `#f1f4`.
+
 ### Fixed
 
 The local server's `/api/search` (`sema serve`) kept its name boost but replaced every
@@ -40,6 +61,7 @@ result's score with 1 plus that boost, so a weak semantic match and a strong one
 the same, and any query word, even "a", could lift an unrelated name. It now keeps the
 registry's score and source and boosts a name only for an exact name, a prefix or part
 of at least three letters, or a name containing every meaningful query word.
+
 `sema_handshake` accepts a full written reference such as
 `sema:StateLock#mh:SHA-256:<hash>`, with or without `sema:`, for patterns and for the
 `vocab` and `catalog` roots. It used to report a valid current reference as not found
