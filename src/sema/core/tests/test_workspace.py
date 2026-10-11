@@ -288,6 +288,64 @@ def test_handshake_cooperative_stub_reports_prefix_assurance():
     assert proceed["mode"] == "cooperative"
 
 
+@pytest.mark.parametrize(
+    "ref",
+    [
+        "sema:Alpha#mh:SHA-256:" + "a" * 64,
+        "Alpha#mh:SHA-256:" + "a" * 64,
+        "SEMA:Alpha#MH:SHA-256:" + "A" * 64,
+    ],
+)
+def test_handshake_accepts_a_full_written_reference(ref):
+    """Pasting the full reference a document carries must verify, not halt."""
+    workspace = make_workspace()
+
+    result = workspace.handshake(ref, strict=True)
+
+    assert result["verdict"] == "PROCEED"
+    assert result["assurance"] == "full_hash"
+
+
+def test_handshake_full_reference_with_another_hash_halts():
+    workspace = make_workspace()
+
+    result = workspace.handshake("sema:Alpha#mh:SHA-256:" + "c" * 64, strict=True)
+
+    assert result["verdict"] == "HALT"
+    assert "DRIFT" in result["reason"]
+
+
+def test_handshake_short_reference_with_sema_prefix():
+    workspace = make_workspace()
+
+    result = workspace.handshake("sema:Alpha#aaaa")
+
+    assert result["verdict"] == "PROCEED"
+    assert result["handle"] == "Alpha"
+
+
+def test_handshake_your_hash_takes_precedence_over_the_reference():
+    workspace = make_workspace()
+
+    result = workspace.handshake("Alpha#aaaa", your_hash="zzzz")
+
+    assert result["verdict"] == "HALT"
+
+
+def test_handshake_accepts_a_full_vocab_reference():
+    workspace = make_workspace()
+    root = workspace.vocabulary_root()
+    ref = f"sema:vocab#mh:SHA-256:{root['hash']}"
+
+    without_scheme = workspace.handshake(ref, strict=True)
+    with_scheme = workspace.handshake(ref, strict=True, your_scheme=root["root_scheme"])
+
+    assert without_scheme["verdict"] == "HALT"
+    assert without_scheme["reason"] == "ROOT SCHEME REQUIRED"
+    assert with_scheme["verdict"] == "PROCEED"
+    assert with_scheme["assurance"] == "full_hash"
+
+
 def test_handshake_strict_stub_requests_full_hash():
     workspace = make_workspace()
 

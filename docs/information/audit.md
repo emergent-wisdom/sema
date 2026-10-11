@@ -7,9 +7,9 @@ All audits below are **advisory**. Heuristic audits generate false positives; us
 Source: `sema.audit.hash_validity` (ok)
 
 ```text
-Checking hash validity for 616 patterns...
+Checking hash validity for 617 patterns...
 
-All 616 hashes valid.
+All 617 hashes valid.
 ```
 
 ## Missing or short fields
@@ -17,7 +17,7 @@ All 616 hashes valid.
 Source: `sema.audit.missing_or_short` (ok)
 
 ```text
-Auditing 616 patterns in data/vocabulary...
+Auditing 617 patterns in data/vocabulary...
 ✅ No issues found.
 ```
 
@@ -27,7 +27,7 @@ Source: `sema.audit.graph` (ok)
 
 ```text
 Loading graph...
-Graph loaded with 2572 nodes and 5040 edges.
+Graph loaded with 2576 nodes and 5059 edges.
 Checking for orphaned patterns...
 Checking for orphaned components...
 Checking for missing metadata...
@@ -45,8 +45,8 @@ Source: `sema.audit.rigor` (ok)
 
 ```text
 {
-  "total": 616,
-  "with_invariants": 576,
+  "total": 617,
+  "with_invariants": 577,
   "with_preconditions": 182,
   "with_postconditions": 172,
   "with_all_contract_fields": 169,
@@ -77,9 +77,9 @@ Source: `sema.audit.missing_links` (ok)
 
 ```text
 🔍 Scanning data/vocabulary for missing links...
-Loaded 616 patterns.
+Loaded 617 patterns.
 
-Found 389 potential missing links.
+Found 388 potential missing links.
 
 🔹 AbsenceEvidence
    ❓ Mentions 'Silence' but not linked.
@@ -174,10 +174,6 @@ Found 389 potential missing links.
 🔹 ComputeBudget
    ❓ Mentions 'Budget' but not linked.
    ❓ Mentions 'Risk' but not linked.
-🔹 ConceptualDecomposition
-   ❓ Mentions 'Contract' but not linked.
-   ❓ Mentions 'Decompose' but not linked.
-   ❓ Mentions 'Solver' but not linked.
 🔹 Condition
    ❓ Mentions 'Boolean' but not linked.
    ❓ Mentions 'Result' but not linked.
@@ -553,6 +549,9 @@ Found 389 potential missing links.
    ❓ Mentions 'Feedback' but not linked.
    ❓ Mentions 'FrameError' but not linked.
    ❓ Mentions 'UniversalSolverTree' but not linked.
+🔹 SolverDecomposition
+   ❓ Mentions 'Contract' but not linked.
+   ❓ Mentions 'Solver' but not linked.
 🔹 SolverManifest
    ❓ Mentions 'Constraint' but not linked.
 🔹 SolverTree
@@ -658,7 +657,7 @@ Found 389 potential missing links.
 Source: `sema.audit.unlinked_mentions` (ok)
 
 ```text
-Scanning 616 patterns for unlinked handle mentions...
+Scanning 617 patterns for unlinked handle mentions...
 
 ⚠️  Abduction:
    • Mentions 'Anomaly' (unlinked). Should it be '{{{ghost}}}'?
@@ -1003,14 +1002,15 @@ Scanning 616 patterns for unlinked handle mentions...
    • Mentions 'Event' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  ConceptualDecomposition:
    • Mentions 'Act' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Contract' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Decompose' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Global' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Check' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Combine' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Overlap' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Route' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Solver' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Tree' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Uncertain' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Workflow' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Condition:
@@ -2515,6 +2515,18 @@ Scanning 616 patterns for unlinked handle mentions...
    • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Tree' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'UniversalSolverTree' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  SolverDecomposition:
+   • Mentions 'Act' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Combine' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Contract' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Global' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Overlap' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Solver' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Uncertain' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Workflow' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  SolverManifest:
    • Mentions 'Constraint' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Identity' (unlinked). Should it be '{{{ghost}}}'?
@@ -2855,7 +2867,7 @@ Scanning 616 patterns for unlinked handle mentions...
 ⚠️  Yield:
    • Mentions 'Ledger' (unlinked). Should it be '{{{ghost}}}'?
 
-Scan complete. Found unlinked handle mentions in 524 patterns.
+Scan complete. Found unlinked handle mentions in 525 patterns.
 ```
 
 ## Semantic similarity between patterns

@@ -26,6 +26,28 @@ from .registry import RegistryManager
 from .validator import validate_pattern
 
 
+def _normalize_hash(value: str) -> str:
+    """Lower-case a presented hash and drop a leading ``mh:<algo>:`` marker."""
+    value = value.strip().lower()
+    marker = f"mh:{HASH_ALGO}:".lower()
+    return value[len(marker) :] if value.startswith(marker) else value
+
+
+def split_handshake_ref(ref: str) -> tuple[str, str | None]:
+    """Split a handshake reference into its name and the hash it carries.
+
+    Accepts every form Sema writes: ``Handle``, ``Handle#stub`` and the full
+    ``sema:Handle#mh:SHA-256:<hex>``, with or without ``sema:``, and the same
+    forms for the ``vocab`` and ``catalog`` roots. The hash comes back
+    normalized, or None when the reference carries none.
+    """
+    name, _, presented = ref.strip().partition("#")
+    if name[:5].lower() == "sema:":
+        name = name[5:]
+    presented = _normalize_hash(presented)
+    return name, presented or None
+
+
 @dataclass
 class WorkspaceSource:
     """Where a graph workspace comes from.
@@ -129,9 +151,14 @@ class GraphWorkspace:
         use_semantic: bool = True,
         enrich_top_n: int = 3,
         limit: int | None = None,
+        layer: str | None = None,
+        category: str | None = None,
     ) -> list[dict[str, Any]]:
         self.refresh()
-        results = self.registry_manager.search(query, use_semantic=use_semantic)
+        # Pass a scope only when one is asked for, so registry stand-ins that
+        # predate layer and category filtering keep working.
+        scope = {key: value for key, value in (("layer", layer), ("category", category)) if value}
+        results = self.registry_manager.search(query, use_semantic=use_semantic, **scope)
         if limit is not None:
             results = results[: max(1, min(limit, 20))]
         if session is None:
@@ -149,6 +176,11 @@ class GraphWorkspace:
                     "gloss": result.get("gloss"),
                     "score": result.get("score"),
                 }
+                if not seen:
+                    # Where new matches sit shows whether they cluster in one
+                    # category worth searching inside.
+                    summary["layer"] = result.get("layer")
+                    summary["category"] = result.get("category")
                 summary["_seen" if seen else "_summary"] = True
                 compacted.append(summary)
                 if not seen:
@@ -359,7 +391,10 @@ class GraphWorkspace:
         your_scheme: str | None = None,
     ) -> dict[str, Any]:
         mode = HandshakeMode.STRICT if strict else HandshakeMode.COOPERATIVE
-        aggregate_scope = ref.strip().lower()
+        # A full written reference carries its own hash; your_hash, when
+        # given, still takes precedence over it.
+        name, ref_hash = split_handshake_ref(ref)
+        aggregate_scope = name.lower()
         if aggregate_scope in {"vocab", "catalog"}:
             root = self.vocabulary_root()
             if aggregate_scope == "catalog":
@@ -386,7 +421,7 @@ class GraphWorkspace:
                 "pattern_count": root["pattern_count"],
             }
 
-            presented_hash = None if your_hash is None else your_hash.strip().lower()
+            presented_hash = ref_hash if your_hash is None else _normalize_hash(your_hash)
             if presented_hash and your_scheme is None:
                 return {
                     "verdict": HandshakeVerdict.HALT.value,
@@ -478,9 +513,8 @@ class GraphWorkspace:
 
         self.refresh()
         registry = self.registry
-        parts = ref.split("#")
-        handle = parts[0]
-        ref_stub = parts[1] if len(parts) > 1 else None
+        handle = name
+        ref_stub = ref_hash
 
         if handle not in registry:
             verdict = decide_handshake(
@@ -501,7 +535,7 @@ class GraphWorkspace:
         canonical_ref = pattern.get("sema_ref", f"{handle}#{canonical_stub}")
         full_hash = pattern.get("sema_id", "")
 
-        compare_hash = (your_hash or ref_stub or "").strip().lower()
+        compare_hash = _normalize_hash(your_hash or "") or ref_stub or ""
         # Accept the short stub or the full hash, like the vocab scope above.
         # A full-hash match is stronger evidence of alignment than the stub;
         # rejecting it would be a false HALT.

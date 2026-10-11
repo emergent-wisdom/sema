@@ -20,15 +20,16 @@
       "sema:DiscoveryProtocol#mh:SHA-256:fcb4dad4156b21566caa731b1600183e6d2a5101fc92957f4b40bb6999991d1a",
       "sema:DiscoveryProtocol#mh:SHA-256:cc288bdd90e35df22dcd79bff8650ad11931c16a1bc9b17b45f5f9459e5f4714",
       "sema:DiscoveryProtocol#mh:SHA-256:09e22a4e943f4adda44472dfa0f214f45b88a080bfe50b6b4d777b935e6c7f4c",
-      "sema:DiscoveryProtocol#mh:SHA-256:21f45a292154c9e60523bf31bcf26ae0acc5cde91562fc11b4ae648b9c45945a"
+      "sema:DiscoveryProtocol#mh:SHA-256:21f45a292154c9e60523bf31bcf26ae0acc5cde91562fc11b4ae648b9c45945a",
+      "sema:DiscoveryProtocol#mh:SHA-256:299c55ff276c74b615236162f0a09b7e6b027ce2780a76ba5273adefee0239ef"
     ]
   },
-  "sema_id": "sema:DiscoveryProtocol#mh:SHA-256:299c55ff276c74b615236162f0a09b7e6b027ce2780a76ba5273adefee0239ef",
-  "sema_ref": "DiscoveryProtocol#299c",
-  "sema_stub": "299c",
+  "sema_id": "sema:DiscoveryProtocol#mh:SHA-256:5c8e74ee9833090e8bc5e91f373e165f885cd7b23f79bb55c6127d783ba9d96b",
+  "sema_ref": "DiscoveryProtocol#5c8e",
+  "sema_stub": "5c8e",
   "dependencies": {
     "composes_with": {
-      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:d0fc6e67c984608fb949bed69ba7e5e3bc022b45bfe173042eec4846b33a5538",
+      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:f1f430fc38f3944d3a02b34e0ae04d4004a002795b375b665f1ebb7a4e57b264",
       "novelty": "sema:Novelty#mh:SHA-256:954f66918110b3dbbfadd1f47dd27ae095a8727113dce1c45d34931cf517d94a",
       "synthesis": "sema:Synthesis#mh:SHA-256:4f1fecba4183e6a79bfb3bd8f1981a6b6fb9f3dced92a484a9aa466c93ae249b"
     },

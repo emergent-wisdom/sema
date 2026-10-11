@@ -595,7 +595,8 @@ five surfaces: Manifest (\sema{Card}{e4b2}), Execute
 an agent or executable binding realizes them.
 
 Each Solver node decides whether to execute the work directly or to decompose
-it and delegate to child Solvers. \sema{ConceptualDecomposition}{d0fc} makes the
+it and delegate to child Solvers. \sema{SolverDecomposition}{ff4b}, the
+solver-bound kind of \sema{ConceptualDecomposition}{f1f4}, makes the
 recursion contract-bound: each sub-concept exposes the same Solver interface
 and is therefore delegatable, a stronger requirement than generic
 \sema{Decompose}{6994}. Inputs arrive as a \sema{Task}{a850} with all inherited
@@ -626,7 +627,7 @@ Adversarial stress testing (Section~\ref{sec:hardening}) can cause tier downgrad
 The vocabulary applies the \textit{Babbage Principle}~\cite{babbage1832} to
 artificial intelligence as a routing objective: assign each sub-task to the
 cheapest competent solver. The uniform Solver contract gives this division of
-cognitive labor a common interface. In the \sema{FractalIntelligence}{1dca}
+cognitive labor a common interface. In the \sema{FractalIntelligence}{27f7}
 architecture, \sema{Decompose}{6994} separates work into sub-tasks that can be
 handled by specialized, lower-cost agents or deterministic scripts, reserving
 more capable solvers for work that requires them. The budget and marginal-value

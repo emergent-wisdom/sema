@@ -25,14 +25,17 @@
       "DiscoveryProtocol",
       "UncertaintyMap"
     ],
-    "minted": "2026-10-06T23:39:36+02:00"
+    "minted": "2026-10-06T23:39:36+02:00",
+    "supersedes": [
+      "sema:GeneralProblemSolvingProtocol#mh:SHA-256:43518550b3b0381b9ce0b95bcb5caa553cec22a604173677ef358c7f71024b16"
+    ]
   },
-  "sema_id": "sema:GeneralProblemSolvingProtocol#mh:SHA-256:43518550b3b0381b9ce0b95bcb5caa553cec22a604173677ef358c7f71024b16",
-  "sema_ref": "GeneralProblemSolvingProtocol#4351",
-  "sema_stub": "4351",
+  "sema_id": "sema:GeneralProblemSolvingProtocol#mh:SHA-256:7ad457a8f3c6dd35e024c94c900ce5b0771fdd3adff7cedd660fbefef8ba87ac",
+  "sema_ref": "GeneralProblemSolvingProtocol#7ad4",
+  "sema_stub": "7ad4",
   "dependencies": {
     "references": {
-      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:d0fc6e67c984608fb949bed69ba7e5e3bc022b45bfe173042eec4846b33a5538",
+      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:f1f430fc38f3944d3a02b34e0ae04d4004a002795b375b665f1ebb7a4e57b264",
       "root_solver": "sema:RootSolver#mh:SHA-256:f7f5a39c4d93545b506ddc3eeb03660295425657486a5ab1f71811cb8e5816ca"
     }
   },
