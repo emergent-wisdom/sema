@@ -1,10 +1,23 @@
 import json
+import math
 import os
 import sqlite3
+import statistics
 from collections import Counter
 
 VOCAB_DIR = "data/vocabulary"
 OUTPUT_TEX = "paper/generated_stats.tex"
+
+
+def _load_fan_in():
+    """Load the audit script's dependency traversal, so the paper and audits agree."""
+    import importlib.util
+
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "audit", "fan_in.py")
+    spec = importlib.util.spec_from_file_location("fan_in", path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
 
 
 def calculate_stats():
@@ -178,6 +191,72 @@ def calculate_stats():
                 categories.add(cat)
         f.write(f"\\newcommand{{\\semaTierOneCount}}{{{tier_counts.get(1, 0)}}}\n")
         f.write(f"\\newcommand{{\\semaCategoryCount}}{{{len(categories)}}}\n")
+
+        # Birthday bound for the collision proposition, |V|^2 / 2^257, written as
+        # the next multiple of a power of ten above it, so that the sentence
+        # stays true as the library grows.
+        bound = pattern_count**2 / 2**257
+        exponent = math.floor(math.log10(bound))
+        mantissa = math.floor(bound / 10**exponent) + 1
+        if mantissa == 10:
+            mantissa, exponent = 1, exponent + 1
+        bound_tex = f"10^{{{exponent}}}"
+        if mantissa > 1:
+            bound_tex = f"{mantissa} \\times " + bound_tex
+        f.write(f"\\newcommand{{\\semaCollisionBound}}{{{bound_tex}}}\n")
+
+        # Cascade: a card's hash covers the full ids of the cards it depends
+        # on, so editing it changes the identity of every card that depends
+        # on it, directly or transitively. The traversal is the audit
+        # script's, which descends into the nested dependency roles; it does
+        # not follow `extends`.
+        fan_in = _load_fan_in()
+        graph = fan_in.load()
+        _, in_edges = fan_in.build_graph(graph)
+        reach = {h: len(fan_in.transitive_dependents([h], in_edges)) for h in graph}
+        if "System" not in reach:
+            raise RuntimeError(
+                "The cascade paragraph in sema.tex cites System, which is not in the "
+                "default vocabulary. Update it and calculate_graph_stats.py."
+            )
+        by_layer = {}
+        for handle, card in graph.items():
+            by_layer.setdefault(card.get("sema_layer"), []).append(reach[handle])
+        layer_median = {layer: statistics.median(values) for layer, values in by_layer.items()}
+        if layer_median.get("Mind") != 0 or layer_median.get("Society") != 0:
+            raise RuntimeError(
+                "The cascade paragraph in sema.tex says the median Mind or Society card "
+                "has no dependents, which no longer holds. Update the paragraph."
+            )
+        leaves = sum(1 for n in reach.values() if n == 0)
+        hubs = sum(1 for n in reach.values() if n >= 100)
+        f.write(f"\\newcommand{{\\semaCascadeLeaves}}{{{leaves}}}\n")
+        f.write(f"\\newcommand{{\\semaCascadeLeafPct}}{{{leaves * 100 // pattern_count}\\%}}\n")
+        f.write(f"\\newcommand{{\\semaCascadeHubs}}{{{hubs}}}\n")
+        f.write(f"\\newcommand{{\\semaCascadeSystem}}{{{reach['System']}}}\n")
+        f.write(
+            f"\\newcommand{{\\semaCascadeSystemPct}}"
+            f"{{{reach['System'] * 100 // pattern_count}\\%}}\n"
+        )
+        f.write(
+            f"\\newcommand{{\\semaCascadeMedianInfrastructure}}"
+            f"{{{layer_median['Infrastructure']:g}}}\n"
+        )
+
+        # Earlier identities recorded in the unhashed `_meta.supersedes`. The
+        # store keeps one definition per handle; the Limitations paragraph
+        # says it holds none of their content, which needs no earlier digest
+        # to equal a current one.
+        current = {p["sema_id"].split(":SHA-256:")[-1] for p in patterns}
+        earlier = [ref for p in patterns for ref in (p.get("_meta", {}).get("supersedes") or [])]
+        if any(ref.split(":SHA-256:")[-1] in current for ref in earlier):
+            raise RuntimeError(
+                "An identity in _meta.supersedes equals a current definition, so the "
+                "Historical Version Storage sentence in sema.tex no longer holds."
+            )
+        with_earlier = sum(1 for p in patterns if p.get("_meta", {}).get("supersedes"))
+        f.write(f"\\newcommand{{\\semaSupersedesCards}}{{{with_earlier}}}\n")
+        f.write(f"\\newcommand{{\\semaSupersedesIds}}{{{len(earlier):,}}}\n")
 
         # Compression stats — compute token counts for representative
         # patterns using tiktoken's cl100k_base tokenizer.
