@@ -91,6 +91,7 @@ def calculate_stats():
     print(f"Solution patterns: {pattern_count}")
     print(f"Unique invariants: {len(unique_invariants)}")
     print(f"Unique pre/postcondition clauses: {principles_count}")
+    print(f"Unique failure-mode clauses: {len(unique_failures)}")
     # Table 3 Metrics
     with_invariants = 0
     with_pre = 0
@@ -118,6 +119,10 @@ def calculate_stats():
         if params:
             with_params += 1
             total_params += len(params)
+
+    def whole_pct(count):
+        """Share of the library as a whole percentage, rounded (not truncated)."""
+        return round(count * 100 / pattern_count)
 
     print("\n--- Table 3 ---")
     print(f"Total patterns: {pattern_count}")
@@ -154,27 +159,26 @@ def calculate_stats():
         f.write(f"\\newcommand{{\\semaAvgEdges}}{{{avg_edges:.1f}}}\n")
         f.write(f"\\newcommand{{\\semaInvariantCount}}{{{len(unique_invariants)}}}\n")
         f.write(f"\\newcommand{{\\semaPrinciplesCount}}{{{principles_count}}}\n")
+        f.write(f"\\newcommand{{\\semaFailureModeCount}}{{{len(unique_failures)}}}\n")
 
         # Table 3 stats (use \% for LaTeX-escaped percent)
         f.write(f"\\newcommand{{\\semaPatternsWithInvariants}}{{{with_invariants}}}\n")
-        f.write(
-            f"\\newcommand{{\\semaInvariantPct}}{{{with_invariants * 100 // pattern_count}\\%}}\n"
-        )
+        f.write(f"\\newcommand{{\\semaInvariantPct}}{{{whole_pct(with_invariants)}\\%}}\n")
 
         f.write(f"\\newcommand{{\\semaPatternsWithPre}}{{{with_pre}}}\n")
-        f.write(f"\\newcommand{{\\semaPrePct}}{{{with_pre * 100 // pattern_count}\\%}}\n")
+        f.write(f"\\newcommand{{\\semaPrePct}}{{{whole_pct(with_pre)}\\%}}\n")
 
         f.write(f"\\newcommand{{\\semaPatternsWithPost}}{{{with_post}}}\n")
-        f.write(f"\\newcommand{{\\semaPostPct}}{{{with_post * 100 // pattern_count}\\%}}\n")
+        f.write(f"\\newcommand{{\\semaPostPct}}{{{whole_pct(with_post)}\\%}}\n")
 
         f.write(f"\\newcommand{{\\semaPatternsWithIO}}{{{with_io}}}\n")
-        f.write(f"\\newcommand{{\\semaIOPct}}{{{with_io * 100 // pattern_count}\\%}}\n")
+        f.write(f"\\newcommand{{\\semaIOPct}}{{{whole_pct(with_io)}\\%}}\n")
 
         f.write(f"\\newcommand{{\\semaPatternsWithParams}}{{{with_params}}}\n")
-        f.write(f"\\newcommand{{\\semaParamPct}}{{{with_params * 100 // pattern_count}\\%}}\n")
+        f.write(f"\\newcommand{{\\semaParamPct}}{{{whole_pct(with_params)}\\%}}\n")
 
         f.write(f"\\newcommand{{\\semaPatternsWithCompose}}{{{with_compose}}}\n")
-        f.write(f"\\newcommand{{\\semaComposePct}}{{{with_compose * 100 // pattern_count}\\%}}\n")
+        f.write(f"\\newcommand{{\\semaComposePct}}{{{whole_pct(with_compose)}\\%}}\n")
 
         f.write(f"\\newcommand{{\\semaTotalParams}}{{{total_params}}}\n")
 
@@ -189,7 +193,26 @@ def calculate_stats():
                 tier_counts[tier] += 1
             if cat:
                 categories.add(cat)
+        # The tiers paragraph in sema.tex names three tiers of rigor and a tier 0
+        # that marks ring-0 primitives, with Actor as its example. Stop the build
+        # if the released data stops matching that sentence.
+        if set(tier_counts) - {0, 1, 2, 3} or sum(tier_counts.values()) != pattern_count:
+            raise RuntimeError(
+                "Tiers in the vocabulary are no longer exactly 0 to 3 on every card. "
+                "Update the tiers paragraph in sema.tex and calculate_graph_stats.py."
+            )
+        tier_zero = [p for p in patterns if p.get("_meta", {}).get("tier") == 0]
+        if any(p.get("_meta", {}).get("ring") != 0 for p in tier_zero) or not any(
+            p.get("handle") == "Actor" for p in tier_zero
+        ):
+            raise RuntimeError(
+                "The tiers paragraph in sema.tex says tier 0 marks ring-0 primitives such "
+                "as Actor, which no longer holds. Update the paragraph."
+            )
+        f.write(f"\\newcommand{{\\semaTierZeroCount}}{{{tier_counts.get(0, 0)}}}\n")
         f.write(f"\\newcommand{{\\semaTierOneCount}}{{{tier_counts.get(1, 0)}}}\n")
+        f.write(f"\\newcommand{{\\semaTierTwoCount}}{{{tier_counts.get(2, 0)}}}\n")
+        f.write(f"\\newcommand{{\\semaTierThreeCount}}{{{tier_counts.get(3, 0)}}}\n")
         f.write(f"\\newcommand{{\\semaCategoryCount}}{{{len(categories)}}}\n")
 
         # Birthday bound for the collision proposition, |V|^2 / 2^257, written as
@@ -231,13 +254,10 @@ def calculate_stats():
         leaves = sum(1 for n in reach.values() if n == 0)
         hubs = sum(1 for n in reach.values() if n >= 100)
         f.write(f"\\newcommand{{\\semaCascadeLeaves}}{{{leaves}}}\n")
-        f.write(f"\\newcommand{{\\semaCascadeLeafPct}}{{{leaves * 100 // pattern_count}\\%}}\n")
+        f.write(f"\\newcommand{{\\semaCascadeLeafPct}}{{{whole_pct(leaves)}\\%}}\n")
         f.write(f"\\newcommand{{\\semaCascadeHubs}}{{{hubs}}}\n")
         f.write(f"\\newcommand{{\\semaCascadeSystem}}{{{reach['System']}}}\n")
-        f.write(
-            f"\\newcommand{{\\semaCascadeSystemPct}}"
-            f"{{{reach['System'] * 100 // pattern_count}\\%}}\n"
-        )
+        f.write(f"\\newcommand{{\\semaCascadeSystemPct}}{{{whole_pct(reach['System'])}\\%}}\n")
         f.write(
             f"\\newcommand{{\\semaCascadeMedianInfrastructure}}"
             f"{{{layer_median['Infrastructure']:g}}}\n"
@@ -302,7 +322,10 @@ def calculate_stats():
         comp_avg_ref = sum(r[2] for r in comp_rows) / len(comp_rows)
         comp_avg_full = sum(r[3] for r in comp_rows) / len(comp_rows)
         comp_avg_ratio = comp_avg_full / comp_avg_ref if comp_avg_ref else 0.0
-        f.write(f"\\newcommand{{\\semaCompAvgRef}}{{{comp_avg_ref:.1f}}}\n")
+        # Two decimals, without trailing zeros, so that the printed mean divides
+        # to the printed ratio (four references of 6, 7, 6 and 6 tokens average 6.25).
+        comp_avg_ref_text = f"{comp_avg_ref:.2f}".rstrip("0").rstrip(".")
+        f.write(f"\\newcommand{{\\semaCompAvgRef}}{{{comp_avg_ref_text}}}\n")
         f.write(f"\\newcommand{{\\semaCompAvgFull}}{{{comp_avg_full:.1f}}}\n")
         f.write(f"\\newcommand{{\\semaCompAvgRatio}}{{{comp_avg_ratio:.1f}}}\n")
 
