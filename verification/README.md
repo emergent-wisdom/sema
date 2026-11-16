@@ -33,7 +33,11 @@ surfaces, conformance tests, and assumptions in a machine-readable form.
 
 The trusted computing base still includes Lean's kernel, the Python runtime,
 input normalization and registry lookup in `GraphWorkspace`, and the
-collision-resistance assumption for SHA-256. The proof does not establish that
+collision-resistance assumption for SHA-256. Comparing a peer's declared
+canonicalization with the workspace's is part of that adapter: in strict mode a
+difference reaches the kernel as an unavailable identity, which
+`unknownAlwaysHalts` covers, but deciding that the versions differ is not
+modeled. The proof does not establish that
 natural-language pattern invariants are true or that every Sema component is
 formally verified.
 

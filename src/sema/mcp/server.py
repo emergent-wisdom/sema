@@ -579,7 +579,8 @@ def sema_root() -> str:
     alignment.
 
     Returns:
-        JSON with both roots, schemes, counts, full IDs, and short stubs.
+        JSON with both roots, schemes, counts, full IDs, short stubs, and
+        the `canonicalization` the pattern digests were computed under.
     """
     return json.dumps(_active_workspace().root_payload(), indent=2)
 
@@ -590,6 +591,7 @@ def sema_handshake(
     your_hash: str | None = None,
     strict: bool = False,
     your_scheme: str | None = None,
+    your_canonicalization: int | None = None,
 ) -> str:
     """Byte-level definition agreement check between two agents.
 
@@ -620,6 +622,8 @@ def sema_handshake(
              supplied for `vocab` or `catalog`. Omission or a different
              scheme fails with HALT; `sema pull` cannot repair
              algorithm-only drift.
+        your_canonicalization: `canonicalization` from the peer's answer
+             (strict mode reads none as 2). A difference HALTs strict mode.
 
     Returns:
         JSON with verdict: PROCEED (accepted under the selected mode), HALT
@@ -637,6 +641,16 @@ def sema_handshake(
         2. Agent B: sema_handshake(
              "vocab", "<that stub>", your_scheme="<that scheme>"
            ) -> PROCEED / HALT
+
+    Canonicalization: every answer about a known pattern or root carries
+    the `canonicalization` this vocabulary's digests were computed under
+    (an answer without one comes from a release that uses 2). Pass the
+    peer's value as your_canonicalization. Digests computed under
+    different versions do not establish the same thing, since v2 does not
+    bind placeholders to their targets, so strict mode halts on a
+    difference and cooperative mode reports it as a warning. When strict
+    mode is given a hash and no canonicalization, it takes the peer as 2:
+    a vocabulary on 3 then halts with CANONICALIZATION REQUIRED.
     """
     return json.dumps(
         _active_workspace().handshake(
@@ -644,6 +658,7 @@ def sema_handshake(
             your_hash=your_hash,
             strict=strict,
             your_scheme=your_scheme,
+            your_canonicalization=your_canonicalization,
         ),
         indent=2,
     )

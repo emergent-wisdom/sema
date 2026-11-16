@@ -157,9 +157,9 @@ distinction.
 | `sema_search(query)` | Find patterns by concept |
 | `sema_resolve(handle)` | Full definition with dependencies |
 | `sema_tree()` | Browse the taxonomy tree |
-| `sema_handshake(ref, your_hash, strict, your_scheme)` | Detect drift by prefix; aggregate roots also require their scheme, and `strict=true` requires full-hash identity |
+| `sema_handshake(ref, your_hash, strict, your_scheme, your_canonicalization)` | Detect drift by prefix; aggregate roots also require their scheme, and `strict=true` requires full-hash identity and the same canonicalization (none declared is read as 2) |
 | `sema_lookup(ref)` | Get pattern by exact reference |
-| `sema_root()` | Semantic-set and handle-binding fingerprints for the DB |
+| `sema_root()` | Semantic-set and handle-binding fingerprints for the DB, with its canonicalization |
 | `sema_graph_skeleton()` | High-level layout of patterns + relationships |
 | `sema_use(db_path)` | Switch active vocabulary database |
 | `sema_stats()` | Vocabulary statistics |

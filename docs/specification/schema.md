@@ -312,7 +312,12 @@ was computed with, never the other: falling back to v2 for a v3 identity would
 reopen the gap. Library manifests with `manifest_schema` 2 declare
 `canonicalization` (2 or 3); a schema-1 manifest predates the field and is v2.
 A store database records `pattern_canonicalization`; a database without the
-record that already holds patterns is v2.
+record that already holds patterns is v2. A handshake answer carries the
+workspace's canonicalization, and a peer can declare its own: for a card whose
+pairings are all implied, a v2 and a v3 workspace compute the same digest, but
+only the v3 one has checked the bindings, so strict mode halts when the
+peer's version differs. A presented hash with no declared version comes from a
+release that predates the declaration; strict mode reads it as v2.
 
 Normative cases, including the exchange that v2 cannot see and the rejected
 inputs, are published in

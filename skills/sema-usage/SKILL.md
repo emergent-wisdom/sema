@@ -211,6 +211,7 @@ sema_handshake({
   ref: "vocab",
   your_hash: challenge.full_sema_id.split(":").at(-1),
   your_scheme: challenge.root_scheme,
+  your_canonicalization: challenge.canonicalization,
   strict: true
 })
 // → PROCEED with full_hash assurance, or a non-proceeding verdict
@@ -219,6 +220,13 @@ sema_handshake({
 The full hash with `strict: true` is the identity check; a prefix is only
 cooperative drift detection. Use `ref="catalog"` in the same workflow when
 handle bindings must also match.
+Every answer carries the `canonicalization` its digests were computed under,
+for single patterns too; an answer without one comes from a release that uses
+2. Pass the other side's value as `your_canonicalization`. A v2 digest does not
+bind placeholders to their targets, so with `strict: true` a difference returns
+HALT even when the digests match, and without it the answer carries a warning.
+With `strict: true`, a hash presented without `your_canonicalization` is read
+as coming from a v2 peer, so a vocabulary on 3 returns HALT until you supply it.
 If equal schemes have different roots, `sema pull` may converge their data or
 `sema_propose_context` can scope agreement to a known-shared subset. If schemes
 differ, upgrade the older Sema installation: pulling identical pattern leaves

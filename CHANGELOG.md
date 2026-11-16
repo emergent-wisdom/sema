@@ -39,6 +39,13 @@ other 562 keep their identities. The semantic-set and catalog roots change accor
   definition re-identified; a pin to a parent whose content changed upstream is refused as before. A v3 workspace
   refuses a v2 upstream. The hash audit checks under the version of the database the vocabulary was exported from,
   or `--canonicalization`.
+- `sema_handshake` and `sema_root` report the canonicalization of the active vocabulary, and `sema_handshake`
+  takes `your_canonicalization`. A v2 and a v3 workspace compute the same digest for a card whose pairings are all
+  implied, but only v3 has checked the bindings. When the peer's version differs from the workspace's, strict mode
+  returns `HALT` and cooperative mode adds a warning to its verdict. Releases before this one declare no version,
+  and they hash under v2, so strict mode reads a presented hash with no declared version as v2: a v3 workspace then
+  returns `HALT` with `CANONICALIZATION REQUIRED` until the peer's version is supplied. A v2 workspace, cooperative
+  mode, and a call that only asks for the canonical hash behave as before.
 - `sema pull` reports `canonicalization_before` and `canonicalization_after`, and keeps its undo snapshot when the
   canonicalization moved even if no identity did.
 - `scripts/test_hash_verification.py` takes `--canonicalization {2,3}` and `--all`;
