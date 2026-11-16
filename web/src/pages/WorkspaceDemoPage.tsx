@@ -71,8 +71,8 @@ const demoActivity = [
 
 const demoCollaborators: Collaborator[] = [
   {
-    email: 'henrik.westeberg@emergentwisdom.org',
-    name: 'Henrik Westerberg',
+    email: 'owner@example.com',
+    name: 'Workspace Owner',
     role: 'Owner',
     status: 'Active',
   },
@@ -198,7 +198,7 @@ export function WorkspaceDemoPage() {
     if (isDemoWorkspace) {
       if (id === 'library') {
         setLibraryName((current) => current || 'Civic Intelligence Library')
-        setRepo((current) => current || 'henrikwesterberg/civic-intelligence')
+        setRepo((current) => current || 'example-org/civic-intelligence')
       }
       if (id === 'team') {
         setInviteEmail((current) => current || 'teammate@example.com')
