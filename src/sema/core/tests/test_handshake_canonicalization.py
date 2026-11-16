@@ -283,3 +283,25 @@ def test_the_mcp_tool_passes_the_declaration_through(tmp_path, monkeypatch):
     assert proceed["verdict"] == "PROCEED" and proceed["canonicalization"] == 3
     halt = json.loads(server.sema_handshake("Review", digest, strict=True, your_canonicalization=2))
     assert halt["verdict"] == "HALT" and halt["reason"] == "CANONICALIZATION MISMATCH"
+
+
+@pytest.mark.parametrize("strict", [True, False], ids=["strict", "cooperative"])
+def test_an_unusable_recorded_version_halts_every_handshake(tmp_path, strict):
+    """A workspace that cannot say how its digests were computed proves nothing."""
+    workspace = _workspace(tmp_path / "workspace.db", CANONICALIZATION_V3)
+    digest = _digest(workspace, "Review")
+    with sqlite3.connect(tmp_path / "workspace.db") as conn:
+        conn.execute("UPDATE store_settings SET value = '999'")
+    workspace = GraphWorkspace(WorkspaceSource(db_path=str(tmp_path / "workspace.db")))
+
+    assert workspace.canonicalization is None
+    for answer in (
+        workspace.handshake("Review", digest, strict=strict),
+        workspace.handshake("Review", digest, strict=strict, your_canonicalization=3),
+        workspace.handshake("Review", strict=strict),
+    ):
+        assert answer["verdict"] == "HALT"
+        assert answer["reason"] == "CANONICALIZATION UNREADABLE"
+        assert "999" in answer["action"]
+    with pytest.raises(ValueError, match="cannot be used"):
+        workspace.root_payload()

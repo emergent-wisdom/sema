@@ -367,21 +367,29 @@ class GraphWorkspace:
             bindings.append((handle, pattern_hash))
         return vocabulary_roots(bindings)
 
+    def _recorded_canonicalization(self) -> tuple[int | None, str | None]:
+        """The workspace's canonicalization, and the reason when its record cannot be used.
+
+        ``(None, None)`` means there is nothing to read: the workspace has no
+        database and its registry states no version. ``(None, reason)`` means a
+        record exists but is unreadable or names an unsupported version.
+        """
+        if self.db_path and os.path.isfile(self.db_path):
+            try:
+                return database_canonicalization(self.db_path), None
+            except ValueError as exc:
+                return None, str(exc)
+        return getattr(self.registry_manager, "canonicalization", None), None
+
     @property
     def canonicalization(self) -> int | None:
         """The canonicalization this workspace's identities were computed under.
 
         Read from the workspace database. ``None`` when the workspace has no
-        database to record it and its registry does not state one.
+        database to record it and its registry does not state one, or when the
+        record cannot be used; a handshake halts in the second case.
         """
-        if self.db_path and os.path.isfile(self.db_path):
-            try:
-                return database_canonicalization(self.db_path)
-            except ValueError:
-                # Unreadable or unsupported: unknown, which strict mode refuses
-                # to match against a declared version.
-                return None
-        return getattr(self.registry_manager, "canonicalization", None)
+        return self._recorded_canonicalization()[0]
 
     def _canonicalization_mismatch(
         self, your_canonicalization: Any, mode: HandshakeMode, *, comparing: bool
@@ -468,8 +476,11 @@ class GraphWorkspace:
 
     def root_payload(self) -> dict[str, Any]:
         root = self.vocabulary_root()
+        canonicalization, unusable = self._recorded_canonicalization()
+        if unusable is not None:
+            raise ValueError(f"workspace canonicalization cannot be used: {unusable}")
         return {
-            "canonicalization": self.canonicalization,
+            "canonicalization": canonicalization,
             "full_sema_id": f"sema:vocab#mh:{HASH_ALGO}:{root['hash']}",
             "stub": root["stub"],
             "hash": root["hash"],
@@ -508,6 +519,28 @@ class GraphWorkspace:
         named = {k: result[k] for k in ("scope", "handle", "root_scheme") if k in result}
         if not named:
             return result
+        unusable = self._recorded_canonicalization()[1]
+        if unusable is not None:
+            # The workspace cannot say how its own digests were computed, so no
+            # comparison against them establishes anything, in either mode.
+            verdict = decide_handshake(
+                available=False,
+                presented_hash=None,
+                canonical_stub="",
+                canonical_full=None,
+                mode=mode,
+            )
+            return {
+                **named,
+                "verdict": verdict.value,
+                "reason": "CANONICALIZATION UNREADABLE",
+                "canonicalization": None,
+                "mode": mode.value,
+                "action": (
+                    "DO NOT PROCEED. This workspace's recorded canonicalization cannot be "
+                    f"used ({unusable}). Repair or rebuild the database before comparing."
+                ),
+            }
         comparing = result["verdict"] != HandshakeVerdict.PROVIDE_HASH.value
         mismatch = self._canonicalization_mismatch(your_canonicalization, mode, comparing=comparing)
         if mismatch is None:

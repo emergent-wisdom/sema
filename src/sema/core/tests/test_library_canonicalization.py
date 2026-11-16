@@ -283,3 +283,41 @@ class TestInstalledRecordsAndPackages:
             assert manifest["canonicalization"] == version
         verified = verify_library_package(package.manifest_path, package.archive_path)
         assert verified.canonicalization == version
+
+
+class TestDatabaseAndReleaseAgree:
+    """Verification recomputes under the release's version; readers hash under the database's."""
+
+    def _installed(self, tmp_path: Path) -> tuple[Path, dict, dict]:
+        patterns = _patterns(CANONICALIZATION_V3, role="rating")
+        manifest = LibraryManifest.model_validate(
+            json.loads(_release(tmp_path / "source", patterns, **V3).read_text())
+        )
+        verified = verify_library_patterns(patterns, manifest)
+        database = tmp_path / "library.db"
+        build_library_database(verified, database)
+        record = {
+            "name": "review",
+            "version": "1.0.0",
+            "path": str(database),
+            "semantic_root": verified.roots["semantic_root"],
+            "catalog_root": verified.roots["catalog_root"],
+            "pattern_count": 3,
+            "canonicalization": CANONICALIZATION_V3,
+        }
+        return database, record, verified.roots
+
+    def test_an_installed_library_whose_database_records_another_version_is_refused(self, tmp_path):
+        database, record, roots = self._installed(tmp_path)
+        assert verify_installed_library(record) == roots
+        with sqlite3.connect(database) as conn:
+            conn.execute("UPDATE store_settings SET value = '2'")
+        with pytest.raises(LibraryError, match="records canonicalization v2"):
+            verify_installed_library(record)
+
+    def test_a_database_that_lost_its_record_is_refused_for_a_v3_release(self, tmp_path):
+        database, record, _roots = self._installed(tmp_path)
+        with sqlite3.connect(database) as conn:
+            conn.execute("DROP TABLE store_settings")
+        with pytest.raises(LibraryError, match="records canonicalization v2"):
+            verify_installed_library(record)

@@ -136,6 +136,7 @@ def test_a_v3_workspace_refuses_an_older_upstream(tmp_path):
 
     assert not result["success"]
     assert "older than this workspace" in result["error"]
+    assert (result["canonicalization_before"], result["canonicalization_after"]) == (3, 3)
     assert workspace.read_bytes() == before
 
 
@@ -210,6 +211,7 @@ def test_a_pin_does_not_follow_a_parent_whose_content_changed(tmp_path):
 
     assert not result["success"]
     assert "strand ReviewChild" in result["error"]
+    assert (result["canonicalization_before"], result["canonicalization_after"]) == (2, 2)
     assert workspace.read_bytes() == before
 
 
@@ -239,6 +241,7 @@ def test_a_failed_migration_restores_the_old_canonicalization(tmp_path):
         result = _pull(upstream, workspace)
 
     assert not result["success"]
+    assert (result["canonicalization_before"], result["canonicalization_after"]) == (2, 2)
     store = GraphStore(str(workspace), enable_embeddings=False)
     assert store.canonicalization == CANONICALIZATION_V2
     assert {h: _identity(store, h) for h in old} == old
@@ -295,3 +298,17 @@ def test_a_pull_that_changes_nothing_keeps_no_snapshot(tmp_path):
     assert result["success"]
     assert (result["canonicalization_before"], result["canonicalization_after"]) == (3, 3)
     assert not Path(str(workspace) + ".pull_previous").exists()
+
+
+def test_a_dry_run_reports_the_version_the_pull_would_record(tmp_path):
+    upstream = _database(tmp_path / "upstream.db", CANONICALIZATION_V3)
+    workspace = _database(tmp_path / "workspace.db", CANONICALIZATION_V2, legacy=True)
+    with (
+        patch("sema.cli.main.get_default_db_path", return_value=str(workspace)),
+        patch("sema.cli.main.get_bundled_db_path", return_value=str(upstream)),
+        patch("sema.cli.main.is_bundled_db", return_value=False),
+    ):
+        result = update_db(dry_run=True)
+    assert result["success"]
+    assert (result["canonicalization_before"], result["canonicalization_after"]) == (2, 3)
+    assert GraphStore(str(workspace), enable_embeddings=False).canonicalization == 2

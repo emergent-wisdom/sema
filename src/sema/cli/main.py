@@ -1071,7 +1071,6 @@ def update_db(
         # Projected hashes in the preflight below use the version the pull will
         # write; the database records it only inside the atomic section.
         target_store.canonicalization = canonicalization_change
-        outcome["canonicalization_after"] = canonicalization_change
 
     # Pre-flight transitive pruning: an upstream pattern can't be minted if
     # one of its deps doesn't exist in either the target DB or this batch.
@@ -1206,6 +1205,10 @@ def update_db(
             if outcome["superseded_removed"]:
                 removed_now = {handle for handle, _successors in outcome["superseded_removed"]}
                 outcome["upstream_removed"] = sorted(set(outcome["upstream_removed"]) - removed_now)
+        if canonicalization_change is not None:
+            outcome["canonicalization_after"] = (
+                canonicalization_change  # what the pull would record
+            )
         outcome["success"] = True
         return outcome
 
@@ -1660,6 +1663,9 @@ def update_db(
     ]
     outcome["upstream_removed"] = list(upstream_removed)
     outcome["vocabulary_root_after"] = post_pull_root
+    if canonicalization_change is not None:
+        # Reported only now: a refused or rolled-back pull leaves the old version.
+        outcome["canonicalization_after"] = canonicalization_change
 
     outcome["success"] = True
     return outcome

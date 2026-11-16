@@ -47,7 +47,9 @@ other 562 keep their identities. The semantic-set and catalog roots change accor
   returns `HALT` with `CANONICALIZATION REQUIRED` until the peer's version is supplied. A v2 workspace, cooperative
   mode, and a call that only asks for the canonical hash behave as before.
 - `sema pull` reports `canonicalization_before` and `canonicalization_after`, and keeps its undo snapshot when the
-  canonicalization moved even if no identity did.
+  canonicalization moved even if no identity did. A refused or rolled-back pull reports the version it left in place.
+- An installed library is verified only if its database records the canonicalization its release declares, and a
+  workspace whose recorded canonicalization is unreadable or unsupported answers every handshake with `HALT`.
 - `scripts/test_hash_verification.py` takes `--canonicalization {2,3}` and `--all`;
   `scripts/rebuild_vocabulary.py` takes `--retarget-extends`.
 

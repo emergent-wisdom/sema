@@ -583,6 +583,20 @@ def database_canonicalization(path: Path) -> int:
         raise LibraryError(str(exc)) from exc
 
 
+def _require_recorded_canonicalization(path: Path, expected: int) -> None:
+    """The database must record the version its identities are verified under.
+
+    Verification recomputes identities under the release's version, while
+    whoever opens the database hashes under the version it records. If the two
+    differ, a verified library would be read under another rule.
+    """
+    recorded = database_canonicalization(path)
+    if recorded != expected:
+        raise LibraryError(
+            f"{path} records canonicalization v{recorded}, but its release uses v{expected}"
+        )
+
+
 def _database_patterns(path: Path) -> dict[str, dict]:
     uri = f"{path.expanduser().resolve().as_uri()}?mode=ro"
     try:
@@ -740,6 +754,7 @@ def verify_library_database(
     path: Path, verified: VerifiedLibrary, manifest: LibraryManifest
 ) -> None:
     """Verify a compiled DB against canonical JSON, including fresh hashes."""
+    _require_recorded_canonicalization(path, manifest.pattern_canonicalization)
     db_patterns = _database_patterns(path)
     db_verified = verify_library_patterns(db_patterns, manifest)
     if set(db_verified.patterns) != set(verified.patterns):
@@ -793,6 +808,7 @@ def verify_installed_library(record: dict[str, Any]) -> dict[str, Any]:
         ),
         pattern_count=int(record["pattern_count"]),
     )
+    _require_recorded_canonicalization(path, canonicalization)
     patterns = _database_patterns(path)
     verified = verify_library_patterns(patterns, manifest)
     return verified.roots
