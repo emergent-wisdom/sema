@@ -23,14 +23,17 @@
       "TraceBelief#7b8a",
       "Dialectic#26be"
     ],
-    "minted": "2026-10-05T21:30:54+02:00"
+    "minted": "2026-10-05T21:30:54+02:00",
+    "supersedes": [
+      "sema:Revisance#mh:SHA-256:73f113382fbaced95b63a99861b8ea1d5fae76ff2920857fdb6e187e4cb6aebc"
+    ]
   },
-  "sema_id": "sema:Revisance#mh:SHA-256:73f113382fbaced95b63a99861b8ea1d5fae76ff2920857fdb6e187e4cb6aebc",
-  "sema_ref": "Revisance#73f1",
-  "sema_stub": "73f1",
+  "sema_id": "sema:Revisance#mh:SHA-256:4fd542de3042702fa5835443a662bcc8f374b1dd6344f219a9f90405dc19f7be",
+  "sema_ref": "Revisance#4fd5",
+  "sema_stub": "4fd5",
   "dependencies": {
     "references": {
-      "belief_tracking": "sema:BeliefTracking#mh:SHA-256:c78d68a1f4fe92e2f284e489f6987bc42183245181c6710b9d0c9e582b054e13"
+      "belief_tracking": "sema:BeliefTracking#mh:SHA-256:e97803a5bd4ce346fc9a3e36fa427dae2cbdf7a4212cab843e8b09ec2184a8fe"
     }
   },
   "sema_layer": "Mind",

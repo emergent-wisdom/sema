@@ -47,16 +47,17 @@
       "sema:Vote#mh:SHA-256:05a759ba011ca83244099099274c4e69bac4b368000810fdb3096f8e740be1d9",
       "sema:Vote#mh:SHA-256:0affbbc722d42218027f581176be08d0a66c9a3dc99adbf94d411ef9fc38786c",
       "sema:Vote#mh:SHA-256:3b66510363464c335c95a843247ddd37bbb98616a17f6a8d4bb17b1ac91bd41c",
-      "sema:Vote#mh:SHA-256:d3cbfb3d419b84397dff409d2f83271e9bcb1b6c16b79b0b3629cbe72bd7f3a8"
+      "sema:Vote#mh:SHA-256:d3cbfb3d419b84397dff409d2f83271e9bcb1b6c16b79b0b3629cbe72bd7f3a8",
+      "sema:Vote#mh:SHA-256:84935dbc846bcd8fe2da01e9e04401f190769e87d0354e00c0986e43e414f300"
     ],
     "path": [
       "Society",
       "Coordination"
     ]
   },
-  "sema_id": "sema:Vote#mh:SHA-256:84935dbc846bcd8fe2da01e9e04401f190769e87d0354e00c0986e43e414f300",
-  "sema_ref": "Vote#8493",
-  "sema_stub": "8493",
+  "sema_id": "sema:Vote#mh:SHA-256:6ba4208c942c637524fe4461b98d12fcdaae97eac84b07ddaeff170a16761b53",
+  "sema_ref": "Vote#6ba4",
+  "sema_stub": "6ba4",
   "dependencies": {
     "accepts": {
       "ballot": "sema:Ballot#mh:SHA-256:e0e4a34b48dba4669e09b04c4b8c3202f95c878fc26c29480a298012753b1f3c"
@@ -65,7 +66,7 @@
       "quorum": "sema:Quorum#mh:SHA-256:2a33f05d34bfb2667645680393ca37865d4a7d05d2056eddf4c9df0c13b21744"
     },
     "references": {
-      "aggregate": "sema:Aggregate#mh:SHA-256:2db6858c061515fa2257c96f4a6e4392164e9a118adc6874c69cf2279b877077",
+      "aggregate": "sema:Aggregate#mh:SHA-256:bb809289d74615fd774f32704d3857a5e4d45480ad5b68de8f995e0c9e445d21",
       "break": "sema:Break#mh:SHA-256:5003e128ac02e7835d2094d72dc929ce4c96819b56ef167c2ca8da9f16aa402a",
       "elect": "sema:Elect#mh:SHA-256:53902a96572579889fc19d4c0100e7876fe566fba4cc846241e6b209b00bf52f",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"

@@ -30,6 +30,7 @@ FORCE_INCLUDE = {
     ".claude-plugin": "sema/.claude-plugin",
     "skills": "sema/skills",
     "docs/specification/canonicalization-v2-test-vectors.json": "sema/specification/canonicalization-v2-test-vectors.json",
+    "docs/specification/canonicalization-v3-test-vectors.json": "sema/specification/canonicalization-v3-test-vectors.json",
 }
 LICENSES = ("LICENSE", "LICENSE-CONTENT", "THIRD_PARTY_NOTICES.md")
 SDIST_ONLY = (

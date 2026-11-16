@@ -7,7 +7,7 @@ All audits below are **advisory**. Heuristic audits generate false positives; us
 Source: `sema.audit.hash_validity` (ok)
 
 ```text
-Checking hash validity for 617 patterns...
+Checking hash validity for 617 patterns (canonicalization v3)...
 
 All 617 hashes valid.
 ```

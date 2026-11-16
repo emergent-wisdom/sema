@@ -49,6 +49,7 @@ def release(tmp_path, monkeypatch, verifier):
         ".claude-plugin/plugin.json": b"{}",
         "skills/sema-usage/SKILL.md": b"Public instructions",
         "docs/specification/canonicalization-v2-test-vectors.json": b"[]",
+        "docs/specification/canonicalization-v3-test-vectors.json": b"[]",
     }
     frontend = {
         "index.html": b'<script src="/assets/viewer.js"></script>',
@@ -81,6 +82,7 @@ def release(tmp_path, monkeypatch, verifier):
         "sema/.claude-plugin/plugin.json": b"{}",
         "sema/skills/sema-usage/SKILL.md": b"Public instructions",
         "sema/specification/canonicalization-v2-test-vectors.json": b"[]",
+        "sema/specification/canonicalization-v3-test-vectors.json": b"[]",
     }
     sdist = dict(sources)
     for name, content in frontend.items():

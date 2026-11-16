@@ -22,14 +22,17 @@
       "FrameError#1d0a",
       "Uncertain#91b5"
     ],
-    "minted": "2026-10-05T21:48:40+02:00"
+    "minted": "2026-10-05T21:48:40+02:00",
+    "supersedes": [
+      "sema:Edgehold#mh:SHA-256:4035875c98ea481ce52f08cb3fab5d5960d2a815a608d045d5c57b05cd350e6d"
+    ]
   },
-  "sema_id": "sema:Edgehold#mh:SHA-256:4035875c98ea481ce52f08cb3fab5d5960d2a815a608d045d5c57b05cd350e6d",
-  "sema_ref": "Edgehold#4035",
-  "sema_stub": "4035",
+  "sema_id": "sema:Edgehold#mh:SHA-256:7073d657f22f062d35ff78685172c5f22a13f1641d88c6858e93730e88569bee",
+  "sema_ref": "Edgehold#7073",
+  "sema_stub": "7073",
   "dependencies": {
     "references": {
-      "regime_sense": "sema:RegimeSense#mh:SHA-256:50396d316674bf65b204938ee8cecc48cf294223cdb90c9789d6a72bb542cb07"
+      "regime_sense": "sema:RegimeSense#mh:SHA-256:8bba125c54467eac428d5257f67617a947a4041c04da0bdcb2ade774056b0e14"
     }
   },
   "sema_layer": "Mind",

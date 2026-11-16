@@ -259,7 +259,8 @@ inspection:
 
 ```json
 {
-  "manifest_schema": 1,
+  "manifest_schema": 2,
+  "canonicalization": 3,
   "name": "defi",
   "version": "1.0.0",
   "update_url": "https://github.com/acme/sema-defi/releases/latest/download/library.json",
@@ -287,6 +288,14 @@ All fields shown are required. The library `name` is a lowercase slug, and
 `version` has exactly the numeric `x.y.z` form. Missing or unknown fields,
 invalid types, unsupported artifact formats, unsupported root schemes, and
 malformed values are rejected.
+
+`canonicalization` names the version of the hashing rules the library's
+identities were computed under (specification §4.2), and installation checks
+every identity under that version. A manifest with `"manifest_schema": 1`
+has no such field and means canonicalization 2; libraries published that way
+keep installing. `sema package` writes schema 1 for a database on
+canonicalization 2 and schema 2 otherwise. Releases of `sema` before schema 2
+refuse a schema-2 manifest.
 
 The semantic root commits to the set of definitions. The catalog root also
 commits to the exact handle-to-definition bindings. Their scheme names travel

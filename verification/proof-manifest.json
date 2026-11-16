@@ -24,6 +24,7 @@
       "conformance_test": "src/sema/core/tests/test_handshake_contract.py",
       "assumptions": [
         "GraphWorkspace supplies normalized lookup and hash inputs",
+        "GraphWorkspace presents an identity as unavailable when a declared canonicalization differs in strict mode",
         "Python executes the conformance-tested decision kernel faithfully",
         "Cooperative prefix matches are drift signals, not proof-grade identity"
       ]

@@ -7,8 +7,8 @@ Covers:
 - MCP `sema_handshake(ref="vocab", ...)` in all three verdicts
   (PROVIDE_HASH / PROCEED / HALT)
 
-The handshake tests exercise the full code path — not just the algorithm —
-because the user specifically asked to make sure the handshake works.
+The handshake tests exercise the full code path, not just the algorithm,
+because the handshake is the check agents rely on.
 """
 
 import hashlib

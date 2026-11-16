@@ -670,7 +670,9 @@ class TestPullRealVocabulary(unittest.TestCase):
         for h, p in patterns.items():
             if h not in stored:
                 continue
-            computed = generate_sema_hash(p, lookup)["hash"]
+            computed = generate_sema_hash(p, lookup, canonicalization=store.canonicalization)[
+                "hash"
+            ]
             if computed != stored[h]:
                 mismatches.append(h)
 

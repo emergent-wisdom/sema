@@ -16,7 +16,10 @@ from typing import Any
 
 from .handshake import HandshakeMode, HandshakeVerdict, decide_handshake
 from .hashing import (
+    CANONICALIZATION_V2,
     HASH_ALGO,
+    SUPPORTED_CANONICALIZATIONS,
+    database_canonicalization,
     pattern_hash_from_sema_id,
     strict_json_loads,
     vocabulary_info,
@@ -364,9 +367,120 @@ class GraphWorkspace:
             bindings.append((handle, pattern_hash))
         return vocabulary_roots(bindings)
 
+    def _recorded_canonicalization(self) -> tuple[int | None, str | None]:
+        """The workspace's canonicalization, and the reason when its record cannot be used.
+
+        ``(None, None)`` means there is nothing to read: the workspace has no
+        database and its registry states no version. ``(None, reason)`` means a
+        record exists but is unreadable or names an unsupported version.
+        """
+        if self.db_path and os.path.isfile(self.db_path):
+            try:
+                return database_canonicalization(self.db_path), None
+            except ValueError as exc:
+                return None, str(exc)
+        return getattr(self.registry_manager, "canonicalization", None), None
+
+    @property
+    def canonicalization(self) -> int | None:
+        """The canonicalization this workspace's identities were computed under.
+
+        Read from the workspace database. ``None`` when the workspace has no
+        database to record it and its registry does not state one, or when the
+        record cannot be used; a handshake halts in the second case.
+        """
+        return self._recorded_canonicalization()[0]
+
+    def _canonicalization_mismatch(
+        self, your_canonicalization: Any, mode: HandshakeMode, *, comparing: bool
+    ) -> dict[str, Any] | None:
+        """Compare a peer's canonicalization with this workspace's.
+
+        A digest says nothing about how its definition was canonicalized, and
+        v2 does not bind placeholders to their targets, so two digests computed
+        under different versions do not establish the same thing.
+
+        A peer that declares nothing is on a release that predates the
+        declaration, and those hash under v2. Strict mode holds a comparison
+        (``comparing``: a hash was presented) to that, so a v3 workspace does
+        not accept an undeclared digest as proof; cooperative mode, and a
+        workspace with no recorded version, leave an undeclared peer alone.
+
+        Returns ``None`` when the versions agree or nothing is to be checked.
+        Otherwise it returns the fields that describe the mismatch: in strict
+        mode a HALT, decided by the kernel as an identity that is not available
+        for comparison, and in cooperative mode a warning to attach to the
+        verdict.
+        """
+        local = self.canonicalization
+        undeclared = your_canonicalization is None
+        declared = your_canonicalization
+        if undeclared:
+            if mode is not HandshakeMode.STRICT or not comparing or local is None:
+                return None
+            declared = CANONICALIZATION_V2
+        declared_ok = type(declared) is int and declared in SUPPORTED_CANONICALIZATIONS
+        if declared_ok and declared == local:
+            return None
+        if undeclared:
+            problem = (
+                "No canonicalization was declared for the presented hash, and a peer that "
+                f"declares none hashes under v{declared}; this workspace uses v{local}."
+            )
+        elif not declared_ok:
+            problem = f"The declared canonicalization {declared!r} is not supported."
+        elif local is None:
+            problem = "This workspace does not record a canonicalization to compare with."
+        else:
+            problem = (
+                f"The peer hashes under canonicalization v{declared}; this workspace uses v{local}."
+            )
+        note = (
+            f"{problem} Digests computed under different canonicalizations do not establish "
+            "the same thing: v2 does not bind placeholders to their targets."
+        )
+        mismatch: dict[str, Any] = {
+            "canonicalization": local,
+            "your_canonicalization": your_canonicalization,
+        }
+        if mode is not HandshakeMode.STRICT:
+            mismatch["warning"] = note
+            return mismatch
+        verdict = decide_handshake(
+            available=False,
+            presented_hash=None,
+            canonical_stub="",
+            canonical_full=None,
+            mode=mode,
+        )
+        if undeclared:
+            reason = "CANONICALIZATION REQUIRED"
+            remedy = (
+                "Call again with your_canonicalization set to the `canonicalization` in the "
+                "peer's answer. A peer whose answer has none must first move to this "
+                "workspace's canonicalization (`sema pull` from an upstream that uses it)."
+            )
+        else:
+            reason = "CANONICALIZATION MISMATCH"
+            remedy = (
+                "Move the older side to the newer canonicalization (`sema pull` from an "
+                "upstream that uses it), then compare again."
+            )
+        mismatch.update(
+            verdict=verdict.value,
+            reason=reason,
+            mode=mode.value,
+            action=f"DO NOT PROCEED. {note} {remedy}",
+        )
+        return mismatch
+
     def root_payload(self) -> dict[str, Any]:
         root = self.vocabulary_root()
+        canonicalization, unusable = self._recorded_canonicalization()
+        if unusable is not None:
+            raise ValueError(f"workspace canonicalization cannot be used: {unusable}")
         return {
+            "canonicalization": canonicalization,
             "full_sema_id": f"sema:vocab#mh:{HASH_ALGO}:{root['hash']}",
             "stub": root["stub"],
             "hash": root["hash"],
@@ -389,8 +503,60 @@ class GraphWorkspace:
         *,
         strict: bool = False,
         your_scheme: str | None = None,
+        your_canonicalization: int | None = None,
     ) -> dict[str, Any]:
+        """Compare a presented identity with this workspace's.
+
+        Every answer about a known identity carries this workspace's
+        ``canonicalization``. When the peer's differs, strict mode halts and
+        cooperative mode adds a warning to its verdict. Strict mode takes a
+        presented hash with no declared version as v2.
+        """
         mode = HandshakeMode.STRICT if strict else HandshakeMode.COOPERATIVE
+        result = self._handshake(ref, your_hash, mode=mode, your_scheme=your_scheme)
+        # Every answer about a known identity names its scope or its handle;
+        # an unknown pattern has neither and halts as it is.
+        named = {k: result[k] for k in ("scope", "handle", "root_scheme") if k in result}
+        if not named:
+            return result
+        unusable = self._recorded_canonicalization()[1]
+        if unusable is not None:
+            # The workspace cannot say how its own digests were computed, so no
+            # comparison against them establishes anything, in either mode.
+            verdict = decide_handshake(
+                available=False,
+                presented_hash=None,
+                canonical_stub="",
+                canonical_full=None,
+                mode=mode,
+            )
+            return {
+                **named,
+                "verdict": verdict.value,
+                "reason": "CANONICALIZATION UNREADABLE",
+                "canonicalization": None,
+                "mode": mode.value,
+                "action": (
+                    "DO NOT PROCEED. This workspace's recorded canonicalization cannot be "
+                    f"used ({unusable}). Repair or rebuild the database before comparing."
+                ),
+            }
+        comparing = result["verdict"] != HandshakeVerdict.PROVIDE_HASH.value
+        mismatch = self._canonicalization_mismatch(your_canonicalization, mode, comparing=comparing)
+        if mismatch is None:
+            return {**result, "canonicalization": self.canonicalization}
+        if "verdict" in mismatch:
+            return {**named, **mismatch}
+        return {**result, **mismatch}
+
+    def _handshake(
+        self,
+        ref: str,
+        your_hash: str | None,
+        *,
+        mode: HandshakeMode,
+        your_scheme: str | None,
+    ) -> dict[str, Any]:
         # A full written reference carries its own hash; your_hash, when
         # given, still takes precedence over it.
         name, ref_hash = split_handshake_ref(ref)

@@ -1,0 +1,151 @@
+{
+  "format": "sema-canonicalization-v3-test-vectors-v1",
+  "canonicalization": "semahash-v3",
+  "digest": "SHA-256",
+  "description": "Pattern identities under canonicalization v3 (specification section 4.2), which keeps each placeholder alias paired with its target. Every other rule is canonicalization v2 (see canonicalization-v2-test-vectors.json). v2_hash is the same input's digest under v2.",
+  "patterns": [
+    {
+      "name": "implied-pairings-match-v2",
+      "note": "Every alias names its own target and no two alias names fold alike, so every pairing is implied and the digest equals the v2 digest.",
+      "input_json": "{\"handle\":\"Steelman\",\"mechanism\":\"Scores with {{judge}}, tests with {{check}}.\",\"gloss\":\"g\",\"dependencies\":{\"composes_with\":{\"judge\":\"sema:Judge#mh:SHA-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"check\":\"sema:Check#mh:SHA-256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\"}}}",
+      "canonical_dependencies_json": "{\"composes_with\":{\"check\":\"sema:Check#mh:SHA-256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"judge\":\"sema:Judge#mh:SHA-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"}}",
+      "hash": "70f89b55f9752afdbc159a24b99809484120bbe0bf3bd524c5b138545a0ad4d5",
+      "full_id": "sema:Steelman#mh:SHA-256:70f89b55f9752afdbc159a24b99809484120bbe0bf3bd524c5b138545a0ad4d5",
+      "reference": "Steelman#70f8",
+      "stub": "70f8",
+      "v2_hash": "70f89b55f9752afdbc159a24b99809484120bbe0bf3bd524c5b138545a0ad4d5"
+    },
+    {
+      "name": "exchanged-targets",
+      "note": "The targets of the two aliases above are exchanged. Both pairings become explicit; v2 gives the same digest as above.",
+      "input_json": "{\"handle\":\"Steelman\",\"mechanism\":\"Scores with {{judge}}, tests with {{check}}.\",\"gloss\":\"g\",\"dependencies\":{\"composes_with\":{\"judge\":\"sema:Check#mh:SHA-256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"check\":\"sema:Judge#mh:SHA-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"}}}",
+      "canonical_dependencies_json": "{\"composes_with\":{\"@bindings\":{\"check\":\"sema:Judge#mh:SHA-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"judge\":\"sema:Check#mh:SHA-256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\"}}}",
+      "hash": "8bb173c2f05b7b9062b1aa3f473f79b66f3ee8605f6d22c27597bcb6e470b0ec",
+      "full_id": "sema:Steelman#mh:SHA-256:8bb173c2f05b7b9062b1aa3f473f79b66f3ee8605f6d22c27597bcb6e470b0ec",
+      "reference": "Steelman#8bb1",
+      "stub": "8bb1",
+      "v2_hash": "70f89b55f9752afdbc159a24b99809484120bbe0bf3bd524c5b138545a0ad4d5"
+    },
+    {
+      "name": "role-named-pairing",
+      "note": "A role name is explicit; a self-named alias beside it stays implied.",
+      "input_json": "{\"handle\":\"Weigh\",\"mechanism\":\"Combines {{weights}} with the {{judge}} score.\",\"gloss\":\"g\",\"dependencies\":{\"composes_with\":{\"weights\":\"sema:Vector#mh:SHA-256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc\",\"judge\":\"sema:Judge#mh:SHA-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"}}}",
+      "canonical_dependencies_json": "{\"composes_with\":{\"@bindings\":{\"weights\":\"sema:Vector#mh:SHA-256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc\"},\"judge\":\"sema:Judge#mh:SHA-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"}}",
+      "hash": "cdd73254373c2c7116b6010c6c5befe5d531fb8ee1c9508a7d8b6bee2c0faebc",
+      "full_id": "sema:Weigh#mh:SHA-256:cdd73254373c2c7116b6010c6c5befe5d531fb8ee1c9508a7d8b6bee2c0faebc",
+      "reference": "Weigh#cdd7",
+      "stub": "cdd7",
+      "v2_hash": "afef1669de04af2302a1c841913a9aff506f240ae2840604afa3962a1a05ef44"
+    },
+    {
+      "name": "one-handle-two-pins",
+      "note": "Two names that fold alike, bound to two versions of one handle: both explicit.",
+      "input_json": "{\"handle\":\"Compare\",\"mechanism\":\"Compares {{gate}} with {{ga_te}}.\",\"gloss\":\"g\",\"dependencies\":{\"references\":{\"gate\":\"sema:Gate#mh:SHA-256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\",\"ga_te\":\"sema:Gate#mh:SHA-256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee\"}}}",
+      "canonical_dependencies_json": "{\"references\":{\"@bindings\":{\"ga_te\":\"sema:Gate#mh:SHA-256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee\",\"gate\":\"sema:Gate#mh:SHA-256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\"}}}",
+      "hash": "463e1d9d63c9c9ccf4f84782559f115e4ff87f4865effb19d5fde2717449768a",
+      "full_id": "sema:Compare#mh:SHA-256:463e1d9d63c9c9ccf4f84782559f115e4ff87f4865effb19d5fde2717449768a",
+      "reference": "Compare#463e",
+      "stub": "463e",
+      "v2_hash": "ca3f7006ff496072baeb5c3ce9f57a2460b679f134e437e4f152e9ad8f9edb54"
+    },
+    {
+      "name": "handles-folding-alike",
+      "note": "Two names that fold alike, bound to two handles that fold alike: both explicit.",
+      "input_json": "{\"handle\":\"Pair\",\"mechanism\":\"Uses {{gate}} and {{ga_te}}.\",\"gloss\":\"g\",\"dependencies\":{\"references\":{\"gate\":\"sema:Gate#mh:SHA-256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\",\"ga_te\":\"sema:Ga_te#mh:SHA-256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff\"}}}",
+      "canonical_dependencies_json": "{\"references\":{\"@bindings\":{\"ga_te\":\"sema:Ga_te#mh:SHA-256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff\",\"gate\":\"sema:Gate#mh:SHA-256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\"}}}",
+      "hash": "b2cde7083ce0230b939005caa703553693f3b2920fd4db96b6c55ee25a496bf8",
+      "full_id": "sema:Pair#mh:SHA-256:b2cde7083ce0230b939005caa703553693f3b2920fd4db96b6c55ee25a496bf8",
+      "reference": "Pair#b2cd",
+      "stub": "b2cd",
+      "v2_hash": "2555fce45056874ed9ebcc4a868b08e4c28c268538a946422332bdad78f797d7"
+    },
+    {
+      "name": "names-folding-alike-across-categories",
+      "note": "Rule 4(c) covers the whole card: the two names fold alike, so both pairings are explicit although they sit in different categories.",
+      "input_json": "{\"handle\":\"Span\",\"mechanism\":\"Opens {{gate}} and closes {{ga_te}}.\",\"gloss\":\"g\",\"dependencies\":{\"composes_with\":{\"gate\":\"sema:Gate#mh:SHA-256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\"},\"references\":{\"ga_te\":\"sema:Ga_te#mh:SHA-256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff\"}}}",
+      "canonical_dependencies_json": "{\"composes_with\":{\"@bindings\":{\"gate\":\"sema:Gate#mh:SHA-256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\"}},\"references\":{\"@bindings\":{\"ga_te\":\"sema:Ga_te#mh:SHA-256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff\"}}}",
+      "hash": "092fa30431f1c7d4c891d71b218d5d5640eb8c89b056db916c00a118bcc0f704",
+      "full_id": "sema:Span#mh:SHA-256:092fa30431f1c7d4c891d71b218d5d5640eb8c89b056db916c00a118bcc0f704",
+      "reference": "Span#092f",
+      "stub": "092f",
+      "v2_hash": "cea6b214eff4438ad0e59673a470dc064e7fe10d8e906535c0e1b287b0a80d29"
+    },
+    {
+      "name": "exchanged-across-categories",
+      "note": "The two names above exchanged across the categories. v2 gives the same digest as above; v3 does not.",
+      "input_json": "{\"handle\":\"Span\",\"mechanism\":\"Opens {{gate}} and closes {{ga_te}}.\",\"gloss\":\"g\",\"dependencies\":{\"composes_with\":{\"ga_te\":\"sema:Gate#mh:SHA-256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\"},\"references\":{\"gate\":\"sema:Ga_te#mh:SHA-256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff\"}}}",
+      "canonical_dependencies_json": "{\"composes_with\":{\"@bindings\":{\"ga_te\":\"sema:Gate#mh:SHA-256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\"}},\"references\":{\"@bindings\":{\"gate\":\"sema:Ga_te#mh:SHA-256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff\"}}}",
+      "hash": "de4794f2f71bb832d244c1c1d80d32cdb236106d806383ff6ab33137721b406e",
+      "full_id": "sema:Span#mh:SHA-256:de4794f2f71bb832d244c1c1d80d32cdb236106d806383ff6ab33137721b406e",
+      "reference": "Span#de47",
+      "stub": "de47",
+      "v2_hash": "cea6b214eff4438ad0e59673a470dc064e7fe10d8e906535c0e1b287b0a80d29"
+    },
+    {
+      "name": "one-name-two-categories",
+      "note": "The same name declared in two categories is one name: both pairings stay implied.",
+      "input_json": "{\"handle\":\"Relay\",\"mechanism\":\"Takes a {{gate}} and returns it.\",\"gloss\":\"g\",\"dependencies\":{\"accepts\":{\"gate\":\"sema:Gate#mh:SHA-256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\"},\"yields\":{\"gate\":\"sema:Gate#mh:SHA-256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\"}}}",
+      "canonical_dependencies_json": "{\"accepts\":{\"gate\":\"sema:Gate#mh:SHA-256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\"},\"yields\":{\"gate\":\"sema:Gate#mh:SHA-256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\"}}",
+      "hash": "7876341b9082624821b8a40d2e44c866e172c0e2c2275e835f24b068a0bba161",
+      "full_id": "sema:Relay#mh:SHA-256:7876341b9082624821b8a40d2e44c866e172c0e2c2275e835f24b068a0bba161",
+      "reference": "Relay#7876",
+      "stub": "7876",
+      "v2_hash": "7876341b9082624821b8a40d2e44c866e172c0e2c2275e835f24b068a0bba161"
+    },
+    {
+      "name": "several-aliases-one-target",
+      "note": "Two role names for one target: both explicit, and their number is part of the digest.",
+      "input_json": "{\"handle\":\"Route\",\"mechanism\":\"Moves from {{entry_gate}} to {{exit_gate}}.\",\"gloss\":\"g\",\"dependencies\":{\"composes_with\":{\"entry_gate\":\"sema:Gate#mh:SHA-256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\",\"exit_gate\":\"sema:Gate#mh:SHA-256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\"}}}",
+      "canonical_dependencies_json": "{\"composes_with\":{\"@bindings\":{\"entry_gate\":\"sema:Gate#mh:SHA-256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\",\"exit_gate\":\"sema:Gate#mh:SHA-256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\"}}}",
+      "hash": "d070fec901a9eeb517f07861cc38908169071be590052f7a57ab0a005b3a6b17",
+      "full_id": "sema:Route#mh:SHA-256:d070fec901a9eeb517f07861cc38908169071be590052f7a57ab0a005b3a6b17",
+      "reference": "Route#d070",
+      "stub": "d070",
+      "v2_hash": "99b7fdfe078af7b8587d295c240723dcbab7bfc7e3150c7aea3851a57f338e8e"
+    },
+    {
+      "name": "self-named-among-several",
+      "note": "The self-named alias stays implied beside two role names for the same target.",
+      "input_json": "{\"handle\":\"Triple\",\"mechanism\":\"Compares {{gate}} with {{entry_gate}} and {{exit_gate}}.\",\"gloss\":\"g\",\"dependencies\":{\"composes_with\":{\"gate\":\"sema:Gate#mh:SHA-256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\",\"entry_gate\":\"sema:Gate#mh:SHA-256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\",\"exit_gate\":\"sema:Gate#mh:SHA-256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\"}}}",
+      "canonical_dependencies_json": "{\"composes_with\":{\"@bindings\":{\"entry_gate\":\"sema:Gate#mh:SHA-256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\",\"exit_gate\":\"sema:Gate#mh:SHA-256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\"},\"gate\":\"sema:Gate#mh:SHA-256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\"}}",
+      "hash": "b63ee7f37e5add368e87b2b83194d540b9cc326b8ac24fa3e447dee9c667f6c1",
+      "full_id": "sema:Triple#mh:SHA-256:b63ee7f37e5add368e87b2b83194d540b9cc326b8ac24fa3e447dee9c667f6c1",
+      "reference": "Triple#b63e",
+      "stub": "b63e",
+      "v2_hash": "2810d1fcce30a19fdef3e5e8430fcd118bd941da8f7de23c344ad5440065a2e6"
+    },
+    {
+      "name": "malformed-handle",
+      "note": "A handle that does not begin with a letter is not well formed, so the pairing is explicit although the names match.",
+      "input_json": "{\"handle\":\"Nine\",\"mechanism\":\"Counts {{9lives}}.\",\"gloss\":\"g\",\"dependencies\":{\"references\":{\"9lives\":\"9Lives#abcd\"}}}",
+      "canonical_dependencies_json": "{\"references\":{\"@bindings\":{\"9lives\":\"9Lives#abcd\"}}}",
+      "hash": "1606dcea6fd1ef8daf97aeeb1f8dea4e260a0e35c1029d3b017effbf60398a69",
+      "full_id": "sema:Nine#mh:SHA-256:1606dcea6fd1ef8daf97aeeb1f8dea4e260a0e35c1029d3b017effbf60398a69",
+      "reference": "Nine#1606",
+      "stub": "1606",
+      "v2_hash": "8feee315ed8fd21a66d3685179203838673f3cafa780390094cc4883d0375aea"
+    }
+  ],
+  "invalid": [
+    {
+      "name": "non-string-dependency-value",
+      "note": "v3 dependency values must be reference strings.",
+      "input_json": "{\"handle\":\"Bad\",\"mechanism\":\"Uses {{gate}}.\",\"gloss\":\"g\",\"dependencies\":{\"composes_with\":{\"gate\":5}}}"
+    },
+    {
+      "name": "alias-with-surrounding-whitespace",
+      "note": "The alias ends in a space. Object keys are normalized before hashing, so it would be hashed as judge, a name the pairing rule did not see.",
+      "input_json": "{\"handle\":\"Bad\",\"mechanism\":\"Asks the {{judge}}.\",\"gloss\":\"g\",\"dependencies\":{\"accepts\":{\"j_udge\":\"sema:Judge#mh:SHA-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"judge \":\"sema:Other#mh:SHA-256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\"}}}"
+    },
+    {
+      "name": "alias-not-in-nfc",
+      "note": "The alias is e followed by U+0301 COMBINING ACUTE ACCENT, which NFC composes into U+00E9.",
+      "input_json": "{\"handle\":\"Bad\",\"mechanism\":\"Asks the {{judge}}.\",\"gloss\":\"g\",\"dependencies\":{\"references\":{\"e\\u0301\":\"sema:Other#mh:SHA-256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\"}}}"
+    },
+    {
+      "name": "alias-kelvin-sign",
+      "note": "The alias begins with U+212A KELVIN SIGN, which NFC replaces with the letter K, so the alias is not a normalized string.",
+      "input_json": "{\"handle\":\"Kelvin\",\"mechanism\":\"Reads the \\u212aey.\",\"gloss\":\"g\",\"dependencies\":{\"references\":{\"\\u212aey\":\"sema:Key#mh:SHA-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"}}}"
+    }
+  ]
+}

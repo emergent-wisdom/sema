@@ -21,14 +21,17 @@
       "Askwiden",
       "Twinread"
     ],
-    "minted": "2026-10-05T21:48:40+02:00"
+    "minted": "2026-10-05T21:48:40+02:00",
+    "supersedes": [
+      "sema:Crossborn#mh:SHA-256:814f8269f79aa796377517db26fbbba3c8be6ea694581b2e07549bd5704f671b"
+    ]
   },
-  "sema_id": "sema:Crossborn#mh:SHA-256:814f8269f79aa796377517db26fbbba3c8be6ea694581b2e07549bd5704f671b",
-  "sema_ref": "Crossborn#814f",
-  "sema_stub": "814f",
+  "sema_id": "sema:Crossborn#mh:SHA-256:8304b2ce74fe2c07cacc140bd927ae04113a50afe520572540a71d733e65308c",
+  "sema_ref": "Crossborn#8304",
+  "sema_stub": "8304",
   "dependencies": {
     "references": {
-      "perspective_ensemble": "sema:PerspectiveEnsemble#mh:SHA-256:4afd1d6c7abb339c91b3bd94f791e2f57638e9a8c5431757d2c7ae1d6ce8545d"
+      "perspective_ensemble": "sema:PerspectiveEnsemble#mh:SHA-256:bf6d57ac23c47fa1ae54be9e4f9e0290c97a7af9f0b86e1c8aa8b8320d9a522c"
     }
   },
   "sema_layer": "Mind",

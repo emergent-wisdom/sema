@@ -22,14 +22,17 @@
       "Reasoncommons",
       "Doubtshelter"
     ],
-    "minted": "2026-10-05T21:48:40+02:00"
+    "minted": "2026-10-05T21:48:40+02:00",
+    "supersedes": [
+      "sema:Mosaicmap#mh:SHA-256:c51dc7e9da06f179541c49bfc2c8726922a6a72b871ad123ba832af7704d3a9d"
+    ]
   },
-  "sema_id": "sema:Mosaicmap#mh:SHA-256:c51dc7e9da06f179541c49bfc2c8726922a6a72b871ad123ba832af7704d3a9d",
-  "sema_ref": "Mosaicmap#c51d",
-  "sema_stub": "c51d",
+  "sema_id": "sema:Mosaicmap#mh:SHA-256:4cffed015df58ad88627242ff08b236ad4674616b58fec502f865221a9704104",
+  "sema_ref": "Mosaicmap#4cff",
+  "sema_stub": "4cff",
   "dependencies": {
     "references": {
-      "holographic_shard": "sema:HolographicShard#mh:SHA-256:6e067dcfaca5b7d656f6de48b083cd44862ea18b45c1daa5cfa3eccd751f0d02"
+      "holographic_shard": "sema:HolographicShard#mh:SHA-256:7ac933aea2cb1885dd4cb1e92765c4bb5a1c97f44c3706abe106e6c2e6d0e4c2"
     }
   },
   "sema_layer": "Society",

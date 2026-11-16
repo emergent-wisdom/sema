@@ -13,22 +13,23 @@
       "sema:ConsensusFinder#mh:SHA-256:1c5d954ef53633228e32d5e237a7c2d372d48e6fcaefda775589c952e457eafa",
       "sema:ConsensusFinder#mh:SHA-256:c6fa491bb64048866873baff4398d1519ec3ac4fd40db0b1e281196c1482bcd9",
       "sema:ConsensusFinder#mh:SHA-256:980a543f6683878c7800e1d4db41bad49017a47f33b924a63e52e1115c7a06dd",
-      "sema:ConsensusFinder#mh:SHA-256:d4066820a61095195d1231c4352b7559b0dcd495018a28e9c070018695da0bb7"
+      "sema:ConsensusFinder#mh:SHA-256:d4066820a61095195d1231c4352b7559b0dcd495018a28e9c070018695da0bb7",
+      "sema:ConsensusFinder#mh:SHA-256:cbb7008c04a31f627c94eaeb135e9a14f7e57085fe84ae9941e49d3204ff5190"
     ],
     "path": [
       "Society",
       "Coordination"
     ]
   },
-  "sema_id": "sema:ConsensusFinder#mh:SHA-256:cbb7008c04a31f627c94eaeb135e9a14f7e57085fe84ae9941e49d3204ff5190",
-  "sema_ref": "ConsensusFinder#cbb7",
-  "sema_stub": "cbb7",
+  "sema_id": "sema:ConsensusFinder#mh:SHA-256:daada88daceb1f507db1e8c9ad04421a8d264d8d759c2275b82bf0da27b70f20",
+  "sema_ref": "ConsensusFinder#daad",
+  "sema_stub": "daad",
   "signature": [
     "Discover(Consensus)"
   ],
   "dependencies": {
     "references": {
-      "consensus": "sema:Consensus#mh:SHA-256:b9a51a8b58edf41b9990f962ee403dbc03c6dd380d6bf178cf5403666ec77d32",
+      "consensus": "sema:Consensus#mh:SHA-256:01ac4767cb432556d48461ff65dc553651ec559f28b7e438d55a292ea0c6106e",
       "discover": "sema:Discover#mh:SHA-256:f6e09de2a5b38c031651d22539fafaa46e32869b06dae8009bde18cb249da69b",
       "quorum": "sema:Quorum#mh:SHA-256:2a33f05d34bfb2667645680393ca37865d4a7d05d2056eddf4c9df0c13b21744",
       "resonate": "sema:Resonate#mh:SHA-256:786d8bf55b013d0405e49f2cab6a084e45fdc4507f7394fd6cff99354bc87aad"

@@ -11,7 +11,8 @@
     "supersedes": [
       "sema:StyleSpec#mh:SHA-256:ec7bae21530d0d22601723e69b9a9a5d0a0cbe26ad8814539a10c800bec37928",
       "sema:StyleSpec#mh:SHA-256:08003149b098fcb0c5dc93eda6111254cb101969d9576f5c592284286b12b3eb",
-      "sema:StyleSpec#mh:SHA-256:225dbf07d4721115a98a58a1db740455b8307ec45d54df3934f52d59e39aa64a"
+      "sema:StyleSpec#mh:SHA-256:225dbf07d4721115a98a58a1db740455b8307ec45d54df3934f52d59e39aa64a",
+      "sema:StyleSpec#mh:SHA-256:ee8fe8b71b71c5612c93edeb3718786076458eab061989fc99ba0335909275b1"
     ],
     "path": [
       "Infrastructure",
@@ -39,13 +40,13 @@
       }
     }
   },
-  "sema_ref": "StyleSpec#ee8f",
-  "sema_id": "sema:StyleSpec#mh:SHA-256:ee8fe8b71b71c5612c93edeb3718786076458eab061989fc99ba0335909275b1",
-  "sema_stub": "ee8f",
+  "sema_ref": "StyleSpec#00a3",
+  "sema_id": "sema:StyleSpec#mh:SHA-256:00a327cf91f7e5b428ad319f96a2ceb57069126a0924d7da8049dd3506e20a2a",
+  "sema_stub": "00a3",
   "dependencies": {
     "references": {
       "aesthetics": "sema:Aesthetics#mh:SHA-256:6f6de47c2320dbffb7fb264ddeddbedaed8017e8601a6ffd50826e10e5d24a67",
-      "phased_refinement": "sema:PhasedRefinement#mh:SHA-256:a263384b14c029d80cb3cc3c0b7a8a87b2c63f6307a55ac2c0f82ad2f86779e4",
+      "phased_refinement": "sema:PhasedRefinement#mh:SHA-256:54f23b7e6f3657988dffc1ec8b3df73f08b1f54849d20fa4a71ea203ff49f492",
       "spec": "sema:Spec#mh:SHA-256:c9537551b2bfa2639c15270994fdbb5a52a41d098f499c5ed5d61945a7c50da7"
     }
   },

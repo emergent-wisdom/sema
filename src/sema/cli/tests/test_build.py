@@ -180,3 +180,40 @@ def test_empty_build_keeps_database_and_explains_registration_failure(tmp_path, 
     assert f"SEMA_DB_PATH={destination_db}" in output
     assert "✅ Built" not in output
     assert destination_db.exists()
+
+
+def test_selective_build_keeps_the_source_canonicalization(tmp_path):
+    """Identities are copied, not recomputed, so the copy is checked under the source's version."""
+    import sqlite3
+
+    from sema.cli.main import _verify_hashes
+
+    source_db = tmp_path / "source.db"
+    selection_file = tmp_path / "patterns.txt"
+    source = GraphStore(str(source_db))
+    source.embedding_service.get_embedding = lambda _text: np.zeros(384, dtype=np.float32)
+    source.set_canonicalization(2)
+    score = _card("Score")
+    assert source.add_pattern(score)["success"] is True
+    review = {
+        **_card("Review"),
+        "mechanism": "Rates a proposal with {{rating}}.",
+        "dependencies": {"composes_with": {"rating": score["sema_id"]}},
+    }
+    assert source.add_pattern(review)["success"] is True
+    selection_file.write_text("Review\n")
+
+    for name, legacy in (("recorded.db", False), ("legacy.db", True)):
+        if legacy:
+            # A database written before the setting existed carries no record.
+            with sqlite3.connect(source_db) as conn:
+                conn.execute("DROP TABLE store_settings")
+        destination_db = tmp_path / name
+        with patch("sema.cli.main.register_db"):
+            assert build_db(
+                str(destination_db), patterns_file=str(selection_file), source_db=str(source_db)
+            )
+        built = GraphStore(str(destination_db))
+        assert built.canonicalization == 2
+        assert built._get_pattern_content("Review")["sema_id"] == review["sema_id"]
+        assert _verify_hashes(str(destination_db)) == []

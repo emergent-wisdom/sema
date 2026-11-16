@@ -16,18 +16,19 @@
     ],
     "supersedes": [
       "sema:GraphOfThought#mh:SHA-256:ccee7b6c5ea42d243d5921a7dfbf074ef9aba5212cff0714e4ce9019077c907d",
-      "sema:GraphOfThought#mh:SHA-256:d1d584dba2c12ecbe922171f0519cc97d54fd4b04ffe8d2810122480e64c38b9"
+      "sema:GraphOfThought#mh:SHA-256:d1d584dba2c12ecbe922171f0519cc97d54fd4b04ffe8d2810122480e64c38b9",
+      "sema:GraphOfThought#mh:SHA-256:aff044b7909bc26511c42ece0cf090bd4d1f82431a5728e94fedcd2ad9733160"
     ]
   },
   "signature": [
     "Think(DAG)"
   ],
-  "sema_id": "sema:GraphOfThought#mh:SHA-256:aff044b7909bc26511c42ece0cf090bd4d1f82431a5728e94fedcd2ad9733160",
-  "sema_ref": "GraphOfThought#aff0",
-  "sema_stub": "aff0",
+  "sema_id": "sema:GraphOfThought#mh:SHA-256:220a276fa1e3f9d6da5e5605b234003ed952eba67f83788962dd567fd56efdaa",
+  "sema_ref": "GraphOfThought#220a",
+  "sema_stub": "220a",
   "dependencies": {
     "composes_with": {
-      "d_a_g": "sema:DAG#mh:SHA-256:ed5b6bdbe8d785f1dceb6cc1c7020d9c2340be7b507a3678da2da58211e455aa",
+      "d_a_g": "sema:DAG#mh:SHA-256:0c8ae9f4ab979af72ccf01ea840861e6e8473459598901236faf05294d5cb22b",
       "think": "sema:Think#mh:SHA-256:5177aa242fffd16d7ed24e5f8c3e0d5e86c5a26e299cc2d4b8a07f4756126025"
     }
   },
