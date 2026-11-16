@@ -13,7 +13,7 @@ them from prompt context.
   authored commits. GitHub-created merge commits may use the account's noreply
   address; merge locally when every commit must use the organization address.
 - Website and frontend experiments must remain on an isolated branch and
-  staging service until Henrik explicitly approves production deployment.
+  staging service until the maintainer explicitly approves production deployment.
 - Paper typography or stylesheet work must remain separate from semantic paper
   updates unless visual redesign is the stated scope.
 - Any change that touches `paper/` must be built with `scripts/compile_paper.sh`,
@@ -73,7 +73,7 @@ earlier one.
 resolve to no pattern. It covers backticked names and multi-part CamelCase; single
 bare capitalised words are not detectable, for reasons measured in its docstring.
 Resolving a name is mechanical, but deciding whether to mint, redirect or
-lowercase is not — that is Henrik's call.
+lowercase is not — that is the maintainer's call.
 
 General handles contain only the broad-use intersection. Put qualitatively
 different strategies in descendants, quantitative identity axes in parameters,
@@ -434,7 +434,7 @@ are what to hold a card against; none is detectable by a validator today.
   `Deep` and `DeepResearch` both contrast against `Broad`, which does not exist —
   `BreadthGovernor` limits fan-out and is not the axis — leaving `Deep` as half
   of a declared pair. Resolving one is mechanical; the response is not. Minting
-  the counterpart is a naming decision and belongs to Henrik, so describe the
+  the counterpart is a naming decision and belongs to the maintainer, so describe the
   missing side in prose, and flag it.
 
 Before minting anything, satisfy the library's own gates and this repository's
