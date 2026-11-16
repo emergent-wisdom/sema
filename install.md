@@ -38,7 +38,7 @@ Ask your agent:
 
 > Search sema for coordination patterns
 
-You should see results like `Consensus#b9a5`, `Vote#8493`, `StateLock#c9c2`.
+You should see results like `Consensus#01ac`, `Vote#6ba4`, `StateLock#c9c2`.
 
 ## Tools available
 

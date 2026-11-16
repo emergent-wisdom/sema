@@ -148,6 +148,7 @@ class GraphStore:
         self._init_tables()
         self._migrate_schema()
         self._load_graph()
+        self.canonicalization = self._load_canonicalization()
 
     def _connect(self) -> sqlite3.Connection:
         """Open a connection with integrity enforcement enabled.
@@ -211,6 +212,69 @@ class GraphStore:
 
         conn.commit()
         conn.close()
+
+    _CANONICALIZATION_KEY = "pattern_canonicalization"
+
+    def _load_canonicalization(self) -> int:
+        """The canonicalization this database's identities were computed under.
+
+        Recorded in ``store_settings``. A database without the record that
+        already holds patterns predates the setting and is v2, and is left
+        untouched; a new, empty database takes the current default and records
+        it.
+        """
+        from ..core.hashing import DEFAULT_CANONICALIZATION, check_canonicalization
+
+        conn = self._connect()
+        try:
+            has_table = conn.execute(
+                "SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = 'store_settings'"
+            ).fetchone()
+            row = (
+                conn.execute(
+                    "SELECT value FROM store_settings WHERE key = ?",
+                    (self._CANONICALIZATION_KEY,),
+                ).fetchone()
+                if has_table
+                else None
+            )
+        finally:
+            conn.close()
+        if row is not None:
+            try:
+                return check_canonicalization(int(row[0]))
+            except ValueError as exc:
+                raise ValueError(f"{self.db_path}: {exc}") from exc
+        if self._handle_to_id:
+            return 2
+        try:
+            self.set_canonicalization(DEFAULT_CANONICALIZATION)
+        except sqlite3.OperationalError as exc:
+            # A read-only database cannot record it, and cannot gain patterns either.
+            if "readonly" not in str(exc):
+                raise
+        return DEFAULT_CANONICALIZATION
+
+    def set_canonicalization(self, canonicalization: int) -> None:
+        """Record the canonicalization this database's identities use."""
+        from ..core.hashing import check_canonicalization
+
+        version = check_canonicalization(canonicalization)
+        conn = self._connect()
+        try:
+            conn.execute(
+                "CREATE TABLE IF NOT EXISTS store_settings "
+                "(key TEXT PRIMARY KEY, value TEXT NOT NULL)"
+            )
+            conn.execute(
+                "INSERT INTO store_settings (key, value) VALUES (?, ?) "
+                "ON CONFLICT(key) DO UPDATE SET value = excluded.value",
+                (self._CANONICALIZATION_KEY, str(version)),
+            )
+            conn.commit()
+        finally:
+            conn.close()
+        self.canonicalization = version
 
     def _migrate_schema(self):
         """Add columns/constraints to existing DBs that pre-date them. Idempotent."""
@@ -771,7 +835,9 @@ class GraphStore:
         # Before any graph mutation, independently prove that the actual
         # handle-free semantic object has a canonical Merkle representation.
         try:
-            validate_semantic_hash_input(solution, self.get_pattern_hash)
+            validate_semantic_hash_input(
+                solution, self.get_pattern_hash, canonicalization=self.canonicalization
+            )
         except ValueError as exc:
             return {"success": False, "error": f"Invalid canonical JSON: {exc}"}
 
@@ -788,7 +854,9 @@ class GraphStore:
                     "pattern"
                 ) or {}
                 current_parent_ref = current_parent.get("sema_id")
-            prospective_parent_ref = generate_sema_hash(solution, self.get_pattern_hash)["full_id"]
+            prospective_parent_ref = generate_sema_hash(
+                solution, self.get_pattern_hash, canonicalization=self.canonicalization
+            )["full_id"]
             if prospective_parent_ref != current_parent_ref:
                 return {
                     "success": False,
@@ -1502,7 +1570,7 @@ class GraphStore:
         def hash_lookup(dep_handle: str) -> str | None:
             return self.get_pattern_hash(dep_handle)
 
-        return generate_sema_hash(pattern, hash_lookup)
+        return generate_sema_hash(pattern, hash_lookup, canonicalization=self.canonicalization)
 
     def _cascade_dependents(self, handle: str, visited: set | None = None) -> dict[str, Any]:
         """Update hashes of all patterns that transitively depend on the given handle.
@@ -1535,6 +1603,19 @@ class GraphStore:
                     affected.add(dep_handle)
                     queue.append(dep_handle)
 
+        return {"updated": self._rehash_in_dependency_order(affected)}
+
+    def rehash_all(self) -> list[str]:
+        """Recompute every pattern's identity under this database's canonicalization.
+
+        Used when a database moves to another canonicalization: every stored
+        identity is recomputed, dependencies before dependents, and the
+        handles whose identity changed are returned.
+        """
+        return self._rehash_in_dependency_order(set(self._handle_to_id))
+
+    def _rehash_in_dependency_order(self, affected: set[str]) -> list[str]:
+        """Recompute the identities of ``affected``, each after its in-set dependencies."""
         # Kahn's algorithm over the in-set dependency relation: an edge
         # Q -> P (P depends on Q) means Q must be recomputed before P.
         in_degree = dict.fromkeys(affected, 0)
@@ -1576,7 +1657,7 @@ class GraphStore:
                 self._update_pattern_metadata(dep_handle, dep_content)
                 updated.append(dep_handle)
 
-        return {"updated": updated}
+        return updated
 
     def update_pattern_with_cascade(
         self, handle: str, new_content: dict[str, Any]

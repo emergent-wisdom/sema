@@ -164,14 +164,19 @@ class TestDependencyAliasCanonicalization:
         )
         assert one["hash"] != two["hash"]
 
-    def test_alias_spelling_does_not_change_the_hash(self):
+    def test_alias_spelling_does_not_change_the_v2_hash(self):
+        """A v2 property; v3 keeps the pairing (test_placeholder_bindings.py)."""
         base = {"handle": "P", "mechanism": "m", "gloss": "g"}
         lookup = {"Gate": "f" * 64}.get
         mine = generate_sema_hash(
-            {**base, "dependencies": {"references": {"my_gate": "Gate"}}}, lookup
+            {**base, "dependencies": {"references": {"my_gate": "Gate"}}},
+            lookup,
+            canonicalization=2,
         )
         yours = generate_sema_hash(
-            {**base, "dependencies": {"references": {"the_gate": "Gate"}}}, lookup
+            {**base, "dependencies": {"references": {"the_gate": "Gate"}}},
+            lookup,
+            canonicalization=2,
         )
         assert mine["hash"] == yours["hash"]
 

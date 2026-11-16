@@ -26,7 +26,14 @@ from urllib.request import url2pathname
 
 import httpx
 from platformdirs import user_data_dir
-from pydantic import BaseModel, ConfigDict, Field, ValidationError, field_validator
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    ValidationError,
+    field_validator,
+    model_validator,
+)
 
 from .dependencies import (
     get_dependencies_handles,
@@ -35,18 +42,23 @@ from .dependencies import (
     validate_layer_direction,
 )
 from .hashing import (
+    CANONICALIZATION_V2,
     CATALOG_ROOT_SCHEME,
     SEMANTIC_ROOT_SCHEME,
+    check_canonicalization,
     generate_sema_hash,
     pattern_hash_from_sema_id,
     strict_json_loads,
     vocabulary_roots,
 )
+from .hashing import (
+    database_canonicalization as recorded_canonicalization,
+)
 from .mint import mint_pattern
 from .registry import get_configured_active_db, get_library, register_library, set_active_db
 from .validator import clean_handle, validate_pattern
 
-MANIFEST_SCHEMA = 1
+MANIFEST_SCHEMA = 2
 PATTERN_ARCHIVE_FORMAT = "sema-patterns-zip-v1"
 
 MAX_MANIFEST_BYTES = 256 * 1024
@@ -114,13 +126,32 @@ class LibraryRoots(_StrictModel):
 
 
 class LibraryManifest(_StrictModel):
-    manifest_schema: Literal[1]
+    manifest_schema: Literal[1, 2]
     name: str
     version: str
     update_url: str = Field(min_length=1)
     patterns: PatternArtifact
     roots: LibraryRoots
     pattern_count: int = Field(gt=0, le=MAX_PATTERN_COUNT)
+    # Schema 2 declares the pattern canonicalization its identities use. A
+    # schema-1 manifest predates the field and is canonicalization v2.
+    canonicalization: int | None = None
+
+    @model_validator(mode="after")
+    def validate_canonicalization(self) -> LibraryManifest:
+        if self.manifest_schema == 1:
+            if self.canonicalization is not None:
+                raise ValueError("a schema-1 manifest cannot declare a canonicalization")
+        else:
+            if self.canonicalization is None:
+                raise ValueError("a schema-2 manifest must declare its canonicalization")
+            check_canonicalization(self.canonicalization)
+        return self
+
+    @property
+    def pattern_canonicalization(self) -> int:
+        """The canonicalization this release's identities were computed under."""
+        return CANONICALIZATION_V2 if self.canonicalization is None else self.canonicalization
 
     @field_validator("name")
     @classmethod
@@ -140,10 +171,17 @@ class LibraryManifest(_StrictModel):
 class VerifiedLibrary:
     """Validated, normalized pattern corpus and its computed identities."""
 
-    def __init__(self, patterns: dict[str, dict], order: list[str], roots: dict[str, Any]):
+    def __init__(
+        self,
+        patterns: dict[str, dict],
+        order: list[str],
+        roots: dict[str, Any],
+        canonicalization: int = CANONICALIZATION_V2,
+    ):
         self.patterns = patterns
         self.order = order
         self.roots = roots
+        self.canonicalization = canonicalization
 
 
 @dataclass(frozen=True)
@@ -497,7 +535,9 @@ def verify_library_patterns(
                 )
 
         try:
-            identity = generate_sema_hash(pattern, computed_hashes.get)
+            identity = generate_sema_hash(
+                pattern, computed_hashes.get, canonicalization=manifest.pattern_canonicalization
+            )
         except ValueError as exc:
             raise LibraryError(f"Could not hash {handle}: {exc}") from exc
         supplied_id = pattern.get("sema_id")
@@ -532,7 +572,15 @@ def verify_library_patterns(
             "Catalog root mismatch: "
             f"expected {manifest.roots.catalog.sha256}, computed {roots['catalog_root']}"
         )
-    return VerifiedLibrary(normalized, order, roots)
+    return VerifiedLibrary(normalized, order, roots, manifest.pattern_canonicalization)
+
+
+def database_canonicalization(path: Path) -> int:
+    """The canonicalization a store database records; v2 when it predates the record."""
+    try:
+        return recorded_canonicalization(path)
+    except ValueError as exc:
+        raise LibraryError(str(exc)) from exc
 
 
 def _database_patterns(path: Path) -> dict[str, dict]:
@@ -714,8 +762,16 @@ def verify_installed_library(record: dict[str, Any]) -> dict[str, Any]:
     missing = [field for field in required if record.get(field) in {None, ""}]
     if missing:
         raise LibraryError(f"Installed library record is missing: {', '.join(missing)}")
+    # Records written before canonicalization v3 carry no version: they are v2.
+    try:
+        canonicalization = check_canonicalization(
+            record.get("canonicalization", CANONICALIZATION_V2)
+        )
+    except ValueError as exc:
+        raise LibraryError(f"Installed library record: {exc}") from exc
     manifest = LibraryManifest(
-        manifest_schema=1,
+        manifest_schema=MANIFEST_SCHEMA,
+        canonicalization=canonicalization,
         name=str(record["name"]),
         version=str(record["version"]),
         update_url=str(record.get("update_url") or path.as_uri()),
@@ -747,6 +803,7 @@ def build_library_database(verified: VerifiedLibrary, destination: Path) -> None
     from ..taxonomy_graph.graph_store import GraphStore
 
     store = GraphStore(str(destination), enable_embeddings=False)
+    store.set_canonicalization(verified.canonicalization)
     handles = set(verified.patterns)
     for handle in verified.order:
         candidate = copy.deepcopy(verified.patterns[handle])
@@ -783,7 +840,8 @@ def build_library_database(verified: VerifiedLibrary, destination: Path) -> None
 def _manifest_for_verified(verified: VerifiedLibrary) -> LibraryManifest:
     """Create an identity-only manifest used for post-build corpus verification."""
     return LibraryManifest(
-        manifest_schema=1,
+        manifest_schema=MANIFEST_SCHEMA,
+        canonicalization=verified.canonicalization,
         name="verification",
         version="0.0.0",
         update_url=Path.cwd().as_uri(),
@@ -984,8 +1042,16 @@ def package_library(
         staged_archive = staging / archive_name
         _write_pattern_archive(staged_archive, pattern_bytes)
         archive_bytes = staged_archive.read_bytes()
+        # A v2 library needs nothing schema 2 adds, and a schema-1 manifest also
+        # installs with releases that predate schema 2; only a v3 library declares.
+        canonicalization = database_canonicalization(source)
+        declared = (
+            {"manifest_schema": 1}
+            if canonicalization == CANONICALIZATION_V2
+            else {"manifest_schema": MANIFEST_SCHEMA, "canonicalization": canonicalization}
+        )
         manifest_data = {
-            "manifest_schema": MANIFEST_SCHEMA,
+            **declared,
             "name": name,
             "version": version,
             "update_url": update_url,
@@ -1149,6 +1215,7 @@ def _install_loaded_manifest(
             "catalog_root": verified.roots["catalog_root"],
             "catalog_root_scheme": verified.roots["catalog_root_scheme"],
             "pattern_count": len(verified.patterns),
+            "canonicalization": verified.canonicalization,
             "database_source": "generated",
         }
         if registry_url is not None:

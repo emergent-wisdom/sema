@@ -36,16 +36,17 @@
       "sema:NormativeJudge#mh:SHA-256:2316a736f6aa6939da6a9d20e0a1103958d0241ab103f5de8a0e61fba5d9e87a",
       "sema:NormativeJudge#mh:SHA-256:bd4eceb5c9c9bda592351cd95294bf43b6fa46b249594384dc15e5887c04f3e1",
       "sema:NormativeJudge#mh:SHA-256:598646fa29fe22ba89f08763b692861d081c6e76f3531d63a8b644623e4f722e",
-      "sema:NormativeJudge#mh:SHA-256:65d8e53838572b8f4e45ff019b7ee5771c799e859840497ca55cbb2ceb98854c"
+      "sema:NormativeJudge#mh:SHA-256:65d8e53838572b8f4e45ff019b7ee5771c799e859840497ca55cbb2ceb98854c",
+      "sema:NormativeJudge#mh:SHA-256:684f219181e9180ffea6b4ff2947dbdb9d37a12ae690c02c088f58881f9e0726"
     ],
     "path": [
       "Mind",
       "Inference"
     ]
   },
-  "sema_id": "sema:NormativeJudge#mh:SHA-256:684f219181e9180ffea6b4ff2947dbdb9d37a12ae690c02c088f58881f9e0726",
-  "sema_ref": "NormativeJudge#684f",
-  "sema_stub": "684f",
+  "sema_id": "sema:NormativeJudge#mh:SHA-256:b843fda7056db0e5647cca7522b306dd868a02a43e2d425566455f5c17950ed6",
+  "sema_ref": "NormativeJudge#b843",
+  "sema_stub": "b843",
   "signature": [
     "Judge(Value)"
   ],
@@ -54,7 +55,7 @@
       "weights": "sema:Vector#mh:SHA-256:426835100cd1b60d25e87518ba77200fc7b7ec87b917448e09fc03b1087f6993"
     },
     "composes_with": {
-      "perspective_ensemble": "sema:PerspectiveEnsemble#mh:SHA-256:4afd1d6c7abb339c91b3bd94f791e2f57638e9a8c5431757d2c7ae1d6ce8545d"
+      "perspective_ensemble": "sema:PerspectiveEnsemble#mh:SHA-256:bf6d57ac23c47fa1ae54be9e4f9e0290c97a7af9f0b86e1c8aa8b8320d9a522c"
     },
     "references": {
       "human_approve": "sema:HumanApprove#mh:SHA-256:cf561deb1a5e93a9f221abe2621c8a2bcfebf6863bd1128fa2230ef90237e67d",

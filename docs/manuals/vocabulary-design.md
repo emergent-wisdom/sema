@@ -4206,7 +4206,7 @@ _Note: Historical circumstances, the assumptions used to interpret a signal, con
 
 ---
 
-### DAG#ed5b
+### DAG#0c8a
 
 `Infrastructure` · `Data Structures` · R2 · T1
 
@@ -4259,7 +4259,7 @@ _Note: Historical circumstances, the assumptions used to interpret a signal, con
 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
-| `references` | `{{parallelize}}` | `sema:Parallelize#mh:SHA-256:c1c795defd6f4f9cab2823cf832ae91f5f0651bef082108bb494047d91be04a1` |
+| `references` | `{{parallelize}}` | `sema:Parallelize#mh:SHA-256:53a54fc8c6c719497cade703e7153f188faf393a54259d62079ea3a38b5092fd` |
 | `references` | `{{topology}}` | `sema:Topology#mh:SHA-256:58ad1ff07863b0fbf1250185232c48d8815752e4ce4f32a971166a56be297467` |
 
 #### Design
@@ -4303,6 +4303,7 @@ _Note: Historical circumstances, the assumptions used to interpret a signal, con
 - `DAG#ed37`
 - `DAG#ed81`
 - `DAG#cb54`
+- `DAG#ed5b`
 
 ---
 
@@ -10339,7 +10340,7 @@ The other has changed substance, not just wording. An Atomicity invariant was ci
 
 ---
 
-### StyleSpec#ee8f
+### StyleSpec#00a3
 
 `Infrastructure` · `Data Structures` · R2 · T2
 
@@ -10384,7 +10385,7 @@ The other has changed substance, not just wording. An Atomicity invariant was ci
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
 | `references` | `{{aesthetics}}` | `sema:Aesthetics#mh:SHA-256:6f6de47c2320dbffb7fb264ddeddbedaed8017e8601a6ffd50826e10e5d24a67` |
-| `references` | `{{phased_refinement}}` | `sema:PhasedRefinement#mh:SHA-256:a263384b14c029d80cb3cc3c0b7a8a87b2c63f6307a55ac2c0f82ad2f86779e4` |
+| `references` | `{{phased_refinement}}` | `sema:PhasedRefinement#mh:SHA-256:54f23b7e6f3657988dffc1ec8b3df73f08b1f54849d20fa4a71ea203ff49f492` |
 | `references` | `{{spec}}` | `sema:Spec#mh:SHA-256:c9537551b2bfa2639c15270994fdbb5a52a41d098f499c5ed5d61945a7c50da7` |
 
 #### Design
@@ -10427,6 +10428,7 @@ The other has changed substance, not just wording. An Atomicity invariant was ci
 - `StyleSpec#ec7b`
 - `StyleSpec#0800`
 - `StyleSpec#225d`
+- `StyleSpec#ee8f`
 
 ---
 
@@ -10906,7 +10908,7 @@ _Note: The same move applies to commitments, tools, authority and consent. Those
 
 ---
 
-### Tension#40e5
+### Tension#66f5
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -10966,7 +10968,7 @@ _Note: The same move applies to commitments, tools, authority and consent. Those
 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
-| `references` | `{{dialectic}}` | `sema:Dialectic#mh:SHA-256:26bec9ea9924523af3aa4d24165e4131dfe2ca964a54cee6a7a12cd391bb8aec` |
+| `references` | `{{dialectic}}` | `sema:Dialectic#mh:SHA-256:696105a0b4efefd47c871f06f0d4ef644d9ac7b16c4fda301865d79d52448d56` |
 | `references` | `{{yield}}` | `sema:Yield#mh:SHA-256:336aa68eb26e16b71fc62a16207a842730c80ffa7b8826259d423d86f825fd50` |
 
 #### Design
@@ -11010,6 +11012,7 @@ _Note: The same move applies to commitments, tools, authority and consent. Those
 - `Tension#547a`
 - `Tension#c700`
 - `Tension#5732`
+- `Tension#40e5`
 
 ---
 
@@ -12145,7 +12148,7 @@ _Note: The same move applies to commitments, tools, authority and consent. Those
 
 ---
 
-### Aggregate#2db6
+### Aggregate#bb80
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -12235,6 +12238,7 @@ _Note: The same move applies to commitments, tools, authority and consent. Those
 - `Aggregate#af54`
 - `Aggregate#4861`
 - `Aggregate#d1d5`
+- `Aggregate#2db6`
 
 ---
 
@@ -19457,7 +19461,7 @@ Agreement between fields does not establish domain correctness: mutually consist
 
 ---
 
-### NormCheck#39ba
+### NormCheck#2447
 
 `Mind` · `Inference` · R2 · T1
 
@@ -19509,7 +19513,7 @@ Agreement between fields does not establish domain correctness: mutually consist
 | --- | --- | --- |
 | `references` | `{{check}}` | `sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00` |
 | `references` | `{{judge}}` | `sema:Judge#mh:SHA-256:704cbb71588d7a3bafa08b71c863005e31ec4400860b9cb8b094e660da9c7c6c` |
-| `references` | `{{normative_judge}}` | `sema:NormativeJudge#mh:SHA-256:684f219181e9180ffea6b4ff2947dbdb9d37a12ae690c02c088f58881f9e0726` |
+| `references` | `{{normative_judge}}` | `sema:NormativeJudge#mh:SHA-256:b843fda7056db0e5647cca7522b306dd868a02a43e2d425566455f5c17950ed6` |
 | `references` | `{{prophet_fan_out}}` | `sema:ProphetFanOut#mh:SHA-256:8711a210c6c58ed39519c2b470b5dde7b20dc5175dd903764105ba37360776cc` |
 | `references` | `{{quorum}}` | `sema:Quorum#mh:SHA-256:2a33f05d34bfb2667645680393ca37865d4a7d05d2056eddf4c9df0c13b21744` |
 | `references` | `{{value}}` | `sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8` |
@@ -19556,10 +19560,11 @@ Agreement between fields does not establish domain correctness: mutually consist
 - `NormCheck#b3a0`
 - `NormCheck#9077`
 - `NormCheck#984f`
+- `NormCheck#39ba`
 
 ---
 
-### NormativeJudge#684f
+### NormativeJudge#b843
 
 `Mind` · `Inference` · R0 · T1
 
@@ -19610,7 +19615,7 @@ Agreement between fields does not establish domain correctness: mutually consist
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
 | `accepts` | `{{weights}}` | `sema:Vector#mh:SHA-256:426835100cd1b60d25e87518ba77200fc7b7ec87b917448e09fc03b1087f6993` |
-| `composes_with` | `{{perspective_ensemble}}` | `sema:PerspectiveEnsemble#mh:SHA-256:4afd1d6c7abb339c91b3bd94f791e2f57638e9a8c5431757d2c7ae1d6ce8545d` |
+| `composes_with` | `{{perspective_ensemble}}` | `sema:PerspectiveEnsemble#mh:SHA-256:bf6d57ac23c47fa1ae54be9e4f9e0290c97a7af9f0b86e1c8aa8b8320d9a522c` |
 | `references` | `{{human_approve}}` | `sema:HumanApprove#mh:SHA-256:cf561deb1a5e93a9f221abe2621c8a2bcfebf6863bd1128fa2230ef90237e67d` |
 | `references` | `{{judge}}` | `sema:Judge#mh:SHA-256:704cbb71588d7a3bafa08b71c863005e31ec4400860b9cb8b094e660da9c7c6c` |
 | `references` | `{{outcome}}` | `sema:Outcome#mh:SHA-256:753768dae28040f1291ee2849d2aac2a08bbffd836cfab679bdbea9a6ff7ec03` |
@@ -19659,6 +19664,7 @@ Agreement between fields does not establish domain correctness: mutually consist
 - `NormativeJudge#bd4e`
 - `NormativeJudge#5986`
 - `NormativeJudge#65d8`
+- `NormativeJudge#684f`
 
 ---
 
@@ -19895,7 +19901,7 @@ Agreement between fields does not establish domain correctness: mutually consist
 
 ---
 
-### RegimeSense#5039
+### RegimeSense#8bba
 
 `Mind` · `Inference` · R2 · T1
 
@@ -19949,7 +19955,7 @@ Agreement between fields does not establish domain correctness: mutually consist
 | --- | --- | --- |
 | `references` | `{{agent}}` | `sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd` |
 | `references` | `{{break}}` | `sema:Break#mh:SHA-256:5003e128ac02e7835d2094d72dc929ce4c96819b56ef167c2ca8da9f16aa402a` |
-| `references` | `{{drift_watch}}` | `sema:DriftWatch#mh:SHA-256:b696959258eb3c48ce11055634b107451d5a500bc8ba19693db4c30b5f5033bf` |
+| `references` | `{{drift_watch}}` | `sema:DriftWatch#mh:SHA-256:29131d6f9346a5c367020dd9251cbf8a1401c46b0118c2e58c20f152fbb72f95` |
 | `references` | `{{noise}}` | `sema:Noise#mh:SHA-256:fd120b472352611acc251c4c87b08d06ae1187f9f4775d8a69b4ff9b326d2569` |
 | `references` | `{{ontology_adapt}}` | `sema:OntologyAdapt#mh:SHA-256:a541f46f3c1ffe236a27dfaafaffd0d3dc76bf7c3fa086b5e9bcf1a945c85e63` |
 | `references` | `{{quorum}}` | `sema:Quorum#mh:SHA-256:2a33f05d34bfb2667645680393ca37865d4a7d05d2056eddf4c9df0c13b21744` |
@@ -19999,6 +20005,7 @@ An unresolved metric issue remains: `usage.varies` offers accuracy, KL divergenc
 - `RegimeSense#430b`
 - `RegimeSense#56ec`
 - `RegimeSense#78eb`
+- `RegimeSense#5039`
 
 ---
 
@@ -20254,7 +20261,7 @@ An unresolved metric issue remains: `usage.varies` offers accuracy, KL divergenc
 
 ---
 
-### SurprisalUpdate#26e5
+### SurprisalUpdate#5e09
 
 `Mind` · `Inference` · R2 · T1
 
@@ -20309,7 +20316,7 @@ An unresolved metric issue remains: `usage.varies` offers accuracy, KL divergenc
 | --- | --- | --- |
 | `references` | `{{epistemic_roi}}` | `sema:EpistemicROI#mh:SHA-256:b0d863d10c0d67edc218444b72c75f05127b899af6ac0295899b6506cba9acc7` |
 | `references` | `{{gradient}}` | `sema:Gradient#mh:SHA-256:ecfc2cd2d9eb95778ef04ede8a7e872c33822f174a9e3273fa7bba92b3a30e36` |
-| `references` | `{{regime_sense}}` | `sema:RegimeSense#mh:SHA-256:50396d316674bf65b204938ee8cecc48cf294223cdb90c9789d6a72bb542cb07` |
+| `references` | `{{regime_sense}}` | `sema:RegimeSense#mh:SHA-256:8bba125c54467eac428d5257f67617a947a4041c04da0bdcb2ade774056b0e14` |
 
 #### Design
 
@@ -20355,6 +20362,7 @@ An unresolved metric issue remains: `usage.varies` offers accuracy, KL divergenc
 - `SurprisalUpdate#41a9`
 - `SurprisalUpdate#6169`
 - `SurprisalUpdate#b2f1`
+- `SurprisalUpdate#26e5`
 
 ---
 
@@ -20619,7 +20627,7 @@ An unresolved metric issue remains: `usage.varies` offers accuracy, KL divergenc
 
 ---
 
-### BeliefTracking#c78d
+### BeliefTracking#e978
 
 `Mind` · `Memory` · R2 · T2
 
@@ -20669,7 +20677,7 @@ An unresolved metric issue remains: `usage.varies` offers accuracy, KL divergenc
 | `references` | `{{agent}}` | `sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd` |
 | `references` | `{{belief}}` | `sema:Belief#mh:SHA-256:09e1c919d9829e30422f3fffee11c1af4af54ac7894d157ff371ed50b03f69b1` |
 | `references` | `{{cognitive_bias}}` | `sema:CognitiveBias#mh:SHA-256:c8a4abe2e0ce048be16d25f890a50f8c7095e099b5ab2de23aa059942328f387` |
-| `references` | `{{surprisal_update}}` | `sema:SurprisalUpdate#mh:SHA-256:26e53ade88809ac3ba9293b45db768fdbdb384a53cda1217c3a0dfc61d5f8408` |
+| `references` | `{{surprisal_update}}` | `sema:SurprisalUpdate#mh:SHA-256:5e092ac54c497452f0bc1ab93fafa89f7cb3de946a724c4f78479ab2225546b2` |
 
 #### Design
 
@@ -20714,10 +20722,11 @@ An unresolved metric issue remains: `usage.varies` offers accuracy, KL divergenc
 - `BeliefTracking#6142`
 - `BeliefTracking#1ae4`
 - `BeliefTracking#890a`
+- `BeliefTracking#c78d`
 
 ---
 
-### ChunkMerge#a7a3
+### ChunkMerge#1900
 
 `Mind` · `Memory` · R2 · T1
 
@@ -20757,7 +20766,7 @@ An unresolved metric issue remains: `usage.varies` offers accuracy, KL divergenc
 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
-| `references` | `{{aggregate}}` | `sema:Aggregate#mh:SHA-256:2db6858c061515fa2257c96f4a6e4392164e9a118adc6874c69cf2279b877077` |
+| `references` | `{{aggregate}}` | `sema:Aggregate#mh:SHA-256:bb809289d74615fd774f32704d3857a5e4d45480ad5b68de8f995e0c9e445d21` |
 | `references` | `{{compress}}` | `sema:Compress#mh:SHA-256:b585b8c462691d24d55deee575c5ade6d6510d9f99f9c59c38d2ff025ad3721c` |
 | `references` | `{{hierarchy}}` | `sema:Hierarchy#mh:SHA-256:5951b6a616f97ff8ef7b78407ed0631150191253d88f00bbb2ef429cc5a8cf85` |
 
@@ -20802,6 +20811,7 @@ An unresolved metric issue remains: `usage.varies` offers accuracy, KL divergenc
 - `ChunkMerge#ded6`
 - `ChunkMerge#e147`
 - `ChunkMerge#2a85`
+- `ChunkMerge#a7a3`
 
 ---
 
@@ -20891,7 +20901,7 @@ An unresolved metric issue remains: `usage.varies` offers accuracy, KL divergenc
 
 ---
 
-### CurriculumReplay#0ef6
+### CurriculumReplay#d4ef
 
 `Mind` · `Memory` · R2 · T1
 
@@ -20923,7 +20933,7 @@ An unresolved metric issue remains: `usage.varies` offers accuracy, KL divergenc
 | --- | --- | --- |
 | `references` | `{{agent}}` | `sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd` |
 | `references` | `{{decay}}` | `sema:Decay#mh:SHA-256:482b97f7196f35c8c50be1b2537ec6e04410a4920fcd8409bec735db3278737a` |
-| `references` | `{{experience_sharding}}` | `sema:ExperienceSharding#mh:SHA-256:c8a197339886a6bbec3201ead589ad7fd37bbfcde46d6470df59ded8aaa80153` |
+| `references` | `{{experience_sharding}}` | `sema:ExperienceSharding#mh:SHA-256:50ff836c2fc73c18fed683db6e3707a18525da22b100f3db23b6fd7604a8a85e` |
 
 #### Design
 
@@ -20966,10 +20976,11 @@ An unresolved metric issue remains: `usage.varies` offers accuracy, KL divergenc
 - `CurriculumReplay#a8f7`
 - `CurriculumReplay#3ec2`
 - `CurriculumReplay#589d`
+- `CurriculumReplay#0ef6`
 
 ---
 
-### ExperienceSharding#c8a1
+### ExperienceSharding#50ff
 
 `Mind` · `Memory` · R0 · T1
 
@@ -21032,7 +21043,7 @@ An unresolved metric issue remains: `usage.varies` offers accuracy, KL divergenc
 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
-| `references` | `{{chunk_merge}}` | `sema:ChunkMerge#mh:SHA-256:a7a32d00372fcda30401ab77dbcb3a3b53fd3c4f013a2c9a5346e8b49ed76285` |
+| `references` | `{{chunk_merge}}` | `sema:ChunkMerge#mh:SHA-256:1900d55d9de7acd03d18f33d35c4cf80566d85f161c1985a26804bea80dec84c` |
 | `references` | `{{shard}}` | `sema:Shard#mh:SHA-256:4d41232416e3d414c714e0892e8559c2180899b4c21c25af29984372220f8704` |
 
 #### Design
@@ -21077,10 +21088,11 @@ An unresolved metric issue remains: `usage.varies` offers accuracy, KL divergenc
 - `ExperienceSharding#d920`
 - `ExperienceSharding#3be0`
 - `ExperienceSharding#5b42`
+- `ExperienceSharding#c8a1`
 
 ---
 
-### HolographicShard#6e06
+### HolographicShard#7ac9
 
 `Mind` · `Memory` · R0 · T1
 
@@ -21121,7 +21133,7 @@ An unresolved metric issue remains: `usage.varies` offers accuracy, KL divergenc
 | --- | --- | --- |
 | `references` | `{{context}}` | `sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756` |
 | `references` | `{{deep}}` | `sema:Deep#mh:SHA-256:16b0cb8d6aa42a890215fb7a44e480c27360165de2249d205ee6c1b2d01896bb` |
-| `references` | `{{fabric_sharding}}` | `sema:FabricSharding#mh:SHA-256:96e1a90c65365b0297a3090f67f2fc88422596a6efb4ecb2ad980c3d365d4216` |
+| `references` | `{{fabric_sharding}}` | `sema:FabricSharding#mh:SHA-256:6c36fac832745c3067e93b49cf864db89a6c79927f2e15858526ac6d6966267b` |
 
 #### Design
 
@@ -21165,6 +21177,7 @@ An unresolved metric issue remains: `usage.varies` offers accuracy, KL divergenc
 - `HolographicShard#1352`
 - `HolographicShard#7eb7`
 - `HolographicShard#23fe`
+- `HolographicShard#6e06`
 
 ---
 
@@ -21642,7 +21655,7 @@ An unresolved metric issue remains: `usage.varies` offers accuracy, KL divergenc
 
 ---
 
-### Revisance#73f1
+### Revisance#4fd5
 
 `Mind` · `Memory` · R2 · T2
 
@@ -21668,7 +21681,7 @@ An unresolved metric issue remains: `usage.varies` offers accuracy, KL divergenc
 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
-| `references` | `{{belief_tracking}}` | `sema:BeliefTracking#mh:SHA-256:c78d68a1f4fe92e2f284e489f6987bc42183245181c6710b9d0c9e582b054e13` |
+| `references` | `{{belief_tracking}}` | `sema:BeliefTracking#mh:SHA-256:e97803a5bd4ce346fc9a3e36fa427dae2cbdf7a4212cab843e8b09ec2184a8fe` |
 
 #### Design
 
@@ -21702,6 +21715,9 @@ An unresolved metric issue remains: `usage.varies` offers accuracy, KL divergenc
 - Novelty, from recall and unverified: known. Nearest known concepts: sublation, in which a view is cancelled and kept.
 
 **In the family.** BeliefTracking and TraceBelief record belief history; Dialectic reaches a synthesis; Revisance is the salvage step within one agent's change of mind.
+
+**Supersedes (prior versions).**
+- `Revisance#73f1`
 
 ---
 
@@ -21964,7 +21980,7 @@ An unresolved metric issue remains: `usage.varies` offers accuracy, KL divergenc
 
 ---
 
-### TraceBelief#7b8a
+### TraceBelief#5da5
 
 `Mind` · `Memory` · R2 · T2
 
@@ -21983,7 +21999,7 @@ An unresolved metric issue remains: `usage.varies` offers accuracy, KL divergenc
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
 | `references` | `{{belief}}` | `sema:Belief#mh:SHA-256:09e1c919d9829e30422f3fffee11c1af4af54ac7894d157ff371ed50b03f69b1` |
-| `references` | `{{surprisal_update}}` | `sema:SurprisalUpdate#mh:SHA-256:26e53ade88809ac3ba9293b45db768fdbdb384a53cda1217c3a0dfc61d5f8408` |
+| `references` | `{{surprisal_update}}` | `sema:SurprisalUpdate#mh:SHA-256:5e092ac54c497452f0bc1ab93fafa89f7cb3de946a724c4f78479ab2225546b2` |
 | `references` | `{{time_warp_log}}` | `sema:TimeWarpLog#mh:SHA-256:755f480a60517d8e99807da674019db06ab0b7b2edabcc806d833947da4446e4` |
 | `references` | `{{trace}}` | `sema:Trace#mh:SHA-256:b68d64423aa72b13a06714aa182baab79eb49a5a856dce56dd554fd63b41c2a9` |
 
@@ -22030,6 +22046,7 @@ An unresolved metric issue remains: `usage.varies` offers accuracy, KL divergenc
 - `TraceBelief#bdfa`
 - `TraceBelief#c4db`
 - `TraceBelief#7ccc`
+- `TraceBelief#7b8a`
 
 ---
 
@@ -23588,7 +23605,7 @@ _Note: Schema correction 2026-08-03: removed Critique.data_schema because it des
 
 ---
 
-### Crossborn#814f
+### Crossborn#8304
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -23612,7 +23629,7 @@ _Note: Schema correction 2026-08-03: removed Critique.data_schema because it des
 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
-| `references` | `{{perspective_ensemble}}` | `sema:PerspectiveEnsemble#mh:SHA-256:4afd1d6c7abb339c91b3bd94f791e2f57638e9a8c5431757d2c7ae1d6ce8545d` |
+| `references` | `{{perspective_ensemble}}` | `sema:PerspectiveEnsemble#mh:SHA-256:bf6d57ac23c47fa1ae54be9e4f9e0290c97a7af9f0b86e1c8aa8b8320d9a522c` |
 
 #### Design
 
@@ -23645,6 +23662,9 @@ _Note: Schema correction 2026-08-03: removed Critique.data_schema because it des
 - Novelty, from recall and unverified: known. Nearest known concepts: triangulation; parallax.
 
 **In the family.** PerspectiveEnsemble generates perspectives, Askwiden records new questions, and Crossborn records distinctions born of their contact.
+
+**Supersedes (prior versions).**
+- `Crossborn#814f`
 
 ---
 
@@ -23950,7 +23970,7 @@ _Note: Schema correction 2026-08-03: removed Critique.data_schema because it des
 
 ---
 
-### Dialectic#26be
+### Dialectic#6961
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -24000,7 +24020,7 @@ _Note: Schema correction 2026-08-03: removed Critique.data_schema because it des
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
 | `composes_with` | `{{steelman_check}}` | `sema:SteelmanCheck#mh:SHA-256:b004eb6d85a184da7f9bb7fc06d011bc869f6eb6ad1061f30cbbbcc4c2b8f6aa` |
-| `references` | `{{perspective_ensemble}}` | `sema:PerspectiveEnsemble#mh:SHA-256:4afd1d6c7abb339c91b3bd94f791e2f57638e9a8c5431757d2c7ae1d6ce8545d` |
+| `references` | `{{perspective_ensemble}}` | `sema:PerspectiveEnsemble#mh:SHA-256:bf6d57ac23c47fa1ae54be9e4f9e0290c97a7af9f0b86e1c8aa8b8320d9a522c` |
 | `references` | `{{synthesis}}` | `sema:Synthesis#mh:SHA-256:4f1fecba4183e6a79bfb3bd8f1981a6b6fb9f3dced92a484a9aa466c93ae249b` |
 
 #### Design
@@ -24048,10 +24068,11 @@ _Note: Schema correction 2026-08-03: removed Critique.data_schema because it des
 - `Dialectic#b5d0`
 - `Dialectic#6eda`
 - `Dialectic#ae5e`
+- `Dialectic#26be`
 
 ---
 
-### Edgehold#4035
+### Edgehold#7073
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -24076,7 +24097,7 @@ _Note: Schema correction 2026-08-03: removed Critique.data_schema because it des
 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
-| `references` | `{{regime_sense}}` | `sema:RegimeSense#mh:SHA-256:50396d316674bf65b204938ee8cecc48cf294223cdb90c9789d6a72bb542cb07` |
+| `references` | `{{regime_sense}}` | `sema:RegimeSense#mh:SHA-256:8bba125c54467eac428d5257f67617a947a4041c04da0bdcb2ade774056b0e14` |
 
 #### Design
 
@@ -24109,6 +24130,9 @@ _Note: Schema correction 2026-08-03: removed Critique.data_schema because it des
 - Novelty, from recall and unverified: known. Nearest known concepts: aporia; a paradigm in crisis; negative capability.
 
 **In the family.** RegimeSense detects breaks, FrameError asks for a reframe, Uncertain marks voids, and Edgehold governs work at the edge when no reframe is available.
+
+**Supersedes (prior versions).**
+- `Edgehold#4035`
 
 ---
 
@@ -24251,7 +24275,7 @@ _Note: Schema correction 2026-08-03: removed Critique.data_schema because it des
 
 ---
 
-### EpistemicCascade#00ae
+### EpistemicCascade#a9d4
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -24286,7 +24310,7 @@ _Note: Schema correction 2026-08-03: removed Critique.data_schema because it des
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
 | `references` | `{{assumption}}` | `sema:Assumption#mh:SHA-256:d99bf34ffd59aa1c8ca25f5477b1df297b8a2f9cf992c242de73d13aef88a097` |
-| `references` | `{{belief_tracking}}` | `sema:BeliefTracking#mh:SHA-256:c78d68a1f4fe92e2f284e489f6987bc42183245181c6710b9d0c9e582b054e13` |
+| `references` | `{{belief_tracking}}` | `sema:BeliefTracking#mh:SHA-256:e97803a5bd4ce346fc9a3e36fa427dae2cbdf7a4212cab843e8b09ec2184a8fe` |
 | `references` | `{{check}}` | `sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00` |
 | `references` | `{{epistemic_calibrate}}` | `sema:EpistemicCalibrate#mh:SHA-256:4d4c4a79c03f1ed0c946e0e21fd76efccf7a5d9fb688f2bb59ab6065e8b1573a` |
 | `references` | `{{status}}` | `sema:Status#mh:SHA-256:8e6f3b6c796ea10bd810932d983144bd3b5b732f0dca26f960df0572c1479c80` |
@@ -24333,6 +24357,7 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 **Supersedes (prior versions).**
 - `EpistemicCascade#a489`
 - `EpistemicCascade#5deb`
+- `EpistemicCascade#00ae`
 
 ---
 
@@ -25103,7 +25128,7 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 
 ---
 
-### GraphOfThought#aff0
+### GraphOfThought#220a
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -25126,7 +25151,7 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
-| `composes_with` | `{{d_a_g}}` | `sema:DAG#mh:SHA-256:ed5b6bdbe8d785f1dceb6cc1c7020d9c2340be7b507a3678da2da58211e455aa` |
+| `composes_with` | `{{d_a_g}}` | `sema:DAG#mh:SHA-256:0c8ae9f4ab979af72ccf01ea840861e6e8473459598901236faf05294d5cb22b` |
 | `composes_with` | `{{think}}` | `sema:Think#mh:SHA-256:5177aa242fffd16d7ed24e5f8c3e0d5e86c5a26e299cc2d4b8a07f4756126025` |
 
 #### Design
@@ -25156,6 +25181,7 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 **Supersedes (prior versions).**
 - `GraphOfThought#ccee`
 - `GraphOfThought#d1d5`
+- `GraphOfThought#aff0`
 
 ---
 
@@ -27084,7 +27110,7 @@ _Note: Hypothetical example: a dashboard metric 'active users' is redefined from
 
 ---
 
-### Refine#2952
+### Refine#37c1
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -27151,6 +27177,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 - `Refine#78b7`
 - `Refine#8c9b`
 - `Refine#7d98`
+- `Refine#2952`
 
 ---
 
@@ -27529,7 +27556,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 
 ---
 
-### SelfConsistency#4f68
+### SelfConsistency#effe
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -27554,7 +27581,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
-| `references` | `{{aggregate}}` | `sema:Aggregate#mh:SHA-256:2db6858c061515fa2257c96f4a6e4392164e9a118adc6874c69cf2279b877077` |
+| `references` | `{{aggregate}}` | `sema:Aggregate#mh:SHA-256:bb809289d74615fd774f32704d3857a5e4d45480ad5b68de8f995e0c9e445d21` |
 
 #### Design
 
@@ -27596,6 +27623,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 - `SelfConsistency#543d`
 - `SelfConsistency#2095`
 - `SelfConsistency#a1cd`
+- `SelfConsistency#4f68`
 
 ---
 
@@ -27730,7 +27758,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 
 ---
 
-### SocraticLoop#4f17
+### SocraticLoop#ffaa
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -27782,7 +27810,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
 | `references` | `{{agent}}` | `sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd` |
-| `references` | `{{dialectic}}` | `sema:Dialectic#mh:SHA-256:26bec9ea9924523af3aa4d24165e4131dfe2ca964a54cee6a7a12cd391bb8aec` |
+| `references` | `{{dialectic}}` | `sema:Dialectic#mh:SHA-256:696105a0b4efefd47c871f06f0d4ef644d9ac7b16c4fda301865d79d52448d56` |
 | `references` | `{{loop}}` | `sema:Loop#mh:SHA-256:37f953c0b21b9b0c72a639c4e1a54354faa71f07905531d271f6bbf40c341603` |
 | `references` | `{{prompt}}` | `sema:Prompt#mh:SHA-256:1b04d34a0c55d6d2c6fea4f1df4f517073ede2f20f1f8d1d149419010b440a0e` |
 
@@ -27829,6 +27857,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 - `SocraticLoop#7d52`
 - `SocraticLoop#e966`
 - `SocraticLoop#fd22`
+- `SocraticLoop#4f17`
 
 ---
 
@@ -29001,7 +29030,7 @@ _Note: The coined handle names the failure and the card defines the guard, as Co
 
 ---
 
-### Twinread#c4a5
+### Twinread#81b4
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -29027,7 +29056,7 @@ _Note: The coined handle names the failure and the card defines the guard, as Co
 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
-| `references` | `{{dialectic}}` | `sema:Dialectic#mh:SHA-256:26bec9ea9924523af3aa4d24165e4131dfe2ca964a54cee6a7a12cd391bb8aec` |
+| `references` | `{{dialectic}}` | `sema:Dialectic#mh:SHA-256:696105a0b4efefd47c871f06f0d4ef644d9ac7b16c4fda301865d79d52448d56` |
 
 #### Design
 
@@ -29062,9 +29091,12 @@ _Note: The coined handle names the failure and the card defines the guard, as Co
 
 **In the family.** Dialectic synthesizes, TensionHold suspends until resolved, and Twoledger separates a frame's usefulness from its truth; Twinread keeps two frames in use together.
 
+**Supersedes (prior versions).**
+- `Twinread#c4a5`
+
 ---
 
-### Twoledger#a560
+### Twoledger#cb88
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -29091,7 +29123,7 @@ _Note: The coined handle names the failure and the card defines the guard, as Co
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
 | `references` | `{{check}}` | `sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00` |
-| `references` | `{{epistemic_cascade}}` | `sema:EpistemicCascade#mh:SHA-256:00ae0d471938ddbddaec91d4e7936d31d21e0e52cbb9a7064dbd37f66dd513c4` |
+| `references` | `{{epistemic_cascade}}` | `sema:EpistemicCascade#mh:SHA-256:a9d4eb8cd89cc31672ef9837399da5792cfe09bdf20dc5f7ec0241c12879b5a0` |
 
 #### Design
 
@@ -29126,6 +29158,9 @@ _Note: The coined handle names the failure and the card defines the guard, as Co
 - Novelty, from recall and unverified: partly new. Nearest known concepts: useful fictions ('as if' reasoning); judging a research programme by its heuristic power separately from its corroboration. No named precedent found (from recall) for the two-ledger contract.
 
 **In the family.** Reframe chooses a new perspective, EpistemicCascade grades assurance, and Assumption marks what is held provisionally. Twoledger governs what adopting a perspective is allowed to do to belief.
+
+**Supersedes (prior versions).**
+- `Twoledger#a560`
 
 ---
 
@@ -31762,7 +31797,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 ---
 
-### EmpathySim#33c4
+### EmpathySim#901b
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -31859,6 +31894,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `EmpathySim#2f02`
 - `EmpathySim#8796`
 - `EmpathySim#b82a`
+- `EmpathySim#33c4`
 
 ---
 
@@ -32507,7 +32543,7 @@ _Note: Hypothetical example: a firmware defect in a thermostat without over-the-
 
 ---
 
-### FractalIntelligence#27f7
+### FractalIntelligence#7739
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -32532,7 +32568,7 @@ _Note: Hypothetical example: a firmware defect in a thermostat without over-the-
 | --- | --- | --- |
 | `composes_with` | `{{localized_learning}}` | `sema:LocalizedLearning#mh:SHA-256:a6dbe910a57206b1a10d3b60733dfe3b98fa85696e701674abe860ee0b730950` |
 | `composes_with` | `{{marginal_value_rule}}` | `sema:MarginalValueRule#mh:SHA-256:661109205c507b2c26d683d091de7f8b782bf2d6c2e9192373b242a9b078ac71` |
-| `composes_with` | `{{polymorphic_solver}}` | `sema:PolymorphicSolver#mh:SHA-256:f7fe4635a7520f918c823f0047d6fed8e38fd820c1970ef4623cc8fd78d2b0bd` |
+| `composes_with` | `{{polymorphic_solver}}` | `sema:PolymorphicSolver#mh:SHA-256:ce9a27d50265e6e74e034eb4da3a6441d840b75a740772da3d577d9602727f1b` |
 | `composes_with` | `{{problem_framer}}` | `sema:ProblemFramer#mh:SHA-256:ad6b7fc1f14f2e26dd0d230f81382a2c602c365ebe4b9ad5fd390fb0c2d4c4fc` |
 | `composes_with` | `{{reason}}` | `sema:Reason#mh:SHA-256:81ec8196c7c1c761fe353c8d26463bcb61b54f844aa3422a40019f82ef202321` |
 | `composes_with` | `{{recursion_dive}}` | `sema:RecursionDive#mh:SHA-256:a86f17bad949a7a5405f04b4bc43a3e6be28c5c31e8328ccf178fa292719d754` |
@@ -32542,7 +32578,7 @@ _Note: Hypothetical example: a firmware defect in a thermostat without over-the-
 | `composes_with` | `{{synthesis}}` | `sema:Synthesis#mh:SHA-256:4f1fecba4183e6a79bfb3bd8f1981a6b6fb9f3dced92a484a9aa466c93ae249b` |
 | `references` | `{{agent}}` | `sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd` |
 | `references` | `{{conservation}}` | `sema:Conservation#mh:SHA-256:0b32d007b27a9b5201c46931bdbabd09d08ff9d7b01cf49469f61709989507c2` |
-| `references` | `{{experience_sharding}}` | `sema:ExperienceSharding#mh:SHA-256:c8a197339886a6bbec3201ead589ad7fd37bbfcde46d6470df59ded8aaa80153` |
+| `references` | `{{experience_sharding}}` | `sema:ExperienceSharding#mh:SHA-256:50ff836c2fc73c18fed683db6e3707a18525da22b100f3db23b6fd7604a8a85e` |
 | `references` | `{{specialize}}` | `sema:Specialize#mh:SHA-256:799d587f9e409c7f9fbf13f5dc83a2437068df8a0738f9bcfb910ee00c0c20a1` |
 | `references` | `{{strategy}}` | `sema:Strategy#mh:SHA-256:3dc598d0c6af12389df445c204e17df03950dbc886656b85700e6c87c31b2eef` |
 | `references` | `{{system}}` | `sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3` |
@@ -32594,6 +32630,7 @@ _Note: Hypothetical example: a firmware defect in a thermostat without over-the-
 - `FractalIntelligence#22a0`
 - `FractalIntelligence#5e3d`
 - `FractalIntelligence#1dca`
+- `FractalIntelligence#27f7`
 
 ---
 
@@ -34640,7 +34677,7 @@ _Note: The U stands for Unique, and the axis is judged as novelty: structural di
 
 ---
 
-### PUREBrainstorming#c2de
+### PUREBrainstorming#a262
 
 `Mind` · `Strategy` · R1 · T2
 
@@ -34660,8 +34697,8 @@ _Note: The U stands for Unique, and the axis is judged as novelty: structural di
 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
-| `composes_with` | `{{pure_check}}` | `sema:PURECheck#mh:SHA-256:574bfe492b148844233507d79302ba73135ad366d24b4b34f3de476ed903094e` |
-| `composes_with` | `{{pure_optimization}}` | `sema:PUREOptimization#mh:SHA-256:205b2c752f68fe87dde75b65cb848bdad8527dc5713180460e6441eac3b86be6` |
+| `composes_with` | `{{pure_check}}` | `sema:PURECheck#mh:SHA-256:7149d03ad603bdc29e4bcc3137afdd789074a69441e5ebfffa7d7e82dd81fc30` |
+| `composes_with` | `{{pure_optimization}}` | `sema:PUREOptimization#mh:SHA-256:227215f5271a280c7d22f7bf0a3127433076a3acd418c5cd009a798638f4b878` |
 | `references` | `{{p_u_r_e}}` | `sema:PURE#mh:SHA-256:b65a673f236a094421e8ae7278ca0cc24a1de7b998caf26aef1e2022be1d0efd` |
 | `yields` | `{{mechanistic_design_proposal}}` | `sema:MechanisticDesignProposal#mh:SHA-256:930aebe1a8b00fcfcf7c585e7c49b53f84c39988069e6d8c1721d568afe1a292` |
 
@@ -34709,10 +34746,11 @@ _Note: The U stands for Unique, and the axis is judged as novelty: structural di
 - `PUREBrainstorming#856f`
 - `PUREBrainstorming#c7c8`
 - `PUREBrainstorming#aab7`
+- `PUREBrainstorming#c2de`
 
 ---
 
-### PURECheck#574b
+### PURECheck#7149
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -34797,10 +34835,11 @@ _Note: The U stands for Unique, and the axis is judged as novelty: structural di
 - `PURECheck#6874`
 - `PURECheck#e277`
 - `PURECheck#24b9`
+- `PURECheck#574b`
 
 ---
 
-### PUREOptimization#205b
+### PUREOptimization#2272
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -34830,13 +34869,13 @@ _Note: The U stands for Unique, and the axis is judged as novelty: structural di
 | `composes_with` | `{{decompose}}` | `sema:Decompose#mh:SHA-256:69942e7e0dcdc7781144da58c8f09b2e8a17c247be435dadf3325cb0d0bbb22b` |
 | `composes_with` | `{{optimize}}` | `sema:Optimize#mh:SHA-256:38771f5e8f583966cfb8af8ff0d2e6737c8d0bf87329ddc49d8049450e852674` |
 | `composes_with` | `{{pareto_front}}` | `sema:ParetoFront#mh:SHA-256:e6f5d6269118c342b52699a99154c79dc1e7b39e04c12bafc2f605805c0dfd02` |
-| `composes_with` | `{{polymorphic_solver}}` | `sema:PolymorphicSolver#mh:SHA-256:f7fe4635a7520f918c823f0047d6fed8e38fd820c1970ef4623cc8fd78d2b0bd` |
+| `composes_with` | `{{polymorphic_solver}}` | `sema:PolymorphicSolver#mh:SHA-256:ce9a27d50265e6e74e034eb4da3a6441d840b75a740772da3d577d9602727f1b` |
 | `composes_with` | `{{synthesis}}` | `sema:Synthesis#mh:SHA-256:4f1fecba4183e6a79bfb3bd8f1981a6b6fb9f3dced92a484a9aa466c93ae249b` |
 | `references` | `{{expansive}}` | `sema:Expansive#mh:SHA-256:49a7bf9576c5a3c81c4287bf5be190e00f99b3a7bab94608ff441da0dc8018b3` |
 | `references` | `{{novelty}}` | `sema:Novelty#mh:SHA-256:954f66918110b3dbbfadd1f47dd27ae095a8727113dce1c45d34931cf517d94a` |
 | `references` | `{{p_u_r_e}}` | `sema:PURE#mh:SHA-256:b65a673f236a094421e8ae7278ca0cc24a1de7b998caf26aef1e2022be1d0efd` |
 | `references` | `{{parsimony}}` | `sema:Parsimony#mh:SHA-256:4df866b08c5797a42a104097a24ea332aa3f4dfeccd73e38f27564cdb7cc6c9e` |
-| `references` | `{{pure_check}}` | `sema:PURECheck#mh:SHA-256:574bfe492b148844233507d79302ba73135ad366d24b4b34f3de476ed903094e` |
+| `references` | `{{pure_check}}` | `sema:PURECheck#mh:SHA-256:7149d03ad603bdc29e4bcc3137afdd789074a69441e5ebfffa7d7e82dd81fc30` |
 | `references` | `{{realizable}}` | `sema:Realizable#mh:SHA-256:2ed7d7f05fe50ff38d46631e5334f2229c4c1f1118e0576d88388b23a586d622` |
 
 #### Design
@@ -34883,10 +34922,11 @@ _Note: The U stands for Unique, and the axis is judged as novelty: structural di
 - `PUREOptimization#4180`
 - `PUREOptimization#ba53`
 - `PUREOptimization#1bed`
+- `PUREOptimization#205b`
 
 ---
 
-### Parallelize#c1c7
+### Parallelize#53a5
 
 `Mind` · `Strategy` · R0 · T1
 
@@ -34921,7 +34961,7 @@ _Note: The U stands for Unique, and the axis is judged as novelty: structural di
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
 | `accepts` | `{{task}}` | `sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d` |
-| `composes_with` | `{{aggregate}}` | `sema:Aggregate#mh:SHA-256:2db6858c061515fa2257c96f4a6e4392164e9a118adc6874c69cf2279b877077` |
+| `composes_with` | `{{aggregate}}` | `sema:Aggregate#mh:SHA-256:bb809289d74615fd774f32704d3857a5e4d45480ad5b68de8f995e0c9e445d21` |
 | `references` | `{{cognitive_bias}}` | `sema:CognitiveBias#mh:SHA-256:c8a4abe2e0ce048be16d25f890a50f8c7095e099b5ab2de23aa059942328f387` |
 | `references` | `{{mode}}` | `sema:Mode#mh:SHA-256:29d368514a2a815e9790a384c2aec12bd20a30e1ee06288e0aa59fdcffea0800` |
 | `references` | `{{parallel}}` | `sema:Parallel#mh:SHA-256:d58d6696be11be09651e71307f0ea6f42bb45fac137ed985a61e475144f687a5` |
@@ -34969,10 +35009,11 @@ _Note: The U stands for Unique, and the axis is judged as novelty: structural di
 - `Parallelize#d6b4`
 - `Parallelize#f2bb`
 - `Parallelize#5b4b`
+- `Parallelize#c1c7`
 
 ---
 
-### PerspectiveEnsemble#4afd
+### PerspectiveEnsemble#bf6d
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -35019,7 +35060,7 @@ _Note: The U stands for Unique, and the axis is judged as novelty: structural di
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
 | `references` | `{{agent}}` | `sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd` |
-| `references` | `{{aggregate}}` | `sema:Aggregate#mh:SHA-256:2db6858c061515fa2257c96f4a6e4392164e9a118adc6874c69cf2279b877077` |
+| `references` | `{{aggregate}}` | `sema:Aggregate#mh:SHA-256:bb809289d74615fd774f32704d3857a5e4d45480ad5b68de8f995e0c9e445d21` |
 | `references` | `{{chain}}` | `sema:Chain#mh:SHA-256:3ba084dba5cf36bbdd43d03306c187ca75a2e3f448b555e257c26aab9b71c4fb` |
 | `references` | `{{context}}` | `sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756` |
 | `references` | `{{problem}}` | `sema:Problem#mh:SHA-256:2580c43677ec78ee7ee428d200662c6096e4eab38c2c5a868154979074cc0f08` |
@@ -35068,6 +35109,7 @@ _Note: The U stands for Unique, and the axis is judged as novelty: structural di
 - `PerspectiveEnsemble#3f70`
 - `PerspectiveEnsemble#1ac4`
 - `PerspectiveEnsemble#fe96`
+- `PerspectiveEnsemble#4afd`
 
 ---
 
@@ -35132,7 +35174,7 @@ _Note: The U stands for Unique, and the axis is judged as novelty: structural di
 
 ---
 
-### PolymorphicSolver#f7fe
+### PolymorphicSolver#ce9a
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -35163,7 +35205,7 @@ _Note: The U stands for Unique, and the axis is judged as novelty: structural di
 | `composes_with` | `{{pathway_memory}}` | `sema:PathwayMemory#mh:SHA-256:ce2e6ce822404fae0e60a43fc2c6fbe2e4d51ab9aefee1e7a9e21da75893e722` |
 | `composes_with` | `{{reason}}` | `sema:Reason#mh:SHA-256:81ec8196c7c1c761fe353c8d26463bcb61b54f844aa3422a40019f82ef202321` |
 | `composes_with` | `{{reflexion}}` | `sema:Reflexion#mh:SHA-256:81eb9140703ea95f53556741df731af84c1cada66cc1e0f3a1d88e4de5fe54d8` |
-| `composes_with` | `{{socratic_loop}}` | `sema:SocraticLoop#mh:SHA-256:4f17ec8b7e28b3f223931274df090225572d754cd772fe4f738c922f16f93a18` |
+| `composes_with` | `{{socratic_loop}}` | `sema:SocraticLoop#mh:SHA-256:ffaac4d5ca573af32ba28028ed642e7aec6b54a3a2e197e50e336cee6c2aaa3c` |
 | `composes_with` | `{{tool_invoke}}` | `sema:ToolInvoke#mh:SHA-256:1096039316801cc8ef6e2855a6300574bb8596bb8e57c2764fd3bee741fa217e` |
 | `references` | `{{card}}` | `sema:Card#mh:SHA-256:e4b2ca76f43a691e7bd7932362512a5e929c62efc6c3d2eb4a9369e5108fa074` |
 | `references` | `{{performance_signal}}` | `sema:PerformanceSignal#mh:SHA-256:9dfb41dd2ac3f271ca5d4a3ab67219a5a18aa8dbd970cdb410e7c9c1ec85488c` |
@@ -35208,6 +35250,7 @@ _Note: The U stands for Unique, and the axis is judged as novelty: structural di
 - `PolymorphicSolver#1362`
 - `PolymorphicSolver#28f1`
 - `PolymorphicSolver#cb20`
+- `PolymorphicSolver#f7fe`
 
 ---
 
@@ -35985,7 +36028,7 @@ _Note: The U stands for Unique, and the axis is judged as novelty: structural di
 
 ---
 
-### RigorousSolver#2203
+### RigorousSolver#d3e3
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -36007,8 +36050,8 @@ _Note: The U stands for Unique, and the axis is judged as novelty: structural di
 | --- | --- | --- |
 | `composes_with` | `{{feedback}}` | `sema:Feedback#mh:SHA-256:8821fbee51f9b6e495277b161e874a5ba2995bf7ce4fc6e9bc9801798a983c3d` |
 | `composes_with` | `{{probe}}` | `sema:Probe#mh:SHA-256:2bb8a26d43ba0b1975fe2ce4051cfb219a9507140f12e72b819265f4ef98f224` |
-| `references` | `{{polymorphic_solver}}` | `sema:PolymorphicSolver#mh:SHA-256:f7fe4635a7520f918c823f0047d6fed8e38fd820c1970ef4623cc8fd78d2b0bd` |
-| `references` | `{{socratic_loop}}` | `sema:SocraticLoop#mh:SHA-256:4f17ec8b7e28b3f223931274df090225572d754cd772fe4f738c922f16f93a18` |
+| `references` | `{{polymorphic_solver}}` | `sema:PolymorphicSolver#mh:SHA-256:ce9a27d50265e6e74e034eb4da3a6441d840b75a740772da3d577d9602727f1b` |
+| `references` | `{{socratic_loop}}` | `sema:SocraticLoop#mh:SHA-256:ffaac4d5ca573af32ba28028ed642e7aec6b54a3a2e197e50e336cee6c2aaa3c` |
 
 #### Design
 
@@ -36053,7 +36096,7 @@ _Note: The U stands for Unique, and the axis is judged as novelty: structural di
 
 **In the family.** The assurance-specialized descendant of `PolymorphicSolver`. Sibling to `OptimisticSolver` (the opposite tradeoff). Composed with `Probe` (reality alignment), `SocraticLoop` (disambiguation before action), and `Feedback` (post-execution assurance). The correct choice when a wrong answer costs more than a delayed answer.
 
-**Extends (exact parent).** `sema:PolymorphicSolver#mh:SHA-256:f7fe4635a7520f918c823f0047d6fed8e38fd820c1970ef4623cc8fd78d2b0bd`
+**Extends (exact parent).** `sema:PolymorphicSolver#mh:SHA-256:ce9a27d50265e6e74e034eb4da3a6441d840b75a740772da3d577d9602727f1b`
 
 **Supersedes (prior versions).**
 - `RigorousSolver#169f`
@@ -36062,6 +36105,7 @@ _Note: The U stands for Unique, and the axis is judged as novelty: structural di
 - `RigorousSolver#1275`
 - `RigorousSolver#93b8`
 - `RigorousSolver#9034`
+- `RigorousSolver#2203`
 
 ---
 
@@ -36978,7 +37022,7 @@ That property is narrower than it used to read here, and the narrowing matters. 
 
 ---
 
-### TensionHold#b220
+### TensionHold#7c54
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -37026,9 +37070,9 @@ That property is narrower than it used to read here, and the narrowing matters. 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
 | `references` | `{{agent}}` | `sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd` |
-| `references` | `{{dialectic}}` | `sema:Dialectic#mh:SHA-256:26bec9ea9924523af3aa4d24165e4131dfe2ca964a54cee6a7a12cd391bb8aec` |
+| `references` | `{{dialectic}}` | `sema:Dialectic#mh:SHA-256:696105a0b4efefd47c871f06f0d4ef644d9ac7b16c4fda301865d79d52448d56` |
 | `references` | `{{synthesis}}` | `sema:Synthesis#mh:SHA-256:4f1fecba4183e6a79bfb3bd8f1981a6b6fb9f3dced92a484a9aa466c93ae249b` |
-| `yields` | `{{tension}}` | `sema:Tension#mh:SHA-256:40e5946b8186e342a8bcbcf3e1ec0339c1c457d1d5a2bdd83689ad700ab1820a` |
+| `yields` | `{{tension}}` | `sema:Tension#mh:SHA-256:66f5bedc62819d945081d5107391fe98a2073d1f427d78186824ab1095ee0653` |
 
 #### Design
 
@@ -37071,6 +37115,7 @@ That property is narrower than it used to read here, and the narrowing matters. 
 - `TensionHold#b084`
 - `TensionHold#ee6f`
 - `TensionHold#9fb9`
+- `TensionHold#b220`
 
 ---
 
@@ -37433,7 +37478,7 @@ That property is narrower than it used to read here, and the narrowing matters. 
 
 ---
 
-### Wonderdwell#d966
+### Wonderdwell#88a4
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -37458,7 +37503,7 @@ That property is narrower than it used to read here, and the narrowing matters. 
 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
-| `references` | `{{counterfactual_anchor}}` | `sema:CounterfactualAnchor#mh:SHA-256:b8c3c5aca4a8adba07c19d0f6103387c6f7cf9b67ade40b412fa39e41fdb3adf` |
+| `references` | `{{counterfactual_anchor}}` | `sema:CounterfactualAnchor#mh:SHA-256:435c0c8fc20e0886da772bb89e16e81ed7e2c231eae38025f0aed2d3e0a2eebc` |
 
 #### Design
 
@@ -37491,6 +37536,9 @@ That property is narrower than it used to read here, and the narrowing matters. 
 - Novelty, from recall and unverified: known. Nearest known concepts: defamiliarisation; beginner's mind.
 
 **In the family.** CounterfactualAnchor measures surprise, Askwiden records new questions, and Wonderdwell makes room for both in the familiar.
+
+**Supersedes (prior versions).**
+- `Wonderdwell#d966`
 
 ---
 
@@ -37637,7 +37685,7 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 
 ---
 
-### Consensus#b9a5
+### Consensus#01ac
 
 `Society` · `Coordination` · R0 · T1
 
@@ -37675,7 +37723,7 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 | --- | --- | --- |
 | `accepts` | `{{proposal}}` | `sema:Proposal#mh:SHA-256:5d0a98055eef6c963d4c9ec0403cac243720ce8927398032c19b4f5d8cc94506` |
 | `composes_with` | `{{quorum}}` | `sema:Quorum#mh:SHA-256:2a33f05d34bfb2667645680393ca37865d4a7d05d2056eddf4c9df0c13b21744` |
-| `composes_with` | `{{vote}}` | `sema:Vote#mh:SHA-256:84935dbc846bcd8fe2da01e9e04401f190769e87d0354e00c0986e43e414f300` |
+| `composes_with` | `{{vote}}` | `sema:Vote#mh:SHA-256:6ba4208c942c637524fe4461b98d12fcdaae97eac84b07ddaeff170a16761b53` |
 | `yields` | `{{value}}` | `sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8` |
 
 #### Design
@@ -37720,10 +37768,11 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 - `Consensus#b862`
 - `Consensus#45f4`
 - `Consensus#ec30`
+- `Consensus#b9a5`
 
 ---
 
-### ConsensusFinder#cbb7
+### ConsensusFinder#daad
 
 `Society` · `Coordination` · R1 · T2
 
@@ -37745,7 +37794,7 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
-| `references` | `{{consensus}}` | `sema:Consensus#mh:SHA-256:b9a51a8b58edf41b9990f962ee403dbc03c6dd380d6bf178cf5403666ec77d32` |
+| `references` | `{{consensus}}` | `sema:Consensus#mh:SHA-256:01ac4767cb432556d48461ff65dc553651ec559f28b7e438d55a292ea0c6106e` |
 | `references` | `{{discover}}` | `sema:Discover#mh:SHA-256:f6e09de2a5b38c031651d22539fafaa46e32869b06dae8009bde18cb249da69b` |
 | `references` | `{{quorum}}` | `sema:Quorum#mh:SHA-256:2a33f05d34bfb2667645680393ca37865d4a7d05d2056eddf4c9df0c13b21744` |
 | `references` | `{{resonate}}` | `sema:Resonate#mh:SHA-256:786d8bf55b013d0405e49f2cab6a084e45fdc4507f7394fd6cff99354bc87aad` |
@@ -37791,6 +37840,7 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 - `ConsensusFinder#c6fa`
 - `ConsensusFinder#980a`
 - `ConsensusFinder#d406`
+- `ConsensusFinder#cbb7`
 
 ---
 
@@ -38294,7 +38344,7 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 
 ---
 
-### Rally#9ee7
+### Rally#3ef1
 
 `Society` · `Coordination` · R1 · T2
 
@@ -38405,6 +38455,7 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 - `Rally#c284`
 - `Rally#48a0`
 - `Rally#f2d6`
+- `Rally#9ee7`
 
 ---
 
@@ -38513,7 +38564,7 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 
 ---
 
-### Vote#8493
+### Vote#6ba4
 
 `Society` · `Coordination` · R2 · T2
 
@@ -38570,7 +38621,7 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 | --- | --- | --- |
 | `accepts` | `{{ballot}}` | `sema:Ballot#mh:SHA-256:e0e4a34b48dba4669e09b04c4b8c3202f95c878fc26c29480a298012753b1f3c` |
 | `composes_with` | `{{quorum}}` | `sema:Quorum#mh:SHA-256:2a33f05d34bfb2667645680393ca37865d4a7d05d2056eddf4c9df0c13b21744` |
-| `references` | `{{aggregate}}` | `sema:Aggregate#mh:SHA-256:2db6858c061515fa2257c96f4a6e4392164e9a118adc6874c69cf2279b877077` |
+| `references` | `{{aggregate}}` | `sema:Aggregate#mh:SHA-256:bb809289d74615fd774f32704d3857a5e4d45480ad5b68de8f995e0c9e445d21` |
 | `references` | `{{break}}` | `sema:Break#mh:SHA-256:5003e128ac02e7835d2094d72dc929ce4c96819b56ef167c2ca8da9f16aa402a` |
 | `references` | `{{elect}}` | `sema:Elect#mh:SHA-256:53902a96572579889fc19d4c0100e7876fe566fba4cc846241e6b209b00bf52f` |
 | `references` | `{{system}}` | `sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3` |
@@ -38619,6 +38670,7 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 - `Vote#0aff`
 - `Vote#3b66`
 - `Vote#d3cb`
+- `Vote#8493`
 
 ---
 
@@ -40683,7 +40735,7 @@ One check that passed and is worth recording: this card's commentary describes O
 
 ---
 
-### AnchorDrop#63a7
+### AnchorDrop#27ad
 
 `Society` · `Governance` · R0 · T1
 
@@ -40712,7 +40764,7 @@ One check that passed and is worth recording: this card's commentary describes O
 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
-| `references` | `{{consensus}}` | `sema:Consensus#mh:SHA-256:b9a51a8b58edf41b9990f962ee403dbc03c6dd380d6bf178cf5403666ec77d32` |
+| `references` | `{{consensus}}` | `sema:Consensus#mh:SHA-256:01ac4767cb432556d48461ff65dc553651ec559f28b7e438d55a292ea0c6106e` |
 | `references` | `{{quorum}}` | `sema:Quorum#mh:SHA-256:2a33f05d34bfb2667645680393ca37865d4a7d05d2056eddf4c9df0c13b21744` |
 | `references` | `{{system}}` | `sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3` |
 
@@ -40759,6 +40811,7 @@ One check that passed and is worth recording: this card's commentary describes O
 - `AnchorDrop#3878`
 - `AnchorDrop#695e`
 - `AnchorDrop#669f`
+- `AnchorDrop#63a7`
 
 ---
 
@@ -42629,7 +42682,7 @@ _Note: The coined handle names the failure and the card defines the guard, as Co
 
 ---
 
-### AmbiguityResolution#0bd2
+### AmbiguityResolution#5e31
 
 `Society` · `Protocols` · R1 · T2
 
@@ -42650,7 +42703,7 @@ _Note: The coined handle names the failure and the card defines the guard, as Co
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
 | `composes_with` | `{{entropy_pump}}` | `sema:EntropyPump#mh:SHA-256:a1369712d823417e257e4306f53aa63a5dcd83b34a8f4093823578a2196eec56` |
-| `composes_with` | `{{vote}}` | `sema:Vote#mh:SHA-256:84935dbc846bcd8fe2da01e9e04401f190769e87d0354e00c0986e43e414f300` |
+| `composes_with` | `{{vote}}` | `sema:Vote#mh:SHA-256:6ba4208c942c637524fe4461b98d12fcdaae97eac84b07ddaeff170a16761b53` |
 
 #### Design
 
@@ -42695,6 +42748,7 @@ _Note: The coined handle names the failure and the card defines the guard, as Co
 - `AmbiguityResolution#ede0`
 - `AmbiguityResolution#4c6b`
 - `AmbiguityResolution#445e`
+- `AmbiguityResolution#0bd2`
 
 ---
 
@@ -42770,7 +42824,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 ---
 
-### Belongbend#31f2
+### Belongbend#4869
 
 `Society` · `Protocols` · R2 · T2
 
@@ -42794,7 +42848,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
-| `references` | `{{counterfactual_anchor}}` | `sema:CounterfactualAnchor#mh:SHA-256:b8c3c5aca4a8adba07c19d0f6103387c6f7cf9b67ade40b412fa39e41fdb3adf` |
+| `references` | `{{counterfactual_anchor}}` | `sema:CounterfactualAnchor#mh:SHA-256:435c0c8fc20e0886da772bb89e16e81ed7e2c231eae38025f0aed2d3e0a2eebc` |
 
 #### Design
 
@@ -42828,6 +42882,9 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - Novelty, from recall and unverified: known. Nearest known concepts: preference falsification; conformity.
 
 **In the family.** CounterfactualAnchor freezes predictions; Silencevote and Doubtshelter address other conformity failures; Belongbend exposes shifts that may be bent judgments.
+
+**Supersedes (prior versions).**
+- `Belongbend#31f2`
 
 ---
 
@@ -43510,7 +43567,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 ---
 
-### CounterfactualAnchor#b8c3
+### CounterfactualAnchor#435c
 
 `Society` · `Protocols` · R1 · T2
 
@@ -43567,7 +43624,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 | `references` | `{{cognitive_bias}}` | `sema:CognitiveBias#mh:SHA-256:c8a4abe2e0ce048be16d25f890a50f8c7095e099b5ab2de23aa059942328f387` |
 | `references` | `{{observe}}` | `sema:Observe#mh:SHA-256:4a04c0e91f072dc02a4be52bca921c38c1be46e88b1f2bcb375076fdb5103e96` |
 | `references` | `{{signal}}` | `sema:Signal#mh:SHA-256:6eaff8a06e08e75279670bc09d88175d130815240fdfb3a21252c0364769c1fc` |
-| `references` | `{{surprisal_update}}` | `sema:SurprisalUpdate#mh:SHA-256:26e53ade88809ac3ba9293b45db768fdbdb384a53cda1217c3a0dfc61d5f8408` |
+| `references` | `{{surprisal_update}}` | `sema:SurprisalUpdate#mh:SHA-256:5e092ac54c497452f0bc1ab93fafa89f7cb3de946a724c4f78479ab2225546b2` |
 
 #### Design
 
@@ -43611,6 +43668,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - `CounterfactualAnchor#0d2b`
 - `CounterfactualAnchor#e7ac`
 - `CounterfactualAnchor#47be`
+- `CounterfactualAnchor#b8c3`
 
 ---
 
@@ -44217,7 +44275,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 ---
 
-### DriftWatch#b696
+### DriftWatch#2913
 
 `Society` · `Protocols` · R0 · T1
 
@@ -44275,7 +44333,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
 | `references` | `{{agent}}` | `sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd` |
-| `references` | `{{aggregate}}` | `sema:Aggregate#mh:SHA-256:2db6858c061515fa2257c96f4a6e4392164e9a118adc6874c69cf2279b877077` |
+| `references` | `{{aggregate}}` | `sema:Aggregate#mh:SHA-256:bb809289d74615fd774f32704d3857a5e4d45480ad5b68de8f995e0c9e445d21` |
 | `references` | `{{distance}}` | `sema:Distance#mh:SHA-256:dfdfe0610f91741e27f87042fc396eab765c4e48aa20fdfc0dfa7152d1333893` |
 
 #### Design
@@ -44322,6 +44380,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - `DriftWatch#a20d`
 - `DriftWatch#49b6`
 - `DriftWatch#37cf`
+- `DriftWatch#b696`
 
 ---
 
@@ -44660,7 +44719,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 ---
 
-### FabricSharding#96e1
+### FabricSharding#6c36
 
 `Society` · `Protocols` · R0 · T2
 
@@ -44710,7 +44769,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
-| `references` | `{{parallelize}}` | `sema:Parallelize#mh:SHA-256:c1c795defd6f4f9cab2823cf832ae91f5f0651bef082108bb494047d91be04a1` |
+| `references` | `{{parallelize}}` | `sema:Parallelize#mh:SHA-256:53a54fc8c6c719497cade703e7153f188faf393a54259d62079ea3a38b5092fd` |
 | `references` | `{{shard}}` | `sema:Shard#mh:SHA-256:4d41232416e3d414c714e0892e8559c2180899b4c21c25af29984372220f8704` |
 | `references` | `{{state}}` | `sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2` |
 
@@ -44755,6 +44814,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - `FabricSharding#7399`
 - `FabricSharding#25d2`
 - `FabricSharding#c057`
+- `FabricSharding#96e1`
 
 ---
 
@@ -44883,7 +44943,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 ---
 
-### GenealogicalTrace#8c7f
+### GenealogicalTrace#67cf
 
 `Society` · `Protocols` · R2 · T2
 
@@ -44908,7 +44968,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 | --- | --- | --- |
 | `references` | `{{cite_back}}` | `sema:CiteBack#mh:SHA-256:b84030c6635efa4b951843dd03918883cf1379fddb4cce9e3d098c19dfd6a604` |
 | `references` | `{{deep}}` | `sema:Deep#mh:SHA-256:16b0cb8d6aa42a890215fb7a44e480c27360165de2249d205ee6c1b2d01896bb` |
-| `references` | `{{trace_belief}}` | `sema:TraceBelief#mh:SHA-256:7b8a67006e9e0f510dd1937e9b420fb8cea880ca1fd0d3d1e86ef5bffffa021a` |
+| `references` | `{{trace_belief}}` | `sema:TraceBelief#mh:SHA-256:5da570bbaa2e2534f643111811fa02ed09cb688ac59aef72c5b53b5c61ff8df2` |
 
 #### Design
 
@@ -44953,6 +45013,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - `GenealogicalTrace#fa22`
 - `GenealogicalTrace#f30f`
 - `GenealogicalTrace#ee20`
+- `GenealogicalTrace#8c7f`
 
 ---
 
@@ -45507,7 +45568,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 ---
 
-### InvariantFilter#212b
+### InvariantFilter#06cd
 
 `Society` · `Protocols` · R1 · T1
 
@@ -45599,6 +45660,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - `InvariantFilter#a541`
 - `InvariantFilter#cc37`
 - `InvariantFilter#5e4d`
+- `InvariantFilter#212b`
 
 ---
 
@@ -45976,7 +46038,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 ---
 
-### Mosaicmap#c51d
+### Mosaicmap#4cff
 
 `Society` · `Protocols` · R2 · T2
 
@@ -46001,7 +46063,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
-| `references` | `{{holographic_shard}}` | `sema:HolographicShard#mh:SHA-256:6e067dcfaca5b7d656f6de48b083cd44862ea18b45c1daa5cfa3eccd751f0d02` |
+| `references` | `{{holographic_shard}}` | `sema:HolographicShard#mh:SHA-256:7ac933aea2cb1885dd4cb1e92765c4bb5a1c97f44c3706abe106e6c2e6d0e4c2` |
 
 #### Design
 
@@ -46034,6 +46096,9 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - Novelty, from recall and unverified: known. Nearest known concepts: distributed cognition; transactive memory.
 
 **In the family.** HolographicShard spreads the goal, Reasoncommons spreads reasons, and Mosaicmap maps spread understanding.
+
+**Supersedes (prior versions).**
+- `Mosaicmap#c51d`
 
 ---
 
@@ -46098,7 +46163,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 ---
 
-### Nucleate#3e4b
+### Nucleate#1126
 
 `Society` · `Protocols` · R1 · T1
 
@@ -46133,7 +46198,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 | `references` | `{{conservation}}` | `sema:Conservation#mh:SHA-256:0b32d007b27a9b5201c46931bdbabd09d08ff9d7b01cf49469f61709989507c2` |
 | `references` | `{{crystallize}}` | `sema:Crystallize#mh:SHA-256:0642166a22e385c83630c6648dc0ce2487257939856188895c85030eecf5bfb1` |
 | `references` | `{{phase_transition}}` | `sema:PhaseTransition#mh:SHA-256:b7752342dcc7b20033400fc4ec1befd4bc3a31532493d6acdce763293e81c1d7` |
-| `references` | `{{rally}}` | `sema:Rally#mh:SHA-256:9ee797cd797df62b9883ead618c35eb8d8a5e86c171630cdc8f8ecc6066d6a89` |
+| `references` | `{{rally}}` | `sema:Rally#mh:SHA-256:3ef1a658874f6a5333a43d3362227b9ae446ee11e78868a33678cdf064b8fb35` |
 | `references` | `{{system}}` | `sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3` |
 | `references` | `{{trace}}` | `sema:Trace#mh:SHA-256:b68d64423aa72b13a06714aa182baab79eb49a5a856dce56dd554fd63b41c2a9` |
 
@@ -46178,10 +46243,11 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - `Nucleate#32c0`
 - `Nucleate#457a`
 - `Nucleate#914a`
+- `Nucleate#3e4b`
 
 ---
 
-### OptimisticSolver#63aa
+### OptimisticSolver#1e72
 
 `Society` · `Protocols` · R1 · T2
 
@@ -46215,8 +46281,8 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 | `composes_with` | `{{pathway_memory}}` | `sema:PathwayMemory#mh:SHA-256:ce2e6ce822404fae0e60a43fc2c6fbe2e4d51ab9aefee1e7a9e21da75893e722` |
 | `composes_with` | `{{reflexion}}` | `sema:Reflexion#mh:SHA-256:81eb9140703ea95f53556741df731af84c1cada66cc1e0f3a1d88e4de5fe54d8` |
 | `references` | `{{parallel}}` | `sema:Parallel#mh:SHA-256:d58d6696be11be09651e71307f0ea6f42bb45fac137ed985a61e475144f687a5` |
-| `references` | `{{polymorphic_solver}}` | `sema:PolymorphicSolver#mh:SHA-256:f7fe4635a7520f918c823f0047d6fed8e38fd820c1970ef4623cc8fd78d2b0bd` |
-| `references` | `{{rigorous_solver}}` | `sema:RigorousSolver#mh:SHA-256:2203568438553dc7e6331a7336e2bf488fc99de0a39c601ca3f63ba3e8849038` |
+| `references` | `{{polymorphic_solver}}` | `sema:PolymorphicSolver#mh:SHA-256:ce9a27d50265e6e74e034eb4da3a6441d840b75a740772da3d577d9602727f1b` |
+| `references` | `{{rigorous_solver}}` | `sema:RigorousSolver#mh:SHA-256:d3e3625a3e5a7fc0da9ec67377e8e60c0dd76d730afd053af02d5833e947ea39` |
 
 #### Design
 
@@ -46263,7 +46329,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 **In the family.** The velocity-specialized descendant of `PolymorphicSolver`, paired with `AtomicBid` for turn-atomic multi-agent coordination. Sibling to `RigorousSolver` (the opposite tradeoff: slower, stricter). Composed with `Reflexion` and `Compensate` for post-hoc error recovery.
 
-**Extends (exact parent).** `sema:PolymorphicSolver#mh:SHA-256:f7fe4635a7520f918c823f0047d6fed8e38fd820c1970ef4623cc8fd78d2b0bd`
+**Extends (exact parent).** `sema:PolymorphicSolver#mh:SHA-256:ce9a27d50265e6e74e034eb4da3a6441d840b75a740772da3d577d9602727f1b`
 
 **Supersedes (prior versions).**
 - `OptimisticSolver#ee29`
@@ -46272,6 +46338,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - `OptimisticSolver#f664`
 - `OptimisticSolver#0dca`
 - `OptimisticSolver#e248`
+- `OptimisticSolver#63aa`
 
 ---
 
@@ -46440,7 +46507,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 ---
 
-### OsmoticFilter#239a
+### OsmoticFilter#b968
 
 `Society` · `Protocols` · R2 · T2
 
@@ -46528,6 +46595,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - `OsmoticFilter#36b5`
 - `OsmoticFilter#d437`
 - `OsmoticFilter#f37d`
+- `OsmoticFilter#239a`
 
 ---
 
@@ -46686,7 +46754,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 ---
 
-### PhasedRefinement#a263
+### PhasedRefinement#54f2
 
 `Society` · `Protocols` · R2 · T2
 
@@ -46715,7 +46783,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
 | `composes_with` | `{{gate}}` | `sema:Gate#mh:SHA-256:664dd801873a87e8aa3d67499e27e7c47923d5c0cdd129af6c09a7531ed7de15` |
-| `composes_with` | `{{refine}}` | `sema:Refine#mh:SHA-256:2952467a9d3eb809c6131d59e1047a3a4aa296d32dcd38a82c0204b5cd8d16a6` |
+| `composes_with` | `{{refine}}` | `sema:Refine#mh:SHA-256:37c13555a33779027113d152d369edbed27f2dd449a6aedc09429f01bf58adb5` |
 | `composes_with` | `{{sequence}}` | `sema:Sequence#mh:SHA-256:0cae6b0951c4e93742259ff81ded009a85283d250c948f97cce3b9b3b8e58e1a` |
 | `references` | `{{aesthetics}}` | `sema:Aesthetics#mh:SHA-256:6f6de47c2320dbffb7fb264ddeddbedaed8017e8601a6ffd50826e10e5d24a67` |
 | `references` | `{{artifact}}` | `sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee` |
@@ -46766,6 +46834,7 @@ _Note: Each pass operates on a current immutable Artifact version and produces i
 - `PhasedRefinement#e4d0`
 - `PhasedRefinement#56f0`
 - `PhasedRefinement#15e3`
+- `PhasedRefinement#a263`
 
 ---
 
@@ -47048,7 +47117,7 @@ _Note: Each pass operates on a current immutable Artifact version and produces i
 
 ---
 
-### PropheticQuorum#f7ff
+### PropheticQuorum#48df
 
 `Society` · `Protocols` · R1 · T1
 
@@ -47095,12 +47164,12 @@ _Note: Each pass operates on a current immutable Artifact version and produces i
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
 | `references` | `{{check}}` | `sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00` |
-| `references` | `{{normative_judge}}` | `sema:NormativeJudge#mh:SHA-256:684f219181e9180ffea6b4ff2947dbdb9d37a12ae690c02c088f58881f9e0726` |
+| `references` | `{{normative_judge}}` | `sema:NormativeJudge#mh:SHA-256:b843fda7056db0e5647cca7522b306dd868a02a43e2d425566455f5c17950ed6` |
 | `references` | `{{simulation}}` | `sema:Simulation#mh:SHA-256:1058e7090079e846251ed480d7afec0328809d22bebb6b205425b2de614787c3` |
 | `references` | `{{simulation_trace}}` | `sema:SimulationTrace#mh:SHA-256:e18789d2ae0413d7f4a4429598f9a12c6f2b9fe4b515eef176d855dcadc0d987` |
 | `references` | `{{state}}` | `sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2` |
 | `references` | `{{value}}` | `sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8` |
-| `references` | `{{vote}}` | `sema:Vote#mh:SHA-256:84935dbc846bcd8fe2da01e9e04401f190769e87d0354e00c0986e43e414f300` |
+| `references` | `{{vote}}` | `sema:Vote#mh:SHA-256:6ba4208c942c637524fe4461b98d12fcdaae97eac84b07ddaeff170a16761b53` |
 
 #### Design
 
@@ -47144,6 +47213,7 @@ _Note: Each pass operates on a current immutable Artifact version and produces i
 - `PropheticQuorum#1091`
 - `PropheticQuorum#83cc`
 - `PropheticQuorum#fb6b`
+- `PropheticQuorum#f7ff`
 
 ---
 
@@ -47226,7 +47296,7 @@ _Note: Each pass operates on a current immutable Artifact version and produces i
 
 ---
 
-### RealizationProtocol#68fb
+### RealizationProtocol#c121
 
 `Society` · `Protocols` · R1 · T2
 
@@ -47270,7 +47340,7 @@ _Note: Each pass operates on a current immutable Artifact version and produces i
 | `references` | `{{criteria}}` | `sema:Criteria#mh:SHA-256:92ab804441f5ff5307c6e45905818372e6159c4bd64d264ac7fddd6705de8acb` |
 | `references` | `{{execution_manifest}}` | `sema:ExecutionManifest#mh:SHA-256:fed57d4adcd6d9d1f82c57c3d22724485171672d77a34fdfaf7338a430f5f0b1` |
 | `references` | `{{frame_spec}}` | `sema:FrameSpec#mh:SHA-256:3c202cc3416eadb2215857b542e4fc54660d5253fca9c2d42cb999929ad18c42` |
-| `references` | `{{polymorphic_solver}}` | `sema:PolymorphicSolver#mh:SHA-256:f7fe4635a7520f918c823f0047d6fed8e38fd820c1970ef4623cc8fd78d2b0bd` |
+| `references` | `{{polymorphic_solver}}` | `sema:PolymorphicSolver#mh:SHA-256:ce9a27d50265e6e74e034eb4da3a6441d840b75a740772da3d577d9602727f1b` |
 | `references` | `{{rollout_manifest}}` | `sema:RolloutManifest#mh:SHA-256:248df60c0a8d3d0e73d0dc29ee287c233c5761d610af135bc3baf96e1e556e10` |
 | `references` | `{{solver_tree}}` | `sema:SolverTree#mh:SHA-256:e275a01a2ced22c7412f23780f4bfa84ca171e9184f29d65336c24baddcc4052` |
 | `yields` | `{{outcome}}` | `sema:Outcome#mh:SHA-256:753768dae28040f1291ee2849d2aac2a08bbffd836cfab679bdbea9a6ff7ec03` |
@@ -47322,6 +47392,7 @@ _Note: Each pass operates on a current immutable Artifact version and produces i
 - `RealizationProtocol#61ae`
 - `RealizationProtocol#02e8`
 - `RealizationProtocol#78f1`
+- `RealizationProtocol#68fb`
 
 ---
 

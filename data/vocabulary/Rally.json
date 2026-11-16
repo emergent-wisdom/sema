@@ -49,16 +49,17 @@
       "sema:Rally#mh:SHA-256:8d0401a21776e9a4d44b60bd1c7a8d7af1c9d275c3d209ef12432c892f435cec",
       "sema:Rally#mh:SHA-256:c284735a8954e84a3b4ce89a685b304490cac103dc3abaf14f9d7a035a3e2dc5",
       "sema:Rally#mh:SHA-256:48a037eb8da9aa05db6d44c4827ed1a243eb07ff0be810b8b8792b05e0419430",
-      "sema:Rally#mh:SHA-256:f2d67002a3d5ca0f6e0e61343ba41b800d3211249f3ab513984af2699df7d8d5"
+      "sema:Rally#mh:SHA-256:f2d67002a3d5ca0f6e0e61343ba41b800d3211249f3ab513984af2699df7d8d5",
+      "sema:Rally#mh:SHA-256:9ee797cd797df62b9883ead618c35eb8d8a5e86c171630cdc8f8ecc6066d6a89"
     ],
     "path": [
       "Society",
       "Coordination"
     ]
   },
-  "sema_id": "sema:Rally#mh:SHA-256:9ee797cd797df62b9883ead618c35eb8d8a5e86c171630cdc8f8ecc6066d6a89",
-  "sema_ref": "Rally#9ee7",
-  "sema_stub": "9ee7",
+  "sema_id": "sema:Rally#mh:SHA-256:3ef1a658874f6a5333a43d3362227b9ae446ee11e78868a33678cdf064b8fb35",
+  "sema_ref": "Rally#3ef1",
+  "sema_stub": "3ef1",
   "dependencies": {
     "accepts": {
       "accept_spec": "sema:AcceptSpec#mh:SHA-256:37fa28b93d390f8c8eb171eaab54ff4f9e57a95ef67af024422f823545a291cc",

@@ -29,7 +29,8 @@
       "sema:RealizationProtocol#mh:SHA-256:663bfe23868f8e0897c443f113a37ea2a5565df6a61dec7f4110ea855e1db0d8",
       "sema:RealizationProtocol#mh:SHA-256:61aeb4a13ae926423ff59fe2948599ab6eca8deb4713f4952d933b10d5acafc7",
       "sema:RealizationProtocol#mh:SHA-256:02e81a7f17b2ed533765aa8a7e7b8cbe0568fb5e26a516d9a9e6cbd5ecfe5d21",
-      "sema:RealizationProtocol#mh:SHA-256:78f170ff700340d41bc9ced304bda7fee7e9c959f3948f965778514e856bb06d"
+      "sema:RealizationProtocol#mh:SHA-256:78f170ff700340d41bc9ced304bda7fee7e9c959f3948f965778514e856bb06d",
+      "sema:RealizationProtocol#mh:SHA-256:68fbd05d6135b73ef53db0366e69f4927e5f92f9dd88fa7b79c0a6022e4962ca"
     ],
     "path": [
       "Society",
@@ -39,9 +40,9 @@
   "signature": [
     "SolverTree(Outcome)"
   ],
-  "sema_id": "sema:RealizationProtocol#mh:SHA-256:68fbd05d6135b73ef53db0366e69f4927e5f92f9dd88fa7b79c0a6022e4962ca",
-  "sema_ref": "RealizationProtocol#68fb",
-  "sema_stub": "68fb",
+  "sema_id": "sema:RealizationProtocol#mh:SHA-256:c121bb07fab2a211611afe8732867eeba33a1f189e7938518a72bd1fc3bb8f5c",
+  "sema_ref": "RealizationProtocol#c121",
+  "sema_stub": "c121",
   "dependencies": {
     "composes_with": {
       "manifest_planning": "sema:ManifestPlanning#mh:SHA-256:8bd4fc5ad5c604cd4814a96d23565a07d890e78800281c81abdfeafe02473896",
@@ -54,7 +55,7 @@
       "criteria": "sema:Criteria#mh:SHA-256:92ab804441f5ff5307c6e45905818372e6159c4bd64d264ac7fddd6705de8acb",
       "execution_manifest": "sema:ExecutionManifest#mh:SHA-256:fed57d4adcd6d9d1f82c57c3d22724485171672d77a34fdfaf7338a430f5f0b1",
       "frame_spec": "sema:FrameSpec#mh:SHA-256:3c202cc3416eadb2215857b542e4fc54660d5253fca9c2d42cb999929ad18c42",
-      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:f7fe4635a7520f918c823f0047d6fed8e38fd820c1970ef4623cc8fd78d2b0bd",
+      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:ce9a27d50265e6e74e034eb4da3a6441d840b75a740772da3d577d9602727f1b",
       "rollout_manifest": "sema:RolloutManifest#mh:SHA-256:248df60c0a8d3d0e73d0dc29ee287c233c5761d610af135bc3baf96e1e556e10",
       "solver_tree": "sema:SolverTree#mh:SHA-256:e275a01a2ced22c7412f23780f4bfa84ca171e9184f29d65336c24baddcc4052"
     },

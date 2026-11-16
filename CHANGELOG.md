@@ -10,6 +10,40 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
+### Changed
+
+Pattern identities now bind each placeholder to its definition (canonicalization v3). A card's `dependencies` map
+each placeholder in its text, such as `{{judge}}`, to a target. Canonicalization v2 hashed which targets a category
+binds and how many times, but not which placeholder each one fills; v3 hashes that pairing as well. A pairing stays
+implied when the placeholder names its own target (`{{judge}}` bound to `Judge`) and no other placeholder name in the
+card folds to the same name. A card whose pairings are all implied hashes exactly as under v2. Every other pairing is
+hashed explicitly under the reserved key `@bindings`. Section 4.2 of the specification defines v3,
+and `docs/specification/canonicalization-v3-test-vectors.json` gives its test vectors. New identities use v3; v2 stays
+available for verifying what was published under it.
+
+55 of the 617 bootstrap patterns take new identities: the 8 whose placeholders carry role names (`Aggregate`,
+`EmpathySim`, `InvariantFilter`, `NormativeJudge`, `OsmoticFilter`, `PURECheck`, `Rally`, `Refine`) and the 47 that
+depend on them. Each lists its 0.10.0 identity in `_meta.supersedes`, and `sema pull` updates each in place. The
+other 562 keep their identities. The semantic-set and catalog roots change accordingly.
+
+### Added
+
+- Library manifests: `manifest_schema` 2 adds a required `canonicalization`. A schema-1 manifest still installs and
+  means v2. `sema package` writes schema 2 for a v3 database and schema 1 for a v2 one, so a v2 library stays
+  installable by earlier releases; installed-library records carry the version, and re-verification uses it. Earlier
+  `sema` versions refuse a schema-2 manifest rather than misread it.
+- Workspaces record their canonicalization. A database written before this release that holds patterns stays on v2;
+  a new one starts on v3, and `sema build` gives a selective copy the version of its source. `sema pull` from a v3
+  upstream moves a v2 workspace to v3 inside the same atomic update and recomputes every local identity, user
+  patterns included. An exact `extends` pin follows its parent to the new identity when the parent is the same
+  definition re-identified; a pin to a parent whose content changed upstream is refused as before. A v3 workspace
+  refuses a v2 upstream. The hash audit checks under the version of the database the vocabulary was exported from,
+  or `--canonicalization`.
+- `sema pull` reports `canonicalization_before` and `canonicalization_after`, and keeps its undo snapshot when the
+  canonicalization moved even if no identity did.
+- `scripts/test_hash_verification.py` takes `--canonicalization {2,3}` and `--all`;
+  `scripts/rebuild_vocabulary.py` takes `--retarget-extends`.
+
 ## [0.10.0] - 2026-10-10
 
 ### Added

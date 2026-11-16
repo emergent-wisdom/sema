@@ -16,20 +16,21 @@
       "sema:PUREBrainstorming#mh:SHA-256:c5347d68b4b555f4e114eec4f7288c79743ef5b7d9f39d9f34a04d7da50f1c6b",
       "sema:PUREBrainstorming#mh:SHA-256:856fb3ca265e03969be3c968cb73c7fb9554d26e8e417c1d4d9276b4b87b141c",
       "sema:PUREBrainstorming#mh:SHA-256:c7c8cb14ebcfd2c1b3d58e0f065f160cadb2591c7116e50c1cd632a29a210f85",
-      "sema:PUREBrainstorming#mh:SHA-256:aab7515326933a03b9ee3f5fd20eee1cd5bd90fc949a622072758284d7afbe4a"
+      "sema:PUREBrainstorming#mh:SHA-256:aab7515326933a03b9ee3f5fd20eee1cd5bd90fc949a622072758284d7afbe4a",
+      "sema:PUREBrainstorming#mh:SHA-256:c2dedd01a6cc672eee70dcf57fc52ab1c9a5ffb2b6cd393dbd2e93f909842e18"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:PUREBrainstorming#mh:SHA-256:c2dedd01a6cc672eee70dcf57fc52ab1c9a5ffb2b6cd393dbd2e93f909842e18",
-  "sema_ref": "PUREBrainstorming#c2de",
-  "sema_stub": "c2de",
+  "sema_id": "sema:PUREBrainstorming#mh:SHA-256:a2629ee21340d0c4993c9e64c6b437d1a0e8208b3537621fd8609ddc3c666d34",
+  "sema_ref": "PUREBrainstorming#a262",
+  "sema_stub": "a262",
   "dependencies": {
     "composes_with": {
-      "pure_check": "sema:PURECheck#mh:SHA-256:574bfe492b148844233507d79302ba73135ad366d24b4b34f3de476ed903094e",
-      "pure_optimization": "sema:PUREOptimization#mh:SHA-256:205b2c752f68fe87dde75b65cb848bdad8527dc5713180460e6441eac3b86be6"
+      "pure_check": "sema:PURECheck#mh:SHA-256:7149d03ad603bdc29e4bcc3137afdd789074a69441e5ebfffa7d7e82dd81fc30",
+      "pure_optimization": "sema:PUREOptimization#mh:SHA-256:227215f5271a280c7d22f7bf0a3127433076a3acd418c5cd009a798638f4b878"
     },
     "references": {
       "p_u_r_e": "sema:PURE#mh:SHA-256:b65a673f236a094421e8ae7278ca0cc24a1de7b998caf26aef1e2022be1d0efd"

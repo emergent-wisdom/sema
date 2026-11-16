@@ -45,21 +45,22 @@
       "sema:SurprisalUpdate#mh:SHA-256:6ef19d8b61ce228bbc61a34496b878f1e060e56790f48606fc4e81b3b8594fca",
       "sema:SurprisalUpdate#mh:SHA-256:41a9f896757eb4b0d7132604b60e0193eaba43329953359ef5e927f69112f8df",
       "sema:SurprisalUpdate#mh:SHA-256:6169da6dce9141595fc8b7ac8d8743e397cd44a2da04b3499b2ce910e174c2ef",
-      "sema:SurprisalUpdate#mh:SHA-256:b2f104df0f114d6ef799bb343897bc4119585cd164821e63bfa6043cb717243f"
+      "sema:SurprisalUpdate#mh:SHA-256:b2f104df0f114d6ef799bb343897bc4119585cd164821e63bfa6043cb717243f",
+      "sema:SurprisalUpdate#mh:SHA-256:26e53ade88809ac3ba9293b45db768fdbdb384a53cda1217c3a0dfc61d5f8408"
     ],
     "path": [
       "Mind",
       "Inference"
     ]
   },
-  "sema_id": "sema:SurprisalUpdate#mh:SHA-256:26e53ade88809ac3ba9293b45db768fdbdb384a53cda1217c3a0dfc61d5f8408",
-  "sema_ref": "SurprisalUpdate#26e5",
-  "sema_stub": "26e5",
+  "sema_id": "sema:SurprisalUpdate#mh:SHA-256:5e092ac54c497452f0bc1ab93fafa89f7cb3de946a724c4f78479ab2225546b2",
+  "sema_ref": "SurprisalUpdate#5e09",
+  "sema_stub": "5e09",
   "dependencies": {
     "references": {
       "epistemic_roi": "sema:EpistemicROI#mh:SHA-256:b0d863d10c0d67edc218444b72c75f05127b899af6ac0295899b6506cba9acc7",
       "gradient": "sema:Gradient#mh:SHA-256:ecfc2cd2d9eb95778ef04ede8a7e872c33822f174a9e3273fa7bba92b3a30e36",
-      "regime_sense": "sema:RegimeSense#mh:SHA-256:50396d316674bf65b204938ee8cecc48cf294223cdb90c9789d6a72bb542cb07"
+      "regime_sense": "sema:RegimeSense#mh:SHA-256:8bba125c54467eac428d5257f67617a947a4041c04da0bdcb2ade774056b0e14"
     }
   },
   "sema_layer": "Mind",

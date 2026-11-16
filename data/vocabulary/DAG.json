@@ -30,7 +30,8 @@
     "supersedes": [
       "sema:DAG#mh:SHA-256:ed37a1e0310857feba371491e4652f9a142905af341adbc67e6386c5b3c1672f",
       "sema:DAG#mh:SHA-256:ed81568cef305d3f4f39c7ef157bfc4c74ef721c8ad1e9001a2d11793ce936df",
-      "sema:DAG#mh:SHA-256:cb54c9360f063d839412e33158dc205c02af684d85132f6a982caba17274f253"
+      "sema:DAG#mh:SHA-256:cb54c9360f063d839412e33158dc205c02af684d85132f6a982caba17274f253",
+      "sema:DAG#mh:SHA-256:ed5b6bdbe8d785f1dceb6cc1c7020d9c2340be7b507a3678da2da58211e455aa"
     ],
     "path": [
       "Infrastructure",
@@ -43,16 +44,16 @@
     "Rooted: exactly one node has no predecessor, named by `root_id`.",
     "Nodes with no directed path between them may run concurrently."
   ],
-  "sema_id": "sema:DAG#mh:SHA-256:ed5b6bdbe8d785f1dceb6cc1c7020d9c2340be7b507a3678da2da58211e455aa",
-  "sema_ref": "DAG#ed5b",
-  "sema_stub": "ed5b",
+  "sema_id": "sema:DAG#mh:SHA-256:0c8ae9f4ab979af72ccf01ea840861e6e8473459598901236faf05294d5cb22b",
+  "sema_ref": "DAG#0c8a",
+  "sema_stub": "0c8a",
   "failure_modes": [
     "Cycle on insert: an added edge closes a loop, which the acyclicity invariant forbids and which must be detected at insertion rather than at traversal.",
     "False precedence: an edge asserts a dependency that does not exist, serialising work that could have run concurrently."
   ],
   "dependencies": {
     "references": {
-      "parallelize": "sema:Parallelize#mh:SHA-256:c1c795defd6f4f9cab2823cf832ae91f5f0651bef082108bb494047d91be04a1",
+      "parallelize": "sema:Parallelize#mh:SHA-256:53a54fc8c6c719497cade703e7153f188faf393a54259d62079ea3a38b5092fd",
       "topology": "sema:Topology#mh:SHA-256:58ad1ff07863b0fbf1250185232c48d8815752e4ce4f32a971166a56be297467"
     }
   },

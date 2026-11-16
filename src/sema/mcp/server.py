@@ -959,8 +959,9 @@ def _sema_pull(
 
     Returns structured JSON with `success`, `added`, `updated`, `skipped`,
     `cascaded_user`, `superseded_removed`, `superseded_kept_orphan`,
-    `upstream_removed`, `vocabulary_root_before`, `vocabulary_root_after`, and
-    `vocabulary_root_scheme` so callers can react programmatically instead of
+    `upstream_removed`, `vocabulary_root_before`, `vocabulary_root_after`,
+    `vocabulary_root_scheme`, `canonicalization_before` and
+    `canonicalization_after` so callers can react programmatically instead of
     parsing the human log.
 
     Exposed by default. Deployments that want a pinned vocabulary can set

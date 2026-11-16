@@ -36,12 +36,48 @@ def get_registry():
     return _registry_manager
 
 
+def _exact_ref(handle: str, digest: str | None) -> str | None:
+    return f"sema:{handle}#mh:SHA-256:{digest}" if digest else None
+
+
+def _reidentified_hashes(
+    patterns: dict[str, dict], current_hashes: dict[str, str], canonicalization: int
+) -> dict[str, str]:
+    """Each local definition's identity under ``canonicalization``, content unchanged.
+
+    An exact `extends` pin to a parent's current identity follows the parent to
+    its recomputed one. A definition that cannot be hashed gets no entry.
+    """
+    from ..core.hashing import generate_sema_hash
+
+    try:
+        order = topological_sort(patterns)
+    except ValueError:
+        return {}
+    digests: dict[str, str] = {}
+    for handle in order:
+        candidate = dict(patterns[handle])
+        pin = candidate.get("extends")
+        if isinstance(pin, str):
+            parent = clean_handle(pin)
+            if parent in digests and pin == _exact_ref(parent, current_hashes.get(parent)):
+                candidate["extends"] = _exact_ref(parent, digests[parent])
+        try:
+            digests[handle] = generate_sema_hash(
+                candidate, digests.get, canonicalization=canonicalization
+            )["hash"]
+        except ValueError:
+            continue
+    return digests
+
+
 def _specialization_projection_errors(
     store,
     staged_patterns: dict[str, dict],
     *,
     remove_handles: set[str] | None = None,
     retarget_extends: bool = False,
+    migration_retargets: dict[str, str] | None = None,
 ) -> tuple[list[str], list[str]]:
     """Validate exact `extends` targets against a projected post-write corpus.
 
@@ -49,24 +85,27 @@ def _specialization_projection_errors(
     projected ordinary Merkle cascade in memory so a parent update cannot make an
     existing exact specialization target disappear. Legacy `derived_from` remains
     opaque and deliberately does not participate.
+
+    ``migration_retargets``, given when the store is moving to another
+    canonicalization, receives each exact pin that may follow its parent to the
+    parent's new identity, as ``{child: new extends reference}``.
     """
     from ..core.hashing import generate_sema_hash, resolve_ref_to_sema_id
     from ..taxonomy_graph.graph_store import NodeType
 
     removed = remove_handles or set()
-    projected_patterns: dict[str, dict] = {}
-    existing_handles: set[str] = set()
+    local_patterns: dict[str, dict] = {}
     for _nid, node in store.get_nodes_by_type(NodeType.PATTERN):
         handle = node.get("text")
         if not handle or handle in removed:
             continue
-        existing_handles.add(handle)
         current = dict(((node.get("metadata") or {}).get("pattern")) or {})
         dependencies = store.get_dependencies_from_edges(handle)
         if dependencies:
             current["dependencies"] = dependencies
-        projected_patterns[handle] = current
-    projected_patterns.update(staged_patterns)
+        local_patterns[handle] = current
+    existing_handles = set(local_patterns)
+    projected_patterns = {**local_patterns, **staged_patterns}
 
     try:
         validation_order = topological_sort(projected_patterns)
@@ -74,6 +113,9 @@ def _specialization_projection_errors(
         return [f"Dependency error: {exc}"], []
 
     current_hashes = store.get_all_pattern_hashes()
+    reidentified: dict[str, str] = {}
+    if migration_retargets is not None:
+        reidentified = _reidentified_hashes(local_patterns, current_hashes, store.canonicalization)
     expected_hashes: dict[str, str] = {}
     normalized_projection: dict[str, dict] = {}
     errors: list[str] = []
@@ -82,9 +124,26 @@ def _specialization_projection_errors(
         specialization = candidate.get("extends")
         if specialization and handle in staged_patterns and retarget_extends:
             candidate["extends"] = resolve_ref_to_sema_id(specialization, expected_hashes.get)
+        elif migration_retargets is not None and isinstance(specialization, str):
+            # A move to another canonicalization re-identifies definitions without
+            # changing them. A pin to the parent the workspace holds follows it only
+            # when the projected parent is that same definition re-identified, so a
+            # pin never moves onto changed content.
+            parent = clean_handle(specialization)
+            follows = (
+                specialization == _exact_ref(parent, current_hashes.get(parent))
+                and parent in expected_hashes
+                and reidentified.get(parent) == expected_hashes[parent]
+                and specialization != _exact_ref(parent, expected_hashes[parent])
+            )
+            if follows:
+                candidate["extends"] = _exact_ref(parent, expected_hashes[parent])
+                migration_retargets[handle] = candidate["extends"]
         normalized_projection[handle] = candidate
         try:
-            expected_hashes[handle] = generate_sema_hash(candidate, expected_hashes.get)["hash"]
+            expected_hashes[handle] = generate_sema_hash(
+                candidate, expected_hashes.get, canonicalization=store.canonicalization
+            )["hash"]
         except ValueError as exc:
             errors.append(f"Cannot hash projected pattern {handle}: {exc}")
 
@@ -897,6 +956,8 @@ def update_db(
         "vocabulary_root_before": None,
         "vocabulary_root_after": None,
         "vocabulary_root_scheme": SEMANTIC_ROOT_SCHEME,
+        "canonicalization_before": None,
+        "canonicalization_after": None,
     }
 
     target_db = get_default_db_path()
@@ -979,6 +1040,39 @@ def update_db(
         target_local_meta[h] = local_pattern.get("_meta", {})
         target_sema_ids[h] = local_pattern.get("sema_id", "")
 
+    # A workspace holds one canonicalization. An empty workspace adopts the
+    # upstream's; a workspace on an older one moves to the upstream's, and every
+    # local identity is recomputed inside the atomic pull; a newer workspace
+    # refuses an older upstream rather than mixing the two.
+    canonicalization_change = None
+    outcome["canonicalization_before"] = target_store.canonicalization
+    outcome["canonicalization_after"] = target_store.canonicalization
+    if target_store.canonicalization != source_store.canonicalization:
+        if not target_handles:
+            canonicalization_change = source_store.canonicalization
+        elif source_store.canonicalization > target_store.canonicalization:
+            canonicalization_change = source_store.canonicalization
+            print(
+                f"Upstream uses canonicalization v{source_store.canonicalization}; this "
+                f"workspace uses v{target_store.canonicalization}. The pull moves it to "
+                f"v{source_store.canonicalization} and recomputes every local identity."
+            )
+        else:
+            message = (
+                f"Upstream uses canonicalization v{source_store.canonicalization}, older "
+                f"than this workspace's v{target_store.canonicalization}; a workspace "
+                "holds one canonicalization."
+            )
+            print(f"❌ {message}")
+            outcome["error"] = message
+            return outcome
+    migrating_local_identities = canonicalization_change is not None and bool(target_handles)
+    if canonicalization_change is not None:
+        # Projected hashes in the preflight below use the version the pull will
+        # write; the database records it only inside the atomic section.
+        target_store.canonicalization = canonicalization_change
+        outcome["canonicalization_after"] = canonicalization_change
+
     # Pre-flight transitive pruning: an upstream pattern can't be minted if
     # one of its deps doesn't exist in either the target DB or this batch.
     # Without this, a single excluded foundational pattern (e.g. Task) would
@@ -1058,9 +1152,11 @@ def update_db(
         outcome["error"] = f"Dependency cycle in upstream: {e}"
         return outcome
 
-    specialization_errors, _projected_order = _specialization_projection_errors(
+    migration_retargets: dict[str, str] | None = {} if migrating_local_identities else None
+    specialization_errors, projected_order = _specialization_projection_errors(
         target_store,
         upstream_patterns,
+        migration_retargets=migration_retargets,
     )
     if specialization_errors:
         print("\n❌ Pull preflight failed:")
@@ -1068,6 +1164,11 @@ def update_db(
             print(f"  {error}")
         outcome["error"] = "; ".join(specialization_errors)
         return outcome
+    if migration_retargets:
+        print(
+            f"  {len(migration_retargets)} exact `extends` pin(s) follow their unchanged "
+            f"parents to the new identities: {', '.join(sorted(migration_retargets)[:10])}"
+        )
 
     if dry_run:
         print(f"\nWould apply {len(sorted_handles)} patterns in topological order.")
@@ -1163,6 +1264,9 @@ def update_db(
     cascaded_user = set()
 
     try:
+        if canonicalization_change is not None:
+            target_store.set_canonicalization(canonicalization_change)
+
         # Field-level merge policy for the unhashed _meta block:
         # - User OWNS these keys: caution, related (their personal annotations)
         # - Upstream OWNS everything else: layer, category, tier, ring, supersedes
@@ -1313,6 +1417,34 @@ def update_db(
                 if dep not in upstream_patterns:
                     cascaded_user.add(dep)
 
+        # After a move to another canonicalization, recompute every remaining
+        # local identity, including user patterns no upstream change reached.
+        if migrating_local_identities:
+            for dep in target_store.rehash_all():
+                if dep not in upstream_patterns:
+                    cascaded_user.add(dep)
+            if migration_retargets:
+                # Each pin planned in preflight is rewritten after its parent has
+                # its new identity, then every identity is settled once more.
+                for child in (h for h in projected_order if h in migration_retargets):
+                    content = target_store._get_pattern_content(child, include_deps=True)
+                    content["extends"] = migration_retargets[child]
+                    result = mint_pattern(
+                        content,
+                        target_store,
+                        skip_cascade=True,
+                        validated_extends_batch=True,
+                    )
+                    if not result.success:
+                        raise RuntimeError(
+                            f"Could not move {child}'s `extends` pin: {result.errors}"
+                        )
+                    if child not in upstream_patterns:
+                        cascaded_user.add(child)
+                for dep in target_store.rehash_all():
+                    if dep not in upstream_patterns:
+                        cascaded_user.add(dep)
+
         # Verification is part of the atomic pull, not post-success
         # reporting. If either aggregate-root collection or optional
         # bottom-up hash verification fails, the exception path below
@@ -1379,7 +1511,15 @@ def update_db(
     # actually changed, so the user can `sema pull --undo` to recover.
     # On a no-op pull (all fast-path skipped), discard this backup to keep
     # the older, genuinely-useful `.pull_previous` intact.
-    has_changes = bool(added or updated or cascaded_user or superseded_removed)
+    # A move to another canonicalization changes the database even when every
+    # identity comes out the same, so it keeps its snapshot too.
+    has_changes = bool(
+        added
+        or updated
+        or cascaded_user
+        or superseded_removed
+        or canonicalization_change is not None
+    )
     try:
         if has_changes:
             previous_path = target_db + ".pull_previous"
@@ -1394,6 +1534,11 @@ def update_db(
         print(f"   If {backup_path} lingers, close any program accessing it and delete manually.")
 
     # Reporting
+    if canonicalization_change is not None:
+        print(
+            f"  ⇄ canonicalization v{outcome['canonicalization_before']} → "
+            f"v{canonicalization_change}"
+        )
     if added:
         print(f"  + {len(added)} new")
     if updated:
@@ -1573,7 +1718,7 @@ def _verify_hashes(db_path: str) -> list[str]:
         p = patterns[handle]
         if handle not in stored:
             continue
-        computed = generate_sema_hash(p, lookup)["hash"]
+        computed = generate_sema_hash(p, lookup, canonicalization=store.canonicalization)["hash"]
         fresh[handle] = computed
         if computed != stored[handle]:
             mismatches.append(handle)
@@ -1946,11 +2091,18 @@ def _read_patterns_file(path: Path) -> list[str]:
     ]
 
 
-def _create_empty_db(path: Path):
-    """Create DB with schema only, no data. Uses GraphStore to avoid schema drift."""
+def _create_empty_db(path: Path, canonicalization: int | None = None):
+    """Create DB with schema only, no data. Uses GraphStore to avoid schema drift.
+
+    ``canonicalization`` is given when identities computed elsewhere are about
+    to be copied in, so the database records the version they were computed
+    under instead of the default for new work.
+    """
     from ..taxonomy_graph.graph_store import GraphStore
 
     store = GraphStore(str(path))
+    if canonicalization is not None:
+        store.set_canonicalization(canonicalization)
     if hasattr(store, "conn"):
         store.conn.close()
 
@@ -2157,8 +2309,12 @@ def build_db(dest: str, preset: str = None, patterns_file: str = None, source_db
     ]
     src_conn.close()
 
+    # Nodes are copied with the identities the source computed, so the new
+    # database records the source's canonicalization.
+    from ..core.libraries import database_canonicalization
+
     dest_path.parent.mkdir(parents=True, exist_ok=True)
-    _create_empty_db(dest_path)
+    _create_empty_db(dest_path, database_canonicalization(Path(source_db_path)))
     dst_conn = sqlite3.connect(str(dest_path))
 
     for node in nodes:

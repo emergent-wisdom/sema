@@ -34,16 +34,17 @@
     "supersedes": [
       "sema:InvariantFilter#mh:SHA-256:a541049098acbba01ebe35ee9c23ebbdaf9d34e252b1b69f97daa87b3e96eea2",
       "sema:InvariantFilter#mh:SHA-256:cc3794d06d91be2bd2371c18fcdddc379e5001aa4864f6f3fea1fb3b037bd2b2",
-      "sema:InvariantFilter#mh:SHA-256:5e4da90216dd412c9acc3258da818ffe31965d54ba79cbd966a193563e9c2329"
+      "sema:InvariantFilter#mh:SHA-256:5e4da90216dd412c9acc3258da818ffe31965d54ba79cbd966a193563e9c2329",
+      "sema:InvariantFilter#mh:SHA-256:212b8b7a75ea69b22561e19191aa5cb630aaf75f4e4229e03db798338ab00a8e"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:InvariantFilter#mh:SHA-256:212b8b7a75ea69b22561e19191aa5cb630aaf75f4e4229e03db798338ab00a8e",
-  "sema_ref": "InvariantFilter#212b",
-  "sema_stub": "212b",
+  "sema_id": "sema:InvariantFilter#mh:SHA-256:06cd61a5aac3f903998318dd4f8f95b4c76c420a41d127dc32a646cb4c641160",
+  "sema_ref": "InvariantFilter#06cd",
+  "sema_stub": "06cd",
   "dependencies": {
     "accepts": {
       "message": "sema:Message#mh:SHA-256:bf6d3d4643c881a8c245617c3603b13ffef26026304fc7e7c384a80cf25fd237",

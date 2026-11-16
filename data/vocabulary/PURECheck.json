@@ -20,16 +20,17 @@
       "sema:PURECheck#mh:SHA-256:3ebb730a3ae5ee95b1e1cbd4b6b1f4319a5429d217ddac05dfb685b191ce586f",
       "sema:PURECheck#mh:SHA-256:6874cde1e9c99f3b6152bc4ecb757956732e91f7684857ad25fdc7921b7d5475",
       "sema:PURECheck#mh:SHA-256:e27797e99add1f808b06cc5422fb2fc586af89af2e7fc7c955eaf8d79f563250",
-      "sema:PURECheck#mh:SHA-256:24b9be2158c50dac135c35421def2cad9805ab06c91e7439bfe6ea5d870998d0"
+      "sema:PURECheck#mh:SHA-256:24b9be2158c50dac135c35421def2cad9805ab06c91e7439bfe6ea5d870998d0",
+      "sema:PURECheck#mh:SHA-256:574bfe492b148844233507d79302ba73135ad366d24b4b34f3de476ed903094e"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:PURECheck#mh:SHA-256:574bfe492b148844233507d79302ba73135ad366d24b4b34f3de476ed903094e",
-  "sema_ref": "PURECheck#574b",
-  "sema_stub": "574b",
+  "sema_id": "sema:PURECheck#mh:SHA-256:7149d03ad603bdc29e4bcc3137afdd789074a69441e5ebfffa7d7e82dd81fc30",
+  "sema_ref": "PURECheck#7149",
+  "sema_stub": "7149",
   "dependencies": {
     "accepts": {
       "expansive_criterion": "sema:Criteria#mh:SHA-256:92ab804441f5ff5307c6e45905818372e6159c4bd64d264ac7fddd6705de8acb",

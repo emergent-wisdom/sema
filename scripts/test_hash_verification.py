@@ -10,11 +10,12 @@ import math
 import unicodedata
 from typing import Any
 
-# Independent copy of the canonicalization-v2 logic from
+# Independent copy of the canonicalization logic from
 # src/sema/core/hashing.py. Kept as a standalone reimplementation on
 # purpose: this script exists so a third party can verify hashes without
 # importing semahash. Must stay in sync with the library (v2: type-tagged
-# domain separation, dict entries sorted by normalized key).
+# domain separation, dict entries sorted by normalized key; v3: v2 plus
+# placeholder bindings, see canonicalize_dependency_bindings).
 HASH_ALGO = "SHA-256"
 _CANONICAL_WHITESPACE = frozenset(
     "\u0009\u000a\u000b\u000c\u000d"
@@ -197,7 +198,81 @@ def canonicalize_dependency_keys(deps: Any) -> Any:
     return normalized
 
 
-def test_pattern_hash(pattern_path: str):
+_ASCII_UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+_ASCII_LETTERS = _ASCII_UPPER + _ASCII_UPPER.lower()
+_HANDLE_TAIL = _ASCII_LETTERS + "0123456789_-"
+
+
+def fold_name(name: str) -> str:
+    """v3: lower-case ASCII letters and drop "_" and "-"; keep everything else."""
+    folded = []
+    for char in name:
+        if char in "_-":
+            continue
+        folded.append(chr(ord(char) + 32) if char in _ASCII_UPPER else char)
+    return "".join(folded)
+
+
+def is_well_formed_handle(handle: str) -> bool:
+    """v3: an ASCII letter followed by ASCII letters, digits, "_" or "-"."""
+    return (
+        bool(handle)
+        and handle[0] in _ASCII_LETTERS
+        and all(char in _HANDLE_TAIL for char in handle[1:])
+    )
+
+
+def canonicalize_dependency_bindings(deps: Any) -> Any:
+    """v3 (specification section 4.2), written from the specification.
+
+    A pairing is implied when its target's handle is well formed, the folded
+    alias equals the folded handle, and no other alias name in the whole card
+    folds to the same string. Implied pairings are keyed by the lower-cased
+    handle; every other pairing goes under "@bindings" in its category. Values
+    must be strings, and an alias must be unchanged by string normalization.
+    """
+    if not isinstance(deps, dict):
+        return deps
+
+    spellings: dict = {}
+    for dep_type, items in deps.items():
+        if not isinstance(items, dict):
+            continue
+        for alias, ref in items.items():
+            if not isinstance(alias, str) or not isinstance(ref, str):
+                raise ValueError(f"Dependency category {dep_type!r} holds a non-string entry")
+            if alias != normalize_string(alias):
+                raise ValueError(f"Alias {alias!r} is changed by string normalization")
+            spellings.setdefault(fold_name(alias), set()).add(alias)
+
+    canonical = {}
+    for dep_type, items in deps.items():
+        if not isinstance(items, dict):
+            canonical[dep_type] = items
+            continue
+        category: dict = {}
+        bound = {}
+        for alias, ref in items.items():
+            handle = extract_handle_from_ref(ref)
+            implied = (
+                is_well_formed_handle(handle)
+                and fold_name(alias) == fold_name(handle)
+                and spellings[fold_name(alias)] == {alias}
+            )
+            if not implied:
+                bound[alias] = ref
+                continue
+            key = handle.lower()
+            if key in category:
+                raise ValueError(f"Two implied pairings share the key {key!r}")
+            category[key] = ref
+        if bound:
+            category["@bindings"] = bound
+        canonical[dep_type] = category
+    return canonical
+
+
+def test_pattern_hash(pattern_path: str, canonicalization: int = 3):
     """Test that we can reproduce the hash from a pattern file."""
 
     with open(pattern_path, "rb") as f:
@@ -244,7 +319,12 @@ def test_pattern_hash(pattern_path: str):
     # this script stays independently runnable from the files alone.
     if "dependencies" in content:
         content = dict(content)
-        content["dependencies"] = canonicalize_dependency_keys(content["dependencies"])
+        canonicalize = (
+            canonicalize_dependency_bindings
+            if canonicalization == 3
+            else canonicalize_dependency_keys
+        )
+        content["dependencies"] = canonicalize(content["dependencies"])
 
     print(f"\n{'=' * 60}")
     print(f"Pattern: {handle}")
@@ -272,23 +352,39 @@ def test_pattern_hash(pattern_path: str):
 
 
 def main():
+    import argparse
     import os
+
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--canonicalization",
+        type=int,
+        choices=(2, 3),
+        default=3,
+        help="canonicalization the cards' identities were computed under (default 3)",
+    )
+    parser.add_argument("--all", action="store_true", help="verify every bundled card")
+    args = parser.parse_args()
 
     vocab_dir = "data/vocabulary"
 
-    # Test a few patterns
-    test_patterns = [
-        "StateLock.json",
-        "FractalIntelligence.json",
-        "SpectralTune.json",
-        "SteelmanCheck.json",
-    ]
+    # Test a few patterns, or every bundled card with --all
+    test_patterns = (
+        sorted(name for name in os.listdir(vocab_dir) if name.endswith(".json"))
+        if args.all
+        else [
+            "StateLock.json",
+            "FractalIntelligence.json",
+            "SpectralTune.json",
+            "SteelmanCheck.json",
+        ]
+    )
 
     results = []
     for filename in test_patterns:
         path = os.path.join(vocab_dir, filename)
         if os.path.exists(path):
-            result = test_pattern_hash(path)
+            result = test_pattern_hash(path, args.canonicalization)
             results.append((filename, result))
         else:
             print(f"WARNING: {path} not found")
@@ -300,6 +396,8 @@ def main():
     for filename, result in results:
         status = "✅ PASS" if result else "❌ FAIL" if result is False else "⚠️ SKIP"
         print(f"  {filename}: {status}")
+    if any(result is False for _, result in results):
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":

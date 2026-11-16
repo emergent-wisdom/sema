@@ -22,20 +22,21 @@
       "sema:PhasedRefinement#mh:SHA-256:4a907b2f7eef78e6ec51ce04c266cade4b5cbaf17c75085c5f7809a64b99b8ab",
       "sema:PhasedRefinement#mh:SHA-256:e4d0bb624a02ea5535fc945ed9e50e46460a9aaef89b7f92106451f1767b1cf4",
       "sema:PhasedRefinement#mh:SHA-256:56f079ec75061b35f56d543d1ab12c7c4822b1e0f5816cf342a796104756642c",
-      "sema:PhasedRefinement#mh:SHA-256:15e32d98507c6af62fd1a76e42163affa5a0e45cf54f2292f234bb40560ff9a8"
+      "sema:PhasedRefinement#mh:SHA-256:15e32d98507c6af62fd1a76e42163affa5a0e45cf54f2292f234bb40560ff9a8",
+      "sema:PhasedRefinement#mh:SHA-256:a263384b14c029d80cb3cc3c0b7a8a87b2c63f6307a55ac2c0f82ad2f86779e4"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_ref": "PhasedRefinement#a263",
-  "sema_id": "sema:PhasedRefinement#mh:SHA-256:a263384b14c029d80cb3cc3c0b7a8a87b2c63f6307a55ac2c0f82ad2f86779e4",
-  "sema_stub": "a263",
+  "sema_ref": "PhasedRefinement#54f2",
+  "sema_id": "sema:PhasedRefinement#mh:SHA-256:54f23b7e6f3657988dffc1ec8b3df73f08b1f54849d20fa4a71ea203ff49f492",
+  "sema_stub": "54f2",
   "dependencies": {
     "composes_with": {
       "gate": "sema:Gate#mh:SHA-256:664dd801873a87e8aa3d67499e27e7c47923d5c0cdd129af6c09a7531ed7de15",
-      "refine": "sema:Refine#mh:SHA-256:2952467a9d3eb809c6131d59e1047a3a4aa296d32dcd38a82c0204b5cd8d16a6",
+      "refine": "sema:Refine#mh:SHA-256:37c13555a33779027113d152d369edbed27f2dd449a6aedc09429f01bf58adb5",
       "sequence": "sema:Sequence#mh:SHA-256:0cae6b0951c4e93742259ff81ded009a85283d250c948f97cce3b9b3b8e58e1a"
     },
     "references": {

@@ -24,16 +24,17 @@
     "supersedes": [
       "sema:Parallelize#mh:SHA-256:d6b4208180c697dc25cab65f9b3ed028aeb1beb6f871adf615266d9b5eaf5391",
       "sema:Parallelize#mh:SHA-256:f2bb19914f4cd3913989e6ca37275db8c50b7af50b4733184cf07fabca4a66bf",
-      "sema:Parallelize#mh:SHA-256:5b4bc9d0ea71c6b181cb02a81dd64c7767e5ccbd0769277ce5a841fe5c2c9b0d"
+      "sema:Parallelize#mh:SHA-256:5b4bc9d0ea71c6b181cb02a81dd64c7767e5ccbd0769277ce5a841fe5c2c9b0d",
+      "sema:Parallelize#mh:SHA-256:c1c795defd6f4f9cab2823cf832ae91f5f0651bef082108bb494047d91be04a1"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:Parallelize#mh:SHA-256:c1c795defd6f4f9cab2823cf832ae91f5f0651bef082108bb494047d91be04a1",
-  "sema_ref": "Parallelize#c1c7",
-  "sema_stub": "c1c7",
+  "sema_id": "sema:Parallelize#mh:SHA-256:53a54fc8c6c719497cade703e7153f188faf393a54259d62079ea3a38b5092fd",
+  "sema_ref": "Parallelize#53a5",
+  "sema_stub": "53a5",
   "signature": [
     "Parallel(Task)",
     "Aggregate(Result)"
@@ -43,7 +44,7 @@
       "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"
     },
     "composes_with": {
-      "aggregate": "sema:Aggregate#mh:SHA-256:2db6858c061515fa2257c96f4a6e4392164e9a118adc6874c69cf2279b877077"
+      "aggregate": "sema:Aggregate#mh:SHA-256:bb809289d74615fd774f32704d3857a5e4d45480ad5b68de8f995e0c9e445d21"
     },
     "references": {
       "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:c8a4abe2e0ce048be16d25f890a50f8c7095e099b5ab2de23aa059942328f387",

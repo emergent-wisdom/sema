@@ -11,7 +11,8 @@
       "sema:PolymorphicSolver#mh:SHA-256:272ac4237fd71c0782676ed30558bad9c08fca9373577516284bf5def22b2800",
       "sema:PolymorphicSolver#mh:SHA-256:1362a5c7db1715b6683768b75720388810451c79127e566b8f1b4c27bb52391c",
       "sema:PolymorphicSolver#mh:SHA-256:28f1d5d9b3edcc3967139a056b71acd75050f65e7002644e5a837dd5d9507a07",
-      "sema:PolymorphicSolver#mh:SHA-256:cb20e6504606549fba8628cea7a149a51f5813e1095b07c2c5e039e09a6fdd21"
+      "sema:PolymorphicSolver#mh:SHA-256:cb20e6504606549fba8628cea7a149a51f5813e1095b07c2c5e039e09a6fdd21",
+      "sema:PolymorphicSolver#mh:SHA-256:f7fe4635a7520f918c823f0047d6fed8e38fd820c1970ef4623cc8fd78d2b0bd"
     ],
     "path": [
       "Mind",
@@ -29,9 +30,9 @@
   "signature": [
     "Solver(Task)"
   ],
-  "sema_id": "sema:PolymorphicSolver#mh:SHA-256:f7fe4635a7520f918c823f0047d6fed8e38fd820c1970ef4623cc8fd78d2b0bd",
-  "sema_ref": "PolymorphicSolver#f7fe",
-  "sema_stub": "f7fe",
+  "sema_id": "sema:PolymorphicSolver#mh:SHA-256:ce9a27d50265e6e74e034eb4da3a6441d840b75a740772da3d577d9602727f1b",
+  "sema_ref": "PolymorphicSolver#ce9a",
+  "sema_stub": "ce9a",
   "dependencies": {
     "accepts": {
       "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"
@@ -41,7 +42,7 @@
       "pathway_memory": "sema:PathwayMemory#mh:SHA-256:ce2e6ce822404fae0e60a43fc2c6fbe2e4d51ab9aefee1e7a9e21da75893e722",
       "reason": "sema:Reason#mh:SHA-256:81ec8196c7c1c761fe353c8d26463bcb61b54f844aa3422a40019f82ef202321",
       "reflexion": "sema:Reflexion#mh:SHA-256:81eb9140703ea95f53556741df731af84c1cada66cc1e0f3a1d88e4de5fe54d8",
-      "socratic_loop": "sema:SocraticLoop#mh:SHA-256:4f17ec8b7e28b3f223931274df090225572d754cd772fe4f738c922f16f93a18",
+      "socratic_loop": "sema:SocraticLoop#mh:SHA-256:ffaac4d5ca573af32ba28028ed642e7aec6b54a3a2e197e50e336cee6c2aaa3c",
       "tool_invoke": "sema:ToolInvoke#mh:SHA-256:1096039316801cc8ef6e2855a6300574bb8596bb8e57c2764fd3bee741fa217e"
     },
     "references": {
