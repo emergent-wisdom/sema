@@ -10,6 +10,8 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
+## [0.11.0] - 2026-11-17
+
 ### Changed
 
 Pattern identities now bind each placeholder to its definition (canonicalization v3). A card's `dependencies` map
@@ -52,6 +54,14 @@ other 562 keep their identities. The semantic-set and catalog roots change accor
   workspace whose recorded canonicalization is unreadable or unsupported answers every handshake with `HALT`.
 - `scripts/test_hash_verification.py` takes `--canonicalization {2,3}` and `--all`;
   `scripts/rebuild_vocabulary.py` takes `--retarget-extends`.
+
+### Upgrading
+
+Upgrade `semahash` and restart connected MCP servers to use the new bundled vocabulary.
+For an editable local vocabulary, run `sema pull` to migrate its identities to v3.
+Upgrade clients before installing v3 libraries: older releases reject their schema-2 manifests.
+Hosted registries must upgrade their runtime and pass the caller's canonicalization to strict
+handshakes before importing the v3 bootstrap release.
 
 ## [0.10.0] - 2026-10-10
 

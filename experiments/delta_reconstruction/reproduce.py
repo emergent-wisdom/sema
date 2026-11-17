@@ -32,6 +32,7 @@ EXPECTED_RESULTS = Path(__file__).with_name("expected-results.json")
 sys.path.insert(0, str(REPOSITORY_ROOT / "src"))
 
 from sema.core.hashing import (  # noqa: E402
+    CANONICALIZATION_V2,
     LEGACY_SPECIALIZATION_FIELD,
     SEMANTIC_FIELDS,
     extract_handle_from_ref,
@@ -149,7 +150,7 @@ def _topological_order(patterns: PatternMap) -> list[str]:
 
 def _semantic_projection(pattern: Pattern) -> Pattern:
     """Compare authored semantics while ignoring dependency hash cascades."""
-    projection = copy.deepcopy(semantic_hash_input(pattern))
+    projection = copy.deepcopy(semantic_hash_input(pattern, canonicalization=CANONICALIZATION_V2))
     if "dependencies" in projection:
         projection["dependencies"] = normalize_dependencies_to_handles(projection["dependencies"])
     return projection
@@ -327,6 +328,9 @@ def _copy_source_database(source_directory: Path, destination: Path) -> None:
 def _build_fresh_database(db_path: Path, patterns: PatternMap, order: list[str]) -> GraphStore:
     """Compile a complete card snapshot into a new current-code read model."""
     store = GraphStore(str(db_path), enable_embeddings=False)
+    # Both historical releases use v2; the runtime's current default must not
+    # change the identities or specialization pins this experiment reproduces.
+    store.set_canonicalization(CANONICALIZATION_V2)
     # The second pass resolves soft signature links whose targets were minted
     # later in the first pass. This mirrors the installed-library compiler.
     for _pass in range(2):
