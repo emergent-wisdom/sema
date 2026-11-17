@@ -8,8 +8,10 @@ import hashlib
 import json
 import math
 import re
+import sqlite3
 import unicodedata
 from collections.abc import Iterable, Sequence
+from pathlib import Path
 from typing import Any
 
 # We use SHA-256 for all hashing to match the Sema v1 spec
@@ -20,6 +22,21 @@ HASH_ALGO = "SHA-256"
 # construction changes, so callers need both the digest and its scheme.
 SEMANTIC_ROOT_SCHEME = "sema-semantic-set-v1"
 CATALOG_ROOT_SCHEME = "sema-catalog-v1"
+
+# Pattern canonicalization versions. v2 keys each dependency by its target's
+# handle and drops the alias, so exchanging two targets keeps the identity; it
+# stays byte for byte what semahash 0.3.0 shipped, for verifying what was
+# published under it. v3, the default, keeps the pairing: it is implied when the
+# alias names its own target and no other alias of the card folds to the same
+# name, and hashed explicitly otherwise. A card whose pairings are all implied
+# hashes the same under v2 and v3.
+CANONICALIZATION_V2 = 2
+CANONICALIZATION_V3 = 3
+DEFAULT_CANONICALIZATION = CANONICALIZATION_V3
+SUPPORTED_CANONICALIZATIONS = (CANONICALIZATION_V2, CANONICALIZATION_V3)
+# Reserved key for explicit pairings inside a v3 dependency category. An implied
+# key is the lower-cased handle of a well-formed target and begins with a letter.
+EXPLICIT_BINDINGS_KEY = "@bindings"
 
 _SEMANTIC_ROOT_DOMAIN = SEMANTIC_ROOT_SCHEME.encode("ascii") + b"\x00"
 _CATALOG_ROOT_DOMAIN = CATALOG_ROOT_SCHEME.encode("ascii") + b"\x00"
@@ -339,7 +356,122 @@ def canonicalize_dependency_keys(deps: dict[str, Any]) -> dict[str, Any]:
     return normalized
 
 
-def semantic_hash_input(pattern: dict[str, Any], hash_lookup: callable = None) -> dict[str, Any]:
+def check_canonicalization(canonicalization: Any) -> int:
+    """Return a supported canonicalization version or fail closed."""
+    if type(canonicalization) is not int or canonicalization not in SUPPORTED_CANONICALIZATIONS:
+        raise ValueError(
+            f"Unsupported canonicalization {canonicalization!r}; "
+            f"supported versions are {', '.join(map(str, SUPPORTED_CANONICALIZATIONS))}"
+        )
+    return canonicalization
+
+
+_FOLD = str.maketrans("ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz", "_-")
+
+
+def _fold(name: str) -> str:
+    """Fold a name for comparing an alias with a handle.
+
+    ASCII letters are lower-cased and ``_`` and ``-`` are removed; every other
+    character is kept, so the fold does not depend on the runtime's Unicode data.
+    """
+    return name.translate(_FOLD)
+
+
+def explicit_pairings(deps: dict[str, Any]) -> set[tuple[str, str]]:
+    """The ``(category, alias)`` pairings of a dependency map that v3 hashes explicitly.
+
+    A pairing is implied only when the target's handle is well formed, the
+    folded alias equals the folded handle, and no other alias name anywhere in
+    the card folds to the same string. Placeholders are not scoped to a
+    category, so the last condition covers the whole card: it leaves exactly
+    one name in the text that an implied pairing can belong to. Any other
+    pairing (a role name, or names that fold alike) is explicit.
+
+    Aliases are taken as written; ``canonicalize_dependency_bindings`` refuses
+    one that string normalization would change before this is called.
+    """
+    names_by_fold: dict[str, set[str]] = {}
+    for items in deps.values():
+        if isinstance(items, dict):
+            for alias in items:
+                names_by_fold.setdefault(_fold(alias), set()).add(alias)
+
+    explicit = set()
+    for category, items in deps.items():
+        if not isinstance(items, dict):
+            continue
+        for alias, ref in items.items():
+            handle = extract_handle_from_ref(ref) if isinstance(ref, str) else None
+            implied = (
+                handle is not None
+                and _HANDLE_RE.fullmatch(handle) is not None
+                and _fold(alias) == _fold(handle)
+                and len(names_by_fold[_fold(alias)]) == 1
+            )
+            if not implied:
+                explicit.add((category, alias))
+    return explicit
+
+
+def canonicalize_dependency_bindings(deps: dict[str, Any]) -> dict[str, Any]:
+    """Canonicalization v3 of a dependency map: keep each alias paired with its target.
+
+    Implied pairings (the alias names its own target, see ``explicit_pairings``)
+    are canonicalized as v2 does, keyed by the lower-cased target handle. Every
+    other pairing goes under ``EXPLICIT_BINDINGS_KEY`` in its category as
+    ``{alias: reference}``, so exchanging two targets changes the hash.
+
+    Input:  {"composes_with": {"judge": "Judge#704c", "weights": "Vector#1a2b"}}
+    Output: {"composes_with": {"judge": "Judge#704c", "@bindings": {"weights": "Vector#1a2b"}}}
+    """
+    if not isinstance(deps, dict):
+        return deps
+
+    for dep_type, items in deps.items():
+        if not isinstance(items, dict):
+            continue
+        for alias, ref in items.items():
+            if not isinstance(alias, str):
+                raise ValueError(
+                    f"Dependency alias in {dep_type} must be a string, not {type(alias).__name__}"
+                )
+            if normalize_string(alias) != alias:
+                # The Merkle hash normalizes object keys, so it would read this
+                # alias as another name than the one the pairing rule saw.
+                raise ValueError(
+                    f"Dependency alias {alias!r} in {dep_type} is not a normalized string"
+                )
+            if not isinstance(ref, str):
+                raise ValueError(
+                    f"Dependency {dep_type}.{alias} must be a reference string, "
+                    f"not {type(ref).__name__}"
+                )
+
+    explicit = explicit_pairings(deps)
+    canonical = {}
+    for dep_type, items in deps.items():
+        if not isinstance(items, dict):
+            canonical[dep_type] = items
+            continue
+        implied = {alias: ref for alias, ref in items.items() if (dep_type, alias) not in explicit}
+        # Each implied key is the lower-cased handle of one well-formed target: it
+        # begins with a letter, so it is never the reserved key, and no two implied
+        # pairings of a category share it.
+        category = canonicalize_dependency_keys({dep_type: implied})[dep_type]
+        bound = {alias: ref for alias, ref in items.items() if (dep_type, alias) in explicit}
+        if bound:
+            category[EXPLICIT_BINDINGS_KEY] = bound
+        canonical[dep_type] = category
+    return canonical
+
+
+def semantic_hash_input(
+    pattern: dict[str, Any],
+    hash_lookup: callable = None,
+    *,
+    canonicalization: int = DEFAULT_CANONICALIZATION,
+) -> dict[str, Any]:
     """Build the exact handle-independent object hashed for a Pattern Card.
 
     This helper deliberately does not validate the card's handle or the mutual
@@ -348,12 +480,24 @@ def semantic_hash_input(pattern: dict[str, Any], hash_lookup: callable = None) -
     can preflight semantic canonicalization, including normalized-key
     collisions, without trying to construct a full Sema identifier too early.
     """
+    version = check_canonicalization(canonicalization)
     if not isinstance(pattern, dict):
         raise ValueError("Pattern must be a JSON object")
 
     content = {k: pattern[k] for k in SEMANTIC_FIELDS if k in pattern}
     if LEGACY_SPECIALIZATION_FIELD in pattern:
         content[LEGACY_SPECIALIZATION_FIELD] = pattern[LEGACY_SPECIALIZATION_FIELD]
+
+    if version == CANONICALIZATION_V3:
+        # Resolve before canonicalizing: whether a pairing is implied depends on
+        # the alias and its target, and explicit pairings keep their alias.
+        if hash_lookup and "dependencies" in content:
+            content["dependencies"] = resolve_dependencies_to_sema_ids(
+                content["dependencies"], hash_lookup
+            )
+        if "dependencies" in content:
+            content["dependencies"] = canonicalize_dependency_bindings(content["dependencies"])
+        return content
 
     if "dependencies" in content:
         content["dependencies"] = canonicalize_dependency_keys(content["dependencies"])
@@ -366,9 +510,14 @@ def semantic_hash_input(pattern: dict[str, Any], hash_lookup: callable = None) -
     return content
 
 
-def validate_semantic_hash_input(pattern: dict[str, Any], hash_lookup: callable = None) -> None:
+def validate_semantic_hash_input(
+    pattern: dict[str, Any],
+    hash_lookup: callable = None,
+    *,
+    canonicalization: int = DEFAULT_CANONICALIZATION,
+) -> None:
     """Fail if the semantic Merkle input cannot be canonically hashed."""
-    merkle_hash(semantic_hash_input(pattern, hash_lookup))
+    merkle_hash(semantic_hash_input(pattern, hash_lookup, canonicalization=canonicalization))
 
 
 def resolve_ref_to_sema_id(ref: str, hash_lookup: callable) -> str:
@@ -432,13 +581,20 @@ def resolve_dependencies_to_sema_ids(deps: dict[str, Any], hash_lookup: callable
     return resolved
 
 
-def generate_sema_hash(pattern: dict[str, Any], hash_lookup: callable = None) -> dict[str, Any]:
+def generate_sema_hash(
+    pattern: dict[str, Any],
+    hash_lookup: callable = None,
+    *,
+    canonicalization: int = DEFAULT_CANONICALIZATION,
+) -> dict[str, Any]:
     """Generate a Sema hash for a pattern using Merkle Root.
 
     Args:
         pattern: The pattern dict with handle and semantic fields
         hash_lookup: Optional function(handle) -> hash for resolving dependencies.
                      If None, dependencies are hashed as-is.
+        canonicalization: 3 (default), which commits to which target each
+                     placeholder alias is bound to, or 2 (as released before).
 
     Returns:
         {
@@ -454,7 +610,9 @@ def generate_sema_hash(pattern: dict[str, Any], hash_lookup: callable = None) ->
 
     # Build and hash the handle-independent semantic content. Dependency aliases
     # are canonicalized and optional registry resolution occurs in the helper.
-    content = semantic_hash_input(pattern, hash_lookup)
+    content = semantic_hash_input(
+        pattern, hash_lookup, canonicalization=check_canonicalization(canonicalization)
+    )
     root_hash, canonical_content = merkle_hash(content)
 
     handle = pattern.get("handle", "Unknown")
@@ -588,6 +746,41 @@ def vocabulary_roots(bindings: Iterable[tuple[str, str]]) -> dict[str, Any]:
         "pattern_count": len(materialized),
         "definition_count": len(unique_hashes),
     }
+
+
+def database_canonicalization(db_path: str | Path) -> int:
+    """The canonicalization a store database records, read without writing to it.
+
+    A database with no record predates the setting and is v2. Raises
+    ``ValueError`` when the database cannot be read or records an unsupported
+    version.
+    """
+    uri = f"{Path(db_path).expanduser().resolve().as_uri()}?mode=ro"
+    try:
+        conn = sqlite3.connect(uri, uri=True)
+    except sqlite3.Error as exc:
+        raise ValueError(f"Could not open {db_path}: {exc}") from exc
+    try:
+        has_table = conn.execute(
+            "SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = 'store_settings'"
+        ).fetchone()
+        row = (
+            conn.execute(
+                "SELECT value FROM store_settings WHERE key = 'pattern_canonicalization'"
+            ).fetchone()
+            if has_table
+            else None
+        )
+    except sqlite3.Error as exc:
+        raise ValueError(f"Could not read {db_path}: {exc}") from exc
+    finally:
+        conn.close()
+    if row is None:
+        return CANONICALIZATION_V2
+    try:
+        return check_canonicalization(int(row[0]))
+    except ValueError as exc:
+        raise ValueError(f"{db_path}: {exc}") from exc
 
 
 def vocabulary_info(db_path: str) -> dict:

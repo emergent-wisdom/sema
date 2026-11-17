@@ -10,14 +10,33 @@ Exit code:
   1 — at least one mismatch
 """
 
+import argparse
 import json
 import os
 import sys
 from pathlib import Path
 
-from sema.core.hashing import generate_sema_hash
+from sema.core.hashing import (
+    DEFAULT_CANONICALIZATION,
+    SUPPORTED_CANONICALIZATIONS,
+    generate_sema_hash,
+)
 
 VOCAB_DIR = os.environ.get("SEMA_VOCAB_DIR", "data/vocabulary")
+
+
+def canonicalization_for(vocab: Path) -> int:
+    """The canonicalization of the database the vocabulary is exported from.
+
+    That is SEMA_DB_PATH, else the taxonomy.db beside the vocabulary directory;
+    without either, the current default.
+    """
+    from sema.core.libraries import database_canonicalization
+
+    database = Path(os.environ.get("SEMA_DB_PATH") or vocab.parent / "taxonomy.db")
+    if database.is_file():
+        return database_canonicalization(database)
+    return DEFAULT_CANONICALIZATION
 
 
 def extract_hash(sema_id: str) -> str | None:
@@ -27,10 +46,20 @@ def extract_hash(sema_id: str) -> str | None:
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument(
+        "--canonicalization",
+        type=int,
+        choices=sorted(SUPPORTED_CANONICALIZATIONS),
+        help="check under this version instead of the source database's",
+    )
+    args = parser.parse_args()
+
     vocab = Path(VOCAB_DIR)
     if not vocab.is_dir():
         print(f"ERROR: vocabulary dir not found: {vocab}")
         sys.exit(1)
+    canonicalization = args.canonicalization or canonicalization_for(vocab)
 
     patterns = {}
     for f in sorted(vocab.glob("*.json")):
@@ -39,7 +68,10 @@ def main():
         if h:
             patterns[h] = d
 
-    print(f"Checking hash validity for {len(patterns)} patterns...\n")
+    print(
+        f"Checking hash validity for {len(patterns)} patterns "
+        f"(canonicalization v{canonicalization})...\n"
+    )
 
     stored_hashes = {}
     for handle, p in patterns.items():
@@ -59,7 +91,7 @@ def main():
             missing.append(handle)
             continue
 
-        result = generate_sema_hash(p, hash_lookup)
+        result = generate_sema_hash(p, hash_lookup, canonicalization=canonicalization)
         computed = result["hash"]
 
         if stored != computed:

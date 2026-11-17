@@ -75,7 +75,7 @@ def test_invalid_canonicalization_vector(vector):
 @pytest.mark.parametrize("vector", VECTORS["patterns"], ids=lambda vector: vector["name"])
 def test_pattern_identity_vector(vector):
     pattern = strict_json_loads(vector["input_json"], label=vector["name"])
-    result = generate_sema_hash(pattern)
+    result = generate_sema_hash(pattern, canonicalization=2)
 
     independent_pattern = independent_strict_json_loads(vector["input_json"].encode("utf-8"))
     semantic_fields = {

@@ -161,7 +161,9 @@ def export_vocabulary():
             def hash_lookup(h):
                 return store.get_pattern_hash(h)
 
-            hash_info = generate_sema_hash(pattern, hash_lookup=hash_lookup)
+            hash_info = generate_sema_hash(
+                pattern, hash_lookup=hash_lookup, canonicalization=store.canonicalization
+            )
 
             # Store everything needed for Second Pass
             entry = {"pattern": pattern, "hash_info": hash_info, "node_id": node_id}

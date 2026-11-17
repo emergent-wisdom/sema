@@ -743,7 +743,7 @@ mode survives its own mitigation, and that is the tension.
 
 Whether the 159 should be rewritten this way or deleted as duplication is a
 decision about what the sidecar is for, at a scale (107 cards) that makes it
-Henrik's rather than a reviewer's. Do not sweep it silently.
+the maintainer's rather than a reviewer's. Do not sweep it silently.
 
 **The sweep runs in both directions.** Every other entry here assumes the card
 changed and the commentary went stale. `MarginalValueRule` is the reverse: its

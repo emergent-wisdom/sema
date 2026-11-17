@@ -21,14 +21,17 @@
       "Silencevote",
       "Normance"
     ],
-    "minted": "2026-10-05T21:38:21+02:00"
+    "minted": "2026-10-05T21:38:21+02:00",
+    "supersedes": [
+      "sema:Belongbend#mh:SHA-256:31f206755fd53787a1669629c924af28e7f46353b02225f624e3580d33ff1047"
+    ]
   },
-  "sema_id": "sema:Belongbend#mh:SHA-256:31f206755fd53787a1669629c924af28e7f46353b02225f624e3580d33ff1047",
-  "sema_ref": "Belongbend#31f2",
-  "sema_stub": "31f2",
+  "sema_id": "sema:Belongbend#mh:SHA-256:48696838f225f9215782dc459bc5b50a1749c7454b8675c5e3b92c13fa16f3e9",
+  "sema_ref": "Belongbend#4869",
+  "sema_stub": "4869",
   "dependencies": {
     "references": {
-      "counterfactual_anchor": "sema:CounterfactualAnchor#mh:SHA-256:b8c3c5aca4a8adba07c19d0f6103387c6f7cf9b67ade40b412fa39e41fdb3adf"
+      "counterfactual_anchor": "sema:CounterfactualAnchor#mh:SHA-256:435c0c8fc20e0886da772bb89e16e81ed7e2c231eae38025f0aed2d3e0a2eebc"
     }
   },
   "sema_layer": "Society",

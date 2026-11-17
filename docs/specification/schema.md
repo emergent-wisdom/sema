@@ -206,10 +206,10 @@ and `""` vs `[]` vs `{}`):
    the sequence of Unicode scalar values in the **normalized** key. This is
    code-point order, not UTF-16 code-unit order. Keys that collide after
    normalization are rejected rather than silently merged.
-5. **Dependencies:** aliases are authorial, so before hashing, entries are
-   re-keyed by lowercased target handle. Multiple aliases referencing the
-   same handle hash as a **sorted list** of refs — multiplicity is
-   semantic; alias spelling is not.
+5. **Dependencies (v2):** before hashing, entries are re-keyed by
+   lowercased target handle. Multiple aliases referencing the same handle
+   hash as a **sorted list** of refs. This drops which placeholder each
+   target fills; canonicalization v3 (§4.2) replaces this rule.
 6. **Root:** the canonical dict of the eleven semantic fields (§5), hashed by
    rule 4.
 
@@ -227,7 +227,8 @@ remain distinguishable across host-language parsers.
 
 Reference implementations: `src/sema/core/hashing.py` (library) and
 `scripts/test_hash_verification.py` (dependency-free independent verifier —
-all bundled patterns must verify from their JSON files alone).
+all bundled patterns must verify from their JSON files alone; it takes
+`--canonicalization 2` or `3`, default 3, and `--all`).
 
 **The ID Format:**
 `sema:<Handle>#mh:SHA-256:<RootHash>`
@@ -250,6 +251,82 @@ mechanism placeholders while projecting target identities to digests, and it
 must normalize `extends` under the same policy. The exact v3 representation is
 a design decision; changing only the aggregate-root algorithm cannot repair
 this property.
+
+### 4.2 Canonicalization v3: placeholder bindings
+
+A card's hashed text names its dependencies by alias, as placeholders such as
+`{{judge}}`, and its `dependencies` map binds each alias to a target. The
+validator requires every declared alias to appear as a placeholder in hashed
+text and every placeholder to be declared, so the alias spelling is already
+part of the identity through the text. What v2 rule 5 drops is the pairing:
+exchanging the targets of two aliases can leave a v2 digest unchanged,
+although the mechanism then invokes the two definitions in each other's
+roles.
+
+Canonicalization v3 replaces rule 5. Every other rule, and the ID format, is
+unchanged.
+
+1. In every dependency category that is an object, every value must be a
+   string, and every alias must be a string that the normalization of §4
+   rule 1 leaves unchanged; anything else is rejected. Rule 4 of §4 normalizes
+   object keys, so an alias it would change would be hashed as another name
+   than the one the rules below saw. A category that is not an object, or a
+   `dependencies` value that is not an object, binds no alias and is hashed
+   unchanged, as in v2.
+2. The **handle** of a reference is its text before the first `#`, after a
+   leading `sema:` is removed. A handle is **well formed** when it is an ASCII
+   letter followed by ASCII letters, digits, `_` or `-`.
+3. **Fold** a name by lower-casing its ASCII letters and removing `_` and
+   `-`. Every other character is kept.
+4. A pairing of an alias with its target is **implied** when
+   (a) the target's handle is well formed,
+   (b) the folded alias equals the folded handle, and
+   (c) no other alias name in the card's dependency map, in any category,
+   folds to the same string. A name declared in two categories is one name.
+5. Implied pairings are canonicalized by v2 rule 5, keyed by the lower-cased
+   handle. Rule 4 leaves at most one implied pairing per key in a category,
+   so each value is a single reference.
+6. Every other pairing is **explicit**: its category gains the key
+   `@bindings`, whose value is `{alias: reference}` for those pairings. An
+   implied key begins with a letter, so it is never `@bindings`.
+
+Condition 4(c) covers the whole card because a placeholder is not scoped to a
+category: two names that fold alike, each naming its own target in its own
+category, could otherwise be exchanged across the categories with both
+pairings still implied.
+
+What the form guarantees: if two cards have the same v3 dependency form, every
+alias that both declare is bound in both to the same reference in the same
+category. References and category names are compared as the hash reads them,
+after the normalization of §4 rules 1 and 4. An implied pairing does not store its alias; the alias is the one
+declared name that folds to the target's handle, and the validator's rule that
+the declared aliases are exactly the placeholders of the hashed text fixes its
+spelling.
+
+A card whose pairings are all implied therefore has the same digest under v2
+and v3. In the 0.10.0 bootstrap library, 8 cards have explicit pairings; with
+the cards that depend on them, 55 of 617 identities differ between v2 and v3.
+
+**Declaring the version.** A digest is checked under the canonicalization it
+was computed with, never the other: falling back to v2 for a v3 identity would
+reopen the gap. Library manifests with `manifest_schema` 2 declare
+`canonicalization` (2 or 3); a schema-1 manifest predates the field and is v2.
+A store database records `pattern_canonicalization`; a database without the
+record that already holds patterns is v2. A handshake answer carries the
+workspace's canonicalization, and a peer can declare its own: for a card whose
+pairings are all implied, a v2 and a v3 workspace compute the same digest, but
+only the v3 one has checked the bindings, so strict mode halts when the
+peer's version differs. A presented hash with no declared version comes from a
+release that predates the declaration; strict mode reads it as v2.
+
+Normative cases, including the exchange that v2 cannot see and the rejected
+inputs, are published in
+[`canonicalization-v3-test-vectors.json`](canonicalization-v3-test-vectors.json).
+
+v3 keeps target handles in the hash, so the rename boundary of §4.1 still
+holds. A later canonicalization that removes target handles would have to make
+every pairing explicit, since an implied pairing is identified by its
+target's handle.
 
 ## 5. The Eleven Semantic Fields
 

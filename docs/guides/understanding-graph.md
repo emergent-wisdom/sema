@@ -46,6 +46,7 @@ handshake first:
 sema_handshake({
   "ref": "StateLock",
   "your_hash": "<full 64-character SHA-256 hash>",
+  "your_canonicalization": 3,
   "strict": true
 })
 ```
@@ -58,6 +59,10 @@ sema_handshake({
   identity.
 - In strict mode, a matching stub returns `REQUIRE_FULL_HASH` rather than
   proceeding.
+- Every answer carries the vocabulary's `canonicalization`. Pass the peer's as
+  `your_canonicalization`: a digest computed under v2 does not bind
+  placeholders to their targets, so strict mode halts when the two differ, and
+  reads a hash that comes with no canonicalization as v2.
 - If the verdict is `HALT`, the definitions have drifted. Do *not* write a
   decision. Write a `tension` node instead, capturing the drift, so other
   agents can see why work is blocked.

@@ -23,14 +23,17 @@
       "TensionHold#b220",
       "Twoledger"
     ],
-    "minted": "2026-10-05T21:30:54+02:00"
+    "minted": "2026-10-05T21:30:54+02:00",
+    "supersedes": [
+      "sema:Twinread#mh:SHA-256:c4a5556a1ac0ef14fc2eadcff00c93689f1e28a873c837cfcdaede91f59407bc"
+    ]
   },
-  "sema_id": "sema:Twinread#mh:SHA-256:c4a5556a1ac0ef14fc2eadcff00c93689f1e28a873c837cfcdaede91f59407bc",
-  "sema_ref": "Twinread#c4a5",
-  "sema_stub": "c4a5",
+  "sema_id": "sema:Twinread#mh:SHA-256:81b4b0a4ea1c8394bda2f58ef5283c516925edaecb874559111576192b32f5b8",
+  "sema_ref": "Twinread#81b4",
+  "sema_stub": "81b4",
   "dependencies": {
     "references": {
-      "dialectic": "sema:Dialectic#mh:SHA-256:26bec9ea9924523af3aa4d24165e4131dfe2ca964a54cee6a7a12cd391bb8aec"
+      "dialectic": "sema:Dialectic#mh:SHA-256:696105a0b4efefd47c871f06f0d4ef644d9ac7b16c4fda301865d79d52448d56"
     }
   },
   "sema_layer": "Mind",

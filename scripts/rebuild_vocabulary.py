@@ -123,6 +123,14 @@ def main():
         action="store_true",
         help="Nuke embedding cache too (full cold rebuild, much slower)",
     )
+    parser.add_argument(
+        "--retarget-extends",
+        action="store_true",
+        help=(
+            "Retarget each exact `extends` pin to its parent's rebuilt identity. Needed when a "
+            "canonicalization change moves a parent's identity without changing its content."
+        ),
+    )
     args = parser.parse_args()
 
     if not os.path.exists(DB_PATH):
@@ -173,6 +181,8 @@ def main():
         cmd = [sys.executable, "-m", "sema.cli.main", "apply", "--add", VOCAB_DIR]
         if args.check:
             cmd.append("--check")
+        if args.retarget_extends:
+            cmd.append("--retarget-extends")
 
         t0 = time.time()
         rc, out, err = run(cmd)

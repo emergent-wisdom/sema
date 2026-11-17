@@ -32,8 +32,10 @@ from sema.core.hashing import (  # noqa: E402
     vocabulary_roots,
 )
 from sema.core.libraries import (  # noqa: E402
+    MANIFEST_SCHEMA,
     LibraryManifest,
     _strict_json,
+    database_canonicalization,
     verify_library_database,
     verify_library_patterns,
 )
@@ -123,7 +125,10 @@ def build_bootstrap_release(
     archive_bytes = archive_path.read_bytes()
     artifact_url = artifact_url or DEFAULT_ARTIFACT_URL.format(version=version)
     manifest_data = {
-        "manifest_schema": 1,
+        # The release declares the canonicalization of the database it ships, and
+        # every identity is verified under it below.
+        "manifest_schema": MANIFEST_SCHEMA,
+        "canonicalization": database_canonicalization(database_path),
         "name": "bootstrap",
         "version": version,
         "update_url": update_url,

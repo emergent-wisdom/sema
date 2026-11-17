@@ -22,7 +22,8 @@
     "supersedes": [
       "sema:CurriculumReplay#mh:SHA-256:a8f76f8f131ce81e85201e2ce5ba85892274510bfd20d1bbdeb9581e61cf28af",
       "sema:CurriculumReplay#mh:SHA-256:3ec21d0874761f9e9da74526e2e0ca3e9ac18ceb1fcc396b8715c0ae3baf1de1",
-      "sema:CurriculumReplay#mh:SHA-256:589d2d325987c8acd19de7b7d390748518b1b41f35703be867492f0eab0e90c4"
+      "sema:CurriculumReplay#mh:SHA-256:589d2d325987c8acd19de7b7d390748518b1b41f35703be867492f0eab0e90c4",
+      "sema:CurriculumReplay#mh:SHA-256:0ef657942a69bcc9b32e05656bd6b5b4ca9de556c6e634174363c1c9e4c93723"
     ],
     "path": [
       "Mind",
@@ -30,14 +31,14 @@
     ],
     "caution": "Unsupervised self-modification in idle cycles \u2014 replay reinforces whatever scored well, including gamed scores; keep a rollback checkpoint and audit what gets replayed."
   },
-  "sema_id": "sema:CurriculumReplay#mh:SHA-256:0ef657942a69bcc9b32e05656bd6b5b4ca9de556c6e634174363c1c9e4c93723",
-  "sema_ref": "CurriculumReplay#0ef6",
-  "sema_stub": "0ef6",
+  "sema_id": "sema:CurriculumReplay#mh:SHA-256:d4ef056fd8d4bf96e9ec39a6983d0b5d169842fdb1188b9a7e52984088b725d1",
+  "sema_ref": "CurriculumReplay#d4ef",
+  "sema_stub": "d4ef",
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
       "decay": "sema:Decay#mh:SHA-256:482b97f7196f35c8c50be1b2537ec6e04410a4920fcd8409bec735db3278737a",
-      "experience_sharding": "sema:ExperienceSharding#mh:SHA-256:c8a197339886a6bbec3201ead589ad7fd37bbfcde46d6470df59ded8aaa80153"
+      "experience_sharding": "sema:ExperienceSharding#mh:SHA-256:50ff836c2fc73c18fed683db6e3707a18525da22b100f3db23b6fd7604a8a85e"
     }
   },
   "sema_layer": "Mind",
