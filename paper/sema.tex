@@ -329,13 +329,13 @@ Finally, in the \emph{Verify} phase, the agent invokes \texttt{sema\_handshake()
 \subsection{The Fail-Closed Protocol}
 \label{sec:fail_closed}
 
-When agents coordinate using Sema patterns, the handshake compares the selected external definitions required for the interaction (the ``Context''). The initiating agent lists the required pattern identifiers; each agent independently resolves them and deterministically constructs the catalog Merkle Tree of that subset. Each leaf binds a requested handle to the hash of the definition it resolved, so swapping two handles' definitions cannot preserve the root. The agents exchange the declared root scheme and full Merkle Root:
+When agents coordinate using Sema patterns, the handshake compares the selected external definitions required for the interaction (the ``Context''). The initiating agent lists the required pattern identifiers; each agent independently resolves them and deterministically constructs the catalog Merkle Tree of that subset. Each leaf binds a requested handle to the hash of the definition it resolved, so swapping two handles' definitions cannot preserve the root. The agents exchange the declared root scheme, the canonicalization under which their digests were computed, and the full Merkle Root:
 
 \begin{equation}
 R_{context} = \text{CatalogMerkleRoot}(\{(h_1,\hash(d_1)), (h_2,\hash(d_2)), \dots, (h_n,\hash(d_n))\})
 \end{equation}
 
-Matching full roots and schemes establish, subject to collision resistance, that every selected handle resolved to the same canonical definition and hence the same external contract. A strict, enforced handshake permits coordination with short references on a match and halts immediately on either root or scheme mismatch (Figure~\ref{fig:handshake}). Enforcement belongs to the execution harness: it must require and honor the handshake. The guarantee covers \emph{compliant} agents; the protocol alone supplies no Byzantine guarantee. A deployment can additionally require handshake tokens at message admission, rejecting non-compliant agents' messages at that boundary. Integrating these enforcement boundaries is a deployment decision (Section~\ref{sec:limitations}). In the release, the Model Context Protocol (MCP) tool \texttt{sema\_handshake} compares full digests for a single pattern or the roots of a whole vocabulary; for a selected subset, the context tools of Section~\ref{sec:implementation} exchange only an eight-hex-character prefix of its catalog root, which detects drift between cooperating agents but is not a strict check.
+Matching full roots, schemes and canonicalizations establish, subject to collision resistance, that every selected handle resolved to the same canonical definition and hence the same external contract. A strict, enforced handshake permits coordination with short references on a match and halts immediately on a mismatch of root, scheme or canonicalization (Figure~\ref{fig:handshake}). The third check is needed because two agents can hold identical roots for cards whose pairings are all implied while one hashes under v2 and the other under v3, and only v3 has checked the bindings. Enforcement belongs to the execution harness: it must require and honor the handshake. The guarantee covers \emph{compliant} agents; the protocol alone supplies no Byzantine guarantee. A deployment can additionally require handshake tokens at message admission, rejecting non-compliant agents' messages at that boundary. Integrating these enforcement boundaries is a deployment decision (Section~\ref{sec:limitations}). In the release, the Model Context Protocol (MCP) tool \texttt{sema\_handshake} compares full digests for a single pattern or the roots of a whole vocabulary; for a selected subset, the context tools of Section~\ref{sec:implementation} exchange only an eight-hex-character prefix of its catalog root, which detects drift between cooperating agents but is not a strict check.
 
 \begin{figure}[H]
 \centering
@@ -358,17 +358,17 @@ Matching full roots and schemes establish, subject to collision resistance, that
 
     % Step 2: Verify
     \node[anchor=east, font=\footnotesize\bfseries] at (-0.3,-1.8) {2. Verify};
-    \node[draw, dashed, align=center, fill=white, font=\scriptsize] at ($(A)!0.5!(B) + (0,-2)$) {Compare Scheme + Root\\$(\sigma_A,R_A) \stackrel{?}{=} (\sigma_B,R_B)$};
+    \node[draw, dashed, align=center, fill=white, font=\scriptsize] at ($(A)!0.5!(B) + (0,-2)$) {Compare Scheme + Canonicalization + Root\\$(\sigma_A,\kappa_A,R_A) \stackrel{?}{=} (\sigma_B,\kappa_B,R_B)$};
 
     % Step 3: Branch
     \node[anchor=east, font=\footnotesize\bfseries] at (-0.3,-3.2) {3. Result};
-    \draw[-Latex, semagreen, thick] ($(B)+(0,-2.7)$) -- node[above, sloped, font=\scriptsize] {Pair matches} ($(A)+(0,-3.5)$);
+    \draw[-Latex, semagreen, thick] ($(B)+(0,-2.7)$) -- node[above, sloped, font=\scriptsize] {All three match} ($(A)+(0,-3.5)$);
     \node[text=semagreen, font=\small\bfseries] at ($(A)+(1.1,-3.8)$) {PROCEED};
 
-    \draw[-Latex, semared, thick, dashed] ($(B)+(0,-2.7)$) -- node[below, sloped, font=\scriptsize] {Pair differs} ($(B)+(1.8,-3.5)$);
+    \draw[-Latex, semared, thick, dashed] ($(B)+(0,-2.7)$) -- node[below, sloped, font=\scriptsize] {Any differs} ($(B)+(1.8,-3.5)$);
     \node[text=semared, font=\small\bfseries] at ($(B)+(2.5,-3.5)$) {HALT};
 \end{tikzpicture}
-\caption{Fail-closed handshake. Agents compare the root scheme and Merkle Root of the agreed pattern subset; an enforced handshake maps divergence in either to \texttt{HALT}.}
+\caption{Fail-closed handshake. Agents compare the root scheme $\sigma$, the canonicalization $\kappa$ and the Merkle Root $R$ of the agreed pattern subset; an enforced handshake maps divergence in any of the three to \texttt{HALT}.}
 \label{fig:handshake}
 \end{figure}
 
